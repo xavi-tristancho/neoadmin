@@ -42,16 +42,16 @@ export type Header = {
         props: any,
         ModelTable: React.ComponentType<any>
       ) => React.ReactElement;
+      getItemActions?: (
+        item: unknownObject,
+        state: unknownObject
+      ) => { isEditable: boolean; isDeletable: boolean };
+      isCreatable?: boolean;
+      isEditable?: boolean;
+      isDeletable?: boolean;
+      openOnClickRow?: boolean;
+      pageSize?: number;
+      renderBefore?: () => React.ReactNode;
     };
-    getItemActions?: (
-      item: unknownObject,
-      state: unknownObject
-    ) => { isEditable: boolean; isDeletable: boolean };
-    isCreatable?: boolean;
-    isEditable?: boolean;
-    isDeletable?: boolean;
-    openOnClickRow?: boolean;
-    pageSize?: number;
-    renderBefore?: () => React.ReactNode;
   };
 };
