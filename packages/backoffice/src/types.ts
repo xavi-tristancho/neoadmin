@@ -53,5 +53,14 @@ export type Header = {
       pageSize?: number;
       renderBefore?: () => React.ReactNode;
     };
+    upsertOptions?: {
+      children?: (state: unknownObject) => JSX.Element;
+      component?: (
+        props: any,
+        ModelUpsert: React.ComponentType<any>
+      ) => React.ReactElement;
+      onMount?: () => Promise<unknownObject>;
+      renderAfter?: (state: unknownObject) => React.ReactNode;
+    };
   };
 };
