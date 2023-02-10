@@ -1,0 +1,88 @@
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+import { WrapperLocalLink } from "@site/src/components/ui/Link";
+
+This are the general options of the header.
+
+```js
+const headers = {
+  type: "CRUD",
+    // highlight-start
+  options: {
+    name: "Product",
+    primaryKey: "reference",
+    requests: {...},
+    route: {...},
+    tableOptions: {...},
+    upsertOptions: {...},
+  },
+    // highlight-end
+  sections: [...],
+};
+
+export default headers;
+```
+
+<MarkdownTable
+  headers={["Name", "Required", "Type", `Description`]}
+  rows={[
+    [
+      "name",
+      " `true`",
+      "`string`",
+      "Used to name the sidebar option and the page title.",
+    ],
+    [
+      "primaryKey",
+      "`false`",
+      "`string`",
+      "If defined and there is **not** an `id` property in the model, this prop will be used as the primary key.",
+    ],
+    [
+      "requests",
+      " `false`",
+      "`object`",
+      "Used to define the CRUD requests. <rc cn=link o=requests />",
+    ],
+    [
+      "route",
+      " `true`",
+      "`object` | `string`",
+      "Used to specify the URL path and other properties. If only a `string` is specified it will be used as the path. <rc cn=link o=route />",
+    ],
+    [
+      "tableOptions",
+      "`false`",
+      "`object`",
+      "Used to define the general options of the `Read` / `Delete` view. <rc cn=link o=tableOptions />",
+    ],
+    [
+      "upsertOptions",
+      "`false`",
+      "`object`",
+      "Used to define the general options of the `Create` / `Update` page. <rc cn=link o=upsertOptions />",
+    ],
+  ]}
+  reactComponents={{
+    link: {
+      component: WrapperLocalLink,
+      options: {
+        route: {
+          url: "#route",
+          children: "Go to routes serction.",
+        },
+        requests: {
+          url: "/api/headers/options/requests",
+          children: "Go to requests page.",
+        },
+        tableOptions: {
+          url: "#tableOptions",
+          children: "Go to tableOptions serction.",
+        },
+        upsertOptions: {
+          url: "#upsertOptions",
+          children: "Go to upsertOptions serction.",
+        },
+      },
+    },
+  }}
+/>

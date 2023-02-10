@@ -1,0 +1,53 @@
+{
+  "translation": {
+    "general": {
+      "areYouSure": "¿Estás seguro/a?",
+      "thisActionCannotBeUndone": "Esta acción no puede deshacerse",
+      "search": "Buscar",
+      "filters": "Filtros"
+    },
+    "actions": {
+      "create": "Crear",
+      "edit": "Editar",
+      "new": "Nuevo",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "delete": "Eliminar",
+      "savedCorrect": "Guardado Correctamente!",
+      "savedFail": "Error al guardar!",
+      "signin": "Iniciar Sesión",
+      "deleteCorrect": "Eliminado Correctamente!!",
+      "deleteIncorrect": "Error al eliminar"
+    },
+    "register": { "title": "Regístrate" },
+    "login": {
+      "title": "Iniciar sesión",
+      "email": "Usuario",
+      "password": "Contraseña",
+      "invalidCredentials": "Credenciales incorrectas",
+      "success": "Sesión iniciada correctamente"
+    },
+    "recoverPassword": {
+      "title": "Restablecer contraseña",
+      "email": "Usuario",
+      "send": "Recuperar acceso",
+      "success": "Solicitud enviada correctamente"
+    },
+    "pages": {
+      "usuarios": "Usuario",
+      "tareas": {
+        "entity:": "Tareas",
+        "title": "Tareas",
+        "one": "Tarea",
+        "new": "Nueva Tarea",
+        "model": {
+          "userId": "Usuario",
+          "description": "Descripción",
+          "isBillable": "Facturable",
+          "startedat": "Inicio",
+          "endedat": "Fin"
+        }
+      }
+    }
+  }
+}

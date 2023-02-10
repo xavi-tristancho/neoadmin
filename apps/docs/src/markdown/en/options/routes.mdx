@@ -1,0 +1,121 @@
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+import { WrapperLink } from "@site/src/components/ui/Link";
+import { Signature } from "@site/src/components/ui/Signature";
+
+The main purpose of route options are specify the URL path of every header, this path will be used to serve the sidebar menu. This property can be a `string` or an `object`, if only a `string` is specified it will be used as the `path`.
+
+```js
+const headers = {
+  type: "CRUD",
+  options: {
+    name: "Product",
+    primaryKey: "reference",
+    requests: {...},
+    // highlight-start
+    // route property as a string
+    route: "/articles",
+    // or route property as an object
+    route: {
+      auth: true,
+      unAuth: true,
+      exact: true,
+      path: "/articles",
+      component: (props) => <CustomComponent {...props} />,
+    },
+    // highlight-end
+    tableOptions: {...},
+    upsertOptions: {...},
+  },
+  sections: [...],
+};
+
+export default headers;
+```
+
+<MarkdownTable
+  headers={["Name", "Required", "Type", "Default", `Description`]}
+  rows={[
+    [
+      "auth",
+      "`false`",
+      "`boolean`",
+      " `true`",
+      "When `true` the page can **only** be accessed by the logged users; When `false` the page can **not** be accessed by the logged users.",
+    ],
+    [
+      "component",
+      "`false`",
+      "`function`",
+      "",
+      "Used to render a custom page component. If the function is defined the `headers.sections` configuration will be ignored. This component function will replace the table view (`ModelTable`) and the form view (`ModelUpsert`). <rc cn=signature o=countRequest />",
+    ],
+    [
+      "exact",
+      "`false`",
+      "`boolean`",
+      "`false`",
+      "When `true`, will only redirect to the page if the URL matches exactly with the **path** property. This property is inherited from React Router. <rc cn=externalLink o=exact />",
+    ],
+    [
+      "home",
+      "`false`",
+      "`boolean`",
+      "`false`",
+      "When `true` define this route as the home page. Is where the app redirects the user after logging in or when trying to access an unexisting route. Only one page can be the home page.",
+    ],
+    [
+      "path",
+      " `true`",
+      "`string`",
+      "",
+      "Used to specify the URL, name the sidebar menu option and the page title.",
+    ],
+    [
+      "unAuth",
+      "`false`",
+      "`boolean`",
+      " `false`",
+      "When `true` the page can be accessed by the logged off users; When `false` the page can **only** be accessed by the logged users.",
+    ],
+  ]}
+  reactComponents={{
+    externalLink: {
+      component: WrapperLink,
+      options: {
+        exact: {
+          url: "https://v5.reactrouter.com/core/api/Route/exact-bool",
+          children: "Read more about React Router exact prop.",
+        },
+      },
+    },
+    signature: {
+      component: Signature,
+      options: {
+        countRequest: {
+          definitions:
+            "{data: Array, fields: Array, filter: Array, pagination: object, sort: Array}",
+          functionReturn: "Promise",
+          definitionsDescription: [
+            { prop: "data" },
+            { prop: "fields" },
+            { prop: "filter" },
+            { prop: "pagination" },
+            { prop: "sort" },
+          ],
+        },
+      },
+    },
+  }}
+/>
+
+:::note
+
+You can use a combination of the `auth` and `unAuth` property to manage the accessibility of the pages.
+
+For example:
+
+- `auth: false` & `unAuth: true` = will be only accessible by logged off users.
+- `auth: true` & `unAuth: false` = will be only accessible by logged in users.
+- `auth: true` & `unAuth: true` = will be only accessible by all users.
+
+:::

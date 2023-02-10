@@ -1,0 +1,59 @@
+---
+id: "options"
+title: Options
+sidebar_position: 2
+---
+
+import HeadersIntro from "@site/src/markdown/en/options/headersIntro.mdx";
+import Routes from "@site/src/markdown/en/options/routes.mdx";
+import TableOptions from "@site/src/markdown/en/options/tableOptions.mdx";
+import UpsertOptions from "@site/src/markdown/en/options/upsertOptions.mdx";
+
+import ModelTableLayout from "@site/static/img/headers/table-options-children.png";
+
+## Layout Schema
+
+The layout schema is a little guide to understand, in a visual way, the structure of `ModelTable` and `ModelUpsert`.
+
+### ModelTable
+
+<img
+  className="layout-image"
+  src={ModelTableLayout}
+  alt="neoAdmin screenshots"
+/>
+
+1. _**Component:**_ `header.options.tableOptions.component`
+1. _**Page title:**_ `header.options.name`
+1. _**Create button:**_ `header.options.tableOptions.isCreatable`
+1. _**Render before:**_ `header.options.tableOptions.renderBefore`
+1. _**Action buttons:**_ `header.options.tableOptions.isDeletable` or `header.options.tableOptions.isEditable` or `header.options.tableOptions.getItemActions`
+1. _**Children:**_ `header.options.tableOptions.children`
+
+### ModelUpsert
+
+<img
+  className="layout-image"
+  src={ModelTableLayout}
+  alt="neoAdmin screenshots"
+/>
+
+---
+
+## Definitions
+
+<HeadersIntro />
+
+## Route
+
+<Routes />
+
+## Table Options
+
+<TableOptions />
+
+## Upsert Options
+
+<UpsertOptions />
+
+---

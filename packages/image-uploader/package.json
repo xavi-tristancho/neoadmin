@@ -1,0 +1,67 @@
+{
+  "name": "@neoco/neoco-image-uploader",
+  "version": "0.3.1",
+  "description": "",
+  "main": "lib",
+  "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -c -w",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/neoco/neoco-image-uploader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/neoco/neoco-image-uploader/issues"
+  },
+  "homepage": "https://gitlab.com/neoco/neoco-image-uploader#readme",
+  "peerDependencies": {
+    "@emotion/react": "^11.6.0",
+    "@mui/material": "^5.2.0",
+    "i18next": "^19.8.3",
+    "luxon": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",    
+    "react-i18next": "^11.7.3",
+    "react-router-dom": "^5.2.0",        
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@emotion/react": "^11.6.0",
+    "@mui/icons-material": "^5.4.4",
+    "@mui/material": "^5.2.0",
+    "@rollup/plugin-multi-entry": "^4.0.0",
+    "babel-eslint": "^9.0.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-inline-react-svg": "^1.1.2",
+    "i18next": "^19.8.3",
+    "jest": "^26.1.0",
+    "luxon": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^11.7.3",
+    "react-is": "^17.0.1",
+    "react-router-dom": "^5.2.0",        
+    "rollup": "^2.17.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "styled-components": "^5.1.1",
+    "rollup-plugin-postcss": "^4.0.0"
+  },
+  "dependencies": {
+    "cropperjs": "^1.5.9",
+    "postcss": "^8.2.6"
+  },
+  "directories": {
+    "lib": "lib"
+  }
+}

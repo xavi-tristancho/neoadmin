@@ -1,0 +1,67 @@
+{
+  "name": "@neoco/neoco-form",
+  "version": "0.11.0",
+  "description": "",
+  "homepage": "https://gitlab.com/neoco/neoco-form#readme",
+  "bugs": {
+    "url": "https://gitlab.com/neoco/neoco-form/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/neoco/neoco-form.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "lib",
+  "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -c -w",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@date-io/luxon": "^2.11.1",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.4.4",
+    "@mui/lab": "^5.0.0-alpha.93",
+    "@mui/material": "^5.2.7",
+    "@mui/x-date-pickers": "^5.0.0-beta.4",
+    "@neoco/neoco-image-uploader": "^0.3.1",
+    "@rollup/plugin-multi-entry": "^4.0.0",
+    "@tinymce/tinymce-react": "^3.8.4",
+    "babel-eslint": "^9.0.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-inline-react-svg": "^1.1.2",    
+    "jest": "^26.1.0",
+    "luxon": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",              
+    "rollup": "^2.17.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "styled-components": "^5.1.1"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.4.4",
+    "@mui/lab": "^5.0.0-alpha.93",
+    "@mui/material": "^5.2.7",
+    "@mui/x-date-pickers": "^5.0.0-beta.4",
+    "@neoco/neoco-image-uploader": "^0.3.1",
+    "@tinymce/tinymce-react": "^3.8.4",    
+    "luxon": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",          
+    "styled-components": "^5.1.1"
+  }
+}

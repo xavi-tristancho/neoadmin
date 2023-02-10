@@ -1,0 +1,148 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #1c1c1c;
+  --ifm-color-primary-dark: #191919;
+  --ifm-color-primary-darker: #181818;
+  --ifm-color-primary-darkest: #141414;
+  --ifm-color-primary-light: #1f1f1f;
+  --ifm-color-primary-lighter: #202020;
+  --ifm-color-primary-lightest: #242424;
+  --ifm-code-font-size: 95%;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="dark"] {
+  --ifm-color-primary: #e2f745;
+  --ifm-color-primary-dark: #ddf627;
+  --ifm-color-primary-darker: #dbf518;
+  --ifm-color-primary-darkest: #bcd409;
+  --ifm-color-primary-light: #e7f863;
+  --ifm-color-primary-lighter: #e9f972;
+  --ifm-color-primary-lightest: #f0fba0;
+  --ifm-link-color: white;
+}
+
+::selection {
+  color: black;
+  background: #e2f745;
+}
+
+.subtitle {
+  margin-top: -1.3rem;
+  line-height: 1.87rem;
+  color: hsl(206 6% 63%);
+  font-size: 1.31rem;
+  letter-spacing: 0.016rem;
+}
+
+.intro-image {
+  display: flex;
+  /*max-height: 545px;*/
+  margin: auto;
+  background: #9aa4aa;
+  padding: 1rem;
+}
+
+.layout-image {
+  max-height: 545px;
+  background: #161718;
+  padding: 0.3rem;
+  border-radius: var(--ifm-global-radius);
+}
+
+.markdown a:not(.hash-link) {
+  text-decoration: underline;
+  text-decoration-color: #ffffff7a;
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+  text-decoration-color: #ffffff;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+[data-theme="dark"] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+a code {
+  text-decoration: underline;
+  text-decoration-color: #919191;
+}
+
+a:hover code {
+  text-decoration: underline;
+  text-decoration-color: #ffffff;
+}
+
+.markdown-table {
+  width: 100%;
+  border-radius: var(--ifm-global-radius);
+  padding: 0.3rem;
+  background: #00000017;
+  display: block;
+  margin-bottom: var(--ifm-spacing-vertical);
+}
+
+.markdown-table > table {
+  width: 100%;
+  display: table;
+  border-radius: var(--ifm-global-radius);
+  background: #00000017;
+  border-collapse: collapse;
+  margin: 0;
+  overflow: hidden;
+}
+
+.markdown-table.equal-size > table {
+  table-layout: fixed;
+}
+
+.markdown-table > table thead {
+  border-bottom: 2px solid;
+  border-color: var(--ifm-code-background);
+}
+
+.markdown-table > table thead tr,
+.markdown-table > table tbody tr {
+  border: 0;
+}
+
+.markdown-table > table tbody tr {
+  border-bottom: 1px solid;
+  border-color: var(--ifm-code-background);
+}
+
+.markdown-table > table tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.markdown-table > table thead tr th,
+.markdown-table > table tbody tr td {
+  border: 0;
+  min-width: 100px;
+}
+
+.signature code {
+  white-space: break-spaces;
+}
+
+.signature pre {
+  background-color: rgb(40, 42, 54);
+}
+
+.signature .descriptions {
+  font-style: italic;
+}

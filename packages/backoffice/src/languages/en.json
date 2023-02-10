@@ -1,0 +1,51 @@
+{
+  "translation": {
+    "general": {
+      "areYouSure": "Are you sure?",
+      "thisActionCannotBeUndone": "This action cannot be undone",
+      "search": "Search",
+      "filters": "Filters"
+    },
+    "actions": {
+      "create": "Create",
+      "edit": "Edit",
+      "new": "New",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "delete": "Delete",
+      "savedCorrect": "Saved Correctly!",
+      "savedFail": "Saved Failed!",
+      "signin": "Sign In",
+      "deleteCorrect": "Deleted Correctly!",
+      "deleteIncorrect": "Deleted Failed!"
+    },
+    "register": { "title": "Sign Up" },
+    "login": {
+      "title": "Sign In",
+      "email": "User",
+      "password": "Password",
+      "invalidCredentials": "Invalid credentials"
+    },
+    "recoverPassword": {
+      "title": "Recover password",
+      "email": "User",
+      "send": "Recover access"
+    },
+    "pages": {
+      "usuarios": "User",
+      "tareas": {
+        "entity:": "Tasks",
+        "title": "Tasks",
+        "one": "Task",
+        "new": "New Task",
+        "model": {
+          "userId": "User",
+          "description": "Description",
+          "isBillable": "Billable",
+          "startedat": "Start",
+          "endedat": "End"
+        }
+      }
+    }
+  }
+}

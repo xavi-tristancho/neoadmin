@@ -1,0 +1,120 @@
+---
+id: "sections"
+sidebar_position: 3
+---
+
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+import { WrapperLocalLink } from "@site/src/components/ui/Link";
+
+# Sections
+
+The `sections` property is an array of objects, each object is meant to be a `section`.
+
+```js
+import { CustomFieldsContainer } from "components";
+
+const headers = {
+  type: "CRUD",
+  options: {...},
+    // highlight-start
+  sections: [
+    {
+      // first section
+      component: () => {
+        return <div>This is a section custom component</div>;
+      },
+      fields: [...],
+      FieldsContainer: ({ children, style }) => (
+        <CustomFieldsContainer style={{ ...style, background: "white", padding: "2rem" }}>
+          {children}
+        </CustomFieldsContainer>
+      ),
+      fieldsContainerStyles: { background: "white", padding: "2rem" },
+      //Subtitle: "function<component>" // ??,
+      subtitle: "Subtitle first section",
+      //Title: "function<component>" // ??,
+      title: "Title first section",
+    },
+    {
+      // second section
+    }
+  ],
+    // highlight-end
+};
+
+export default headers;
+```
+
+<MarkdownTable
+  headers={["Name", "Required", "Type", `Description`]}
+  rows={[
+    [
+      "component",
+      "`false` *",
+      "`function`",
+      "Used to render a custom section component.",
+    ],
+    [
+      "fields",
+      "`false` *",
+      "`array`",
+      "Used to define the fields that will be shown in the `ModelTable` and the `ModelUpsert`. Is an array of objects.",
+    ],
+    [
+      "FieldsContainer",
+      "`false`",
+      "`function`",
+      "Used to render a custom fields container component.",
+    ],
+    [
+      "fieldsContainerStyles",
+      "`false`",
+      "`object`",
+      "Used to pass styles to the fields container component. This styles have to be written in camelCase.",
+    ],
+    [
+      "subtitle",
+      "`false`",
+      "`string`",
+      "Used to define a subtitle in this section. Will be shown under the section title.",
+    ],
+    [
+      "title",
+      "`false`",
+      "`string`",
+      "Used to define a title in this section. Will be shown above the section fields.",
+    ],
+  ]}
+  reactComponents={{
+    link: {
+      component: WrapperLocalLink,
+      options: {
+        route: {
+          url: "#route",
+          children: "Go to routes serction.",
+        },
+        requests: {
+          url: "/api/headers/options/requests",
+          children: "Go to requests page.",
+        },
+        tableOptions: {
+          url: "#tableOptions",
+          children: "Go to tableOptions serction.",
+        },
+        upsertOptions: {
+          url: "#upsertOptions",
+          children: "Go to upsertOptions serction.",
+        },
+      },
+    },
+  }}
+/>
+
+:::caution
+
+**\* 1. component:** Is not required but you have to define the `fields` property.<br/>
+**\* 2. fields:** Is not required but you have to define the `component` property.
+
+:::
+
+---

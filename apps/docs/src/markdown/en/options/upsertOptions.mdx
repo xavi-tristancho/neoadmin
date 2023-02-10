@@ -1,0 +1,138 @@
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+import { WrapperLink } from "@site/src/components/ui/Link";
+import { Signature } from "@site/src/components/ui/Signature";
+
+The `upsertOptions` main purpose is to give the user flexibility to edit the form view (`ModelUpsert`).
+
+```js
+const headers = {
+  type: "CRUD",
+  options: {
+    name: "Product",
+    primaryKey: "reference",
+    requests: {...},
+    route: {...},
+    tableOptions: {...},
+    // highlight-start
+    upsertOptions: {
+      children: ({ state: { data, aux } }) => {
+        // data: form data.
+        // aux: will be populated by onMount requests responses.
+        return <div>This is a children component</div>;
+      },
+      component: (props, ModelUpsert) => {
+        const { headers, history, location, match } = props;
+
+        // you can return the ModelUpsert component
+        return <ModelUpsert {...props} header={props.headers} />;
+        // or your own custom component
+        return <div>This is a custom component</div>;
+      },
+      onMount: () => findRequest("Customers").then((customers) => ({ customers })),
+      renderAfter: ({ state: { data, aux } }) => {
+        // data: form data.
+        // aux: will be populated by onMount requests responses.
+        return <div>This is a renderAfter component</div>;
+      },
+    },
+    // highlight-end
+  },
+  // The onMout request response can be accessed by sections.[section].field, for example:
+  sections: [
+    {
+      fields: [
+        // In this example we are retieving the first customer.
+        {
+          label: "First Customer",
+          property: "firstCustomer",
+          upsertOptions: {
+            // highlight-start
+            format: ({ state: { aux: { customers } } }) => {
+              return customers[0].name;
+            },
+            // highlight-end
+          },
+        },
+        // In this example we filling a select with the customers array.
+        {
+          label: "Customers",
+          property: "productCustomer",
+          type: "multiselect",
+          tableOptions: { show: false },
+          relation: {
+            // highlight-start
+            name: "customers",
+            primaryKey: "id",
+            nameProps: ["name"],
+            // highlight-end
+          },
+        },
+      ],
+    },
+  ],
+};
+
+export default headers;
+```
+
+<MarkdownTable
+  headers={["Name", "Required", "Type", "Default", `Description`]}
+  rows={[
+    [
+      "children",
+      "`false`",
+      "`function`",
+      "",
+      "If the function is defined, it will render a custom component inside the `ModelUpsert`'s container, just between the form and the submit button.", //<rc cn=link o=children/> <rc cn=signature o=countRequest />
+    ],
+    [
+      "component",
+      "`false`",
+      "`function`",
+      "",
+      "Used to render a custom `ModelUpsert` component or to pass additional configurations to the `ModelUpsert` component. <br /> If the function is defined and the `return` is a custom component, the `headers.sections` configuration will be ignored in the table view (`ModelUpsert`), but will still be used to render the form view (`ModelTable`).", //<rc cn=signature o=countRequest />
+    ],
+    [
+      "onMount",
+      "`false`",
+      "`function`",
+      "",
+      "Used to make additional requests.",
+    ],
+    [
+      "renderAfter",
+      "`false`",
+      "`function`",
+      "",
+      "If the function is defined, it will render a custom component outside the `ModelUpsert`'s container, just at the bottom of the container.",
+    ],
+  ]}
+  reactComponents={{
+    signature: {
+      component: Signature,
+      options: {
+        countRequest: {
+          definitions:
+            "{data: Array, fields: Array, filter: Array, pagination: object, sort: Array}",
+          functionReturn: "Promise",
+          definitionsDescription: [
+            { prop: "data" },
+            { prop: "fields" },
+            { prop: "filter" },
+            { prop: "pagination" },
+            { prop: "sort" },
+          ],
+        },
+      },
+    },
+    link: {
+      component: WrapperLink,
+      options: {
+        mui: {
+          url: "https://mui.com/x/api/data-grid/data-grid",
+          children: "rowsPerPageOptions",
+        },
+      },
+    },
+  }}
+/>

@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true,
+          "ie": 11
+        }
+      }
+    ]
+  ],
+  "plugins": ["inline-react-svg"]
+}

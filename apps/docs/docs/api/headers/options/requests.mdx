@@ -1,0 +1,214 @@
+---
+id: requests
+title: Requests
+sidebar_label: Requests
+sidebar_position: 1
+---
+
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+import { Signature } from "@site/src/components/ui/Signature";
+
+The `requests` properties are backend agnostig, you can implement whatever backend you want, we only expect the following functions to return a `Promise` and depending the function other minimum requirements defined in each function signature.
+
+This functions are used inside neoAdmin to serve the CRUD actions, so you **have to** define them when you are making a CRUD page, but there are not mandatory when you are creating a custom page.
+
+<!-- ADD LINKS TO `request` and `requests` file -->
+
+```js
+const headers = {
+  type: "CRUD",
+  options: {
+    name: "Product",
+    primaryKey: "reference",
+    // highlight-start
+    requests: {
+      countRequest: () => {},
+      deleteRequest: () => {},
+      findOneRequest: () => {},
+      findRequest: () => {},
+      mapFindResponse: () => {},
+      uploadFileRequest: () => {},
+      upsertRequest: () => {},
+    },
+    // highlight-end
+    route: {...},
+    tableOptions: {...},
+    upsertOptions: {...},
+  },
+  sections: [...],
+};
+
+export default headers;
+```
+
+<MarkdownTable
+  headers={["Name", "Required", "Type", `Description`]}
+  rows={[
+    [
+      "countRequest",
+      "`true`",
+      "`function`",
+      "Gets the number of matches for a search query. <rc cn=signature o=countRequest />",
+    ],
+    [
+      "deleteRequest",
+      "`true`",
+      "`function`",
+      "Removes a model instance or instances using specified filters.",
+    ],
+    [
+      "findOneRequest",
+      "`true`",
+      "`function`",
+      "Find first model instance using specified filters.",
+    ],
+    [
+      "findRequest",
+      "`true`",
+      "`function`",
+      "Find all model instances using specified filters.",
+    ],
+    [
+      "upsertRequest",
+      "`true`",
+      "`function`",
+      "Updates a model instance using the specified filters.",
+    ],
+    ["uploadFileRequest", "`false`", "`function`", "Upload a file or image."],
+    [
+      "mapFindResponse",
+      "`false`",
+      "`function`",
+      "Returns an array that contains the `find` request response. It can be used to modify, filter or edit the response the way you want.",
+    ],
+  ]}
+  reactComponents={{
+    signature: {
+      component: Signature,
+      options: {
+        countRequest: {
+          definitions:
+            "{data: Array, fields: Array, filter: Array, pagination: object, sort: Array}",
+          functionReturn: "Promise",
+          definitionsDescription: [
+            { prop: "data" },
+            { prop: "fields" },
+            { prop: "filter" },
+            { prop: "pagination" },
+            { prop: "sort" },
+          ],
+        },
+      },
+    },
+  }}
+/>
+
+## The simple way to implement the request functions
+
+You can implement the request functions directly inside the `requests` object.
+
+For example:
+
+```js
+import request from "utils/request";
+
+const endpoint = "Articles";
+const headers = {
+  options: {
+    requests: {
+      findOneRequest: ({ id }) => request(`${endpoint}/${id}`),
+      mapFindResponse: (response) =>
+        response.map((element) => ({
+          ...element,
+          discount: `${element.discount}%`,
+        })),
+    },
+  },
+};
+```
+
+## How we implement the request functions
+
+To make the code much easier, readable and more reusable , when we are making a project we create a `request.js` file and a `requests.js` file. Inside the `request.js` we crate the generic request to call to the `API`.
+
+```js title="/src/utils/request.js"
+const request = (
+  url,
+  { API_URL = process.env.REACT_APP_API_URL, ...options },
+) =>
+  fetch(`${API_URL}${url}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: JSONToken,
+    },
+  }).then((res) => {
+    switch (res.status) {
+      case 200:
+        return res.json();
+      //Here you can write all the controls you want
+      default:
+        return res
+          .json()
+          .then((error) => Promise.reject({ status: res.status, error }));
+    }
+  });
+
+export default request;
+```
+
+Using the generic request now we can define all the non-generic requests.
+
+```js title="/src/utils/requests.js"
+// highlight-start
+import request from "./request";
+// highlight-end
+
+//All other functions
+
+export const findOneRequest =
+  (endpoint) =>
+  ({ id }) =>
+    // highlight-start
+    request(`${endpoint}/${id}`);
+// highlight-end
+
+export const getRequests = (endpoint) => ({
+  findRequest: findRequest(endpoint),
+  findOneRequest: findOneRequest(endpoint),
+  upsertRequest: upsertRequest(endpoint),
+  countRequest: countRequest(endpoint),
+  deleteRequest: deleteRequest(endpoint),
+});
+```
+
+This way we can call the `getRequests` function in the `header` file and avoid repeat code, only passing the endpoint. Like so:
+
+```js title="/src/pages/Products/productHeader.js"
+// highlight-start
+import { getRequests } from "utils/requests";
+// highlight-end
+
+// highlight-start
+const requests = getRequests("Articles");
+// highlight-end
+const productHeader = {
+  type: "CRUD",
+  options: {
+    name: "Product",
+    primaryKey: "reference",
+    // highlight-start
+    requests
+    // highlight-end
+    route: {...},
+    tableOptions: {...},
+    upsertOptions: {...},
+  },
+  sections: [...],
+};
+
+export default productHeader;
+```
+
+---

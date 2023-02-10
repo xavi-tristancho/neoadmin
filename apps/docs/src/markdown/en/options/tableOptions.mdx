@@ -1,0 +1,148 @@
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+import { WrapperLink } from "@site/src/components/ui/Link";
+import { Signature } from "@site/src/components/ui/Signature";
+
+The `tableOptions` main purpose is to give the user flexibility to edit the table view (`ModelTable`).
+
+```js
+const headers = {
+  type: "CRUD",
+  options: {
+    name: "Product",
+    primaryKey: "reference",
+    requests: {...},
+    route: {...},
+    // highlight-start
+    tableOptions: {
+      children: ({ state }) => {
+        // state: form data.
+        return <div>This is a children component</div>;
+      },
+      component: (props, ModelTable) => {
+        const { headers, history, location, match } = props;
+
+        // you can return the ModelTable component
+        return <ModelTable {...props} header={props.headers} />;
+        // or your own custom component
+        return <div>This is a custom component</div>;
+      },
+      getItemActions: ({ item, state }) => {
+        // item: current row data.
+        // state: form data.
+       return { isEditable: item.row.sellPrice < 500, isDeletable: false };
+      },
+      isCreatable: true,
+      isDeletable: true,
+      isEditable: true,
+      // isFilterable: true, // ??
+      // isSearchable: true, // ??
+      // onMount: "function", // ??
+      openOnClickRow: true,
+      pageSize: 50,
+      renderBefore: () => <div>This is a renderBefore component</div>,
+    },
+    // highlight-end
+    upsertOptions: {...},
+  },
+  sections: [...],
+};
+
+export default headers;
+```
+
+<MarkdownTable
+  headers={["Name", "Required", "Type", "Default", `Description`]}
+  rows={[
+    [
+      "children",
+      "`false`",
+      "`function`",
+      "",
+      "If the function is defined, it will render a custom component inside the `ModelTable`'s container, just below the table. ", //<rc cn=link o=children/> <rc cn=signature o=countRequest />
+    ],
+    [
+      "component",
+      "`false`",
+      "`function`",
+      "",
+      "Used to render a custom `ModelTable` component or to pass additional configurations to the `ModelTable` component. <br /> If the function is defined and the `return` is a custom component, the `headers.sections` configuration will be ignored in the table view (`ModelTable`), but will still be used to render the form view (`ModelUpsert`).", //<rc cn=signature o=countRequest />
+    ],
+    [
+      "getItemActions",
+      "`false`",
+      "`function`",
+      "",
+      "Used to control if show the `isEditable` and `isDeletable` actions based in the conditions specified inside the function.",
+    ],
+    [
+      "isCreatable",
+      "`false`",
+      "`boolean`",
+      "`true`",
+      "When `false`, will hide the create button placed over the table.",
+    ],
+    [
+      "isDeletable",
+      "`false`",
+      "`boolean`",
+      "`false`",
+      "When `true`, will show a trash icon in the table actions column. This icon will allow the user to remove this model instance by calling to the `deleteRequest`.",
+    ],
+    [
+      "isEditable",
+      "`false`",
+      "`boolean`",
+      "`false`",
+      "When `true`, will show a pencil icon in the table actions column. When clicking this icon will redirect the page to the form view (`ModelUpsert`) and the submit button will allow the user to edit this model instance by calling to the `upsertRequest`.",
+    ],
+    [
+      "openOnClickRow",
+      "`false`",
+      "`boolean`",
+      "`false`",
+      "When `true`, if the user click any row it will be redirected to the form view (`ModelUpsert`) of this element.",
+    ],
+    [
+      "pageSize",
+      "`false`",
+      "`number`",
+      "`5`",
+      "Used to control the number of rows per page showed in the table. If pageSize is defined the <rc cn=link o=mui > </rc> selector will be not rendered.",
+    ],
+    [
+      "renderBefore",
+      "`false`",
+      "`function`",
+      "",
+      "If the function is defined, it will render a custom component outside the `ModelTable`'s container, just at the top of the container.",
+    ],
+  ]}
+  reactComponents={{
+    signature: {
+      component: Signature,
+      options: {
+        countRequest: {
+          definitions:
+            "{data: Array, fields: Array, filter: Array, pagination: object, sort: Array}",
+          functionReturn: "Promise",
+          definitionsDescription: [
+            { prop: "data" },
+            { prop: "fields" },
+            { prop: "filter" },
+            { prop: "pagination" },
+            { prop: "sort" },
+          ],
+        },
+      },
+    },
+    link: {
+      component: WrapperLink,
+      options: {
+        mui: {
+          url: "https://mui.com/x/api/data-grid/data-grid",
+          children: "rowsPerPageOptions",
+        },
+      },
+    },
+  }}
+/>

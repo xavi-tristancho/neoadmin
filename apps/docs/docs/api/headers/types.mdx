@@ -1,0 +1,39 @@
+---
+id: "types"
+title: Types
+sidebar_position: 1
+---
+
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+
+This property indicates the basic functionalities that we want to achieve with this header. This property is located in the root of every header.
+
+```js
+const headers = {
+  // highlight-next-line
+  type: 'CRUD',
+  options: { ... },
+  sections: [ ... ],
+};
+
+export default headers;
+```
+
+<MarkdownTable
+  type={"compact"}
+  rows={["type", "'CRUD' | 'Page'", " `true`", "`string`", "'CRUD'"]}
+/>
+
+### CRUD
+
+If we indicate this type neoAdmin will create three routes. The `routname` will be provided in the `options.route`:
+
+- `/{routename}`: In this route we will find the `ModelTable` component rendered.
+- `/{routename}/new`: In this route we will find the `ModelUpsert` component rendered with an empty state.
+- `/{routename}/{primaryKey}`: In this route we will find the `ModelUpsert` component rendered and the state will be filled by the response of the `options.request.findOneRequest` function.
+
+### Page
+
+This type is for doing a custom page in our application. We will need to provide all the necessary react-router [route](https://reactrouter.com/web/api/Route) props in order to render something.
+
+---
