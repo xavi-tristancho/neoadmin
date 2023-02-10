@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
 import React, { useState, useEffect } from "react";
-import Form from "@neoco/neoco-form";
+import {FormGenerator} from "@neoco/neoco-form";
 import styled from "styled-components";
 import {
   getColumnOptions,

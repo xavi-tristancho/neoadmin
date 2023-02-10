@@ -1,32 +1,30 @@
 {
+  "private": true,
   "name": "@neoco/neoco-image-uploader",
   "version": "0.3.1",
-  "description": "",
-  "main": "lib",
+  "type": "module",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
   "scripts": {
-    "build": "rollup -c",
-    "start": "rollup -c -w",
-    "test": "jest"
+    "dev": "tsc && vite build --watch",
+    "build": "tsc && vite build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/neoco/neoco-image-uploader.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/neoco/neoco-image-uploader/issues"
-  },
-  "homepage": "https://gitlab.com/neoco/neoco-image-uploader#readme",
   "peerDependencies": {
     "@emotion/react": "^11.6.0",
     "@mui/material": "^5.2.0",
     "i18next": "^19.8.3",
     "luxon": "^2.3.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",    
+    "react-dom": "^18.2.0",
     "react-i18next": "^11.7.3",
-    "react-router-dom": "^5.2.0",        
+    "react-router-dom": "^5.2.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
@@ -48,7 +46,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^11.7.3",
     "react-is": "^17.0.1",
-    "react-router-dom": "^5.2.0",        
+    "react-router-dom": "^5.2.0",
     "rollup": "^2.17.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",

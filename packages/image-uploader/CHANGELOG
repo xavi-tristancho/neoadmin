@@ -1,3 +1,0 @@
-* Created Field ImageUploader that can have a url as a property and allows changing the image for a file 
-* Created Image Editor with the ability to zoom and crop
-* url, file, blob conversion utilities

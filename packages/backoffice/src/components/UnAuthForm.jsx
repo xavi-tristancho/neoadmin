@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
-import Form from "@neoco/neoco-form";
+import {FormGenerator} from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
 

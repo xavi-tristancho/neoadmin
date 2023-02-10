@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Form from "@neoco/neoco-form";
+import {FormGenerator} from "@neoco/neoco-form";
 import { Typography, Card, CardContent } from "@mui/material";
 import { beforeSave } from "./utils";
 import { getRoutePath } from "../../utils/routes";
