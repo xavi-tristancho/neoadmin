@@ -64,12 +64,12 @@ export type Header = {
     };
     sections?: {
       component?: () => JSX.Element;
-      fields?: Array<{ [key: string]: any }>;
+      fields?: Array<{ [key: string]: string }>;
       FieldsContainer?: ({
         children,
         style,
       }: {
-        children: any;
+        children: JSX.Element;
         style: any;
       }) => JSX.Element;
       fieldsContainerStyles?: { [key: string]: string };
