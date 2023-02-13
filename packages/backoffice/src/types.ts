@@ -8,7 +8,7 @@ export type Config = {
 
 export type unknownObject = { [key: string]: unknown };
 
-export type Header = {
+export type Headers = {
   type: "CRUD" | "Page";
   options: {
     name: string;
@@ -34,7 +34,7 @@ export type Header = {
       unAuth?: boolean;
       auth?: boolean;
       exact?: boolean;
-      component?: (props?: any) => JSX.Element;
+      component?: () => JSX.Element;
     };
     tableOptions?: {
       children?: (state: unknownObject) => JSX.Element;

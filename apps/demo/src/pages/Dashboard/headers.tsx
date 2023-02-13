@@ -5,7 +5,7 @@ import Chart from "chart.js/auto";
 import CountUp from "react-countup";
 
 import { postsData } from "./fixtures/postsData";
-import { Header } from "@neoco/neoco-backoffice";
+import { Headers } from "../../../../../packages/backoffice/src/types";
 
 const months = postsData.viewsPerMonth.map((d) => d.month);
 const views = postsData.viewsPerMonth.map((d) => d.views);
@@ -23,7 +23,7 @@ const chartData = {
   ],
 };
 
-const headers: Header = {
+const headers: Headers = {
   type: "Page",
   options: {
     name: "Dashboard",
