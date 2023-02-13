@@ -82,5 +82,5 @@ export type Headers = {
     fieldsContainerStyles?: { [key: string]: string };
     subtitle?: string;
     title?: string;
-  };
+  }[];
 };
