@@ -6,8 +6,6 @@ export type Config = {
   router: BrowserRouterProps;
 };
 
-export type unknownObject = { [key: string]: unknown };
-
 export type Headers = {
   type: "CRUD" | "Page";
   options: {
@@ -15,7 +13,7 @@ export type Headers = {
     primaryKey?: string;
     requests?: {
       findRequest: () => Promise<any[]>;
-      findOneRequest?: ({ id }: { id: string }) => Promise<any>;
+      findOneRequest?: (item: unknownObject) => Promise<any>;
       countRequest?: ({
         data: [],
         fields: [],
