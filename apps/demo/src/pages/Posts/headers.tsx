@@ -1,8 +1,9 @@
 import { posts } from "./fixtures/posts";
 import { Post } from "./types";
 import { clone } from "../utils";
+import { Headers } from "@neoco/neoco-backoffice/src/types";
 
-const headers = {
+const headers: Headers = {
   type: "CRUD", // Specify the header as a `CRUD` type
   options: {
     name: "Post", // Name the sidebar option and the page title
