@@ -12,8 +12,10 @@ export type Headers = {
     name: string;
     primaryKey?: string;
     requests?: {
-      findRequest: () => Promise<any[]>;
-      findOneRequest?: (item: unknownObject) => Promise<any>;
+      findRequest: () => Promise<unknown | unknown[]>;
+      findOneRequest?: (
+        item: unknownObject
+      ) => Promise<unknownObject | unknownObject[]>;
       countRequest?: ({
         data: [],
         fields: [],
