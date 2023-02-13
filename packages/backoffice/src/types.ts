@@ -23,7 +23,9 @@ export type Headers = {
         pagination: {},
         sort: [],
       }) => Promise<number>;
-      upsertRequest(data: unknownObject): Promise<any>;
+      upsertRequest(
+        data: unknownObject
+      ): Promise<unknownObject | unknownObject[]>;
       deleteRequest?: ({ id }: { id: string }) => Promise<void>;
       uploadFileRequest?: (file: File) => Promise<string>;
       mapFindResponse?: (response: any[]) => any[];
