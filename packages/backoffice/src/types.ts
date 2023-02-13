@@ -70,7 +70,7 @@ export type Header = {
         style,
       }: {
         children: JSX.Element;
-        style: any;
+        style: React.CSSProperties;
       }) => JSX.Element;
       fieldsContainerStyles?: { [key: string]: string };
       subtitle?: string;
