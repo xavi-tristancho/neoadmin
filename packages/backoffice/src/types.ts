@@ -71,7 +71,7 @@ export type Headers = {
   };
   sections?: {
     component?: () => JSX.Element;
-    fields?: Array<{ [key: string]: string }>;
+    fields?: Array<unknownObject>;
     FieldsContainer?: ({
       children,
       style,
