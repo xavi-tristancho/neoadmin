@@ -58,7 +58,7 @@ const App = ({ headers = [], config }: AppProps) => {
   }, []);
 
   return availableRoutes.length > 0 ? (
-    <Router>
+    <Router {...config?.router}>
       <SnackbarProvider>
         <ThemeModeProvider customTheme={actualConfig}>
           <Page routes={availableRoutes}>
