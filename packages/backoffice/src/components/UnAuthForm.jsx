@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
-import {FormGenerator} from "@neoco/neoco-form";
+import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
 
@@ -67,7 +67,7 @@ const UnAuthForm = ({
 
   return (
     <FormContainer>
-      <Form
+      <FormGenerator
         headers={header}
         onSubmit={() => onSubmit(state.data)}
         state={state}
@@ -80,7 +80,7 @@ const UnAuthForm = ({
         )}
       >
         {children}
-      </Form>
+      </FormGenerator>
       <LinksContainer>
         {recoverPassword.linkText && (
           <LinkContainer theme={theme}>

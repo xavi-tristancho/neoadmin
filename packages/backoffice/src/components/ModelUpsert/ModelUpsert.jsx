@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {FormGenerator} from "@neoco/neoco-form";
+import { FormGenerator } from "@neoco/neoco-form";
 import { Typography, Card, CardContent } from "@mui/material";
 import { beforeSave } from "./utils";
 import { getRoutePath } from "../../utils/routes";
@@ -78,7 +78,7 @@ const ModelUpsert = ({ header, children }) => {
         return res;
       })
       .catch((error) => {
-        console.error(error)
+        console.error(error);
         showErrorAlert({ message: t("actions.savedFail") });
       });
   };
@@ -108,7 +108,7 @@ const ModelUpsert = ({ header, children }) => {
       <Card>
         <CardContent>
           {isCreating || (!isCreating && !isEmptyObject(state.data)) ? (
-            <Form
+            <FormGenerator
               headers={header}
               onSubmit={onSubmit}
               state={state}
@@ -118,7 +118,7 @@ const ModelUpsert = ({ header, children }) => {
               submitButtonProps={submitButtonProps}
             >
               {renderChildren}
-            </Form>
+            </FormGenerator>
           ) : (
             <></>
           )}

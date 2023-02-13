@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
 import React, { useState, useEffect } from "react";
-import {FormGenerator} from "@neoco/neoco-form";
+import { FormGenerator } from "@neoco/neoco-form";
 import styled from "styled-components";
 import {
   getColumnOptions,
@@ -66,7 +66,7 @@ const CustomFilters = ({
 
   return visible ? (
     <FormContainer theme={theme}>
-      <Form
+      <FormGenerator
         state={{ data: state, aux: {} }}
         headers={{
           sections: headerSections,
