@@ -4,10 +4,13 @@ import { Link as RouterLink } from "react-router-dom";
 import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
+import { Headers } from "@neoco/neoco-backoffice/src/types";
+
+type Sections = Headers["sections"];
 
 const { mediaQuery } = responsive;
 
-const getInitialState = (sections) =>
+const getInitialState = (sections: Sections) =>
   sections.reduce(
     (reducer, { fields }) => ({
       ...reducer,
