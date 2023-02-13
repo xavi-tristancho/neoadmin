@@ -26,7 +26,7 @@ export type Headers = {
       upsertRequest(
         data: unknownObject
       ): Promise<unknownObject | unknownObject[]>;
-      deleteRequest?: ({ id }: { id: string }) => Promise<void>;
+      deleteRequest?: ({ id }: { id: string }) => Promise<unknownObject | unknownObject[]>;
       uploadFileRequest?: (file: File) => Promise<string>;
       mapFindResponse?: (response: any[]) => any[];
     };
