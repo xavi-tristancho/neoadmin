@@ -82,7 +82,7 @@ const headers: Headers = {
 
 export default headers;
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
+const StyledPaper = styled(Paper)({
   background: "linear-gradient(to right, #6a11cb 0%, #2575fc 100%)",
   padding: "16px",
   display: "flex",
@@ -90,7 +90,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   alignItems: "center",
   gap: "16px",
   borderRadius: "16px",
-}));
+});
 
 const ChartContainer = styled(Box)(({ theme }) => ({
   display: "flex",
