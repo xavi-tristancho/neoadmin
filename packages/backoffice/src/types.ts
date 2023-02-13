@@ -79,7 +79,7 @@ export type Headers = {
       children: JSX.Element;
       style: React.CSSProperties;
     }) => JSX.Element;
-    fieldsContainerStyles?: { [key: string]: string };
+    fieldsContainerStyles?: unknownObject;
     subtitle?: string;
     title?: string;
   }[];
