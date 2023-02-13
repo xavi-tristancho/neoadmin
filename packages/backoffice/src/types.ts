@@ -34,7 +34,7 @@ export type Headers = {
       unAuth?: boolean;
       auth?: boolean;
       exact?: boolean;
-      component?: () => JSX.Element;
+      component?: (props?: any) => JSX.Element;
     };
     tableOptions?: {
       children?: (state: unknownObject) => JSX.Element;
