@@ -62,5 +62,19 @@ export type Header = {
       onMount?: () => Promise<unknownObject>;
       renderAfter?: (state: unknownObject) => React.ReactNode;
     };
+    sections?: {
+      component?: () => JSX.Element;
+      fields?: Array<{ [key: string]: any }>;
+      FieldsContainer?: ({
+        children,
+        style,
+      }: {
+        children: any;
+        style: any;
+      }) => JSX.Element;
+      fieldsContainerStyles?: { [key: string]: string };
+      subtitle?: string;
+      title?: string;
+    };
   };
 };
