@@ -26,7 +26,11 @@ export type Headers = {
       upsertRequest(
         data: unknownObject
       ): Promise<unknownObject | unknownObject[]>;
-      deleteRequest?: ({ id }: { id: string }) => Promise<unknownObject | unknownObject[]>;
+      deleteRequest?: ({
+        id,
+      }: {
+        id: string;
+      }) => Promise<unknownObject | unknownObject[]>;
       uploadFileRequest?: (file: File) => Promise<string>;
       mapFindResponse?: (response: any[]) => any[];
     };
@@ -64,19 +68,19 @@ export type Headers = {
       onMount?: () => Promise<unknownObject>;
       renderAfter?: (state: unknownObject) => React.ReactNode;
     };
-    sections?: {
-      component?: () => JSX.Element;
-      fields?: Array<{ [key: string]: string }>;
-      FieldsContainer?: ({
-        children,
-        style,
-      }: {
-        children: JSX.Element;
-        style: React.CSSProperties;
-      }) => JSX.Element;
-      fieldsContainerStyles?: { [key: string]: string };
-      subtitle?: string;
-      title?: string;
-    };
+  };
+  sections?: {
+    component?: () => JSX.Element;
+    fields?: Array<{ [key: string]: string }>;
+    FieldsContainer?: ({
+      children,
+      style,
+    }: {
+      children: JSX.Element;
+      style: React.CSSProperties;
+    }) => JSX.Element;
+    fieldsContainerStyles?: { [key: string]: string };
+    subtitle?: string;
+    title?: string;
   };
 };
