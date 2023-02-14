@@ -4,9 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
-import { Headers, UnAuthFormProps } from "@neoco/neoco-backoffice/src/types";
-
-type Sections = Headers["sections"];
+import { Sections, UnAuthFormProps } from "@neoco/neoco-backoffice/src/types";
 
 const { mediaQuery } = responsive;
 
