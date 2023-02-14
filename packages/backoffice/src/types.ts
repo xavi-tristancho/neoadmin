@@ -10,6 +10,21 @@ export type unknownObject = {
   [key: string]: unknown | any;
 };
 
+export type Sections = {
+  component?: () => JSX.Element;
+  fields?: Array<unknownObject>;
+  FieldsContainer?: ({
+    children,
+    style,
+  }: {
+    children: JSX.Element;
+    style: React.CSSProperties;
+  }) => JSX.Element;
+  fieldsContainerStyles?: unknownObject;
+  subtitle?: string;
+  title?: string;
+}[];
+
 export type Header = {
   type: "CRUD" | "Page";
   options: {
@@ -97,13 +112,13 @@ export type UnAuthFormProps = {
 };
 
 export type UnAuthPageFormProps = {
-  onSubmit: (
-    credentials: Record<string, string>
-  ) => Promise<{ user: unknownObject; token: string }>;
-  afterSubmit: (submittedProps: {
-    user: unknownObject;
-    token: string;
-  }) => Promise<void>;
+  onSubmit: (credentials: Record<string, string>) => Promise<void>;
+  afterSubmit: (
+    submittedProps: {
+      user: unknownObject;
+      token: string;
+    } | void
+  ) => Promise<{ user: unknownObject; token: string } | void>;
   page: string;
   title: string;
   submitText: string;
@@ -112,8 +127,6 @@ export type UnAuthPageFormProps = {
 };
 
 export type LoginProps = {
-  onSubmit: (
-    credentials: Record<string, string>
-  ) => Promise<{ user: unknownObject; token: string }>;
+  onSubmit: (credentials: Record<string, string>) => Promise<void>;
   children?: React.ReactNode;
 };

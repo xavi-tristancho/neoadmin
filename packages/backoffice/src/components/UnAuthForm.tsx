@@ -25,7 +25,7 @@ const getInitialState = (sections: Sections) =>
   );
 
 const UnAuthForm = ({
-  onSubmit,
+  onSubmit = () => Promise.resolve(),
   title,
   submitText,
   register = {

@@ -11,8 +11,8 @@ import { UnAuthPageFormProps } from "@neoco/neoco-backoffice/src/types";
 const { mediaQuery } = responsive;
 
 const UnAuthPageForm = ({
-  onSubmit,
-  afterSubmit,
+  onSubmit = () => Promise.resolve(),
+  afterSubmit = () => Promise.resolve(),
   page,
   title,
   submitText,
