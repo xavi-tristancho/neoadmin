@@ -8,6 +8,28 @@ import { Headers } from "@neoco/neoco-backoffice/src/types";
 
 type Sections = Headers["sections"];
 
+type UnAuthFormProps = {
+  onSubmit?: (data: Record<string, any>) => Promise<void>;
+  title: string;
+  submitText: string;
+  register?: {
+    text: string;
+    to: string;
+    linkText: string;
+  };
+  recoverPassword?: {
+    text: string;
+    to: string;
+    linkText: string;
+  };
+  fields?: Array<{
+    name: string;
+  }>;
+  message?: Record<string, any>;
+  children?: React.ReactNode;
+  resetMode?: () => void;
+};
+
 const { mediaQuery } = responsive;
 
 const getInitialState = (sections: Sections) =>
@@ -29,8 +51,16 @@ const UnAuthForm = ({
   onSubmit = () => Promise.resolve(),
   title,
   submitText,
-  register = {},
-  recoverPassword = {},
+  register = {
+    text: "",
+    to: "",
+    linkText: "",
+  },
+  recoverPassword = {
+    text: "",
+    to: "",
+    linkText: "",
+  },
   fields = [
     {
       name: "email",
@@ -42,7 +72,7 @@ const UnAuthForm = ({
   message = {},
   children,
   resetMode = () => {},
-}) => {
+}: UnAuthFormProps) => {
   const header = {
     sections: [
       {
