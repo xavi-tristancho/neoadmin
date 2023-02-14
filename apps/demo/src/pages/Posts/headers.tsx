@@ -1,7 +1,11 @@
-import { posts } from "./fixtures/posts";
+import { posts, categories } from "./fixtures/posts";
 import { Post } from "./types";
 import { clone } from "../utils";
+<<<<<<< HEAD
 import { Header } from "@neoco/neoco-backoffice/src/types";
+=======
+import { Header } from "@neoco/neoco-backoffice";
+>>>>>>> 7907695 (Removed unnecesary code)
 
 const headers: Header = {
   type: "CRUD", // Specify the header as a `CRUD` type
@@ -38,6 +42,13 @@ const headers: Header = {
       isEditable: true, // Enable edit rows
       isDeletable: true, // Enable delete rows
     },
+    upsertOptions: {
+      onMount: () => {
+        return Promise.resolve({
+          categories,
+        });
+      },
+    },
   },
   sections: [
     {
@@ -68,12 +79,7 @@ const headers: Header = {
           type: "multiselect",
           relation: {
             isMulti: false,
-            name: "category",
-            nameProps: ["category"],
-            options: posts.map((post) => ({
-              value: post.category,
-              label: post.category,
-            })),
+            name: "categories",
           },
         },
         {

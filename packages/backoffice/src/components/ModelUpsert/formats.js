@@ -21,18 +21,18 @@ export const image = ({ headers, beforeSave, field, key, data }) => {
 export const multiselect = ({ field, key, data }) => {
   const isMulti = field?.relation?.isMulti || false;
   const forceSendItem = field?.relation?.forceSendItem || false;
+  const value = isMulti
+    ? data[key]
+    : forceSendItem
+    ? data[key]
+    : data[key].value;
 
   return Promise.resolve({
-    [key]: isMulti ? data[key] : forceSendItem ? data[key] : data[key].value,
+    [key]: value,
   });
 };
 
-export const defaultBeforeSave = ({
-  beforeSave,
-  field,
-  key,
-  data,
-}) => {
+export const defaultBeforeSave = ({ beforeSave, field, key, data }) => {
   return Promise.resolve({ [key]: beforeSave({ state: data, field }) });
 };
 

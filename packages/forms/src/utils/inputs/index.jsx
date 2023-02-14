@@ -3,7 +3,7 @@ import Input from "./Input";
 import FileUploader from "./FileUploader";
 import DatePicker from "./DatePicker";
 import Checkbox from "./Checkbox";
-import MultiSelect from "./MultiSelect";
+import MultiSelect from "./multi-select/MultiSelect";
 import { Editor } from "@tinymce/tinymce-react";
 import ImageUploader from "@neoco/neoco-image-uploader";
 import multiselect from "./multi-select/multi-select";
@@ -195,24 +195,11 @@ export const inputMapper = (props) => {
 
       const formatFromState = format({ state, field });
 
-      const formattedValue =
-        formatFromState || formatFromState === ""
-          ? [
-              ...(Array.isArray(formatFromState)
-                ? formatFromState
-                : [formatFromState]),
-            ].map((stateValue) =>
-              typeof stateValue === "string"
-                ? { label: stateValue, value: stateValue }
-                : stateValue
-            )
-          : formatFromState;
-
       return (
         <MultiSelect
           {...commonInputProps}
           onChange={selectHandleChange}
-          value={formattedValue}
+          value={formatFromState}
           options={
             isFunction(multiselectProps.options)
               ? multiselectProps.options({ state, field })
