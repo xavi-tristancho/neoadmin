@@ -6,6 +6,10 @@ export type Config = {
   router: BrowserRouterProps;
 };
 
+export type unknownObject = {
+  [key: string]: unknown | any;
+};
+
 export type Header = {
   type: "CRUD" | "Page";
   options: {
