@@ -7,27 +7,26 @@ import { useTheme } from "@mui/material/styles";
 import { Headers } from "@neoco/neoco-backoffice/src/types";
 
 type Sections = Headers["sections"];
+type Fields = Headers["sections"][0]["fields"];
 
 type UnAuthFormProps = {
-  onSubmit?: (data: Record<string, any>) => Promise<void>;
+  onSubmit: (data: Record<string, any>) => Promise<void>;
   title: string;
   submitText: string;
-  register?: {
+  register: {
     text: string;
     to: string;
     linkText: string;
   };
-  recoverPassword?: {
+  recoverPassword: {
     text: string;
     to: string;
     linkText: string;
   };
-  fields?: Array<{
-    name: string;
-  }>;
-  message?: Record<string, any>;
-  children?: React.ReactNode;
-  resetMode?: () => void;
+  fields: Fields;
+  message: Record<string, any>;
+  children: React.ReactNode;
+  resetMode: () => void;
 };
 
 const { mediaQuery } = responsive;
