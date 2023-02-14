@@ -5,6 +5,7 @@ import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
 import { Sections, UnAuthFormProps } from "@neoco/neoco-backoffice/src/types";
+import { unknownObject } from "../../dist/types";
 
 const { mediaQuery } = responsive;
 
@@ -24,7 +25,7 @@ const getInitialState = (sections: Sections) =>
   );
 
 const UnAuthForm = ({
-  onSubmit = () => Promise.resolve(),
+  onSubmit,
   title,
   submitText,
   register = {
@@ -59,18 +60,18 @@ const UnAuthForm = ({
     ],
   };
 
-  const [state, setState] = useState({
+  const [state, setState] = useState<unknownObject>({
     data: getInitialState(header.sections),
     aux: {},
   });
   const theme = useTheme();
 
-  const updateState = (nextState) => {
+  const updateState = (nextState: unknownObject) => {
     setState((currentState) => ({ ...currentState, ...nextState }));
     resetMode();
   };
 
-  const handleChange = (data) => {
+  const handleChange = (data: unknownObject) => {
     updateState({ data: { ...state.data, ...data } });
   };
 
