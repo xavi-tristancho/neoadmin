@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import getModelInitialLetter from "./authPage";
 
 describe("regarding the authPage utils file", () => {

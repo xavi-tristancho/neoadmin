@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { operatorOptions, getNewFilters } from "./utils";
 
 const columnOptions = [{ value: "col1", label: "col1" }];
