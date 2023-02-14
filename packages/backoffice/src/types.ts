@@ -6,7 +6,7 @@ export type Config = {
   router: BrowserRouterProps;
 };
 
-export type Headers = {
+export type Header = {
   type: "CRUD" | "Page";
   options: {
     name: string;

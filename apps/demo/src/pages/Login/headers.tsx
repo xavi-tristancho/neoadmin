@@ -1,5 +1,5 @@
 import { pages } from "@neoco/neoco-backoffice";
-import { Headers } from "@neoco/neoco-backoffice/src/types";
+import { Header } from "@neoco/neoco-backoffice/src/types";
 
 const { Login } = pages;
 
@@ -13,7 +13,7 @@ const loginRequest = () => {
   });
 };
 
-const headers: Headers = {
+const headers: Header = {
   type: "Page",
   options: {
     name: "Login",
