@@ -93,18 +93,33 @@ export type UnAuthFormProps = {
   onSubmit: (data: Record<string, any>) => Promise<void>;
   title: string;
   submitText: string;
-  register: {
+  register?: {
     text: string;
     to: string;
     linkText: string;
   };
-  recoverPassword: {
+  recoverPassword?: {
     text: string;
     to: string;
     linkText: string;
   };
   fields: Headers["sections"][0]["fields"];
-  message: Record<string, any>;
+  message?: Record<string, any>;
   children: React.ReactNode;
-  resetMode: () => void;
+  resetMode?: () => void;
+};
+
+export type UnAuthPageFormProps = {
+  onSubmit: (
+    credentials: Record<string, string>
+  ) => Promise<{ user: unknownObject; token: string }>;
+  afterSubmit: (submittedProps: {
+    user: unknownObject;
+    token: string;
+  }) => Promise<void>;
+  page: string;
+  title: string;
+  submitText: string;
+  fields: Headers["sections"][0]["fields"];
+  children: React.ReactNode;
 };

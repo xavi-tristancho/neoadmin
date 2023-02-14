@@ -1,4 +1,3 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import UnAuthForm from "../components/UnAuthForm";
 import useNotiAlert from "../utils/NotiAlert/useNotiAlert";
@@ -7,6 +6,7 @@ import { ReactComponent as BackgroundImg } from "../images/login_bg.svg";
 import { useTheme } from "@mui/material/styles";
 import responsive from "../utils/responsive";
 import { someRequiredValuesAreEmpty } from "../utils/common";
+import { UnAuthPageFormProps } from "@neoco/neoco-backoffice/src/types";
 
 const { mediaQuery } = responsive;
 
@@ -19,7 +19,7 @@ const UnAuthPageForm = ({
   fields = [],
   children,
   ...props
-}) => {
+}: UnAuthPageFormProps) => {
   const { t } = useTranslation();
   const { showErrorAlert, showSuccessAlert } = useNotiAlert();
   const theme = useTheme();
