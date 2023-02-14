@@ -4,20 +4,24 @@ import styled from "styled-components";
 import { inputMapper } from "../utils/inputs";
 import { removeIfNotVisible } from "../utils/common";
 import { getIndexInArray } from "../utils/arrays";
+import {
+  FormGeneratorProps,
+  SectionProps,
+} from "@neoco/neoco-backoffice/src/types";
 
 const FormGenerator = ({
-  headers = {},
-  state = {},
-  handleChange = () => {},
-  onSubmit = () => Promise.resolve({}),
-  children = <></>,
+  headers,
+  state,
+  handleChange,
+  onSubmit,
+  children,
   Button = DefaultButton,
   submitText = "Guardar",
-  submitButtonProps = {},
+  submitButtonProps,
   ...props
-}) => {
-  const [error, setError] = useState({});
-  const onLocalSubmit = (e) => {
+}: FormGeneratorProps) => {
+  const [error, setError] = useState<{ message: string }>({ message: "" });
+  const onLocalSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     onSubmit(e).catch(setError);
@@ -59,7 +63,7 @@ const Section = ({
   handleChange,
   Title = DefaultTitle,
   Subtitle = DefaultSubtitle,
-}) => {
+}: SectionProps) => {
   const { FieldsContainer = BaseFieldsContainer } = section;
   return (
     <SectionContainer>
