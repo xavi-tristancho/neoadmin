@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DefaultButton from "@mui/material/Button";
 import styled from "styled-components";
 import { inputMapper } from "../utils/inputs";
