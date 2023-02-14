@@ -13,17 +13,17 @@ const { mediaQuery } = responsive;
 const UnAuthPageForm = ({
   onSubmit,
   afterSubmit,
-  page = "",
-  title = "",
-  submitText = "",
-  fields = [],
+  page,
+  title,
+  submitText,
+  fields,
   children,
   ...props
 }: UnAuthPageFormProps) => {
   const { t } = useTranslation();
   const { showErrorAlert, showSuccessAlert } = useNotiAlert();
   const theme = useTheme();
-  const onLocalSubmit = (credentials) => {
+  const onLocalSubmit = (credentials: Record<string, string>) => {
     if (
       fields.length &&
       someRequiredValuesAreEmpty({ fields, values: credentials })

@@ -77,7 +77,7 @@ export type Header = {
 };
 
 export type UnAuthFormProps = {
-  onSubmit: (data: Record<string, any>) => Promise<void>;
+  onSubmit: (data: Record<string, string>) => Promise<void>;
   title: string;
   submitText: string;
   register?: {
@@ -91,7 +91,7 @@ export type UnAuthFormProps = {
     linkText: string;
   };
   fields: Array<unknownObject>;
-  message?: Record<string, any>;
+  message?: string;
   children: React.ReactNode;
   resetMode?: () => void;
 };

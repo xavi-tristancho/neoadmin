@@ -46,7 +46,7 @@ const UnAuthForm = ({
       name: "password",
     },
   ],
-  message = {},
+  message,
   children,
   resetMode = () => {},
 }: UnAuthFormProps) => {
