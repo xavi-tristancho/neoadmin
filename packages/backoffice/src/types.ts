@@ -73,20 +73,7 @@ export type Header = {
       renderAfter?: (state: unknownObject) => React.ReactNode;
     };
   };
-  sections?: {
-    component?: () => JSX.Element;
-    fields?: Array<unknownObject>;
-    FieldsContainer?: ({
-      children,
-      style,
-    }: {
-      children: JSX.Element;
-      style: React.CSSProperties;
-    }) => JSX.Element;
-    fieldsContainerStyles?: unknownObject;
-    subtitle?: string;
-    title?: string;
-  }[];
+  sections?: Sections;
 };
 
 export type UnAuthFormProps = {
@@ -103,7 +90,7 @@ export type UnAuthFormProps = {
     to: string;
     linkText: string;
   };
-  fields: Headers["sections"][0]["fields"];
+  fields: Array<unknownObject>;
   message?: Record<string, any>;
   children: React.ReactNode;
   resetMode?: () => void;
@@ -120,6 +107,6 @@ export type UnAuthPageFormProps = {
   page: string;
   title: string;
   submitText: string;
-  fields: Headers["sections"][0]["fields"];
+  fields: Array<unknownObject>;
   children: React.ReactNode;
 };
