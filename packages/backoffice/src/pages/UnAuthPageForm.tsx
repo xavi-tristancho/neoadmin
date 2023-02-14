@@ -13,10 +13,10 @@ const { mediaQuery } = responsive;
 const UnAuthPageForm = ({
   onSubmit = () => Promise.resolve(),
   afterSubmit = () => Promise.resolve(),
-  page,
-  title,
-  submitText,
-  fields,
+  page = "",
+  title = "",
+  submitText = "",
+  fields = [],
   children,
   ...props
 }: UnAuthPageFormProps) => {
