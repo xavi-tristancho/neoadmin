@@ -112,9 +112,8 @@ export type UnAuthPageFormProps = {
 };
 
 export type LoginProps = {
-  onSubmit: (credentials: {
-    email: string;
-    password: string;
-  }) => Promise<void>;
+  onSubmit: (
+    credentials: Record<string, string>
+  ) => Promise<{ user: unknownObject; token: string }>;
   children?: React.ReactNode;
 };

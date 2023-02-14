@@ -5,11 +5,7 @@ import { getPageLiteralsObject } from "../languages/utils";
 import { useTheme } from "@mui/material/styles";
 import { LoginProps } from "@neoco/neoco-backoffice/src/types";
 
-const Login = ({
-  onSubmit = () => Promise.resolve(),
-  children,
-  ...props
-}: LoginProps) => {
+const Login = ({ onSubmit, children, ...props }: LoginProps) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const { login } = useAuth();
