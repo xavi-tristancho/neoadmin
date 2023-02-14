@@ -88,3 +88,23 @@ export type Header = {
     title?: string;
   }[];
 };
+
+export type UnAuthFormProps = {
+  onSubmit: (data: Record<string, any>) => Promise<void>;
+  title: string;
+  submitText: string;
+  register: {
+    text: string;
+    to: string;
+    linkText: string;
+  };
+  recoverPassword: {
+    text: string;
+    to: string;
+    linkText: string;
+  };
+  fields: Headers["sections"][0]["fields"];
+  message: Record<string, any>;
+  children: React.ReactNode;
+  resetMode: () => void;
+};

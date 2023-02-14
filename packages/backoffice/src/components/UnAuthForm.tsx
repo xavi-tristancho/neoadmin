@@ -1,33 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
 import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
-import { Headers } from "@neoco/neoco-backoffice/src/types";
+import { Headers, UnAuthFormProps } from "@neoco/neoco-backoffice/src/types";
 
 type Sections = Headers["sections"];
-type Fields = Headers["sections"][0]["fields"];
-
-type UnAuthFormProps = {
-  onSubmit: (data: Record<string, any>) => Promise<void>;
-  title: string;
-  submitText: string;
-  register: {
-    text: string;
-    to: string;
-    linkText: string;
-  };
-  recoverPassword: {
-    text: string;
-    to: string;
-    linkText: string;
-  };
-  fields: Fields;
-  message: Record<string, any>;
-  children: React.ReactNode;
-  resetMode: () => void;
-};
 
 const { mediaQuery } = responsive;
 
