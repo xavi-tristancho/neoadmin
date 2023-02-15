@@ -5,6 +5,7 @@ import Chart from "chart.js/auto";
 import CountUp from "react-countup";
 
 import { postsData } from "./fixtures/postsData";
+import { Header } from "@neoco/neoco-backoffice/src/types";
 
 const months = postsData.viewsPerMonth.map((d) => d.month);
 const views = postsData.viewsPerMonth.map((d) => d.views);
@@ -22,7 +23,7 @@ const chartData = {
   ],
 };
 
-const headers = {
+const headers: Header = {
   type: "Page",
   options: {
     name: "Dashboard",
@@ -81,7 +82,7 @@ const headers = {
 
 export default headers;
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
+const StyledPaper = styled(Paper)({
   background: "linear-gradient(to right, #6a11cb 0%, #2575fc 100%)",
   padding: "16px",
   display: "flex",
@@ -89,7 +90,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   alignItems: "center",
   gap: "16px",
   borderRadius: "16px",
-}));
+});
 
 const ChartContainer = styled(Box)(({ theme }) => ({
   display: "flex",

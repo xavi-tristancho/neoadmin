@@ -1,8 +1,9 @@
 import { writers } from "./fixtures/writers";
 import { Writer } from "./types";
 import { clone } from "../utils";
+import { Header } from "@neoco/neoco-backoffice/src/types";
 
-const headers = {
+const headers: Header = {
   type: "CRUD", // Specify the header as a `CRUD` type
   options: {
     name: "Writer", // Name the sidebar option and the page title
