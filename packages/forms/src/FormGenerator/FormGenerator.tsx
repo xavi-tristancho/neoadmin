@@ -4,10 +4,41 @@ import styled from "styled-components";
 import { inputMapper } from "../utils/inputs";
 import { removeIfNotVisible } from "../utils/common";
 import { getIndexInArray } from "../utils/arrays";
+import { ButtonProps } from "@mui/material";
 import {
-  FormGeneratorProps,
-  SectionProps,
+  Header,
+  Sections,
+  Config,
+  unknownObject,
 } from "@neoco/neoco-backoffice/src/types";
+
+type FormGeneratorProps = {
+  headers: Header;
+  state: unknownObject;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onSubmit: (
+    e: React.FormEvent<HTMLFormElement>
+  ) => Promise<{ user: unknownObject; token: string }>;
+  children?:
+    | ((props: { state: Record<string, string> }) => JSX.Element)
+    | JSX.Element;
+  Button?: React.ComponentType<ButtonProps>;
+  submitText?: string;
+  submitButtonProps?: Record<string, string>;
+};
+
+type SectionProps = {
+  config?: Partial<Config>;
+  section: Sections[number];
+  state: unknownObject;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  Title?: React.ComponentType<{ children: string }>;
+  Subtitle?: React.ComponentType<{ children: string }>;
+};
 
 const FormGenerator = ({
   headers,
