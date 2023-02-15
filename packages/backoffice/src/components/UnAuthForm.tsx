@@ -4,8 +4,27 @@ import { Link as RouterLink } from "react-router-dom";
 import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
-import { Sections, UnAuthFormProps } from "@neoco/neoco-backoffice/src/types";
-import { unknownObject } from "../../dist/types";
+import { Sections, unknownObject } from "@neoco/neoco-backoffice/src/types";
+
+export type UnAuthFormProps = {
+  onSubmit: (data: Record<string, string>) => Promise<void>;
+  title: string;
+  submitText: string;
+  register?: {
+    text: string;
+    to: string;
+    linkText: string;
+  };
+  recoverPassword?: {
+    text: string;
+    to: string;
+    linkText: string;
+  };
+  fields: Array<unknownObject>;
+  message?: string;
+  children: React.ReactNode;
+  resetMode?: () => void;
+};
 
 const { mediaQuery } = responsive;
 
