@@ -6,10 +6,12 @@ import { ReactComponent as BackgroundImg } from "../images/login_bg.svg";
 import { useTheme } from "@mui/material/styles";
 import responsive from "../utils/responsive";
 import { someRequiredValuesAreEmpty } from "../utils/common";
-import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { unknownObject, Credentials } from "@neoco/neoco-backoffice/src/types";
+
+
 
 export type UnAuthPageFormProps = {
-  onSubmit: (credentials: Record<string, string>) => Promise<void>;
+  onSubmit: (credentials: Credentials) => Promise<void>;
   afterSubmit: (
     submittedProps: {
       user: unknownObject;
@@ -38,7 +40,7 @@ const UnAuthPageForm = ({
   const { t } = useTranslation();
   const { showErrorAlert, showSuccessAlert } = useNotiAlert();
   const theme = useTheme();
-  const onLocalSubmit = (credentials: Record<string, string>) => {
+  const onLocalSubmit = (credentials: Credentials) => {
     if (
       fields.length &&
       someRequiredValuesAreEmpty({ fields, values: credentials })

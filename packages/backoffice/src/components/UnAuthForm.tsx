@@ -4,10 +4,14 @@ import { Link as RouterLink } from "react-router-dom";
 import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
-import { Sections, unknownObject } from "@neoco/neoco-backoffice/src/types";
+import {
+  Sections,
+  unknownObject,
+  Credentials,
+} from "@neoco/neoco-backoffice/src/types";
 
 export type UnAuthFormProps = {
-  onSubmit: (data: Record<string, string>) => Promise<void>;
+  onSubmit: (data: Credentials) => Promise<void>;
   title: string;
   submitText: string;
   register?: {

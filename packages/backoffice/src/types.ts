@@ -91,4 +91,9 @@ export type Header = {
   sections?: Sections;
 };
 
+export type Credentials = {
+  token: string;
+  user: unknownObject;
+};
+
 
