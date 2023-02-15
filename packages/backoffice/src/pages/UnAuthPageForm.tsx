@@ -6,7 +6,22 @@ import { ReactComponent as BackgroundImg } from "../images/login_bg.svg";
 import { useTheme } from "@mui/material/styles";
 import responsive from "../utils/responsive";
 import { someRequiredValuesAreEmpty } from "../utils/common";
-import { UnAuthPageFormProps } from "@neoco/neoco-backoffice/src/types";
+import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+
+export type UnAuthPageFormProps = {
+  onSubmit: (credentials: Record<string, string>) => Promise<void>;
+  afterSubmit: (
+    submittedProps: {
+      user: unknownObject;
+      token: string;
+    } | void
+  ) => Promise<{ user: unknownObject; token: string } | void>;
+  page: string;
+  title: string;
+  submitText: string;
+  fields: Array<unknownObject>;
+  children: React.ReactNode;
+};
 
 const { mediaQuery } = responsive;
 

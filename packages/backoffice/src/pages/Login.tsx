@@ -3,7 +3,11 @@ import { UnAuthPageForm } from ".";
 import { useAuth } from "../contexts/AuthContext";
 import { getPageLiteralsObject } from "../languages/utils";
 import { useTheme } from "@mui/material/styles";
-import { LoginProps } from "@neoco/neoco-backoffice/src/types";
+
+export type LoginProps = {
+  onSubmit: (credentials: Record<string, string>) => Promise<void>;
+  children?: React.ReactNode;
+};
 
 const Login = ({
   onSubmit = () => Promise.resolve(),

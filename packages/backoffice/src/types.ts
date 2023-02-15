@@ -91,22 +91,4 @@ export type Header = {
   sections?: Sections;
 };
 
-export type UnAuthPageFormProps = {
-  onSubmit: (credentials: Record<string, string>) => Promise<void>;
-  afterSubmit: (
-    submittedProps: {
-      user: unknownObject;
-      token: string;
-    } | void
-  ) => Promise<{ user: unknownObject; token: string } | void>;
-  page: string;
-  title: string;
-  submitText: string;
-  fields: Array<unknownObject>;
-  children: React.ReactNode;
-};
 
-export type LoginProps = {
-  onSubmit: (credentials: Record<string, string>) => Promise<void>;
-  children?: React.ReactNode;
-};
