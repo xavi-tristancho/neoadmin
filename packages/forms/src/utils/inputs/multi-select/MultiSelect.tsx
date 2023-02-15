@@ -1,27 +1,44 @@
-import { FormControl, TextField, Autocomplete } from "@mui/material";
+import {
+  FormControl,
+  TextField,
+  Autocomplete,
+  TextFieldProps,
+  AutocompleteProps,
+} from "@mui/material";
 import styled from "styled-components";
 
-const MultiSelect = (props) => {
-  const {
-    property = "",
-    name = property,
-    label = name,
-    upsertOptions = {},
-    onChange = () => {},
-    fullWidth = true,
-    isMulti = false,
-    placeholder = "-",
-    value = [],
-    renderInputProps = {},
-    allowEmptyValue = true,
-    ...field
-  } = props;
-
-  const { show = true } = upsertOptions;
-
-  const handleChange = (value) => {
-    onChange({ target: { name, value } });
+type MultiSelectProps = {
+  property: string;
+  name: string;
+  label: string;
+  upsertOptions: {
+    show: boolean;
   };
+  fullWidth: boolean;
+  isMulti: boolean;
+  placeholder: string;
+  value: unknown;
+  renderInputProps: TextFieldProps;
+};
+
+const MultiSelect = <
+  T,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false
+>({
+  property = "",
+  name = property,
+  label = name,
+  upsertOptions = { show: true },
+  fullWidth = true,
+  isMulti = false,
+  placeholder = "-",
+  renderInputProps = {},
+  ...field
+}: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> &
+  MultiSelectProps): JSX.Element => {
+  const { show = true } = upsertOptions;
 
   return show ? (
     <StyledFormControl fullWidth={fullWidth}>
@@ -31,11 +48,10 @@ const MultiSelect = (props) => {
         limitTags={2}
         autoHighlight={true}
         disableCloseOnSelect={isMulti}
-        onChange={(event, newValue) => handleChange(newValue)}
+        onChange
         renderInput={(params) => (
           <TextField label={label} {...params} {...renderInputProps} />
         )}
-        defaultValue={value}
         {...field}
       />
     </StyledFormControl>

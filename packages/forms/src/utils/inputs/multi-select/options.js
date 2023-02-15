@@ -1,21 +1,3 @@
-export const multiselect = ({ field, state, handleChange }) => {
-  const { relation } = field;
-  const { isMulti } = relation;
-
-  if (typeof relation === "undefined") {
-    throw new Error(
-      `You must define the relation prop in ${field.property} when using multiselect controls`
-    );
-  }
-
-  return {
-    isMulti,
-    ...(isMulti
-      ? getMultiSelectProps({ field, state, handleChange })
-      : getSingleSelectProps({ field, state, handleChange })),
-  };
-};
-
 export const getMultiSelectProps = ({ field, state }) => {
   const { relation } = field;
   const options = getOptions({ state, ...relation });
@@ -84,5 +66,3 @@ const getName = ({ item, nameProps = [] }) =>
     .filter((key) => nameProps.includes(key))
     .map((key) => item[key])
     .join(" ");
-
-export default multiselect;

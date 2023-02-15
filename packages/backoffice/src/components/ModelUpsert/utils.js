@@ -26,8 +26,7 @@ export const beforeSave = ({ header, state }) => {
         };
 
         const format =
-          typeof fieldBeforeSave === "function" &&
-          (type === "image" || type === "multiselect")
+          typeof fieldBeforeSave === "function" && type === "image"
             ? formats[type]
             : formats["defaultBeforeSave"];
 
