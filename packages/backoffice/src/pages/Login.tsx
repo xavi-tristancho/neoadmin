@@ -5,7 +5,7 @@ import { getPageLiteralsObject } from "../languages/utils";
 import { useTheme } from "@mui/material/styles";
 import { Credentials } from "@neoco/neoco-backoffice/src/types";
 
-export type LoginProps = {
+type LoginProps = {
   onSubmit: (credentials: Credentials) => Promise<void>;
   children?: React.ReactNode;
 };

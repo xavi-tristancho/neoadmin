@@ -10,7 +10,7 @@ import { unknownObject, Credentials } from "@neoco/neoco-backoffice/src/types";
 
 
 
-export type UnAuthPageFormProps = {
+type UnAuthPageFormProps = {
   onSubmit: (credentials: Credentials) => Promise<void>;
   afterSubmit: (
     submittedProps: {
