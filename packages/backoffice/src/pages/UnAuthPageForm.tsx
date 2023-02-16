@@ -7,23 +7,17 @@ import { useTheme } from "@mui/material/styles";
 import responsive from "../utils/responsive";
 import { someRequiredValuesAreEmpty } from "../utils/common";
 import { unknownObject, Credentials } from "@neoco/neoco-backoffice/src/types";
-
-
+import { CommonProps } from "./types";
 
 type UnAuthPageFormProps = {
-  onSubmit: (credentials: Credentials) => Promise<void>;
   afterSubmit: (
     submittedProps: {
       user: unknownObject;
       token: string;
     } | void
-  ) => Promise<{ user: unknownObject; token: string } | void>;
+  ) => Promise<{ user: unknownObject; token: string } | void> | void;
   page: string;
-  title: string;
-  submitText: string;
-  fields: Array<unknownObject>;
-  children: React.ReactNode;
-};
+} & CommonProps;
 
 const { mediaQuery } = responsive;
 

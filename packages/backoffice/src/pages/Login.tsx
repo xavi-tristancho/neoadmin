@@ -3,18 +3,13 @@ import { UnAuthPageForm } from ".";
 import { useAuth } from "../contexts/AuthContext";
 import { getPageLiteralsObject } from "../languages/utils";
 import { useTheme } from "@mui/material/styles";
-import { Credentials } from "@neoco/neoco-backoffice/src/types";
-
-type LoginProps = {
-  onSubmit: (credentials: Credentials) => Promise<void>;
-  children?: React.ReactNode;
-};
+import { CommonProps } from "./types";
 
 const Login = ({
   onSubmit = () => Promise.resolve(),
   children,
   ...props
-}: LoginProps) => {
+}: CommonProps) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const { login } = useAuth();
