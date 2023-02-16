@@ -51,7 +51,7 @@ export type Header = {
         id: string;
       }) => Promise<unknownObject | unknownObject[]>;
       uploadFileRequest?: (file: File) => Promise<string>;
-      mapFindResponse?: (response: any[]) => any[];
+      mapFindResponse?: (response: unknown[]) => unknown[];
     };
     route: {
       path: string;
@@ -64,8 +64,8 @@ export type Header = {
     tableOptions?: {
       children?: (state: unknownObject) => JSX.Element;
       component?: (
-        props: any,
-        ModelTable: React.ComponentType<any>
+        props: unknown,
+        ModelTable: React.ComponentType<unknown>
       ) => React.ReactElement;
       getItemActions?: (
         item: unknownObject,
@@ -81,8 +81,8 @@ export type Header = {
     upsertOptions?: {
       children?: (state: unknownObject) => JSX.Element;
       component?: (
-        props: any,
-        ModelUpsert: React.ComponentType<any>
+        props: unknown,
+        ModelUpsert: React.ComponentType<unknown>
       ) => React.ReactElement;
       onMount?: () => Promise<unknownObject>;
       renderAfter?: (state: unknownObject) => React.ReactNode;
