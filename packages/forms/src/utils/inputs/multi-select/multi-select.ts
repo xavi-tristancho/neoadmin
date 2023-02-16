@@ -30,6 +30,7 @@ export const multiselect = ({
 
   return {
     ...field.relation,
+    getOptionLabel: field.relation.format ? field.relation.format : undefined,
     value: state.data[field.property] || "",
     options: hasRemoteData ? state?.aux[relation.name] : relation.options,
     onChange: (event, value) =>

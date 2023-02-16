@@ -6,7 +6,8 @@ export type DefaultField = {
   name?: string;
   style?: {},
   tableOptions?: {
-    show: false;
+    show?: false;
+    format?: (item: unknown) => string
   };
 };
 

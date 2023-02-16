@@ -4,7 +4,7 @@ import { multiselect } from "./multi-select";
 const defaultField = {
   type: "multiselect",
   property: "types",
-  relation: { isMulti: true, name: "types", nameProps: ["name"] },
+  relation: { isMulti: true, name: "types" },
 };
 
 const firstOption = { id: 1, name: "Mode A" };

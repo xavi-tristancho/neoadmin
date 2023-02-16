@@ -69,7 +69,10 @@ const headers: Header = {
           relation: {
             isMulti: false,
             options: categories,
-            getOptionLabel: (option: Category) => option.name,
+            format: (category: Category) => category.name,
+          },
+          tableOptions: {
+            format: (category: Category) => category.name,
           },
         },
         {

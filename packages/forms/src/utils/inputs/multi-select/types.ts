@@ -9,7 +9,7 @@ export type MultiSelectField =
       relation: CommonRelationProps & {
         name?: never;
         options?: string[];
-        getOptionLabel?: never;
+        format?: never;
       };
     })
   | (DefaultField & {
@@ -17,7 +17,7 @@ export type MultiSelectField =
       relation: CommonRelationProps & {
         name: string;
         options?: never;
-        getOptionLabel: (option: Option) => string;
+        format: (option: Option) => string;
       };
     })
   | (DefaultField & {
@@ -25,6 +25,6 @@ export type MultiSelectField =
       relation: CommonRelationProps & {
         name?: never;
         options?: Option[];
-        getOptionLabel: (option: Option) => string;
+        format: (option: Option) => string;
       };
     });
