@@ -1,13 +1,38 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
 import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
+import {
+  Sections,
+  unknownObject,
+  Credentials,
+} from "@neoco/neoco-backoffice/src/types";
+
+export type UnAuthFormProps = {
+  onSubmit: (data: Credentials) => Promise<void>;
+  title: string;
+  submitText: string;
+  register?: {
+    text: string;
+    to: string;
+    linkText: string;
+  };
+  recoverPassword?: {
+    text: string;
+    to: string;
+    linkText: string;
+  };
+  fields: Array<unknownObject>;
+  message?: string;
+  children: React.ReactNode;
+  resetMode?: () => void;
+};
 
 const { mediaQuery } = responsive;
 
-const getInitialState = (sections) =>
+const getInitialState = (sections: Sections) =>
   sections.reduce(
     (reducer, { fields }) => ({
       ...reducer,
@@ -26,8 +51,16 @@ const UnAuthForm = ({
   onSubmit = () => Promise.resolve(),
   title,
   submitText,
-  register = {},
-  recoverPassword = {},
+  register = {
+    text: "",
+    to: "",
+    linkText: "",
+  },
+  recoverPassword = {
+    text: "",
+    to: "",
+    linkText: "",
+  },
   fields = [
     {
       name: "email",
@@ -36,10 +69,10 @@ const UnAuthForm = ({
       name: "password",
     },
   ],
-  message = {},
+  message,
   children,
   resetMode = () => {},
-}) => {
+}: UnAuthFormProps) => {
   const header = {
     sections: [
       {
@@ -50,18 +83,18 @@ const UnAuthForm = ({
     ],
   };
 
-  const [state, setState] = useState({
+  const [state, setState] = useState<unknownObject>({
     data: getInitialState(header.sections),
     aux: {},
   });
   const theme = useTheme();
 
-  const updateState = (nextState) => {
+  const updateState = (nextState: unknownObject) => {
     setState((currentState) => ({ ...currentState, ...nextState }));
     resetMode();
   };
 
-  const handleChange = (data) => {
+  const handleChange = (data: unknownObject) => {
     updateState({ data: { ...state.data, ...data } });
   };
 

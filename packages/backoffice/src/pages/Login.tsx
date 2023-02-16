@@ -1,11 +1,11 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { UnAuthPageForm } from ".";
 import { useAuth } from "../contexts/AuthContext";
 import { getPageLiteralsObject } from "../languages/utils";
 import { useTheme } from "@mui/material/styles";
+import { UnAuthPageFormProps } from "./types";
 
-const Login = ({ onSubmit = () => Promise.resolve(), children, ...props }) => {
+const Login = (props: UnAuthPageFormProps) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const { login } = useAuth();
@@ -32,7 +32,6 @@ const Login = ({ onSubmit = () => Promise.resolve(), children, ...props }) => {
   return (
     <UnAuthPageForm
       {...props}
-      onSubmit={onSubmit}
       afterSubmit={login}
       page={"login"}
       title={t(literals.title)}
@@ -56,9 +55,7 @@ const Login = ({ onSubmit = () => Promise.resolve(), children, ...props }) => {
           ...commonInputProps,
         },
       ]}
-    >
-      {children}
-    </UnAuthPageForm>
+    />
   );
 };
 

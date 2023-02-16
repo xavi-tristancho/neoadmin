@@ -1,13 +1,18 @@
 import { createContext, useState, useContext } from "react";
 
-type AuthContextUser = { [key: string]: unknown };
-
 type AuthContextType = {
   isLoggedIn: boolean;
   user: AuthContextUser;
-  login: ({ token, user }: { token: string; user: AuthContextUser }) => void;
+  login: (userConfig: LoginInputProps) => void;
   logout: () => void;
   updateUser: (user: AuthContextUser) => void;
+};
+
+type AuthContextUser = { [key: string]: unknown };
+
+export type LoginInputProps = {
+  token: string;
+  user: AuthContextUser;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);

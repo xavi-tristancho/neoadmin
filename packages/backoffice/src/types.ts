@@ -1,4 +1,4 @@
-import { BrowserRouterProps } from "react-router-dom";
+import { BrowserRouterProps, RouteChildrenProps } from "react-router-dom";
 
 export type Config = {
   renderThemeProvider: boolean;
@@ -9,6 +9,21 @@ export type Config = {
 export type unknownObject = {
   [key: string]: unknown | any;
 };
+
+export type Sections = {
+  component?: () => JSX.Element;
+  fields?: Array<unknownObject>;
+  FieldsContainer?: ({
+    children,
+    style,
+  }: {
+    children: JSX.Element;
+    style: React.CSSProperties;
+  }) => JSX.Element;
+  fieldsContainerStyles?: unknownObject;
+  subtitle?: string;
+  title?: string;
+}[];
 
 export type Header = {
   type: "CRUD" | "Page";
@@ -36,7 +51,7 @@ export type Header = {
         id: string;
       }) => Promise<unknownObject | unknownObject[]>;
       uploadFileRequest?: (file: File) => Promise<string>;
-      mapFindResponse?: (response: any[]) => any[];
+      mapFindResponse?: (response: unknown[]) => unknown[];
     };
     route: {
       path: string;
@@ -44,13 +59,13 @@ export type Header = {
       unAuth?: boolean;
       auth?: boolean;
       exact?: boolean;
-      component?: (props?: any) => JSX.Element;
+      component?: (props?: RouteChildrenProps) => JSX.Element;
     };
     tableOptions?: {
       children?: (state: unknownObject) => JSX.Element;
       component?: (
-        props: any,
-        ModelTable: React.ComponentType<any>
+        props: unknown,
+        ModelTable: React.ComponentType<unknown>
       ) => React.ReactElement;
       getItemActions?: (
         item: unknownObject,
@@ -66,25 +81,17 @@ export type Header = {
     upsertOptions?: {
       children?: (state: unknownObject) => JSX.Element;
       component?: (
-        props: any,
-        ModelUpsert: React.ComponentType<any>
+        props: unknown,
+        ModelUpsert: React.ComponentType<unknown>
       ) => React.ReactElement;
       onMount?: () => Promise<unknownObject>;
       renderAfter?: (state: unknownObject) => React.ReactNode;
     };
   };
-  sections?: {
-    component?: () => JSX.Element;
-    fields?: Array<unknownObject>;
-    FieldsContainer?: ({
-      children,
-      style,
-    }: {
-      children: JSX.Element;
-      style: React.CSSProperties;
-    }) => JSX.Element;
-    fieldsContainerStyles?: unknownObject;
-    subtitle?: string;
-    title?: string;
-  }[];
+  sections?: Sections;
+};
+
+export type Credentials = {
+  token: string;
+  user: unknownObject;
 };
