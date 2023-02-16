@@ -1,3 +1,10 @@
+type Style = {
+  width: string;
+  height: string;
+  margin: string;
+  bgcolor: string;
+};
+
 const stringToColor = (string: string = ""): string => {
   let hash: number = 0;
   let i: number;
@@ -19,7 +26,7 @@ const stringToColor = (string: string = ""): string => {
 };
 
 const stringAvatar: (name: string) => {
-  sx: { width: string; height: string; margin: string; bgcolor: string };
+  sx: Style;
   children: string;
 } = (name: string = "ADMIN") => {
   const defaultName = "ADMIN";
