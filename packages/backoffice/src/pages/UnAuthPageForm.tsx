@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import UnAuthForm from "../components/UnAuthForm";
+import UnAuthForm, { UnAuthFormProps } from "../components/UnAuthForm";
 import useNotiAlert from "../utils/NotiAlert/useNotiAlert";
 import styled from "styled-components";
 import { ReactComponent as BackgroundImg } from "../images/login_bg.svg";
@@ -17,7 +17,7 @@ type UnAuthPageFormProps = {
     } | void
   ) => Promise<{ user: unknownObject; token: string } | void> | void;
   page: string;
-} & CommonProps;
+} & CommonProps & UnAuthFormProps;
 
 const { mediaQuery } = responsive;
 
