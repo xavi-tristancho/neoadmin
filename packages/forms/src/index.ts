@@ -1,3 +1,1 @@
-import FormGenerator from "./FormGenerator";
-
-export { FormGenerator };
+export { default as FormGenerator } from "./FormGenerator/FormGenerator";
