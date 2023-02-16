@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { getParsedCells } from "./tableParser";
 
 describe("regarding the getParsedCells function", () => {
@@ -33,7 +34,7 @@ describe("regarding the getParsedCells function", () => {
     describe("that are objects", () => {
       it("should return an array with the title property of every object", () => {
         expect(
-          getParsedCells([{ title: "hola", align: "center" }]),
+          getParsedCells([{ title: "hola", align: "center" }])
         ).toStrictEqual(["hola"]);
       });
 

@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { getLevels, treeParser } from "./treeParser";
 
 const getLevelsHightlights = (levels) => (position) =>

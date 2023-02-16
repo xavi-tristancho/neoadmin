@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { getHeaderDividers } from "./tableParser";
 
 describe("regarding the getHeaderDividers function", () => {
@@ -34,7 +35,7 @@ describe("regarding the getHeaderDividers function", () => {
             { title: "hola", align: "center" },
             { title: "hola1", align: "left" },
             { title: "hola2", align: "right" },
-          ]),
+          ])
         ).toStrictEqual([":-:", ":-", "-:"]);
       });
 
@@ -62,7 +63,7 @@ describe("regarding the getHeaderDividers function", () => {
             "",
             "Required",
             { title: "hola", align: "right" },
-          ]),
+          ])
         ).toStrictEqual([":-", ":-:", ":-:", "-:"]);
       });
     });

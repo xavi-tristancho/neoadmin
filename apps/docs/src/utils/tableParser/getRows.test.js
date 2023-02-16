@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { getRows } from "./tableParser";
 
 describe("regarding the getRows function", () => {
