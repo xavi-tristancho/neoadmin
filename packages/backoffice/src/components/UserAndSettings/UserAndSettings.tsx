@@ -20,6 +20,7 @@ type Language = {
 };
 
 type MenuItem = {
+  id: string;
   Icon: React.ElementType;
   content?: (() => React.ReactNode) | string;
   onClick?: () => void;
@@ -49,6 +50,7 @@ const UserAndSettings = (): JSX.Element => {
 
   const menuItems: MenuItem[] = [
     {
+      id: "language",
       Icon: () => <Translate fontSize="small" />,
       content: () => (
         <Languages>
@@ -67,6 +69,7 @@ const UserAndSettings = (): JSX.Element => {
       ),
     },
     {
+      id: "color-mode",
       Icon: () =>
         theme.palette.mode === "dark" ? (
           <Brightness7 fontSize="small" />
@@ -77,6 +80,7 @@ const UserAndSettings = (): JSX.Element => {
       onClick: colorMode.toggleColorMode,
     },
     {
+      id: "logout",
       Icon: () => <PowerSettingsNew fontSize="small" />,
       content: "log out",
       onClick: logout,
@@ -109,8 +113,8 @@ const UserAndSettings = (): JSX.Element => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          {menuItems.map(({ Icon, content = "", onClick = () => {} }) => (
-            <MenuItem onClick={onClick} key={content}>
+          {menuItems.map(({ id, Icon, content = "", onClick = () => {} }) => (
+            <MenuItem onClick={onClick} key={id}>
               <IconContainer>
                 <IconButton
                   sx={{
