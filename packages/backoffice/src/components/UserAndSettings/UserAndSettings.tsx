@@ -32,8 +32,8 @@ const languages: Language[] = [
 
 const UserAndSettings = (): JSX.Element => {
   const theme = useTheme();
-  const colorMode = useContext(ThemeModeContext);
-  const { user, logout } = useContext(AuthContext);
+  const colorMode = useContext<ThemeModeContext>(ThemeModeContext);
+  const { user, logout } = useContext<AuthContext>(AuthContext);
   const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
 

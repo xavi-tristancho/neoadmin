@@ -2,6 +2,7 @@ import { Field } from "@neoco/neoco-form/src/types";
 import { BrowserRouterProps, RouteChildrenProps } from "react-router-dom";
 
 export type Config = {
+  customTheme: unknownObject;
   renderThemeProvider: boolean;
   wysiwyg: { apiKey: string };
   router: BrowserRouterProps;

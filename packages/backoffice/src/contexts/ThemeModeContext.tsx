@@ -9,12 +9,27 @@ import { useMediaQuery } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "../styles/theme";
 import { ConfigContext } from ".";
+import { Config } from "../types";
 
-const ThemeModeContext = createContext({ toggleColorMode: () => {} });
+type ColorModeType = {
+  toggleColorMode: () => void;
+};
 
-export const ThemeModeProvider = ({ children }) => {
+const ThemeModeContext = createContext<ColorModeType>({
+  toggleColorMode: () => {},
+});
+
+type ThemeModeProviderProps = {
+  children: React.ReactNode;
+};
+
+type ConfigThemeContextType = {
+  config: Partial<Config>;
+};
+
+export const ThemeModeProvider = ({ children }: ThemeModeProviderProps) => {
   const { config: { customTheme = {}, renderThemeProvider = true } = {} } =
-    useContext(ConfigContext);
+    useContext<ConfigThemeContextType>(ConfigContext);
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)", {
     noSsr: true,
   });
