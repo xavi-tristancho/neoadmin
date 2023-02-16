@@ -2,7 +2,7 @@
 name: "[docs] Docs extension/updation"
 about: Extend or update the current documentation.
 title: ''
-labels: ''
+labels: documentation
 assignees: ''
 
 ---
