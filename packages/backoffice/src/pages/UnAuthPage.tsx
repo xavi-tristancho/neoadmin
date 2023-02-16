@@ -1,5 +1,8 @@
-import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
+
+type UnAuthPageProps = {
+  children: React.ReactNode;
+};
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -7,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const UnAuthPage = ({ children }) => {
+const UnAuthPage = ({ children }: UnAuthPageProps) => {
   return (
     <Container>
       <GlobalStyle />
