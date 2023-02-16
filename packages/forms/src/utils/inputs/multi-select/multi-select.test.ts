@@ -1,23 +1,33 @@
 import { describe, it, expect } from "vitest";
 import { multiselect } from "./multi-select";
+import { MultiSelectField } from "./types";
 
-const defaultField = {
-  type: "multiselect",
-  property: "types",
-  relation: { isMulti: true, name: "types" },
+type Category = {
+  id: number;
+  name: string;
 };
 
-const firstOption = { id: 1, name: "Mode A" };
-const options = [firstOption, { id: 2, name: "Mode B" }];
+const defaultField: MultiSelectField<Category> = {
+  type: "multiselect",
+  property: "categories",
+  relation: {
+    isMulti: true,
+    name: "categories",
+    format: (category) => category.name,
+  },
+};
+
+const firstOption = { id: 1, name: "Sports" };
+const options = [firstOption, { id: 2, name: "Tech" }];
 
 describe("regarding the multiselect utility functions", () => {
   const handleChange = () => null;
 
   describe("when the options are in the aux state", () => {
     const defaultState = {
-      data: { types: [firstOption] },
+      data: { categories: [firstOption] },
       aux: {
-        types: options,
+        categories: options,
       },
     };
 
@@ -35,6 +45,7 @@ describe("regarding the multiselect utility functions", () => {
             value: [firstOption],
             options,
             onChange: expect.any(Function),
+            getOptionLabel: expect.any(Function),
           });
         });
       });
@@ -46,7 +57,7 @@ describe("regarding the multiselect utility functions", () => {
         };
         const state = {
           ...defaultState,
-          data: { ...defaultState.data, types: firstOption },
+          data: { ...defaultState.data, categories: firstOption },
         };
 
         it("should return the expected props structure", () => {
@@ -55,6 +66,7 @@ describe("regarding the multiselect utility functions", () => {
             value: firstOption,
             options,
             onChange: expect.any(Function),
+            getOptionLabel: expect.any(Function),
           });
         });
       });
@@ -63,7 +75,7 @@ describe("regarding the multiselect utility functions", () => {
     describe("and there is not a selected option in the state", () => {
       const emptyState = {
         ...defaultState,
-        data: { ...defaultState.data, types: undefined },
+        data: { ...defaultState.data, categories: undefined },
       };
 
       describe("and the isMulti is true", () => {
@@ -79,6 +91,7 @@ describe("regarding the multiselect utility functions", () => {
             value: "",
             options,
             onChange: expect.any(Function),
+            getOptionLabel: expect.any(Function),
           });
         });
       });
@@ -97,6 +110,7 @@ describe("regarding the multiselect utility functions", () => {
             value: "",
             options,
             onChange: expect.any(Function),
+            getOptionLabel: expect.any(Function),
           });
         });
       });
@@ -105,14 +119,18 @@ describe("regarding the multiselect utility functions", () => {
 
   describe("when the options are in the field", () => {
     const defaultState = {
-      data: { types: [firstOption] },
+      data: { categories: [firstOption] },
       aux: {},
     };
 
-    const fieldWithOptions = {
+    const fieldWithOptions: MultiSelectField<Category> = {
       type: "multiselect",
-      property: "types",
-      relation: { isMulti: true, name: "types", nameProps: ["name"], options },
+      property: "categories",
+      relation: {
+        isMulti: true,
+        options,
+        format: (option) => option.name,
+      },
     };
 
     describe("and there is a selected option in the state", () => {
@@ -140,7 +158,7 @@ describe("regarding the multiselect utility functions", () => {
         };
         const state = {
           ...defaultState,
-          data: { ...defaultState.data, types: firstOption },
+          data: { ...defaultState.data, categories: firstOption },
         };
 
         it("should return the expected props structure", () => {
@@ -157,7 +175,7 @@ describe("regarding the multiselect utility functions", () => {
     describe("and there is not a selected option in the state", () => {
       const emptyState = {
         ...defaultState,
-        data: { ...defaultState.data, types: undefined },
+        data: { ...defaultState.data, categories: undefined },
       };
 
       describe("and the isMulti is true", () => {

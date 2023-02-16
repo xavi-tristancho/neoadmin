@@ -1,9 +1,9 @@
 import { DefaultField } from "../../../types";
 
-type Option = { [key: string]: unknown };
+export type UnknownOption = { [key: string]: unknown };
 type CommonRelationProps = { isMulti: boolean };
 
-export type MultiSelectField =
+export type MultiSelectField<T = UnknownOption> =
   | (DefaultField & {
       type: "multiselect";
       relation: CommonRelationProps & {
@@ -17,14 +17,14 @@ export type MultiSelectField =
       relation: CommonRelationProps & {
         name: string;
         options?: never;
-        format: (option: Option) => string;
+        format: (option: T) => string;
       };
     })
   | (DefaultField & {
       type: "multiselect";
       relation: CommonRelationProps & {
         name?: never;
-        options?: Option[];
-        format: (option: Option) => string;
+        options?: T[];
+        format: (option: T) => string;
       };
     });
