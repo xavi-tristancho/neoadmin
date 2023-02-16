@@ -6,6 +6,7 @@ type AuthContextType = {
   login: (userConfig: LoginInputProps) => void;
   logout: () => void;
   updateUser: (user: AuthContextUser) => void;
+  sidebarProps?: { appBarTitle: string; children: React.ReactNode };
 };
 
 type AuthContextUser = { [key: string]: unknown };
