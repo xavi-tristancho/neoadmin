@@ -48,7 +48,6 @@ const MultiSelect = <
         limitTags={2}
         autoHighlight={true}
         disableCloseOnSelect={isMulti}
-        onChange
         renderInput={(params) => (
           <TextField label={label} {...params} {...renderInputProps} />
         )}

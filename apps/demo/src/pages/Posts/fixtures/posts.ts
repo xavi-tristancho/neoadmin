@@ -1,12 +1,12 @@
-import { Post } from "../types";
+import { Post, Category } from "../types";
 
-export const categories: string[] = [
-  "Desserts",
-  "Well-being",
-  "Travels",
-  "Gardening",
-  "Sports",
-  "Gadgets",
+export const categories: Category[] = [
+  { id: 0, name: "Desserts" },
+  { id: 1, name: "Well-being" },
+  { id: 2, name: "Travels" },
+  { id: 3, name: "Gardening" },
+  { id: 4, name: "Sports" },
+  { id: 5, name: "Gadgets" },
 ];
 
 export const posts: Post[] = [

@@ -1,6 +1,24 @@
-export const multiselect = ({ field, state, handleChange }) => {
+import { MultiSelectField } from "./types";
+
+type MultiSelectProps = {
+  field: MultiSelectField;
+  state: {
+    data: {};
+    aux: {};
+  };
+  handleChange: ({
+    target: { name, value },
+  }: {
+    target: { name: string; value: unknown };
+  }) => void;
+};
+
+export const multiselect = ({
+  field,
+  state,
+  handleChange,
+}: MultiSelectProps) => {
   const { relation } = field;
-  const { isMulti } = relation;
 
   if (typeof relation === "undefined") {
     throw new Error(
@@ -11,7 +29,7 @@ export const multiselect = ({ field, state, handleChange }) => {
   const hasRemoteData = typeof relation.options === "undefined";
 
   return {
-    isMulti,
+    ...field.relation,
     value: state.data[field.property] || "",
     options: hasRemoteData ? state?.aux[relation.name] : relation.options,
     onChange: (event, value) =>

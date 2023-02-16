@@ -1,5 +1,5 @@
 import { posts, categories } from "./fixtures/posts";
-import { Post } from "./types";
+import { Category, Post } from "./types";
 import { clone } from "../utils";
 import { Header } from "@neoco/neoco-backoffice/src/types";
 
@@ -68,8 +68,8 @@ const headers: Header = {
           type: "multiselect",
           relation: {
             isMulti: false,
-            name: "categories",
             options: categories,
+            getOptionLabel: (option: Category) => option.name,
           },
         },
         {
