@@ -1,9 +1,12 @@
 import { unknownObject, Credentials } from "@neoco/neoco-backoffice/src/types";
+import { LoginInputProps } from "../contexts/AuthContext";
 
-export type CommonProps = {
-  onSubmit: (data: Credentials) => Promise<void>;
-  children: React.ReactNode;
-  title: string;
-  submitText: string;
-  fields: Array<unknownObject>;
+export type UnAuthPageFormProps = {
+  onSubmit: (credentials: Credentials) => Promise<LoginInputProps>;
+  afterSubmit?: (args: LoginInputProps) => void;
+  page?: string;
+  title?: string;
+  submitText?: string;
+  fields?: Array<unknownObject>;
+  children?: React.ReactNode;
 };

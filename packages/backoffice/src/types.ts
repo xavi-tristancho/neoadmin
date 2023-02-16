@@ -1,4 +1,4 @@
-import { BrowserRouterProps } from "react-router-dom";
+import { BrowserRouterProps, RouteChildrenProps } from "react-router-dom";
 
 export type Config = {
   renderThemeProvider: boolean;
@@ -59,7 +59,7 @@ export type Header = {
       unAuth?: boolean;
       auth?: boolean;
       exact?: boolean;
-      component?: (props?: any) => JSX.Element;
+      component?: (props?: RouteChildrenProps) => JSX.Element;
     };
     tableOptions?: {
       children?: (state: unknownObject) => JSX.Element;
@@ -95,5 +95,3 @@ export type Credentials = {
   token: string;
   user: unknownObject;
 };
-
-

@@ -6,23 +6,13 @@ import { ReactComponent as BackgroundImg } from "../images/login_bg.svg";
 import { useTheme } from "@mui/material/styles";
 import responsive from "../utils/responsive";
 import { someRequiredValuesAreEmpty } from "../utils/common";
-import { unknownObject, Credentials } from "@neoco/neoco-backoffice/src/types";
-import { CommonProps } from "./types";
-
-type UnAuthPageFormProps = {
-  afterSubmit: (
-    submittedProps: {
-      user: unknownObject;
-      token: string;
-    } | void
-  ) => Promise<{ user: unknownObject; token: string } | void> | void;
-  page: string;
-} & CommonProps & UnAuthFormProps;
+import { Credentials } from "@neoco/neoco-backoffice/src/types";
+import { UnAuthPageFormProps } from "./types";
 
 const { mediaQuery } = responsive;
 
 const UnAuthPageForm = ({
-  onSubmit = () => Promise.resolve(),
+  onSubmit = () => Promise.resolve({}),
   afterSubmit = () => Promise.resolve(),
   page = "",
   title = "",

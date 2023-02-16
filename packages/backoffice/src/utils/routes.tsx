@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
 import { ModelTable, ModelUpsert } from "../components";
 
 export const getRoutes = ({ headers, isLoggedIn = false, user }) =>
