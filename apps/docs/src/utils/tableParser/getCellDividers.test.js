@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { getCellDividers } from "./tableParser";
 
 describe("regarding the getCellDividers function", () => {
@@ -6,20 +7,20 @@ describe("regarding the getCellDividers function", () => {
       describe("that correspond to some element of headers dictionary", () => {
         it("should return all strings joined", () => {
           expect(getCellDividers(["Name", "Required"])).toStrictEqual(
-            "|Name|Required|",
+            "|Name|Required|"
           );
         });
         describe("showBottomDividers is false", () => {
           it("should return all strings joined", () => {
             expect(getCellDividers(["Name", "Required"], false)).toStrictEqual(
-              "|Name|Required|",
+              "|Name|Required|"
             );
           });
         });
         describe("showBottomDividers is true", () => {
           it("should return all strings joined with a bottom divider", () => {
             expect(getCellDividers(["Name", "Required"], true)).toStrictEqual(
-              `|Name|Required|\n|:-|:-:|`,
+              `|Name|Required|\n|:-|:-:|`
             );
           });
         });
@@ -32,14 +33,14 @@ describe("regarding the getCellDividers function", () => {
         describe("showBottomDividers is false", () => {
           it("should return all strings joined", () => {
             expect(getCellDividers(["Hi", "Bye"], false)).toStrictEqual(
-              "|Hi|Bye|",
+              "|Hi|Bye|"
             );
           });
         });
         describe("showBottomDividers is true", () => {
           it("should return all strings joined with a center bottom divider", () => {
             expect(getCellDividers(["Hi", "Bye"], true)).toStrictEqual(
-              `|Hi|Bye|\n|:-:|:-:|`,
+              `|Hi|Bye|\n|:-:|:-:|`
             );
           });
         });
@@ -54,7 +55,7 @@ describe("regarding the getCellDividers function", () => {
       describe("showBottomDividers is true", () => {
         it("should return empty strings joined with vertical bar dividers and with a center bottom divider", () => {
           expect(getCellDividers(["", ""], true)).toStrictEqual(
-            `|||\n|:-:|:-:|`,
+            `|||\n|:-:|:-:|`
           );
         });
       });
@@ -68,7 +69,7 @@ describe("regarding the getCellDividers function", () => {
       describe("showBottomDividers is true", () => {
         it("should return empty strings joined with vertical bar dividers and with a bottom divider", () => {
           expect(getCellDividers([[], null, undefined], true)).toStrictEqual(
-            `||||\n|:-:|:-:|:-:|`,
+            `||||\n|:-:|:-:|:-:|`
           );
         });
       });
@@ -81,14 +82,14 @@ describe("regarding the getCellDividers function", () => {
             { title: "hola", align: "center" },
             { title: "hola1", align: "left" },
             { title: "hola2", align: "right" },
-          ]),
+          ])
         ).toStrictEqual(`|hola|hola1|hola2|`);
       });
 
       describe("and are empty or not conaining the property title", () => {
         it("should return empty strings with vertical bar dividers", () => {
           expect(getCellDividers([{}, { align: "center" }])).toStrictEqual(
-            `|||`,
+            `|||`
           );
         });
       });
@@ -102,8 +103,8 @@ describe("regarding the getCellDividers function", () => {
                 { title: "hola1", align: "left" },
                 { title: "hola2", align: "right" },
               ],
-              true,
-            ),
+              true
+            )
           ).toStrictEqual(`|hola|hola1|hola2|\n|:-:|:-:|:-:|`);
         });
       });

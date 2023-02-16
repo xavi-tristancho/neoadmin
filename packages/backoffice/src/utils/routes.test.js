@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { getRoutePath } from "./routes";
 
 describe("regarding the getRoutePath function", () => {

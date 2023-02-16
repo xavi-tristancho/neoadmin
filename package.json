@@ -11,7 +11,8 @@
   "devDependencies": {
     "@nrwl/nx-cloud": "latest",
     "nx": "15.6.3",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "vitest": "^0.28.5"
   },
   "workspaces": [
     "packages/*",

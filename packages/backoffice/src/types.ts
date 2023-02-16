@@ -7,7 +7,7 @@ export type Config = {
 };
 
 export type unknownObject = {
-  [key: string]: unknown | any;
+  [key: string]: unknown;
 };
 
 export type Sections = {

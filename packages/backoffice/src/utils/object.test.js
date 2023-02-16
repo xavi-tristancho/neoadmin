@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { isEmptyObject } from "./object";
 
 describe("regarding the isEmptyObject function", () => {

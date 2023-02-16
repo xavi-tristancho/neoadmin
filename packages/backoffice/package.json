@@ -6,7 +6,8 @@
   "main": "./src/index.ts",
   "scripts": {
     "dev": "tsc && vite build --watch",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "test": "vitest"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
