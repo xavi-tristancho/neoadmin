@@ -3,11 +3,16 @@ import { useTranslation } from "react-i18next";
 import { UnAuthPageForm } from ".";
 import { getPageLiteralsObject } from "../languages/utils";
 
+type RecoverPasswordProps = {
+  onSubmit: () => Promise<void>;
+  children: React.ReactNode;
+};
+
 const RecoverPassword = ({
   onSubmit = () => Promise.resolve(),
   children,
   ...props
-}) => {
+}: RecoverPasswordProps) => {
   const { t } = useTranslation();
   const literals = getPageLiteralsObject({ page: "recoverPassword" });
 
