@@ -3,10 +3,10 @@ import Input from "./Input";
 import FileUploader from "./FileUploader";
 import DatePicker from "./DatePicker";
 import Checkbox from "./Checkbox";
-import MultiSelect from "./MultiSelect";
+import MultiSelect from "./multi-select/MultiSelect";
 import { Editor } from "@tinymce/tinymce-react";
 import ImageUploader from "@neoco/neoco-image-uploader";
-import multiselect from "./multi-select/multi-select";
+import { multiselect } from "./multi-select/multi-select";
 import date from "./date/date";
 import RelationListInput from "./relation-list/RelationListInput";
 import styled from "styled-components";
@@ -181,46 +181,19 @@ export const inputMapper = (props) => {
         handleChange: fieldHandleChange,
       });
 
-      const selectHandleChange = ({ target: { name, value } }) => {
-        const areOptionsSrings = typeof state.aux[name]?.[0] === "string";
-        fieldHandleChange({
-          target: {
-            name,
-            value: areOptionsSrings
-              ? value.map((selected) => selected.value)
-              : value,
-          },
-        });
-      };
-
-      const formatFromState = format({ state, field });
-
-      const formattedValue =
-        formatFromState || formatFromState === ""
-          ? [
-              ...(Array.isArray(formatFromState)
-                ? formatFromState
-                : [formatFromState]),
-            ].map((stateValue) =>
-              typeof stateValue === "string"
-                ? { label: stateValue, value: stateValue }
-                : stateValue
-            )
-          : formatFromState;
-
       return (
         <MultiSelect
           {...commonInputProps}
-          onChange={selectHandleChange}
-          value={formattedValue}
+          {...field}
+          {...multiselectProps}
+          disabled={disabled}
           options={
             isFunction(multiselectProps.options)
-              ? multiselectProps.options({ state, field })
+              ? //This is for the use case where some options are derived from another prop in the state
+                //TODO: add test that covers the use case and remove this comment
+                multiselectProps.options({ state, field })
               : multiselectProps.options
           }
-          name={multiselectProps.name}
-          {...field}
-          disabled={disabled}
         />
       );
     }

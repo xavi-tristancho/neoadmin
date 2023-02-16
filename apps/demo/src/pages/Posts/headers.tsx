@@ -1,5 +1,5 @@
-import { posts } from "./fixtures/posts";
-import { Post } from "./types";
+import { posts, categories } from "./fixtures/posts";
+import { Category, Post } from "./types";
 import { clone } from "../utils";
 import { Header } from "@neoco/neoco-backoffice/src/types";
 
@@ -68,12 +68,11 @@ const headers: Header = {
           type: "multiselect",
           relation: {
             isMulti: false,
-            name: "category",
-            nameProps: ["category"],
-            options: posts.map((post) => ({
-              value: post.category,
-              label: post.category,
-            })),
+            options: categories,
+            format: (category: Category) => category.name,
+          },
+          tableOptions: {
+            format: (category: Category) => category.name,
           },
         },
         {

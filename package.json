@@ -7,7 +7,9 @@
     "test": "nx affected --target=test"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "radash": "^10.7.0"
+  },
   "devDependencies": {
     "@nrwl/nx-cloud": "latest",
     "nx": "15.6.3",

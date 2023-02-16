@@ -4,6 +4,11 @@ export type Post = {
   title: string;
   date: string;
   content: string;
-  category: string;
+  category: Category;
   visible: boolean;
+};
+
+export type Category = {
+  id: number;
+  name: string;
 };
