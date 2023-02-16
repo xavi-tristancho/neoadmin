@@ -5,6 +5,11 @@ type Style = {
   bgcolor: string;
 };
 
+type StringAvatar = (name: string) => {
+  sx: Style;
+  children: string;
+};
+
 const stringToColor = (string: string = ""): string => {
   let hash: number = 0;
   let i: number;
@@ -25,10 +30,7 @@ const stringToColor = (string: string = ""): string => {
   return color;
 };
 
-const stringAvatar: (name: string) => {
-  sx: Style;
-  children: string;
-} = (name: string = "ADMIN") => {
+const stringAvatar: StringAvatar = (name: string = "ADMIN") => {
   const defaultName = "ADMIN";
   const isString = typeof name === "string";
   const styles = {
