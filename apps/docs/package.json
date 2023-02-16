@@ -1,5 +1,5 @@
 {
-  "name": "neo-admin-docs",
+  "name": "neoadmin-docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -18,8 +18,8 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-beta.16",
-    "@docusaurus/preset-classic": "2.0.0-beta.16",
+    "@docusaurus/core": "^2.3.1",
+    "@docusaurus/preset-classic": "^2.3.1",
     "@easyops-cn/docusaurus-search-local": "^0.22.0",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
