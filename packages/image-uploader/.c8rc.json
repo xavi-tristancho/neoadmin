@@ -1,0 +1,6 @@
+{
+  "all": true,
+  "checkCoverage": true,
+  "lines": 5.5,
+  "include": ["src"]
+}

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsc && vite build --watch",
     "build": "tsc && vite build",
-    "test": "vitest --passWithNoTests"
+    "test": "c8 vitest"
   },
   "peerDependencies": {
     "@emotion/react": "^11.6.0",
