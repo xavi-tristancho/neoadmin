@@ -13,7 +13,7 @@ import {
 } from "@neoco/neoco-backoffice/src/types";
 
 type FormGeneratorProps = {
-  headers: Header;
+  headers: Partial<Header>;
   state: unknownObject;
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,11 +22,11 @@ type FormGeneratorProps = {
     e: React.FormEvent<HTMLFormElement>
   ) => Promise<{ user: unknownObject; token: string }>;
   children?:
-    | ((props: { state: Record<string, string> }) => JSX.Element)
-    | JSX.Element;
+    | ((props: { state: unknownObject }) => JSX.Element)
+    | React.ReactNode;
   Button?: React.ComponentType<ButtonProps>;
   submitText?: string;
-  submitButtonProps?: Record<string, string>;
+  submitButtonProps?: unknownObject;
 };
 
 type SectionProps = {
