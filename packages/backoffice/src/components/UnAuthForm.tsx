@@ -101,7 +101,9 @@ const UnAuthForm = ({
     resetMode();
   };
 
-  const handleChange = (data: unknownObject): void => {
+  const handleChange = (
+    data: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     updateState({ data: { ...state.data, ...data } });
   };
 
