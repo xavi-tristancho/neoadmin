@@ -45,7 +45,7 @@ jobs:
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: packages/backoffice/coverage/cobertura-coverage.xml
+          filename: /home/runner/work/neoadmin/neoadmin/packages/backoffice/coverage/cobertura-coverage.xml
           badge: true
           format: markdown
           hide_branch_rate: false
