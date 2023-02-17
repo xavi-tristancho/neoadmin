@@ -20,13 +20,14 @@ type FormGeneratorProps = {
   ) => void;
   onSubmit: (
     e: React.FormEvent<HTMLFormElement>
-  ) => Promise<{ user: unknownObject; token: string }>;
+  ) => Promise<void>;
   children?:
     | ((props: { state: unknownObject }) => JSX.Element)
     | React.ReactNode;
   Button?: React.ComponentType<ButtonProps>;
   submitText?: string;
   submitButtonProps?: unknownObject;
+  Title: React.ComponentType<{ children: string }>;
 };
 
 type SectionProps = {
