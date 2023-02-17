@@ -30,9 +30,16 @@ export type UnAuthFormProps = {
   resetMode?: () => void;
 };
 
+type GetInitialState = (sections: Sections) => unknownObject;
+
+type State = {
+  data: unknownObject;
+  aux: unknownObject;
+};
+
 const { mediaQuery } = responsive;
 
-const getInitialState = (sections: Sections) =>
+const getInitialState: GetInitialState = (sections) =>
   sections.reduce(
     (reducer, { fields }) => ({
       ...reducer,
@@ -83,7 +90,7 @@ const UnAuthForm = ({
     ],
   };
 
-  const [state, setState] = useState<unknownObject>({
+  const [state, setState] = useState<State>({
     data: getInitialState(header.sections),
     aux: {},
   });
@@ -94,7 +101,7 @@ const UnAuthForm = ({
     resetMode();
   };
 
-  const handleChange = (data: unknownObject) => {
+  const handleChange = (data: unknownObject): void => {
     updateState({ data: { ...state.data, ...data } });
   };
 
