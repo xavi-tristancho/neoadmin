@@ -13,8 +13,6 @@
     "write-translations": "docusaurus write-translations",
     "wt": "docusaurus write-translations --locale es && docusaurus write-translations --locale en",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "test-coverage": "jest --coverage",
-    "test-full-coverage": "npx jest --coverage --collectCoverageFrom='src/**/*.{js,jsx}'",
     "test": "c8 vitest"
   },
   "dependencies": {
