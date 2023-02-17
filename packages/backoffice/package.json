@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsc && vite build --watch",
     "build": "tsc && vite build",
-    "test": "vitest"
+    "test": "c8 vitest"
   },
   "devDependencies": {
     "@emotion/react": "^11.10.5",

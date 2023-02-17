@@ -8,6 +8,7 @@
   },
   "private": true,
   "dependencies": {
+    "@vitest/coverage-c8": "^0.28.5",
     "radash": "^10.7.0"
   },
   "devDependencies": {
