@@ -1,15 +1,12 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { UnAuthPageForm } from ".";
 import { getPageLiteralsObject } from "../languages/utils";
+import { UnAuthPageFormProps } from "./types";
 
-type RecoverPasswordProps = {
-  onSubmit: () => Promise<void>;
-  children: React.ReactNode;
-};
+type RecoverPasswordProps = Partial<UnAuthPageFormProps>;
 
 const RecoverPassword = ({
-  onSubmit = () => Promise.resolve(),
+  onSubmit,
   children,
   ...props
 }: RecoverPasswordProps) => {

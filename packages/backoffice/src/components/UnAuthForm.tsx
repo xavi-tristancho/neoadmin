@@ -12,7 +12,7 @@ export type UnAuthFormProps = {
   title: string;
   submitText: string;
   register?: {
-    text: string;
+    text?: string;
     to: string;
     linkText: string;
   };
