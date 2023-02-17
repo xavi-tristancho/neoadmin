@@ -39,12 +39,11 @@ jobs:
           aws codeartifact login --tool npm --domain neoadmin-neoco --domain-owner 906935845275 --repository neoadmin-registry --namespace @neoco
           npm ci
           npm test
-          ls packages/backoffice
 
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: packages/backoffice/coverage/cobertura-coverage.xml
+          filename: packages/**/coverage/cobertura-coverage.xml
           badge: true
           format: markdown
           hide_branch_rate: false
