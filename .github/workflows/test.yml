@@ -22,6 +22,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -32,6 +35,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: eu-west-1
         run: |
+          git fetch --no-tags --prune --depth=5 origin master
           aws codeartifact login --tool npm --domain neoadmin-neoco --domain-owner 906935845275 --repository neoadmin-registry --namespace @neoco
           npm ci
           npm test
