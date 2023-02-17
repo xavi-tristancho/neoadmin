@@ -147,6 +147,7 @@ describe("regarding the multiselect utility functions", () => {
             value: [firstOption],
             options,
             onChange: expect.any(Function),
+            getOptionLabel: expect.any(Function),
           });
         });
       });
@@ -167,6 +168,7 @@ describe("regarding the multiselect utility functions", () => {
             value: firstOption,
             options,
             onChange: expect.any(Function),
+            getOptionLabel: expect.any(Function),
           });
         });
       });
@@ -191,6 +193,7 @@ describe("regarding the multiselect utility functions", () => {
             value: "",
             options,
             onChange: expect.any(Function),
+            getOptionLabel: expect.any(Function),
           });
         });
       });
@@ -209,6 +212,7 @@ describe("regarding the multiselect utility functions", () => {
             value: "",
             options,
             onChange: expect.any(Function),
+            getOptionLabel: expect.any(Function),
           });
         });
       });

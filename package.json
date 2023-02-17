@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nx run-many --target=dev",
-    "test": "nx affected --target=test"
+    "test": "nx affected --target=test --base=origin/main"
   },
   "private": true,
   "dependencies": {
