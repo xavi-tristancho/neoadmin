@@ -11,7 +11,7 @@ import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 
 type AuthPageProps = {
   children: React.ReactNode;
-  routes: Array<unknownObject>;
+  routes: unknownObject[];
 };
 
 const { mediaQuery } = responsive;
