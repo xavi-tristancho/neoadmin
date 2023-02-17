@@ -3,13 +3,11 @@ import { UnAuthPageForm } from ".";
 import { getPageLiteralsObject } from "../languages/utils";
 import { UnAuthPageFormProps } from "./types";
 
-type RecoverPasswordProps = Partial<UnAuthPageFormProps>;
-
 const RecoverPassword = ({
   onSubmit,
   children,
   ...props
-}: RecoverPasswordProps) => {
+}: UnAuthPageFormProps) => {
   const { t } = useTranslation();
   const literals = getPageLiteralsObject({ page: "recoverPassword" });
 

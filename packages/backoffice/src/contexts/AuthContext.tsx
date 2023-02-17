@@ -18,7 +18,7 @@ export type LoginInputProps = {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const initState = (key, defaultValue) => {
+const initState = (key: string, defaultValue: unknown) => {
   try {
     return JSON.parse(localStorage.getItem(key));
   } catch (e) {

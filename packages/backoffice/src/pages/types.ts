@@ -8,6 +8,11 @@ export type UnAuthPageFormProps = {
   page?: string;
   fields?: unknownObject[];
   title?: string;
+  register?: {
+    text?: string;
+    to: string;
+    linkText: string;
+  };
   submitText?: string;
   fields?: Field[];
   children?: React.ReactNode;
