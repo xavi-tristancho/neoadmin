@@ -1,5 +1,5 @@
+import { DefaultField } from "@neoco/neoco-form/src/types";
 import { BrowserRouterProps, RouteChildrenProps } from "react-router-dom";
-import { Field } from "../../forms/src/types";
 
 export type Config = {
   renderThemeProvider: boolean;
@@ -13,7 +13,7 @@ export type unknownObject = {
 
 export type Sections = {
   component?: () => JSX.Element;
-  fields?: Field[];
+  fields?: DefaultField[];
   FieldsContainer?: ({
     children,
     style,
