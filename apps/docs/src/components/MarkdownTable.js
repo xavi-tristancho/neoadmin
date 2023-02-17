@@ -11,7 +11,8 @@ const components = (reactComponents = {}) => ({
   th: ({ children, style }) => (
     <th
       className={`header ${children?.[0]?.toLowerCase()?.replace(" ", "-")}`}
-      style={style}>
+      style={style}
+    >
       {children}
     </th>
   ),

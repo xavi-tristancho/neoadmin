@@ -1,0 +1,86 @@
+---
+id: "field"
+title: Fields
+sidebar_position: 2
+---
+
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+
+The `fields` is an array of objects, each object is meant to be a `field` that you specify what is needed to show in the Table and/or the Form with its intrinsic properties. This property is located in the root of every Section and has different variants.
+
+```js
+import { CustomFieldsContainer } from "components";
+
+const headers = {
+  type: "CRUD",
+  options: {...},
+  sections: [
+    {
+      // highlight-start
+      fields: [
+        {
+          label: "Image",
+          property: "image",
+          type: "image",
+        },
+        {
+          label: "Title",
+          property: "title",
+          type: "text",
+        },
+        {
+          label: "Date",
+          property: "date",
+          type: "date",
+        },
+        {
+          label: "Content",
+          property: "content",
+          type: "html",
+        },
+        {
+          label: "Category",
+          property: "category",
+          type: "multiselect",
+          relation: {
+            isMulti: false,
+            options: categories,
+            format: (category: Category) => category.name,
+          },
+          tableOptions: {
+            format: (category: Category) => category.name,
+          },
+        },
+        {
+          property: "visible",
+          tableOptions: {
+            show: false,
+          },
+          type: "checkbox",
+        },
+      ],
+      // highlight-end
+      component: () => {
+        return <div>This is a section custom component</div>;
+      },
+    }
+  ],
+};
+
+export default headers;
+```
+
+<MarkdownTable
+  headers={["Name", "Type", "Default"]}
+  rows={[
+    ["label", "`string`", " `name` "],
+    ["property*", "`string`"],
+    ["name", "`string`", " `property` "],
+    [
+      "type*",
+      "`'text'` <br>`| 'image'` <br>`| 'date'` <br>`| 'html'` <br>`| 'multiselect'` <br>`| 'checkbox'` <br>`| string `",
+    ],
+  ]}
+/>
+
+---

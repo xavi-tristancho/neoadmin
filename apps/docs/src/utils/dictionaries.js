@@ -8,8 +8,8 @@ export const headersDictionary = {
   name: { title: "Name", align: "left" },
   options: { title: "Options", align: "left" },
   required: { title: "Required", align: "center" },
-  type: { title: "Type", align: "center" },
-  default: { title: "Default", align: "center" },
+  type: { title: "Type", align: "left" },
+  default: { title: "Default", align: "left" },
   description: { title: "Description", align: "left" },
 };
 
