@@ -4,11 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
-import {
-  Header,
-  Sections,
-  unknownObject,
-} from "@neoco/neoco-backoffice/src/types";
+import { Sections, unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { Field } from "@neoco/neoco-form/src/types";
 
 export type UnAuthFormProps = {
@@ -74,18 +70,16 @@ const UnAuthForm = ({
   children,
   resetMode = () => {},
 }: UnAuthFormProps) => {
-  const header: Header = {
-    sections: [
-      {
-        ...(message ? { title } : {}),
-        fields,
-        fieldsContainerStyles: { flexDirection: "column" },
-      },
-    ],
-  };
+  const section: Sections = [
+    {
+      ...(message ? { title } : {}),
+      fields,
+      fieldsContainerStyles: { flexDirection: "column" },
+    },
+  ];
 
   const [state, setState] = useState<State>({
-    data: getInitialState(header.sections),
+    data: getInitialState(section),
     aux: {},
   });
   const theme = useTheme();
@@ -104,7 +98,7 @@ const UnAuthForm = ({
   return (
     <FormContainer>
       <FormGenerator
-        headers={header}
+        sections={section}
         onSubmit={() => onSubmit(state.data)}
         state={state}
         handleChange={handleChange}
