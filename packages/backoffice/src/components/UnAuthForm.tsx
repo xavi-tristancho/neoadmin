@@ -98,7 +98,7 @@ const UnAuthForm = ({
   return (
     <FormContainer>
       <FormGenerator
-        headers={section}
+        sections={section}
         onSubmit={() => onSubmit(state.data)}
         state={state}
         handleChange={handleChange}

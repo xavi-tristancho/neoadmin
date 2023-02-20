@@ -6,13 +6,13 @@ import { removeIfNotVisible } from "../utils/common";
 import { getIndexInArray } from "../utils/arrays";
 import { ButtonProps } from "@mui/material";
 import {
-  Sections,
+  Section,
   Config,
   unknownObject,
 } from "@neoco/neoco-backoffice/src/types";
 
 type FormGeneratorProps = {
-  headers: Sections;
+  sections: Section[];
   state: unknownObject;
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -29,7 +29,7 @@ type FormGeneratorProps = {
 
 type SectionProps = {
   config?: Partial<Config>;
-  section: Sections[number];
+  section: Section;
   state: unknownObject;
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,7 +39,7 @@ type SectionProps = {
 };
 
 const FormGenerator = ({
-  headers,
+  sections,
   state,
   handleChange,
   onSubmit,
@@ -58,11 +58,11 @@ const FormGenerator = ({
 
   return (
     <form onSubmit={onLocalSubmit}>
-      {headers.map((section) => (
+      {sections.map((section) => (
         <Section
           section={section}
           state={state}
-          key={getIndexInArray(headers, section)}
+          key={getIndexInArray(sections, section)}
           handleChange={handleChange}
           {...props}
         />
