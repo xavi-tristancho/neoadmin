@@ -60,7 +60,7 @@ const App = ({ headers = [], config }: AppProps) => {
   return availableRoutes.length > 0 ? (
     <Router {...config?.router}>
       <SnackbarProvider>
-        <ThemeModeProvider customTheme={actualConfig}>
+        <ThemeModeProvider>
           <Page routes={availableRoutes}>
             <Switch>
               {availableRoutes.map((route, key) => (

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { ConfigContext } from "../../contexts";
+import { useConfig } from "../../contexts";
 import { styled as muiStyled, useTheme } from "@mui/material/styles";
 import {
   Box,
@@ -22,7 +22,7 @@ const appBarMinMaxHeight = {
 
 const Sidebar = ({ appBarTitle = "", children }) => {
   const [open, setOpen] = useState(true);
-  const { config: { CompanyLogo } = {} } = useContext(ConfigContext);
+  const { config: { CompanyLogo } = {} } = useConfig();
   const theme = useTheme();
 
   return (

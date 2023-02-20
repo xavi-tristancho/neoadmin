@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { List, ListItem } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import useAuth from "../contexts/AuthContext";
+import AuthContext from "../contexts/AuthContext";
 import Sidebar from "../components/Sidebar";
 import responsive from "../utils/responsive";
 import getModelInitialLetter from "../utils/authPage";
@@ -18,7 +18,7 @@ const { mediaQuery } = responsive;
 
 const AuthPage = ({ children, routes }: AuthPageProps) => {
   const theme = useTheme();
-  const { sidebarProps } = useAuth();
+  const { sidebarProps } = useContext(AuthContext);
   const { pathname } = useLocation();
   const path = `/${pathname.split("/")?.[1]}`;
 

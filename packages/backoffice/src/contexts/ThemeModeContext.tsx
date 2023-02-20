@@ -8,16 +8,14 @@ import React, {
 import { useMediaQuery } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "../styles/theme";
-import { ConfigContext } from ".";
+import { useConfig } from ".";
 import { Config } from "../types";
 
 type ColorModeType = {
   toggleColorMode: () => void;
 };
 
-const ThemeModeContext = createContext<ColorModeType>({
-  toggleColorMode: () => {},
-});
+const ThemeModeContext = createContext<ColorModeType | null>(null);
 
 type ThemeModeProviderProps = {
   children: React.ReactNode;
@@ -29,7 +27,7 @@ type ConfigThemeContextType = {
 
 export const ThemeModeProvider = ({ children }: ThemeModeProviderProps) => {
   const { config: { customTheme = {}, renderThemeProvider = true } = {} } =
-    useContext<ConfigThemeContextType>(ConfigContext);
+    useConfig() as ConfigThemeContextType;
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)", {
     noSsr: true,
   });
@@ -41,7 +39,7 @@ export const ThemeModeProvider = ({ children }: ThemeModeProviderProps) => {
     setThemeMode(prefersDarkMode ? "dark" : "light");
   }, [prefersDarkMode]);
 
-  const colorMode = useMemo(
+  const colorMode: ColorModeType = useMemo(
     () => ({
       toggleColorMode: () => {
         setThemeMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
@@ -71,6 +69,7 @@ export const useThemeMode = () => {
   if (!themeContext) {
     throw new Error("useThemeMode must be used within a ThemeModeProvider");
   }
+  return themeContext;
 };
 
 export default ThemeModeContext;
