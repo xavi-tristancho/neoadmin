@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { IconButton, Avatar, Menu, MenuItem } from "@mui/material";
 import {
@@ -11,7 +11,7 @@ import {
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import stringAvatar from "./utils";
-import { useAuth, AuthContext, ThemeModeContext } from "../../contexts";
+import { useAuth, useThemeMode } from "../../contexts";
 import { useTranslation } from "react-i18next";
 
 type Language = {
@@ -33,8 +33,8 @@ const languages: Language[] = [
 
 const UserAndSettings = (): JSX.Element => {
   const theme = useTheme();
-  const colorMode = useContext<ThemeModeContext>(ThemeModeContext);
-  const { user, logout } = useContext<useAuth>(AuthContext);
+  const colorMode = useThemeMode();
+  const { user, logout } = useAuth();
   const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
 

@@ -65,4 +65,12 @@ export const ThemeModeProvider = ({ children }: ThemeModeProviderProps) => {
   );
 };
 
+export const useThemeMode = () => {
+  const themeContext = useContext(ThemeModeContext);
+
+  if (!themeContext) {
+    throw new Error("useThemeMode must be used within a ThemeModeProvider");
+  }
+};
+
 export default ThemeModeContext;
