@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "nx run-many --target=dev",
-    "test": "nx affected --target=test"
+    "test": "nx affected --target=test --base=origin/main"
   },
   "private": true,
   "dependencies": {
+    "@vitest/coverage-c8": "^0.28.5",
     "radash": "^10.7.0"
   },
   "devDependencies": {

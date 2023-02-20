@@ -1,4 +1,4 @@
-import { DefaultField } from "@neoco/neoco-form/src/types";
+import { Field } from "@neoco/neoco-form/src/types";
 import { BrowserRouterProps, RouteChildrenProps } from "react-router-dom";
 
 export type Config = {

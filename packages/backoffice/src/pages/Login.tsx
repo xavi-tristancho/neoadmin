@@ -43,7 +43,6 @@ const Login = (props: UnAuthPageFormProps) => {
           type: "email",
           name: "email",
           id: "email",
-          fullWidth: true,
           ...commonInputProps,
         },
         {
