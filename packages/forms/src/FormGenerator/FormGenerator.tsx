@@ -12,7 +12,7 @@ import {
 } from "@neoco/neoco-backoffice/src/types";
 
 type FormGeneratorProps = {
-  sections: Sections;
+  headers: Sections;
   state: unknownObject;
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,7 +39,7 @@ type SectionProps = {
 };
 
 const FormGenerator = ({
-  sections,
+  headers,
   state,
   handleChange,
   onSubmit,
@@ -58,11 +58,11 @@ const FormGenerator = ({
 
   return (
     <form onSubmit={onLocalSubmit}>
-      {sections.map((section) => (
+      {headers.map((section) => (
         <Section
           section={section}
           state={state}
-          key={getIndexInArray(sections, section)}
+          key={getIndexInArray(headers, section)}
           handleChange={handleChange}
           {...props}
         />

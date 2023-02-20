@@ -68,7 +68,9 @@ const CustomFilters = ({
     <FormContainer theme={theme}>
       <FormGenerator
         state={{ data: state, aux: {} }}
-        sections={headerSections}
+        headers={{
+          sections: headerSections,
+        }}
         handleChange={handleChange}
         Button={() => <></>}
       />
