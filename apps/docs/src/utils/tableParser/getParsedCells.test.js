@@ -4,8 +4,20 @@ import { getParsedCells } from "./tableParser";
 describe("regarding the getParsedCells function", () => {
   describe("given an array of headers", () => {
     describe("that are strings", () => {
-      it("should return the same array of strings", () => {
-        expect(getParsedCells(["Hi"])).toStrictEqual(["Hi"]);
+      describe("that does not contain the * symbol", () => {
+        it("should return the same array of strings", () => {
+          expect(getParsedCells(["Hi"])).toStrictEqual(["Hi"]);
+        });
+      });
+
+      describe("that contains the * symbol", () => {
+        it("should return the same array of strings with extra styling for the required (*) cells", () => {
+          const required = "some*";
+          expect(getParsedCells(["Hi", required])).toStrictEqual([
+            "Hi",
+            `<span style="color:var(--ifm-color-primary)">${required}</span>`,
+          ]);
+        });
       });
     });
 

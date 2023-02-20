@@ -46,41 +46,31 @@ export default headers;
 ```
 
 <MarkdownTable
-  headers={["Name", "Required", "Type", `Description`]}
+  headers={["Name", "Type", `Description`]}
   rows={[
+    ["component*", "`function`", "Used to render a custom section component."],
     [
-      "component",
-      "`false` *",
-      "`function`",
-      "Used to render a custom section component.",
-    ],
-    [
-      "fields",
-      "`false` *",
+      "fields*",
       "`array`",
       "Used to define the fields that will be shown in the `ModelTable` and the `ModelUpsert`. Is an array of objects of type Field.",
     ],
     [
       "FieldsContainer",
-      "`false`",
       "`function`",
       "Used to render a custom fields container component.",
     ],
     [
       "fieldsContainerStyles",
-      "`false`",
       "`object`",
       "Used to pass styles to the fields container component. This styles have to be written in camelCase.",
     ],
     [
       "subtitle",
-      "`false`",
       "`string`",
       "Used to define a subtitle in this section. Will be shown under the section title.",
     ],
     [
       "title",
-      "`false`",
       "`string`",
       "Used to define a title in this section. Will be shown above the section fields.",
     ],
@@ -112,8 +102,8 @@ export default headers;
 
 :::caution
 
-**\* 1. component:** Is not required but you have to define the `fields` property.<br/>
-**\* 2. fields:** Is not required but you have to define the `component` property.
+**\* 1. component:** Is not required if the `fields` property is defined.<br/>
+**\* 2. fields:** Is not required if the `component` property is defined.
 
 :::
 
