@@ -11,7 +11,7 @@ import {
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import stringAvatar from "./utils";
-import { AuthContext, ThemeModeContext } from "../../contexts";
+import { useAuth, AuthContext, ThemeModeContext } from "../../contexts";
 import { useTranslation } from "react-i18next";
 
 type Language = {
@@ -34,7 +34,7 @@ const languages: Language[] = [
 const UserAndSettings = (): JSX.Element => {
   const theme = useTheme();
   const colorMode = useContext<ThemeModeContext>(ThemeModeContext);
-  const { user, logout } = useContext<AuthContext>(AuthContext);
+  const { user, logout } = useContext<useAuth>(AuthContext);
   const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
 
