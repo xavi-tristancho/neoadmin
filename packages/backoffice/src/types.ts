@@ -13,7 +13,7 @@ export type unknownObject = {
 
 export type Sections = {
   component?: () => JSX.Element;
-  fields?: DefaultField[];
+  fields?: Field[];
   FieldsContainer?: ({
     children,
     style,
