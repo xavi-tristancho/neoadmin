@@ -8,14 +8,16 @@
   },
   "private": true,
   "dependencies": {
-    "@vitest/coverage-c8": "^0.28.5",
-    "radash": "^10.7.0"
+    "@vitest/coverage-c8": "^0.28.5",    
+    "radash": "^10.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@nrwl/nx-cloud": "latest",
     "nx": "15.6.3",
     "prettier": "^2.6.2",
-    "vitest": "^0.28.5"
+    "vitest": "^0.28.5"    
   },
   "workspaces": [
     "packages/*",
