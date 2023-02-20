@@ -1,4 +1,5 @@
-import { unknownObject, Credentials } from "@neoco/neoco-backoffice/src/types";
+import { Credentials } from "@neoco/neoco-backoffice/src/types";
+import { Field } from "@neoco/neoco-form/src/types";
 import { LoginInputProps } from "../contexts/AuthContext";
 
 export type UnAuthPageFormProps = {
@@ -7,6 +8,6 @@ export type UnAuthPageFormProps = {
   page?: string;
   title?: string;
   submitText?: string;
-  fields?: Array<unknownObject>;
+  fields?: Field[];
   children?: React.ReactNode;
 };
