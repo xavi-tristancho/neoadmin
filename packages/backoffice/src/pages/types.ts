@@ -6,7 +6,6 @@ export type UnAuthPageFormProps = {
   onSubmit: (credentials: Credentials) => Promise<LoginInputProps>;
   afterSubmit?: (args: LoginInputProps) => void;
   page?: string;
-  fields?: unknownObject[];
   title?: string;
   register?: {
     text?: string;
