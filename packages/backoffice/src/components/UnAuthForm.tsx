@@ -4,7 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
-import { Sections, unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { Section, unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { Field } from "@neoco/neoco-form/src/types";
 
 export type UnAuthFormProps = {
@@ -27,7 +27,7 @@ export type UnAuthFormProps = {
   resetMode?: () => void;
 };
 
-type GetInitialState = (sections: Sections) => unknownObject;
+type GetInitialState = (sections: Section[]) => unknownObject;
 
 type State = {
   data: unknownObject;
@@ -70,7 +70,7 @@ const UnAuthForm = ({
   children,
   resetMode = () => {},
 }: UnAuthFormProps) => {
-  const section: Sections = [
+  const section: Section[] = [
     {
       ...(message ? { title } : {}),
       fields,
