@@ -8,8 +8,14 @@ export type Column = {
 };
 
 export type OperatorOptions = {
+  value?: string;
+  label?: string;
+};
+
+export type Filter = {
+  columnField: OperatorOptions;
+  operatorValue: OperatorOptions;
   value: string;
-  label: string;
 };
 
 export type FilterField = {

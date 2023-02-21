@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import { Close } from "@mui/icons-material";
 import { sameElement } from "../../utils/common";
-import { Column, FilterSection, OperatorOptions } from "./types";
+import { Column, Filter, FilterSection, OperatorOptions } from "./types";
 
 export const getColumnOptions = (columns: Column[]) =>
   columns
@@ -158,7 +158,9 @@ export const getNewFilters = ({
   return { mustUpdateDataWithFilters, newFilters };
 };
 
-export const getInitialState = ({ firstColumn = {} }) => ({
+export const getInitialState = ({
+  firstColumn = { value: "", label: "" },
+}): { filters: Filter[] } => ({
   filters: [
     {
       columnField: {
