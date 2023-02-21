@@ -1,5 +1,5 @@
+import { Field } from "@neoco/neoco-form/src/types";
 import { BrowserRouterProps, RouteChildrenProps } from "react-router-dom";
-import { Field } from "../../forms/src/types";
 
 export type Config = {
   renderThemeProvider: boolean;
@@ -11,7 +11,7 @@ export type unknownObject = {
   [key: string]: unknown;
 };
 
-export type Sections = {
+export type Section = {
   component?: () => JSX.Element;
   fields?: Field[];
   FieldsContainer?: ({
@@ -24,7 +24,7 @@ export type Sections = {
   fieldsContainerStyles?: unknownObject;
   subtitle?: string;
   title?: string;
-}[];
+};
 
 export type Header = {
   type: "CRUD" | "Page";
@@ -89,7 +89,7 @@ export type Header = {
       renderAfter?: (state: unknownObject) => React.ReactNode;
     };
   };
-  sections?: Sections;
+  sections?: Section[];
 };
 
 export type Credentials = {

@@ -109,7 +109,7 @@ const ModelUpsert = ({ header, children }) => {
         <CardContent>
           {isCreating || (!isCreating && !isEmptyObject(state.data)) ? (
             <FormGenerator
-              headers={header}
+              sections={header.sections}
               onSubmit={onSubmit}
               state={state}
               handleChange={handleChange}

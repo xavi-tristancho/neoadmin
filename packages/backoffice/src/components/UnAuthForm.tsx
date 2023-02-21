@@ -4,14 +4,11 @@ import { Link as RouterLink } from "react-router-dom";
 import { FormGenerator } from "@neoco/neoco-form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
-import {
-  Sections,
-  unknownObject,
-  Credentials,
-} from "@neoco/neoco-backoffice/src/types";
+import { Section, unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { Field } from "@neoco/neoco-form/src/types";
 
 export type UnAuthFormProps = {
-  onSubmit: (data: Credentials) => Promise<void>;
+  onSubmit: (data: unknownObject) => Promise<void>;
   title: string;
   submitText: string;
   register?: {
@@ -24,15 +21,22 @@ export type UnAuthFormProps = {
     to: string;
     linkText: string;
   };
-  fields: Array<unknownObject>;
+  fields: Field[];
   message?: string;
   children: React.ReactNode;
   resetMode?: () => void;
 };
 
+type GetInitialState = (sections: Section[]) => unknownObject;
+
+type State = {
+  data: unknownObject;
+  aux: unknownObject;
+};
+
 const { mediaQuery } = responsive;
 
-const getInitialState = (sections: Sections) =>
+const getInitialState: GetInitialState = (sections) =>
   sections.reduce(
     (reducer, { fields }) => ({
       ...reducer,
@@ -61,30 +65,21 @@ const UnAuthForm = ({
     to: "",
     linkText: "",
   },
-  fields = [
-    {
-      name: "email",
-    },
-    {
-      name: "password",
-    },
-  ],
+  fields,
   message,
   children,
   resetMode = () => {},
 }: UnAuthFormProps) => {
-  const header = {
-    sections: [
-      {
-        ...(message ? { title } : {}),
-        fields,
-        fieldsContainerStyles: { flexDirection: "column" },
-      },
-    ],
-  };
+  const section: Section[] = [
+    {
+      ...(message ? { title } : {}),
+      fields,
+      fieldsContainerStyles: { flexDirection: "column" },
+    },
+  ];
 
-  const [state, setState] = useState<unknownObject>({
-    data: getInitialState(header.sections),
+  const [state, setState] = useState<State>({
+    data: getInitialState(section),
     aux: {},
   });
   const theme = useTheme();
@@ -94,14 +89,16 @@ const UnAuthForm = ({
     resetMode();
   };
 
-  const handleChange = (data: unknownObject) => {
+  const handleChange = (
+    data: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     updateState({ data: { ...state.data, ...data } });
   };
 
   return (
     <FormContainer>
       <FormGenerator
-        headers={header}
+        sections={section}
         onSubmit={() => onSubmit(state.data)}
         state={state}
         handleChange={handleChange}

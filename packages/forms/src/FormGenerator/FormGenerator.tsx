@@ -1,23 +1,56 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DefaultButton from "@mui/material/Button";
 import styled from "styled-components";
 import { inputMapper } from "../utils/inputs";
 import { removeIfNotVisible } from "../utils/common";
 import { getIndexInArray } from "../utils/arrays";
+import { ButtonProps } from "@mui/material";
+import {
+  Section,
+  Config,
+  unknownObject,
+} from "@neoco/neoco-backoffice/src/types";
+
+type FormGeneratorProps = {
+  sections: Section[];
+  state: unknownObject;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  children?:
+    | ((props: { state: unknownObject }) => JSX.Element)
+    | React.ReactNode;
+  Button?: React.ComponentType<ButtonProps>;
+  submitText?: string;
+  submitButtonProps?: unknownObject;
+  Title: React.ComponentType<{ children: string }>;
+};
+
+type SectionProps = {
+  config?: Partial<Config>;
+  section: Section;
+  state: unknownObject;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  Title?: React.ComponentType<{ children: string }>;
+  Subtitle?: React.ComponentType<{ children: string }>;
+};
 
 const FormGenerator = ({
-  headers = {},
-  state = {},
-  handleChange = () => {},
-  onSubmit = () => Promise.resolve({}),
-  children = <></>,
+  sections,
+  state,
+  handleChange,
+  onSubmit,
+  children,
   Button = DefaultButton,
   submitText = "Guardar",
-  submitButtonProps = {},
+  submitButtonProps,
   ...props
-}) => {
-  const [error, setError] = useState({});
-  const onLocalSubmit = (e) => {
+}: FormGeneratorProps) => {
+  const [error, setError] = useState<{ message: string }>({ message: "" });
+  const onLocalSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     onSubmit(e).catch(setError);
@@ -25,11 +58,11 @@ const FormGenerator = ({
 
   return (
     <form onSubmit={onLocalSubmit}>
-      {headers.sections.map((section) => (
+      {sections.map((section) => (
         <Section
           section={section}
           state={state}
-          key={getIndexInArray(headers.sections, section)}
+          key={getIndexInArray(sections, section)}
           handleChange={handleChange}
           {...props}
         />
@@ -59,7 +92,7 @@ const Section = ({
   handleChange,
   Title = DefaultTitle,
   Subtitle = DefaultSubtitle,
-}) => {
+}: SectionProps) => {
   const { FieldsContainer = BaseFieldsContainer } = section;
   return (
     <SectionContainer>
