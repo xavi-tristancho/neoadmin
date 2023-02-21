@@ -108,7 +108,7 @@ const DrawerHeader = muiStyled("div")(({ theme }) => ({
 
 const AppBar = muiStyled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme }) => ({
+})<{ open: boolean }>(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
   display: "flex",
   justifyContent: "center",
@@ -123,7 +123,7 @@ const AppBar = muiStyled(MuiAppBar, {
 
 const Drawer = muiStyled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+})<{ open: boolean }>(({ theme, open }) => ({
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: "nowrap",
@@ -155,7 +155,7 @@ const Title = muiStyled("div")(() => ({
 
 const StyledIconButton = muiStyled(IconButton, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+})<{ open: boolean }>(({ theme, open }) => ({
   marginLeft: "-20px",
   ...(open && {
     backgroundColor:
