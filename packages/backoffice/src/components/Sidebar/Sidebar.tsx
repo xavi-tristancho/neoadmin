@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { styled as muiStyled, useTheme } from "@mui/material/styles";
+import { styled as muiStyled, Theme, useTheme } from "@mui/material/styles";
 import {
   Box,
   Drawer as MuiDrawer,
@@ -66,14 +66,14 @@ const Sidebar = ({ appBarTitle = "", children }: SidebarProps) => {
   );
 };
 
-const commonStyles = (theme) => ({
+const commonStyles = (theme: Theme) => ({
   "&& .MuiDrawer-paper": {
     backgroundColor:
       theme?.palette?.neoAdmin?.sidebar?.backgroundColor || "#ffffff",
   },
 });
 
-const openedMixin = (theme) => ({
+const openedMixin = (theme: Theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
@@ -83,7 +83,7 @@ const openedMixin = (theme) => ({
   ...commonStyles(theme),
 });
 
-const closedMixin = (theme) => ({
+const closedMixin = (theme: Theme) => ({
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
