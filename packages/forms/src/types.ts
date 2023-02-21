@@ -16,6 +16,7 @@ export type DefaultField = {
   upsertOptions?: {
     value?: unknownObject;
   };
+  variant?: "standard" | "outlined" | "filled";
 };
 
 export type Field =

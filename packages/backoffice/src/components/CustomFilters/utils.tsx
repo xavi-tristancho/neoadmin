@@ -1,9 +1,9 @@
 /* eslint-disable react/display-name */
-import React from "react";
 import { Close } from "@mui/icons-material";
 import { sameElement } from "../../utils/common";
+import { Column, FilterSection, OperatorOptions } from "./types";
 
-export const getColumnOptions = (columns) =>
+export const getColumnOptions = (columns: Column[]) =>
   columns
     .filter(({ property }) => property)
     .map((column) => ({
@@ -11,7 +11,7 @@ export const getColumnOptions = (columns) =>
       label: column.label || column.name || column.property,
     }));
 
-export const operatorOptions = [
+export const operatorOptions: OperatorOptions[] = [
   { value: "=", label: "=" },
   { value: "<", label: "<" },
   { value: ">", label: ">" },
@@ -20,7 +20,7 @@ export const operatorOptions = [
   { value: ">=", label: ">=" },
 ];
 
-export const getFiltersSection = ({ columnOptions }) => {
+export const getFiltersSection = ({ columnOptions }): FilterSection[] => {
   const commonFieldsProps = {
     style: {
       display: "flex",
