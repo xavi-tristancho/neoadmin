@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import { Config } from "../types";
 
-type ConfigContextType = {
+export type ConfigContextType = {
   config: Partial<Config>;
   updateConfig: (nextConfig: Config) => void;
 };

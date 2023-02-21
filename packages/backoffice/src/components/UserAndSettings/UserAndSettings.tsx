@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { IconButton, Avatar, Menu, MenuItem } from "@mui/material";
 import {
@@ -11,24 +11,36 @@ import {
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import stringAvatar from "./utils";
-import { AuthContext, ThemeModeContext } from "../../contexts";
+import { useAuth, useThemeMode } from "../../contexts";
 import { useTranslation } from "react-i18next";
 
-const languages = [
+type Language = {
+  label: string;
+  identifier: string;
+};
+
+type MenuItem = {
+  id: string;
+  Icon: React.ElementType;
+  content?: (() => React.ReactNode) | string;
+  onClick?: () => void;
+};
+
+const languages: Language[] = [
   { label: "ES", identifier: "esES" },
   { label: "EN", identifier: "enUS" },
 ];
 
-const UserAndSettings = () => {
+const UserAndSettings = (): JSX.Element => {
   const theme = useTheme();
-  const colorMode = useContext(ThemeModeContext);
-  const { user, logout } = useContext(AuthContext);
+  const colorMode = useThemeMode();
+  const { user, logout } = useAuth();
   const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -36,8 +48,9 @@ const UserAndSettings = () => {
     setAnchorEl(null);
   };
 
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     {
+      id: "language",
       Icon: () => <Translate fontSize="small" />,
       content: () => (
         <Languages>
@@ -56,6 +69,7 @@ const UserAndSettings = () => {
       ),
     },
     {
+      id: "color-mode",
       Icon: () =>
         theme.palette.mode === "dark" ? (
           <Brightness7 fontSize="small" />
@@ -66,6 +80,7 @@ const UserAndSettings = () => {
       onClick: colorMode.toggleColorMode,
     },
     {
+      id: "logout",
       Icon: () => <PowerSettingsNew fontSize="small" />,
       content: "log out",
       onClick: logout,
@@ -98,8 +113,8 @@ const UserAndSettings = () => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          {menuItems.map(({ Icon, content = "", onClick = () => {} }) => (
-            <MenuItem onClick={onClick} key={content}>
+          {menuItems.map(({ id, Icon, content = "", onClick = () => {} }) => (
+            <MenuItem onClick={onClick} key={id}>
               <IconContainer>
                 <IconButton
                   sx={{

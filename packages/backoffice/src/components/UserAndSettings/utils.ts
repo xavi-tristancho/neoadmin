@@ -1,13 +1,25 @@
-const stringToColor = (string = "") => {
-  let hash = 0;
-  let i;
+type Style = {
+  width: string;
+  height: string;
+  margin: string;
+  bgcolor: string;
+};
+
+type StringAvatar = (name: string) => {
+  sx: Style;
+  children: string;
+};
+
+const stringToColor = (string: string = ""): string => {
+  let hash: number = 0;
+  let i: number;
 
   /* eslint-disable no-bitwise */
   for (i = 0; i < string.length; i += 1) {
     hash = string.charCodeAt(i) + ((hash << 5) - hash);
   }
 
-  let color = "#";
+  let color: string = "#";
 
   for (i = 0; i < 3; i += 1) {
     const value = (hash >> (i * 8)) & 0xff;
@@ -18,7 +30,7 @@ const stringToColor = (string = "") => {
   return color;
 };
 
-const stringAvatar = (name = "ADMIN") => {
+const stringAvatar: StringAvatar = (name: string = "ADMIN") => {
   const defaultName = "ADMIN";
   const isString = typeof name === "string";
   const styles = {
@@ -46,7 +58,7 @@ const stringAvatar = (name = "ADMIN") => {
   };
 };
 
-const nameAndSurnameAbbreviation = (splittedName) => {
+const nameAndSurnameAbbreviation = (splittedName: string[]): string => {
   return `${splittedName[0][0]}${splittedName[1][0]}`;
 };
 

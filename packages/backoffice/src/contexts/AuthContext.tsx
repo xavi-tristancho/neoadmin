@@ -9,7 +9,7 @@ type AuthContextType = {
   sidebarProps?: { appBarTitle: string; children: React.ReactNode };
 };
 
-type AuthContextUser = { [key: string]: unknown };
+type AuthContextUser = { [key: string]: string };
 
 export type LoginInputProps = {
   token: string;

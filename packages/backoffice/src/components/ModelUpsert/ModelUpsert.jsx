@@ -9,7 +9,7 @@ import { getRoutePath } from "../../utils/routes";
 import { isEmptyObject } from "../../utils/object";
 import { getPageActionLiteral, getPageOneLiteral } from "../../languages/utils";
 import useNotiAlert from "../../utils/NotiAlert/useNotiAlert";
-import { ConfigContext } from "../../contexts";
+import { useConfig } from "../../contexts";
 import { useTheme } from "@mui/material/styles";
 
 const getInitialState = (sections) =>
@@ -28,7 +28,7 @@ const getInitialState = (sections) =>
   );
 
 const ModelUpsert = ({ header, children }) => {
-  const { config, setConfig } = useContext(ConfigContext);
+  const { config, setConfig } = useConfig();
   const theme = useTheme();
   const [state, setState] = useState({
     data: getInitialState(header.sections),
