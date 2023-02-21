@@ -6,6 +6,7 @@ export type Config = {
   renderThemeProvider: boolean;
   wysiwyg: { apiKey: string };
   router: BrowserRouterProps;
+  CompanyLogo?: () => JSX.Element;
 };
 
 export type unknownObject = {

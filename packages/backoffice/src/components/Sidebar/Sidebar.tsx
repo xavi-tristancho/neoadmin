@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { useConfig } from "../../contexts";
+import { useState } from "react";
 import { styled as muiStyled, useTheme } from "@mui/material/styles";
 import {
   Box,
@@ -12,6 +11,8 @@ import {
 } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import UserAndSettings from "../UserAndSettings";
+import { Config } from "../../types";
+import { useConfig } from "../../contexts/ConfigContext";
 
 const drawerWidth = 240;
 const appBarHeight = 52;
@@ -20,9 +21,18 @@ const appBarMinMaxHeight = {
   minHeight: `${appBarHeight}px !important`,
 };
 
-const Sidebar = ({ appBarTitle = "", children }) => {
+type SidebarProps = {
+  appBarTitle?: string;
+  children: React.ReactNode;
+};
+
+type ConfigSidebar = {
+  config: Partial<Config>;
+};
+
+const Sidebar = ({ appBarTitle = "", children }: SidebarProps) => {
   const [open, setOpen] = useState(true);
-  const { config: { CompanyLogo } = {} } = useConfig();
+  const { config: { CompanyLogo } = {} } = useConfig() as ConfigSidebar;
   const theme = useTheme();
 
   return (
