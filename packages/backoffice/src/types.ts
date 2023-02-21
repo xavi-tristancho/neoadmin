@@ -26,6 +26,15 @@ export type Section = {
   title?: string;
 };
 
+export type Route = {
+  path: string;
+  home?: boolean;
+  unAuth?: boolean;
+  auth?: boolean;
+  exact?: boolean;
+  component?: (props?: any) => JSX.Element;
+};
+
 export type Header = {
   type: "CRUD" | "Page";
   options: {

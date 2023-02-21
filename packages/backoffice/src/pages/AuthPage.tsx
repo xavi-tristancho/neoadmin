@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { List, ListItem } from "@mui/material";
@@ -7,10 +7,16 @@ import AuthContext from "../contexts/AuthContext";
 import Sidebar from "../components/Sidebar";
 import responsive from "../utils/responsive";
 import getModelInitialLetter from "../utils/authPage";
+import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+
+type AuthPageProps = {
+  children: React.ReactNode;
+  routes: unknownObject[];
+};
 
 const { mediaQuery } = responsive;
 
-const AuthPage = ({ children, routes }) => {
+const AuthPage = ({ children, routes }: AuthPageProps) => {
   const theme = useTheme();
   const { sidebarProps } = useContext(AuthContext);
   const { pathname } = useLocation();
