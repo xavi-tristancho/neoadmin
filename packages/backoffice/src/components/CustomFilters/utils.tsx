@@ -1,5 +1,6 @@
 /* eslint-disable react/display-name */
 import { Close } from "@mui/icons-material";
+import { UnknownOption } from "@neoco/neoco-form/src/utils/inputs/multi-select/types";
 import { sameElement } from "../../utils/common";
 import { Column, Filter, FilterSection, OperatorOptions } from "./types";
 
@@ -25,7 +26,7 @@ export const getFiltersSection = ({
 }: {
   columnOptions: OperatorOptions[];
 }): FilterSection[] => {
-  const commonFieldsProps = {
+  const commonFieldsProps: { style: UnknownOption } = {
     style: {
       display: "flex",
       alignItems: "center",
@@ -35,7 +36,11 @@ export const getFiltersSection = ({
       maxWidth: "2000px",
     },
   };
-  const commonMultiselectProps = {
+  const commonMultiselectProps: {
+    disableClearable: boolean;
+    allowEmptyValue: boolean;
+    renderInputProps: UnknownOption;
+  } = {
     disableClearable: true,
     allowEmptyValue: false,
     renderInputProps: { variant: "standard" },
