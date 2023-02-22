@@ -131,9 +131,21 @@ describe("regarding the getOnlyCompleteFilters function", () => {
   describe("given an array of complete and incomplete filters", () => {
     it("should return only the complete filters", () => {
       const filters = [
-        { columnField: "coo", operatorValue: "=", value: "cooVal" },
-        { columnField: "coo", operatorValue: "=", value: "" },
-        { columnField: "coo", operatorValue: "=", value: "cooVal" },
+        {
+          columnField: { value: "coo" },
+          operatorValue: { value: "=" },
+          value: "cooVal",
+        },
+        {
+          columnField: { value: "coo" },
+          operatorValue: { value: "=" },
+          value: "",
+        },
+        {
+          columnField: { value: "coo" },
+          operatorValue: { value: "=" },
+          value: "cooVal",
+        },
       ];
       expect(getOnlyCompleteFilters(filters)).toEqual([filters[0], filters[2]]);
     });

@@ -2,7 +2,7 @@ import { DefaultField, Field } from "@neoco/neoco-form/src/types";
 import { MultiSelectField } from "@neoco/neoco-form/src/utils/inputs/multi-select/types";
 
 export type Column = {
-  property: string;
+  property?: string;
   label?: string;
   name?: string;
 };

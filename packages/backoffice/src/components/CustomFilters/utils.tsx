@@ -97,7 +97,7 @@ export const getOnlyCompleteFilters = (filters: Filter[]) =>
     [columnField, operatorValue, value].every((field) => field && field !== "")
   );
 
-export const getNormalizedFilters = (filters: Filter[]) => {
+export const getNormalizedFilters = (filters?: Filter[]) => {
   try {
     return getOnlyCompleteFilters(filters).map((filter, index) => {
       if (typeof filter === "object") {
