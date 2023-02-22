@@ -92,18 +92,12 @@ export const getFiltersSection = ({
   ];
 };
 
-export const getOnlyCompleteFilters = (filters = []) =>
-  filters.filter(
-    ({ columnField, operatorValue, value }) =>
-      columnField &&
-      columnField !== "" &&
-      operatorValue &&
-      operatorValue !== "" &&
-      value &&
-      value !== ""
+export const getOnlyCompleteFilters = (filters: Filter[]) =>
+  filters.filter(({ columnField, operatorValue, value }) =>
+    [columnField, operatorValue, value].every((field) => field && field !== "")
   );
 
-export const getNormalizedFilters = (filters = []) => {
+export const getNormalizedFilters = (filters: Filter[]) => {
   try {
     return getOnlyCompleteFilters(filters).map((filter, index) => {
       if (typeof filter === "object") {
