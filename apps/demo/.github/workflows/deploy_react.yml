@@ -33,7 +33,7 @@ jobs:
           AWS_DEFAULT_REGION: eu-west-1
         run: |
           aws codeartifact login --tool npm --domain neoadmin-neoco --domain-owner 906935845275 --repository neoadmin-registry --namespace @neoco
-          npm ci
+          npm ci --legacy-peer-deps
           npm run build --if-present
           npm test
       - name: deploy to gh-pages
