@@ -240,7 +240,7 @@ describe("regarding the getNormalizedFilters function", () => {
 
   describe("given an object", () => {
     it("should return an error", () => {
-      const expected = () => getNormalizedFilters({});
+      const expected = () => getNormalizedFilters();
       expect(expected).toThrow("TypeError: filters.filter is not a function");
     });
   });
