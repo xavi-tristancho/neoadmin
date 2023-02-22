@@ -1,0 +1,24 @@
+name: neoAdmin Demo Update
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: pandoc/latex # using "pandoc/latex" because of dependencies used in the specific "build.sh"
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: apps/demo
+          destination-github-username: "neocodevs"
+          destination-repository-name: "neoadmin-demo"
+          target-branch: main
