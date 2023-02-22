@@ -1,6 +1,5 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
 import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/guide/build.html#library-mode
 
@@ -34,5 +33,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [svgr(), dts()],
+  plugins: [svgr()],
 });
