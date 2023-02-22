@@ -1,7 +1,7 @@
+import { Header } from "@neoco/neoco-backoffice";
+import { clone } from "../utils";
 import { posts, categories } from "./fixtures/posts";
 import { Category, Post } from "./types";
-import { clone } from "../utils";
-import { Header } from "@neoco/neoco-backoffice/src/types";
 
 const headers: Header = {
   type: "CRUD", // Specify the header as a `CRUD` type
