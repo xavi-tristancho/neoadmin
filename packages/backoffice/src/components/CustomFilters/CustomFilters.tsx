@@ -13,13 +13,21 @@ import {
 import useDebounce from "../../utils/useDebounce";
 import { Card } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { Column, Filter } from "./types";
+
+type CustomFiltersProps = {
+  columns: Column[];
+  onFiltersChange?: (filters: Filter[]) => void;
+  hideFilters?: () => void;
+  visible?: boolean;
+};
 
 const CustomFilters = ({
   columns,
   onFiltersChange = () => {},
   hideFilters = () => {},
   visible = false,
-}) => {
+}: CustomFiltersProps) => {
   const columnOptions = getColumnOptions(columns);
   const headerSections = getFiltersSection({
     columnOptions,
