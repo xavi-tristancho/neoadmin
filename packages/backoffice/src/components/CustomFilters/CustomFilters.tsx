@@ -74,6 +74,8 @@ const CustomFilters = ({
     if (mustUpdateData) sendFilters();
   }, [debouncedFilters]);
 
+  console.log(headerSections);
+
   return visible ? (
     <FormContainer theme={theme}>
       <FormGenerator

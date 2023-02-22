@@ -28,7 +28,9 @@ export type Field =
         | "html"
         | "checkbox"
         | "email"
-        | "password";
+        | "password"
+        | "relation-list";
+
       relation?: never;
     })
   | MultiSelectField;
