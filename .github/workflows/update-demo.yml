@@ -22,7 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: configure
         run: |
-          npm ci
+          npm ci --legacy-peer-deps
           node apps/demo/scripts/configure-tsconfig-json
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
