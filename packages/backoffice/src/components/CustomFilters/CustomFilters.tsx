@@ -37,21 +37,23 @@ const CustomFilters = ({
     label: columns[0]?.label || columns[0]?.name || columns[0]?.property,
   };
 
-  const [state, setState] = useState(getInitialState({ firstColumn }));
+  const [state, setState] = useState<{ filters: Filter[] }>(
+    getInitialState({ firstColumn })
+  );
 
-  const [mustUpdateData, setMustUpdateData] = useState(false);
-  const debouncedFilters = useDebounce(state);
+  const [mustUpdateData, setMustUpdateData] = useState<boolean>(false);
+  const debouncedFilters = useDebounce<{ filters: Filter[] }>(state);
   const theme = useTheme();
 
   const updateState = (nextState: { filters: Filter[] }) =>
     setState((currentState) => ({ ...currentState, ...nextState }));
 
-  const sendFilters = () => {
+  const sendFilters = (): void => {
     onFiltersChange(getNormalizedFilters(debouncedFilters.filters));
     setMustUpdateData(false);
   };
 
-  const handleChange = ({ filters: incomingFilters }) => {
+  const handleChange = ({ filters: incomingFilters }): void => {
     const { mustUpdateDataWithFilters, newFilters } = getNewFilters({
       currentStateFilters: state.filters,
       incomingFilters,
