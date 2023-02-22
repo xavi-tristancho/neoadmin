@@ -43,7 +43,7 @@ const CustomFilters = ({
   const debouncedFilters = useDebounce(state);
   const theme = useTheme();
 
-  const updateState = (nextState) =>
+  const updateState = (nextState: { filters: Filter[] }) =>
     setState((currentState) => ({ ...currentState, ...nextState }));
 
   const sendFilters = () => {

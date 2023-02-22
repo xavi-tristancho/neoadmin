@@ -144,9 +144,13 @@ const getIncomingFiltersWithInitialValues = ({
   }));
 
 export const getNewFilters = ({
-  currentStateFilters = [],
+  currentStateFilters,
   incomingFilters,
   columnOptions,
+}: {
+  currentStateFilters: Filter[];
+  incomingFilters: Filter[];
+  columnOptions: OperatorOptions[];
 }) => {
   const isAddingFilter = currentStateFilters.length < incomingFilters?.length;
   const mustUpdateDataWithFilters =
