@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     container: pandoc/latex # using "pandoc/latex" because of dependencies used in the specific "build.sh"
 
+    strategy:
+      matrix:
+        node-version: [16.x] # We will deploy with only one version of node
+
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
