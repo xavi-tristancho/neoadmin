@@ -126,7 +126,7 @@ export const fieldsMapper = ({ fields, state, handleChange, config }) => {
       })}
       {typeof field.renderAfter === "function" ? field.renderAfter() : <></>}
       {typeof field.isValid === "function" && (
-        <ErrorMessage>{field.isValid(state.data[field.property])}</ErrorMessage>
+        <ErrorMessage>{field.isValid(state.data[field.name])}</ErrorMessage>
       )}
     </FieldContainer>
   ));
