@@ -13,20 +13,21 @@
     "@vitest/coverage-c8": "^0.28.5",
     "radash": "^10.7.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "replace-in-file": "^6.3.5"
   },
   "devDependencies": {
     "@nrwl/nx-cloud": "latest",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
     "eslint": "^8.34.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.0",
     "nx": "15.6.3",
     "prettier": "^2.6.2",
-    "vitest": "^0.28.5",
-    "@typescript-eslint/eslint-plugin": "^5.53.0",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-import-resolver-typescript": "^3.5.2",
-    "husky": "^8.0.0"
+    "vitest": "^0.28.5"
   },
   "workspaces": [
     "packages/*",
