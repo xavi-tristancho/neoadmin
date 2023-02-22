@@ -53,7 +53,7 @@ const CustomFilters = ({
     setMustUpdateData(false);
   };
 
-  const handleChange = ({ filters: incomingFilters }): void => {
+  const handleChange = (incomingFilters: Filter[]): void => {
     const { mustUpdateDataWithFilters, newFilters } = getNewFilters({
       currentStateFilters: state.filters,
       incomingFilters,
@@ -73,8 +73,6 @@ const CustomFilters = ({
   useEffect(() => {
     if (mustUpdateData) sendFilters();
   }, [debouncedFilters]);
-
-  console.log(headerSections);
 
   return visible ? (
     <FormContainer theme={theme}>

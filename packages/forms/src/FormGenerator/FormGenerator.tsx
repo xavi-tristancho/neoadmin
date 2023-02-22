@@ -15,16 +15,16 @@ type FormGeneratorProps = {
   sections: Section[];
   state: unknownObject;
   handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | unknown
   ) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   children?:
     | ((props: { state: unknownObject }) => JSX.Element)
     | React.ReactNode;
   Button?: React.ComponentType<ButtonProps>;
   submitText?: string;
   submitButtonProps?: unknownObject;
-  Title: React.ComponentType<{ children: string }>;
+  Title?: React.ComponentType<{ children: string }>;
 };
 
 type SectionProps = {
