@@ -7,9 +7,9 @@
   "scripts": {
     "dev": "tsc && vite build --watch",
     "build": "tsc && vite build",
-    "test": "c8 vitest"
+    "test": "c8 vitest",
+    "lint": "eslint src"
   },
-  "dependencies": {},
   "devDependencies": {
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
@@ -22,9 +22,9 @@
     "@mui/material": "^5.11.8",
     "@mui/x-data-grid": "^5.17.23",
     "@neoco/neoco-form": "^0.11.0",
+    "notistack": "^2.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "notistack": "^2.0.8",
     "styled-components": "^5.3.6"
   }
 }
