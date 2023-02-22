@@ -25,11 +25,14 @@ const components = (reactComponents = {}) => ({
     const { component: Component, options } = currentComponent;
 
     return (
-      <Component
-        {...props}
-        {...options?.[currentComponentOptions]}
-        reactComponents={reactComponents}
-      />
+      <>
+        <Component
+          {...props}
+          {...options?.[currentComponentOptions]}
+          reactComponents={reactComponents}
+        />
+        {props.children}
+      </>
     );
   },
 });

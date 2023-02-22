@@ -5,13 +5,14 @@ sidebar_position: 2
 ---
 
 import { MarkdownTable } from "@site/src/components/MarkdownTable";
+import { Signature } from "@site/src/components/ui/Signature";
 
 The `fields` is an array of objects, each object is meant to be a `field` that you specify what is needed to show in the Table and/or the Form with its intrinsic properties. This property is located in the root of every Section and has different variants.
 
 ```js
 import { CustomFieldsContainer } from "components";
 
-const headers = {
+const header = {
   type: "CRUD",
   options: {...},
   sections: [
@@ -74,18 +75,122 @@ export default headers;
   headers={["Name", "Type", "Default", "Description"]}
   rows={[
     [
-      "label",
+      "property*",
       "`string`",
-      " `name` ",
-      "Used to give a label to the input (in forms)",
+      "",
+      "The name of the DB model property to match when creating or updating.",
     ],
-    ["property*", "`string`"],
-    ["name", "`string`", " `property` "],
     [
       "type*",
-      "`'text'` <br>`| 'image'` <br>`| 'date'` <br>`| 'html'` <br>`| 'multiselect'` <br>`| 'checkbox'` <br>`| string `",
+      "`'checkbox'` <br>`| 'date'` <br>`| 'datetime-local'` <br>`| 'email'` <br>`| 'file'` <br>`| 'file-pdf'` <br>`| 'html'` <br>`| 'image'` <br>`| 'multiselect'` <br>`| 'radiogroup'` <br>`| 'relation-list'` <br>`| 'text'` <br>`| 'textarea'` <br>`| 'time'` <br>`|  string`",
+      "`'text'`",
+      "Used to specify the type of input that is going to be rendered and its behavior.",
+    ],
+    [
+      "label",
+      "`string`",
+      "`property`",
+      "Used to give a label to the input in the <b>form</b> and the header of the <b>table</b> when not using `i18n`.",
+    ],
+    [
+      "style",
+      "`object`",
+      "`{}`",
+      "Used to give custom styling to the input container in the <b>form</b>.",
+    ],
+    [
+      "disabled",
+      "`boolean`",
+      "`false`",
+      "Setting this prop to `true` disables the input from beeing modified.",
+    ],
+    [
+      "tableOptions",
+      "`object`",
+      "`{}`",
+      "Object of type [`tableOptions`](#table-options), used to specify properties that corresponds to the <b>table</b> view.",
+    ],
+    [
+      "upsertOptions",
+      "`object`",
+      "`{}`",
+      "Object of type [`upsertOptions`](#upsert-options), used to specify properties that corresponds to the <b>form</b> view.",
+    ],
+    [
+      "renderBefore",
+      "`func`",
+      "",
+      "Function used to render a custom component before (above) the input in the <b>form</b> view. <rc cn=signature o=renderBefore />",
+    ],
+    [
+      "renderAfter",
+      "`func`",
+      "",
+      "Function used to render a custom component after (below) the input in the <b>form</b> view. <rc cn=signature o=renderAfter />",
+    ],
+    [
+      "isValid",
+      "`func`",
+      "",
+      "Function used to handle the input validation in the <b>form</b> view. It receives the `field` value of the <b>form</b> state so you can apply your validation logic. It can return a `string` message or a component. <rc cn=signature o=isValid />",
+    ],
+    [
+      "relation",
+      "`object`",
+      "",
+      "Object of type [`relation`](#relation), used to specify properties that corresponds to the <b>form</b> view. Required for `type: multiselect`.",
+    ],
+    [
+      "options",
+      "`object`",
+      "",
+      "Object of type [`options`](#options), used to specify properties that corresponds to the <b>form</b> view. Required for `type: relation-list || radiogroup`.",
+    ],
+    [
+      "value",
+      "`func`",
+      "",
+      "Function used to set the value of the `html` input in the <b>form</b> view. Required (and only used) for `type: html`. It receives an object with the whole `field` and `state`. <rc cn=signature o=value />",
+    ],
+    [
+      "imageUploadURL",
+      "`string`",
+      "",
+      "URL where to upload the images of the `html` input in the <b>form</b> view. Only used when `type: html`.",
+    ],
+    [
+      "onImageUpload",
+      "`func`",
+      "",
+      "Function used to override the images upload handler of the `html` input in the <b>form</b> view. Only used when `type: html`.",
+    ],
+    [
+      "controlProps",
+      "`{init: object}`",
+      "",
+      "Object of type <a href='https://www.tiny.cloud/docs/tinymce/6/editor-important-options/' target='_blank'>Tiny MCE - init</a>, used to specify and override properties that corresponds to the WYSIWYG in the <b>form</b> view. Only used when `type: html`.",
     ],
   ]}
+  reactComponents={{
+    signature: {
+      component: Signature,
+      options: {
+        renderBefore: {
+          functionReturn: "ReactNode",
+        },
+        renderAfter: {
+          functionReturn: "ReactNode",
+        },
+        isValid: {
+          functionReturn: "ReactNode",
+        },
+        value: {
+          definitions: "{ field: object, state: object }",
+          functionReturn: "string",
+        },
+      },
+    },
+  }}
 />
 
 ---

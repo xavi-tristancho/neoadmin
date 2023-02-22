@@ -6,8 +6,8 @@ import rehypeRaw from "rehype-raw";
 
 const getDefinitionsDescription = (descriptions) =>
   descriptions
-    .map(({ prop = "", description = "" }) => `${prop}: ${description}`)
-    .join("<br />");
+    ?.map(({ prop = "", description = "" }) => `${prop}: ${description}`)
+    .join("<br />") || "";
 
 export const Signature = ({
   definitions = "",

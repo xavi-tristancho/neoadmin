@@ -15,11 +15,14 @@ export const GenericLink = ({ url, text, target = "blank" }) => (
 
 export const LocalLink = (props) => <GenericLink {...props} target="_self" />;
 
-export const WrapperLink = ({ url, children, target = "blank" }) => (
-  <Link to={url} target={target}>
-    {children}
-  </Link>
-);
+export const WrapperLink = ({ url, children, target = "blank" }) => {
+  console.log("deby", children);
+  return (
+    <Link to={url} target={target}>
+      {children}
+    </Link>
+  );
+};
 
 export const WrapperLocalLink = (props) => (
   <WrapperLink {...props} target="_self" />
