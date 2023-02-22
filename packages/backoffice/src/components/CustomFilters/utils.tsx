@@ -129,13 +129,16 @@ export const getNormalizedFilters = (filters: Filter[]) => {
 const getIncomingFiltersWithInitialValues = ({
   incomingFilters,
   columnOptions,
+}: {
+  incomingFilters: Filter[];
+  columnOptions: OperatorOptions[];
 }) =>
   incomingFilters.map((inFilter) => ({
     ...inFilter,
-    ...((!inFilter.columnField || inFilter.columnField === "") && {
+    ...((!inFilter.columnField || inFilter.columnField.value === "") && {
       columnField: columnOptions[0],
     }),
-    ...((!inFilter.operatorValue || inFilter.operatorValue === "") && {
+    ...((!inFilter.operatorValue || inFilter.operatorValue.value === "") && {
       operatorValue: operatorOptions[0],
     }),
   }));
