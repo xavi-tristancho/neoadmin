@@ -8,8 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container: pandoc/latex # using "pandoc/latex" because of dependencies used in the specific "build.sh"
+    runs-on: ubuntu-latest    
 
     strategy:
       matrix:
