@@ -3,7 +3,7 @@ import { Close } from "@mui/icons-material";
 import { sameElement } from "../../utils/common";
 import { Column, Filter, FilterSection, OperatorOptions } from "./types";
 
-export const getColumnOptions = (columns: Column[]) =>
+export const getColumnOptions = (columns: Column[]): OperatorOptions[] =>
   columns
     .filter(({ property }) => property)
     .map((column) => ({
@@ -20,7 +20,11 @@ export const operatorOptions: OperatorOptions[] = [
   { value: ">=", label: ">=" },
 ];
 
-export const getFiltersSection = ({ columnOptions }): FilterSection[] => {
+export const getFiltersSection = ({
+  columnOptions,
+}: {
+  columnOptions: OperatorOptions[];
+}): FilterSection[] => {
   const commonFieldsProps = {
     style: {
       display: "flex",

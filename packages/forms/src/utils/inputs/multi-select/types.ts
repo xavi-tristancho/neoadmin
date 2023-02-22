@@ -24,7 +24,7 @@ export type MultiSelectField<T = UnknownOption> =
       type: "multiselect";
       relation: CommonRelationProps & {
         name?: never;
-        options?: T[];
+        options?: T[] | T;
         format?: (option: T) => string;
       };
     });
