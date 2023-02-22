@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "nx run-many --target=dev",
-    "test": "nx affected --target=test --base=origin/main"
+    "test": "nx affected --target=test --base=origin/main",
+    "lint": "nx affected --target=lint --base=origin/main",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -15,9 +17,16 @@
   },
   "devDependencies": {
     "@nrwl/nx-cloud": "latest",
+    "@typescript-eslint/parser": "^5.53.0",
+    "eslint": "^8.34.0",
+    "eslint-plugin-import": "^2.27.5",
     "nx": "15.6.3",
     "prettier": "^2.6.2",
-    "vitest": "^0.28.5"
+    "vitest": "^0.28.5",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "husky": "^8.0.0"
   },
   "workspaces": [
     "packages/*",
