@@ -34,8 +34,8 @@ jobs:
         run: |
           aws codeartifact login --tool npm --domain neoadmin-neoco --domain-owner 906935845275 --repository neoadmin-registry --namespace @neoco
           npm ci --legacy-peer-deps
-          npm run build --if-present
           npm test
+          npm run build --if-present
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
