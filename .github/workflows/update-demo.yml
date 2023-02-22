@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -22,9 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: configure
         run: |
-          npm -v
-          node -v
-          node scripts/configure-tsconfig-json
+          node apps/demo/scripts/configure-tsconfig-json
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
