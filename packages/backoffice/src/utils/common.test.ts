@@ -222,7 +222,7 @@ describe("regarding the showRender function", () => {
     describe("given state to send", () => {
       it("should return only the string", () => {
         const stringToRender = "str-to-render";
-        const state = { a: "b" };
+        const state = { data: "b" };
         expect(showRender(stringToRender, state)).toEqual(stringToRender);
       });
     });
@@ -231,8 +231,10 @@ describe("regarding the showRender function", () => {
   describe("when passing an object as the element to render", () => {
     describe("given no state to send", () => {
       it("should return the object", () => {
-        const objectToRender = { key: "object-to-render" };
-        expect(showRender(objectToRender).key).toEqual(objectToRender.key);
+        const objectToRender = {
+          key: "object-to-render",
+        };
+        expect(showRender(objectToRender)).toEqual(objectToRender.key);
       });
     });
 
@@ -240,9 +242,7 @@ describe("regarding the showRender function", () => {
       it("should return only the object", () => {
         const objectToRender = { key: "object-to-render" };
         const state = { a: "b" };
-        expect(showRender(objectToRender, state).key).toEqual(
-          objectToRender.key
-        );
+        expect(showRender(objectToRender, state)).toEqual(objectToRender.key);
       });
     });
   });
@@ -250,14 +250,14 @@ describe("regarding the showRender function", () => {
   describe("when passing null as the element to render", () => {
     describe("given no state to send", () => {
       it("should return null", () => {
-        const elementToRender = null;
+        const elementToRender: string = null;
         expect(showRender(elementToRender)).toEqual(elementToRender);
       });
     });
 
     describe("given state to send", () => {
       it("should return only the object", () => {
-        const elementToRender = null;
+        const elementToRender: string = null;
         const state = { a: "b" };
         expect(showRender(elementToRender, state)).toEqual(elementToRender);
       });
@@ -267,7 +267,8 @@ describe("regarding the showRender function", () => {
   describe("when passing a function as the element to render", () => {
     describe("given no state to send", () => {
       it("should return the value of the function without using the state", () => {
-        const functionToRender = (props = {}) => `function-passed${props}`;
+        const functionToRender = (props: { name: string } = { name: "" }) =>
+          `function-passed${props.name}`;
         const renderExpected = functionToRender();
         const renderResult = showRender(functionToRender);
         expect(renderResult).toEqual(renderExpected);
@@ -277,7 +278,8 @@ describe("regarding the showRender function", () => {
     describe("given state to send", () => {
       it("should return the value of the function using the state", () => {
         const state = { a: "stateProp" };
-        const functionToRender = (props) => `function-passed${props.state.a}`;
+        const functionToRender = (props: { state: { a: string } }) =>
+          `function-passed${props.state.a}`;
         const renderExpected = functionToRender({ state });
         const renderResult = showRender(functionToRender, state);
         expect(renderResult).toEqual(renderExpected);
