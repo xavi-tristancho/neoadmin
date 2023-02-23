@@ -28,7 +28,15 @@ export const getParsedCells = (cells) =>
   cells.map((cell) => {
     if (isObject(cell) && cell?.title) return cell?.title;
     if (isComponentOrHtml(cell)) return cell;
-    if (isStringOrNumber(cell) || cell === "") return cell.toString();
+    if (isStringOrNumber(cell) || cell === "") {
+      const cellString = cell.toString();
+      const isRequired = cellString.includes("*");
+
+      if (isRequired)
+        return `<span style="color:var(--ifm-color-primary)">${cellString}</span>`;
+
+      return cellString;
+    }
     return "";
   });
 
@@ -49,7 +57,7 @@ export const getHeaders = ({ headers = [], type = "" }) => {
   const parsedHeaders = getParsedCells(headers).map((header) =>
     headersDictionary?.[header?.toLowerCase()]
       ? headersDictionary?.[header?.toLowerCase()]?.title
-      : header,
+      : header
   );
   if (hasHeaders) return getCellDividers(parsedHeaders, true);
 

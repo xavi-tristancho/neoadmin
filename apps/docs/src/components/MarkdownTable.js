@@ -11,7 +11,8 @@ const components = (reactComponents = {}) => ({
   th: ({ children, style }) => (
     <th
       className={`header ${children?.[0]?.toLowerCase()?.replace(" ", "-")}`}
-      style={style}>
+      style={style}
+    >
       {children}
     </th>
   ),
@@ -24,11 +25,14 @@ const components = (reactComponents = {}) => ({
     const { component: Component, options } = currentComponent;
 
     return (
-      <Component
-        {...props}
-        {...options?.[currentComponentOptions]}
-        reactComponents={reactComponents}
-      />
+      <>
+        <Component
+          {...props}
+          {...options?.[currentComponentOptions]}
+          reactComponents={reactComponents}
+        />
+        {props.children}
+      </>
     );
   },
 });

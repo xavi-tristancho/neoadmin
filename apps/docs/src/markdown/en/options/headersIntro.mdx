@@ -41,48 +41,25 @@ export default headers;
       "requests",
       " `false`",
       "`object`",
-      "Used to define the CRUD requests. <rc cn=link o=requests />",
+      "Used to define the CRUD requests. [See `requests` specification.](/docs/api/headers/options/requests)",
     ],
     [
       "route",
       " `true`",
       "`object` | `string`",
-      "Used to specify the URL path and other properties. If only a `string` is specified it will be used as the path. <rc cn=link o=route />",
+      "Object or string of type [`route`](#route), used to specify the URL path and other properties. If only a `string` is specified it will be used as the path.",
     ],
     [
       "tableOptions",
       "`false`",
       "`object`",
-      "Used to define the general options of the `Read` / `Delete` view. <rc cn=link o=tableOptions />",
+      "Object of type [`tableOptions`](#table-options), used to define the general options of the `Read` / `Delete` view.",
     ],
     [
       "upsertOptions",
       "`false`",
       "`object`",
-      "Used to define the general options of the `Create` / `Update` page. <rc cn=link o=upsertOptions />",
+      "Object of type [`upsertOptions`](#upsert-options), used to define the general options of the `Create` / `Update` page.",
     ],
   ]}
-  reactComponents={{
-    link: {
-      component: WrapperLocalLink,
-      options: {
-        route: {
-          url: "#route",
-          children: "Go to routes serction.",
-        },
-        requests: {
-          url: "/api/headers/options/requests",
-          children: "Go to requests page.",
-        },
-        tableOptions: {
-          url: "#tableOptions",
-          children: "Go to tableOptions serction.",
-        },
-        upsertOptions: {
-          url: "#upsertOptions",
-          children: "Go to upsertOptions serction.",
-        },
-      },
-    },
-  }}
 />

@@ -4,7 +4,7 @@ title: Headers
 sidebar_label: Basic Examples
 ---
 
-Headers are a declarative way that we use to tell the neoAdmin what do we want to achieve in our UI/UX. It's the main structure that we are going to use to define how and what a table or form has to look or do.
+Headers are a declarative way that we use to tell the neoAdmin what do we want to achieve in our UI/UX. It's the main structure that we are going to use to define how and what a table or form has to look like or do.
 
 ## Example
 
