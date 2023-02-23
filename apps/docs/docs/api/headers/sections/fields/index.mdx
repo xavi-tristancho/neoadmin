@@ -7,7 +7,7 @@ sidebar_position: 2
 import { MarkdownTable } from "@site/src/components/MarkdownTable";
 import { Signature } from "@site/src/components/ui/Signature";
 
-The `fields` is an array of objects, each object is meant to be a `field` that you specify what is needed to show in the Table and/or the Form with its intrinsic properties. This property is located in the root of every Section and has different variants.
+`fields` is an array of objects. Each object is meant to be a `field` that you specify what is needed to show in the Table and/or the Form with its intrinsic properties. This property is located in the root of every Section and has different variants.
 
 ```js
 import { CustomFieldsContainer } from "components";
@@ -78,11 +78,11 @@ export default headers;
       "property*",
       "`string`",
       "",
-      "The name of the DB model property to match when creating or updating.",
+      "The name of the DB model property to match for create, retrieve, update and delete each prop.",
     ],
     [
       "type*",
-      "`'checkbox'` <br>`| 'date'` <br>`| 'datetime-local'` <br>`| 'email'` <br>`| 'file'` <br>`| 'file-pdf'` <br>`| 'html'` <br>`| 'image'` <br>`| 'multiselect'` <br>`| 'radiogroup'` <br>`| 'relation-list'` <br>`| 'text'` <br>`| 'textarea'` <br>`| 'time'` <br>`|  string`",
+      "<div style='min-width: 180px'>`'checkbox'` <br>`| 'date'` <br>`| 'datetime-local'` <br>`| 'email'` <br>`| 'file'` <br>`| 'file-pdf'` <br>`| 'html'` <br>`| 'image'` <br>`| 'multiselect'` <br>`| 'radiogroup'` <br>`| 'relation-list'` <br>`| 'text'` <br>`| 'textarea'` <br>`| 'time'` <br>`|  string`</div>",
       "`'text'`",
       "Used to specify the type of input that is going to be rendered and its behavior.",
     ],
@@ -168,7 +168,7 @@ export default headers;
       "controlProps",
       "`{init: object}`",
       "",
-      "Object of type <a href='https://www.tiny.cloud/docs/tinymce/6/editor-important-options/' target='_blank'>Tiny MCE - init</a>, used to specify and override properties that corresponds to the WYSIWYG in the <b>form</b> view. Only used when `type: html`.",
+      "Object of type <a href='https://www.tiny.cloud/docs/tinymce/6/editor-important-options/' target='_blank'>Tiny MCE - init</a>, used to specify and override properties that corresponds to the `html` input in the <b>form</b> view. Only used when `type: html`.",
     ],
   ]}
   reactComponents={{
