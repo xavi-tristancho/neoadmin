@@ -34,6 +34,6 @@ export type Field =
         | "relation-list";
 
       relation?: never;
-      required?: boolean;
+      required: boolean;
     })
   | MultiSelectField;

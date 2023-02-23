@@ -1,26 +1,22 @@
 import { Field } from "@neoco/neoco-form/src/types";
 import { unknownObject, Credentials } from "@neoco/neoco-backoffice/src/types";
 
-type SomeRequiredValuesAreEmptyFn = (
-  props?:
-    | {
-        fields?: Field[];
-        values?: Credentials;
-      }
-    | unknown
-) => boolean;
+type SomeRequiredValuesAreEmptyFn = (props: {
+  fields: Field[];
+  values: Credentials;
+}) => boolean;
 
 export const removeIfNotVisible =
-  ({ item, pageType }: { item?: unknownObject; pageType?: string } = {}) =>
+  ({ item, pageType }: { item: unknownObject; pageType: string }) =>
   (
     field: {
       [key: string]: {
-        show?: ((item: unknownObject) => boolean | number) | string | boolean;
+        show: ((item: unknownObject) => boolean | number) | string | boolean;
       };
     } = {}
   ) => {
     const {
-      [pageType || "default"]: { show },
+      [pageType]: { show },
     } = field;
     const isUndefined: boolean = typeof show === "undefined";
     const value: boolean | number | ((item: unknownObject) => boolean) =
@@ -34,7 +30,7 @@ export const removeIfNotVisible =
   };
 
 export const someRequiredValuesAreEmpty: SomeRequiredValuesAreEmptyFn =
-  (props?: { fields: Field[]; values: Credentials }) => {
+  (props: { fields: Field[]; values: Credentials }) => {
     const { fields = [], values = {} } = props || {};
     return fields?.length || Object.keys(values).length === 0
       ? fields.some(({ name, required }) => {
@@ -43,7 +39,7 @@ export const someRequiredValuesAreEmpty: SomeRequiredValuesAreEmptyFn =
       : true;
   };
 
-export const sameElement = (elementA?: unknown, elementB?: unknown) => {
+export const sameElement = (elementA: unknown, elementB: unknown): boolean => {
   const strA = JSON.stringify(elementA);
   const strB = JSON.stringify(elementB);
   return strA === strB;
@@ -54,7 +50,7 @@ export const showRender = (
     | object
     | string
     | ((args?: { state: { [key: string]: string } }) => JSX.Element | string),
-  state?: { [key: string]: string }
+  state: { [key: string]: string }
 ): JSX.Element | string | object | unknown => {
   return typeof renderSection === "function"
     ? renderSection({ state })
