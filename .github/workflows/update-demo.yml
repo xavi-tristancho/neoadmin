@@ -3,8 +3,8 @@ name: neoAdmin Demo Update
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
+    paths:
+      - "apps/demo/**"
 
 jobs:
   build:
