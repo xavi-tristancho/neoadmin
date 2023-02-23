@@ -80,6 +80,11 @@ const getRoutesByType = (header) => {
           ...mustShowOnSidebar(header.options),
         },
       ];
+
+    default:
+      throw new Error(
+        `Unsupported type property in your ${header.options.name} header`
+      );
   }
 };
 

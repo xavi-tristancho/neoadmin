@@ -43,12 +43,7 @@ export const multiselect = ({
     getOptionLabel: field.relation.format ? field.relation.format : undefined,
     value: state.data[field.property] || "",
     options: hasRemoteData ? state?.aux[relation.name] : relation.options,
-    onChange: (event, value) =>
+    onChange: (_event, value) =>
       handleChange({ target: { name: field.property, value } }),
   };
 };
-
-const secureFormat =
-  (format) =>
-  (...args) =>
-    format(...args) ?? "";
