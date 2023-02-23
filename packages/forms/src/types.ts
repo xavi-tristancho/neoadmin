@@ -7,7 +7,7 @@ export type DefaultField = {
   property?: string;
   name?: string;
   placeholder?: string;
-  style?: object;
+  style?: React.CSSProperties;
   sx?: unknownObject;
   tableOptions?: {
     show?: false;
@@ -34,5 +34,6 @@ export type Field =
         | "relation-list";
 
       relation?: never;
+      required?: boolean;
     })
   | MultiSelectField;
