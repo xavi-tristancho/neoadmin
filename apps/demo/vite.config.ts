@@ -1,17 +1,14 @@
-import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  resolve: {
-    alias: {
-      "@neoco/backoffice": path.resolve(__dirname, "../neoco-backoffice/"),
-    },
+  base: "/neoadmin-demo",
+  build: {
+    outDir: "./build",
   },
   plugins: [
-    svgr(),
     react(),
     {
       name: "singleHMR",
@@ -24,5 +21,6 @@ export default defineConfig({
         return modules;
       },
     },
+    svgr(),
   ],
 });
