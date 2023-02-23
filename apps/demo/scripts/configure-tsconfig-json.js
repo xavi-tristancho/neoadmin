@@ -7,7 +7,7 @@ import globalTSConfig from "../../../tsconfig.json" assert { type: "json" };
 async function doReplace() {
   try {
     const options = {
-      files: `./tsconfig.json`,
+      files: `apps/demo/tsconfig.json`,
       from: `"extends": "../../tsconfig.json"`,
       to: `"compilerOptions": ${JSON.stringify(
         globalTSConfig.compilerOptions
