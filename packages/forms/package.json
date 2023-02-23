@@ -1,9 +1,19 @@
 {
-  "private": true,
   "name": "@neoco/neoco-form",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "type": "module",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.umd.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "tsc && vite build --watch",
     "build": "tsc && vite build",

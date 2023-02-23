@@ -13,19 +13,20 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
+        "@emotion/react",
+        "@mui/material",
+        "i18next",
+        "luxon",
+        "react-i18next",
+        "styled-components",
         "react",
         "react-dom",
-        "@emotion/react",
-        "@emotion/styled",
-        "@mui/material",
-        "@mui/x-data-grid",
-        "notistack",
-        "styled-components",
       ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
+          "styled-components": "styled$3",
         },
       },
     },

@@ -1,14 +1,16 @@
 {
-  "private": true,
   "name": "@neoco/neoco-backoffice",
   "version": "0.19.2",
   "type": "module",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.umd.cjs",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
-      "import": "./src/index.ts",
+      "import": "./dist/index.js",
       "require": "./dist/index.umd.cjs"
     }
   },
@@ -29,10 +31,12 @@
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.8",
     "@mui/x-data-grid": "^5.17.23",
-    "@neoco/neoco-form": "^0.11.0",
+    "@neoco/neoco-form": "*",
+    "@neoco/neoco-image-uploader": "*",
     "notistack": "^2.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^5.2.0",
     "styled-components": "^5.3.6"
   }
 }

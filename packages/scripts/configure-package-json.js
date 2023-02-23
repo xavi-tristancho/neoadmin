@@ -13,9 +13,9 @@ function replaceAll({ packages }) {
 async function doReplace(package) {
   try {
     const options = {
-      files: `${__dirname}/${package}/package.json`,
-      from: [/src\/index.ts/, /src\/index.ts/],
-      to: ["dist/index.umd.cjs", "dist/index.js"],
+      files: `${__dirname}/../${package}/package.json`,
+      from: [/src\/index.ts/, /src\/index.ts/, /src\/index.ts/],
+      to: ["dist/index.js", "dist/index.umd.cjs", "dist/index.js"],
     };
 
     await replace(options);

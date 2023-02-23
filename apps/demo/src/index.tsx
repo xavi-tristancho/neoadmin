@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { apps, contexts } from "@neoco/neoco-backoffice";
 import { headers } from "./pages";
+import "@neoco/neoco-backoffice/dist/styles.css";
 
 const { App } = apps;
 const { AuthProvider, ConfigProvider } = contexts;
