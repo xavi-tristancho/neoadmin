@@ -1,10 +1,87 @@
+import {
+  ThemeOptions,
+  PaletteOptions,
+  PaletteColorOptions,
+} from "@mui/material/styles";
+
+type NeocoPaletteColorOptions = PaletteColorOptions & {
+  contrast?: string;
+};
+
+interface NeocoPaletteOptions
+  extends Omit<PaletteOptions, "action" | "primary"> {
+  primary: NeocoPaletteColorOptions;
+  action: PaletteColorOptions;
+  neoAdmin: {
+    login: { background: string; formBackground: string };
+    button: {
+      background: string;
+      color: string;
+      "&&:hover"?: {
+        background: string;
+      };
+    };
+    component: { background: string; color: string };
+    page: { backgroundColor: string };
+    sidebar: { backgroundColor: string };
+    navbar?: {
+      backgroundColor: string;
+      backgroundImage: string;
+      borderBottom: string;
+    };
+  };
+}
+
+interface NeocoComponentTheme {
+  components: {
+    MuiDataGrid: {
+      styleOverrides: {
+        root: { border: string };
+        toolbarContainer: {
+          borderBottom: string;
+          paddingBottom: string;
+          marginBottom: string;
+        };
+        columnHeaders: {
+          border: string;
+        };
+        cell: {
+          border: string;
+        };
+        row: {
+          [key: string]: {
+            cursor?: string;
+            backgroundColor: string;
+          };
+        };
+      };
+    };
+  };
+}
+
+// interface MyDataGridStyleOverrides extends DataGridStyleOverrides {
+//   main?: React.CSSProperties;
+// }
+
+// interface MyStyles {
+//   MuiDataGrid?: {
+//     styleOverrides?: MyDataGridStyleOverrides;
+//   };
+// }
+
+interface Theme
+  extends Omit<ThemeOptions, "components" | "palette">,
+    NeocoComponentTheme {
+  palette: NeocoPaletteOptions;
+}
+
 const common = {
   primary: { main: "#344955", light: "#5F7481", dark: "#0B222C" },
   secondary: { main: "#FF9900", text: "rgba(0, 0, 0, 0.6)" },
   action: { main: "#757575" },
 };
 
-const lightTheme = {
+const lightTheme: Theme = {
   palette: {
     mode: "light",
     primary: {
@@ -47,7 +124,7 @@ const lightTheme = {
   },
 };
 
-const darkTheme = {
+const darkTheme: Theme = {
   palette: {
     mode: "dark",
     primary: {
