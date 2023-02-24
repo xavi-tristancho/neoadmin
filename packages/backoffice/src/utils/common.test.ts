@@ -98,7 +98,7 @@ describe("regarding the someRequiredValuesAreEmpty function", () => {
       token: "1234567890",
       user: {
         name: "John Doe",
-        email: "foo@bar.com",
+        email: "foo@bom",
       },
     };
     expect(someRequiredValuesAreEmpty({ fields, values })).toEqual(false);

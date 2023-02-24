@@ -26,9 +26,7 @@ type ShowRenderFn = (
 export const removeIfNotVisible: RemoveIfNotVisibleFn =
   ({ item, pageType }) =>
   (field = {}) => {
-    const {
-      [pageType]: { show },
-    } = field;
+    const { [pageType]: { show = true } = {} } = field;
     const isUndefined: boolean = typeof show === "undefined";
     const value: boolean =
       typeof show === "function"
@@ -44,11 +42,9 @@ export const someRequiredValuesAreEmpty: SomeRequiredValuesAreEmptyFn = (
   props
 ) => {
   const { fields = [], values = {} } = props || {};
-  return fields?.length || Object.keys(values).length === 0
-    ? fields.some(({ name, required }) => {
-        return required && (!values[name] || values[name] === "");
-      })
-    : true;
+  return fields.some(({ name, required }) => {
+    return required && (!values[name] || values[name] === "");
+  });
 };
 
 export const sameElement = (elementA: unknown, elementB: unknown): boolean => {
