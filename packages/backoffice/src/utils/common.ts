@@ -6,15 +6,26 @@ type SomeRequiredValuesAreEmptyFn = (props: {
   values: Credentials;
 }) => boolean;
 
-export const removeIfNotVisible =
-  ({ item, pageType }: { item: unknownObject[]; pageType: string }) =>
-  (
-    field: {
-      [key: string]: {
-        show: ShowFn;
-      };
-    } = {}
-  ) => {
+type RemoveIfNotVisibleFn = (props: {
+  item: unknownObject[];
+  pageType: string;
+}) => (field: {
+  [key: string]: {
+    show: ShowFn;
+  };
+}) => boolean;
+
+type ShowRenderFn = (
+  renderSection:
+    | object
+    | string
+    | ((args?: { state: { [key: string]: string } }) => JSX.Element | string),
+  state: { [key: string]: string }
+) => JSX.Element | string | object | unknown;
+
+export const removeIfNotVisible: RemoveIfNotVisibleFn =
+  ({ item, pageType }) =>
+  (field = {}) => {
     const {
       [pageType]: { show },
     } = field;
@@ -29,15 +40,16 @@ export const removeIfNotVisible =
     return isUndefined ? true : value;
   };
 
-export const someRequiredValuesAreEmpty: SomeRequiredValuesAreEmptyFn =
-  (props: { fields: Field[]; values: Credentials }) => {
-    const { fields = [], values = {} } = props || {};
-    return fields?.length || Object.keys(values).length === 0
-      ? fields.some(({ name, required }) => {
-          return required && (!values[name] || values[name] === "");
-        })
-      : true;
-  };
+export const someRequiredValuesAreEmpty: SomeRequiredValuesAreEmptyFn = (
+  props
+) => {
+  const { fields = [], values = {} } = props || {};
+  return fields?.length || Object.keys(values).length === 0
+    ? fields.some(({ name, required }) => {
+        return required && (!values[name] || values[name] === "");
+      })
+    : true;
+};
 
 export const sameElement = (elementA: unknown, elementB: unknown): boolean => {
   const strA = JSON.stringify(elementA);
@@ -45,13 +57,7 @@ export const sameElement = (elementA: unknown, elementB: unknown): boolean => {
   return strA === strB;
 };
 
-export const showRender = (
-  renderSection:
-    | object
-    | string
-    | ((args?: { state: { [key: string]: string } }) => JSX.Element | string),
-  state: { [key: string]: string }
-): JSX.Element | string | object | unknown => {
+export const showRender: ShowRenderFn = (renderSection, state) => {
   return typeof renderSection === "function"
     ? renderSection({ state })
     : renderSection;
