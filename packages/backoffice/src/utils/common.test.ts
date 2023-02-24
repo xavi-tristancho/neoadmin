@@ -8,28 +8,15 @@ import {
 } from "./common";
 
 describe("regarding the removeIfNotVisible function", () => {
-  describe("given 'show' not as a function", () => {
-    describe("given a 'show: hola' value", () => {
-      it("should return the given value of show", () => {
-        const itemAndPageType = {
-          item: {
-            id: 1,
-          },
-          pageType: "upsertOptions",
-        };
-        const field = {
-          upsertOptions: { show: "hola" },
-        };
-        expect(removeIfNotVisible(itemAndPageType)(field)).toBe("hola");
-      });
-    });
-
+  describe("given 'show' is not a function", () => {
     describe("given a 'show: false' value", () => {
       it("should return false", () => {
         const itemAndPageType = {
-          item: {
-            id: 1,
-          },
+          item: [
+            {
+              id: 1,
+            },
+          ],
           pageType: "upsertOptions",
         };
         expect(
@@ -42,9 +29,9 @@ describe("regarding the removeIfNotVisible function", () => {
   });
 
   describe("given a function to the 'show' parameter", () => {
+    const item = [{ id: 1 }];
     describe("given a 'show: false' value through the result of a function", () => {
       it("should receive the current item and return false", () => {
-        const item = { id: 1 };
         expect(
           removeIfNotVisible({ item, pageType: "upsertOptions" })({
             upsertOptions: {
@@ -60,7 +47,6 @@ describe("regarding the removeIfNotVisible function", () => {
 
     describe("given a 'show: true' value through the result of a function", () => {
       it("should receive the current item and return true", () => {
-        const item = { id: 1 };
         expect(
           removeIfNotVisible({ item, pageType: "upsertOptions" })({
             upsertOptions: {
@@ -71,22 +57,6 @@ describe("regarding the removeIfNotVisible function", () => {
             },
           })
         ).toEqual(true);
-      });
-    });
-
-    describe("given a 'show: 12' value through the result of a function", () => {
-      it("should receive the current item and return 12", () => {
-        const item = { id: 1 };
-        expect(
-          removeIfNotVisible({ item, pageType: "upsertOptions" })({
-            upsertOptions: {
-              show: (receivedItem) => {
-                expect(receivedItem).toEqual(item);
-                return 12;
-              },
-            },
-          })
-        ).toEqual(12);
       });
     });
   });

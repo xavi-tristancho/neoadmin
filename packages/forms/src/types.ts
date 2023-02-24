@@ -10,7 +10,7 @@ export type DefaultField = {
   style?: React.CSSProperties;
   sx?: unknownObject;
   tableOptions?: {
-    show?: false;
+    show?: ShowFn;
     format?: (item: unknown) => string;
   };
   upsertOptions?: {
@@ -20,6 +20,8 @@ export type DefaultField = {
   renderAfter?: () => JSX.Element;
   isValid?: (value: unknown) => unknown;
 };
+
+export type ShowFn = boolean | ((item: unknownObject[]) => boolean);
 
 export type Field =
   | (DefaultField & {

@@ -1,4 +1,4 @@
-import { Field } from "@neoco/neoco-form/src/types";
+import { Field, ShowFn } from "@neoco/neoco-form/src/types";
 import { unknownObject, Credentials } from "@neoco/neoco-backoffice/src/types";
 
 type SomeRequiredValuesAreEmptyFn = (props: {
@@ -7,11 +7,11 @@ type SomeRequiredValuesAreEmptyFn = (props: {
 }) => boolean;
 
 export const removeIfNotVisible =
-  ({ item, pageType }: { item: unknownObject; pageType: string }) =>
+  ({ item, pageType }: { item: unknownObject[]; pageType: string }) =>
   (
     field: {
       [key: string]: {
-        show: ((item: unknownObject) => boolean | number) | string | boolean;
+        show: ShowFn;
       };
     } = {}
   ) => {
@@ -19,7 +19,7 @@ export const removeIfNotVisible =
       [pageType]: { show },
     } = field;
     const isUndefined: boolean = typeof show === "undefined";
-    const value: boolean | number | ((item: unknownObject) => boolean) =
+    const value: boolean =
       typeof show === "function"
         ? show(item)
         : typeof show === "string"
