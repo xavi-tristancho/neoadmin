@@ -1,10 +1,89 @@
-const common = {
+import {
+  ThemeOptions,
+  PaletteOptions,
+  PaletteColorOptions,
+  SimplePaletteColorOptions,
+  Components,
+} from "@mui/material/styles";
+
+interface NeocoPaletteOptions
+  extends Omit<PaletteOptions, "action" | "primary"> {
+  primary: NeocoSimplePaletteColorOptions;
+  secondary: NeocoSimplePaletteColorOptions;
+  action: PaletteColorOptions;
+  neoAdmin: {
+    login: { background: string; formBackground: string };
+    button: {
+      background: string;
+      color: string;
+      "&&:hover"?: {
+        background: string;
+      };
+    };
+    component: { background: string; color: string };
+    page: { backgroundColor: string };
+    sidebar: { backgroundColor: string };
+    navbar?: {
+      backgroundColor: string;
+      backgroundImage: string;
+      borderBottom: string;
+    };
+  };
+}
+
+interface NeocoComponentTheme extends Components<Omit<Theme, "components">> {
+  MuiDataGrid: {
+    styleOverrides: {
+      root: { border: string };
+      main?: {
+        backgroundColor: string;
+      };
+      toolbarContainer: {
+        borderBottom: string;
+        paddingBottom: string;
+        marginBottom: string;
+      };
+      columnHeaders: {
+        border: string;
+      };
+      cell: {
+        border: string;
+      };
+      row: {
+        [key: string]: {
+          cursor?: string;
+          backgroundColor: string;
+        };
+      };
+      overlay?: {
+        backgroundColor: string;
+      };
+    };
+  };
+}
+interface Theme extends Omit<ThemeOptions, "components" | "palette"> {
+  components: NeocoComponentTheme;
+  palette: NeocoPaletteOptions;
+}
+
+interface NeocoSimplePaletteColorOptions extends SimplePaletteColorOptions {
+  text?: string;
+  contrast?: string;
+}
+
+interface Common {
+  primary: NeocoSimplePaletteColorOptions;
+  secondary: NeocoSimplePaletteColorOptions;
+  action: NeocoSimplePaletteColorOptions;
+}
+
+const common: Common = {
   primary: { main: "#344955", light: "#5F7481", dark: "#0B222C" },
   secondary: { main: "#FF9900", text: "rgba(0, 0, 0, 0.6)" },
   action: { main: "#757575" },
 };
 
-const lightTheme = {
+const lightTheme: Theme = {
   palette: {
     mode: "light",
     primary: {
@@ -47,7 +126,7 @@ const lightTheme = {
   },
 };
 
-const darkTheme = {
+const darkTheme: Theme = {
   palette: {
     mode: "dark",
     primary: {
