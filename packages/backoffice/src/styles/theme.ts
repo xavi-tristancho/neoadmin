@@ -6,13 +6,10 @@ import {
   Components,
 } from "@mui/material/styles";
 
-type NeocoPaletteColorOptions = PaletteColorOptions & {
-  contrast?: string;
-};
-
 interface NeocoPaletteOptions
   extends Omit<PaletteOptions, "action" | "primary"> {
-  primary: NeocoPaletteColorOptions;
+  primary: NeocoSimplePaletteColorOptions;
+  secondary: NeocoSimplePaletteColorOptions;
   action: PaletteColorOptions;
   neoAdmin: {
     login: { background: string; formBackground: string };
@@ -64,19 +61,20 @@ interface NeocoComponentTheme extends Components<Omit<Theme, "components">> {
     };
   };
 }
-interface Theme extends Omit<ThemeOptions, "components" | "palette"> {
+export interface Theme extends Omit<ThemeOptions, "components" | "palette"> {
   components: NeocoComponentTheme;
   palette: NeocoPaletteOptions;
 }
 
 interface NeocoSimplePaletteColorOptions extends SimplePaletteColorOptions {
   text?: string;
+  contrast?: string;
 }
 
 interface Common {
-  primary: SimplePaletteColorOptions;
+  primary: NeocoSimplePaletteColorOptions;
   secondary: NeocoSimplePaletteColorOptions;
-  action: SimplePaletteColorOptions;
+  action: NeocoSimplePaletteColorOptions;
 }
 
 const common: Common = {
