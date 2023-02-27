@@ -2,6 +2,8 @@ import {
   ThemeOptions,
   PaletteOptions,
   PaletteColorOptions,
+  SimplePaletteColorOptions,
+  Components,
 } from "@mui/material/styles";
 
 type NeocoPaletteColorOptions = PaletteColorOptions & {
@@ -32,50 +34,52 @@ interface NeocoPaletteOptions
   };
 }
 
-interface NeocoComponentTheme {
-  components: {
-    MuiDataGrid: {
-      styleOverrides: {
-        root: { border: string };
-        toolbarContainer: {
-          borderBottom: string;
-          paddingBottom: string;
-          marginBottom: string;
+interface NeocoComponentTheme extends Components<Omit<Theme, "components">> {
+  MuiDataGrid: {
+    styleOverrides: {
+      root: { border: string };
+      main?: {
+        backgroundColor: string;
+      };
+      toolbarContainer: {
+        borderBottom: string;
+        paddingBottom: string;
+        marginBottom: string;
+      };
+      columnHeaders: {
+        border: string;
+      };
+      cell: {
+        border: string;
+      };
+      row: {
+        [key: string]: {
+          cursor?: string;
+          backgroundColor: string;
         };
-        columnHeaders: {
-          border: string;
-        };
-        cell: {
-          border: string;
-        };
-        row: {
-          [key: string]: {
-            cursor?: string;
-            backgroundColor: string;
-          };
-        };
+      };
+      overlay?: {
+        backgroundColor: string;
       };
     };
   };
 }
-
-// interface MyDataGridStyleOverrides extends DataGridStyleOverrides {
-//   main?: React.CSSProperties;
-// }
-
-// interface MyStyles {
-//   MuiDataGrid?: {
-//     styleOverrides?: MyDataGridStyleOverrides;
-//   };
-// }
-
-interface Theme
-  extends Omit<ThemeOptions, "components" | "palette">,
-    NeocoComponentTheme {
+interface Theme extends Omit<ThemeOptions, "components" | "palette"> {
+  components: NeocoComponentTheme;
   palette: NeocoPaletteOptions;
 }
 
-const common = {
+interface NeocoSimplePaletteColorOptions extends SimplePaletteColorOptions {
+  text?: string;
+}
+
+interface Common {
+  primary: SimplePaletteColorOptions;
+  secondary: NeocoSimplePaletteColorOptions;
+  action: SimplePaletteColorOptions;
+}
+
+const common: Common = {
   primary: { main: "#344955", light: "#5F7481", dark: "#0B222C" },
   secondary: { main: "#FF9900", text: "rgba(0, 0, 0, 0.6)" },
   action: { main: "#757575" },
