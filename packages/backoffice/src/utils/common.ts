@@ -1,9 +1,9 @@
 import { Field, ShowFn } from "@neoco/neoco-form/src/types";
-import { unknownObject, Credentials } from "@neoco/neoco-backoffice/src/types";
+import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 
 type SomeRequiredValuesAreEmptyFn = (props: {
   fields: Field[];
-  values: Credentials;
+  values: unknownObject;
 }) => boolean;
 
 type RemoveIfNotVisibleFn = (props: {
@@ -42,9 +42,18 @@ export const someRequiredValuesAreEmpty: SomeRequiredValuesAreEmptyFn = (
   props
 ) => {
   const { fields = [], values = {} } = props || {};
-  return fields.some(({ name, required }) => {
-    return required && (!values[name] || values[name] === "");
-  });
+  return fields?.length
+    ? fields.some(({ name, required }) => {
+        return (
+          required &&
+          !(
+            values[name] !== undefined &&
+            values[name] !== null &&
+            values[name] !== ""
+          )
+        );
+      })
+    : true;
 };
 
 export const sameElement = (elementA: unknown, elementB: unknown): boolean => {

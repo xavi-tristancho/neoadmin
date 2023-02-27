@@ -79,28 +79,23 @@ describe("regarding the someRequiredValuesAreEmpty function", () => {
       { name: "email", type: "text", required: true },
       { name: "password", type: "password", required: true },
     ];
-    const values = {
-      token: "1234567890",
-      user: {
-        name: "John Doe",
-        email: "",
-      },
-    };
+    const values = {};
+    const values2 = { email: "" };
     expect(someRequiredValuesAreEmpty({ fields, values })).toEqual(true);
-    expect(someRequiredValuesAreEmpty({ fields: fields2, values })).toEqual(
+    expect(someRequiredValuesAreEmpty({ fields, values: values2 })).toEqual(
       true
     );
+    expect(
+      someRequiredValuesAreEmpty({ fields: fields2, values: values2 })
+    ).toEqual(true);
   });
 
   it("should return false if every required field has a value different than an empty string", () => {
-    const fields: Field[] = [{ name: "email", type: "text", required: true }];
-    const values = {
-      token: "1234567890",
-      user: {
-        name: "John Doe",
-        email: "foo@bom",
-      },
-    };
+    const fields: Field[] = [
+      { name: "email", type: "email", required: true },
+      { name: "password", type: "password" },
+    ];
+    const values = { email: "foo@bar.com" };
     expect(someRequiredValuesAreEmpty({ fields, values })).toEqual(false);
   });
 });
