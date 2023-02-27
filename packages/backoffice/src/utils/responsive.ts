@@ -26,14 +26,14 @@ export const mediaQuery: { [key: string]: MediaQueryFn } = {
     getMediaQuery(breakpoints.RETINAL, joinInterpolations(str, values)),
 };
 
-const joinInterpolations = (strings: string[], values: string[]) =>
+const joinInterpolations = (strings: string[], values: string[]): string =>
   strings
     .map((str, index) =>
       typeof values[index] !== "undefined" ? `${str}${values[index]}` : str
     )
     .join("");
 
-const getMediaQuery = (breakpoint: number, styles: string) =>
+const getMediaQuery = (breakpoint: number, styles: string): string =>
   `@media ${getWidth(breakpoint)} { ${styles} }`;
 
 const getWidth = (breakpoint: number) => `(min-width: ${breakpoint}px)`;
