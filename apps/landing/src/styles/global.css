@@ -1,0 +1,120 @@
+:root {
+  --yellow_light: #fdffa1;
+  --neoco_yellow: #fcff51;
+  --custom_yellow: #fbff33;
+  --custom_white: #ffffff;
+  --light_gray: #f0efef;
+  --neoco_gray: #bfbebe;
+  --third_gray: #aeaeae;
+  --second_gray: #ababab;
+  --custom_gray: #9e9e9e;
+  --third_dark_gray: #616161;
+  --second_dark_gray: #4b4b4b;
+  --dark_gray: #383838;
+  --light_black: #191919;
+  --neoco_black: #1c1c1c;
+  --gradient_dark_black: #0c0c0c;
+  --gradient_light_black: #1e1e1e;
+}
+
+body {
+  margin: 0 !important;
+  color: var(--custom_white);
+  font-family: "silka", apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  background: linear-gradient(
+    180deg,
+    var(--gradient_dark_black) 0%,
+    var(--gradient_light_black) 100%
+  );
+  mix-blend-mode: normal;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.icon {
+  width: 90px;
+  height: 90px;
+  padding: 10px;
+}
+
+.ReactModalPortal > div > div > div {
+  background-color: black;
+}
+
+a {
+  color: var(--custom_white);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  background: var(--gradient_dark_black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient_light_black);
+}
+
+*:focus {
+  outline: none;
+}
+
+::selection {
+  color: #4b4b4b;
+  background: #fcff51da;
+}
+
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.masonryGrid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px;
+  width: 100%;
+}
+
+.masonryGridColumn {
+  padding-left: 30px;
+  background-clip: padding-box;
+}
+
+.masonryGridColumn > div {
+  margin-bottom: 5vh;
+}
+
+.masonryGridImage {
+  width: 100%;
+}
+
+.ReactModal__Body--open,
+.ReactModal__Html--open {
+  overflow: hidden;
+}
+
+.split {
+  display: flex;
+  flex-direction: row;
+}
+
+.gutter {
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+  cursor: col-resize;
+}

@@ -1,3 +1,4 @@
 **/vite-env.d.ts
 **/vite.config.ts
-**/scripts/**.js
+**/**.js
+

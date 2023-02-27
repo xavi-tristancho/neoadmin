@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./src/*"],
+      "public/*": ["./public/*"]
+    }
+  }, 
+  "include": ["src", "node_modules/cypress", "./cypress/**/*.js", "./src/styles/*", "./public/*"]
+}

@@ -1,0 +1,23 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": ["last 2 versions", "safari >= 7"]
+      }
+    ],
+    "@babel/preset-react",
+    "next/babel"
+  ],
+  "plugins": [
+    ["styled-components", { "ssr": true, "displayName": true }], 
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ]
+  ],
+  "sourceMaps": "inline",
+  "retainLines": true
+}

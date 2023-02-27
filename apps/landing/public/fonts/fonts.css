@@ -1,0 +1,167 @@
+@font-face {
+  font-family: "Silka";
+  src: url("Silka-Thin.eot");
+  src: url("Silka-Thin.eot?#iefix") format("embedded-opentype"),
+    url("Silka-Thin.woff2") format("woff2"),
+    url("Silka-Thin.woff") format("woff"),
+    url("Silka-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: url("Silka-ExtraLight.eot");
+  src: url("Silka-ExtraLight.eot?#iefix") format("embedded-opentype"),
+    url("Silka-ExtraLight.woff2") format("woff2"),
+    url("Silka-ExtraLight.woff") format("woff"),
+    url("Silka-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: url("Silka-Light.eot");
+  src: url("Silka-Light.eot?#iefix") format("embedded-opentype"),
+    url("Silka-Light.woff2") format("woff2"),
+    url("Silka-Light.woff") format("woff"),
+    url("Silka-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: url("Silka-Regular.eot");
+  src: url("Silka-Regular.eot?#iefix") format("embedded-opentype"),
+    url("Silka-Regular.woff2") format("woff2"),
+    url("Silka-Regular.woff") format("woff"),
+    url("Silka-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: url("Silka-Medium.eot");
+  src: url("Silka-Medium.eot?#iefix") format("embedded-opentype"),
+    url("Silka-Medium.woff2") format("woff2"),
+    url("Silka-Medium.woff") format("woff"),
+    url("Silka-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: url("Silka-SemiBold.eot");
+  src: url("Silka-SemiBold.eot?#iefix") format("embedded-opentype"),
+    url("Silka-SemiBold.woff2") format("woff2"),
+    url("Silka-SemiBold.woff") format("woff"),
+    url("Silka-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: url("Silka-Bold.eot");
+  src: url("Silka-Bold.eot?#iefix") format("embedded-opentype"),
+    url("Silka-Bold.woff2") format("woff2"),
+    url("Silka-Bold.woff") format("woff"),
+    url("Silka-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Silka";
+  src: url("Silka-Black.eot");
+  src: url("Silka-Black.eot?#iefix") format("embedded-opentype"),
+    url("Silka-Black.woff2") format("woff2"),
+    url("Silka-Black.woff") format("woff"),
+    url("Silka-Black.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Roboto-Thin.eot");
+  src: url("Roboto-Thin.eot?#iefix") format("embedded-opentype"),
+    url("Roboto-Thin.woff2") format("woff2"),
+    url("Roboto-Thin.woff") format("woff"),
+    url("Roboto-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Roboto-Light.eot");
+  src: url("Roboto-Light.eot?#iefix") format("embedded-opentype"),
+    url("Roboto-Light.woff2") format("woff2"),
+    url("Roboto-Light.woff") format("woff"),
+    url("Roboto-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Roboto-Regular.eot");
+  src: url("Roboto-Regular.eot?#iefix") format("embedded-opentype"),
+    url("Roboto-Regular.woff2") format("woff2"),
+    url("Roboto-Regular.woff") format("woff"),
+    url("Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Roboto-Medium.eot");
+  src: url("Roboto-Medium.eot?#iefix") format("embedded-opentype"),
+    url("Roboto-Medium.woff2") format("woff2"),
+    url("Roboto-Medium.woff") format("woff"),
+    url("Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Roboto-Bold.eot");
+  src: url("Roboto-Bold.eot?#iefix") format("embedded-opentype"),
+    url("Roboto-Bold.woff2") format("woff2"),
+    url("Roboto-Bold.woff") format("woff"),
+    url("Roboto-Bold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Roboto-Black.eot");
+  src: url("Roboto-Black.eot?#iefix") format("embedded-opentype"),
+    url("Roboto-Black.woff2") format("woff2"),
+    url("Roboto-Black.woff") format("woff"),
+    url("Roboto-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: block;
+}
