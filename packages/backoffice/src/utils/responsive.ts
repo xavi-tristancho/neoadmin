@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const breakpoints = {
+export const breakpoints: { [key: string]: number } = {
   MOBILE: 576,
   TABLET: 768,
   DESKTOP: 992,
@@ -9,7 +9,9 @@ export const breakpoints = {
   RETINAL: 1600,
 };
 
-const mediaQuery = {
+type MediaQueryFn = (str: string[], ...values: string[]) => string;
+
+export const mediaQuery: { [key: string]: MediaQueryFn } = {
   MOBILE: (str, ...values) =>
     getMediaQuery(breakpoints.MOBILE, joinInterpolations(str, values)),
   TABLET: (str, ...values) =>
@@ -24,19 +26,19 @@ const mediaQuery = {
     getMediaQuery(breakpoints.RETINAL, joinInterpolations(str, values)),
 };
 
-const joinInterpolations = (strings, values) =>
+const joinInterpolations = (strings: string[], values: string[]) =>
   strings
     .map((str, index) =>
-      typeof values[index] !== "undefined" ? str + values[index] : str
+      typeof values[index] !== "undefined" ? `${str}${values[index]}` : str
     )
     .join("");
 
-const getMediaQuery = (breakpoint, styles) =>
+const getMediaQuery = (breakpoint: number, styles: string) =>
   `@media ${getWidth(breakpoint)} { ${styles} }`;
 
-const getWidth = (breakpoint) => `(min-width: ${breakpoint}px)`;
+const getWidth = (breakpoint: number) => `(min-width: ${breakpoint}px)`;
 
-const useMediaQuery = (query) => {
+const useMediaQuery = (query: number) => {
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
