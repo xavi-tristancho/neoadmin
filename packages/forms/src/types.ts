@@ -7,7 +7,7 @@ export type DefaultField = {
   property?: string;
   name?: string;
   placeholder?: string;
-  style?: {};
+  style?: object;
   sx?: unknownObject;
   tableOptions?: {
     show?: false;
@@ -16,7 +16,6 @@ export type DefaultField = {
   upsertOptions?: {
     value?: unknownObject;
   };
-  variant?: "standard" | "outlined" | "filled";
 };
 
 export type Field =

@@ -1,7 +1,7 @@
 import { DefaultField } from "../../../types";
 
 export type UnknownOption = { [key: string]: unknown };
-type CommonRelationProps = { isMulti?: boolean };
+type CommonRelationProps = { isMulti: boolean };
 
 export type MultiSelectField<T = UnknownOption> =
   | (DefaultField & {
@@ -24,7 +24,7 @@ export type MultiSelectField<T = UnknownOption> =
       type: "multiselect";
       relation: CommonRelationProps & {
         name?: never;
-        options?: T[] | T;
-        format?: (option: T) => string;
+        options?: T[];
+        format: (option: T) => string;
       };
     });
