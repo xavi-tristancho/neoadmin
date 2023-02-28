@@ -61,7 +61,7 @@ interface NeocoComponentTheme extends Components<Omit<Theme, "components">> {
     };
   };
 }
-interface Theme extends Omit<ThemeOptions, "components" | "palette"> {
+export interface Theme extends Omit<ThemeOptions, "components" | "palette"> {
   components: NeocoComponentTheme;
   palette: NeocoPaletteOptions;
 }

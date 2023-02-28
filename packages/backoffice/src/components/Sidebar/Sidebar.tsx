@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { styled as muiStyled, Theme, useTheme } from "@mui/material/styles";
+import { styled as muiStyled, useTheme } from "@mui/material/styles";
 import {
   Box,
   Drawer as MuiDrawer,
@@ -11,8 +11,9 @@ import {
 } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import UserAndSettings from "../UserAndSettings";
-import { Config } from "../../types";
+import { Config, unknownObject } from "../../types";
 import { useConfig } from "../../contexts/ConfigContext";
+import { Theme } from "../../styles/theme";
 
 const drawerWidth = 240;
 const appBarHeight = 52;
@@ -66,14 +67,14 @@ const Sidebar = ({ appBarTitle = "", children }: SidebarProps) => {
   );
 };
 
-const commonStyles = (theme: Theme) => ({
+const commonStyles = (theme: Theme): unknownObject => ({
   "&& .MuiDrawer-paper": {
     backgroundColor:
       theme?.palette?.neoAdmin?.sidebar?.backgroundColor || "#ffffff",
   },
 });
 
-const openedMixin = (theme: Theme) => ({
+const openedMixin = (theme: Theme): unknownObject => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
@@ -83,15 +84,15 @@ const openedMixin = (theme: Theme) => ({
   ...commonStyles(theme),
 });
 
-const closedMixin = (theme: Theme) => ({
+const closedMixin = (theme: Theme): unknownObject => ({
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
+  width: `calc(56px + 1px)`,
   [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(9)} + 1px)`,
+    width: `calc(72px + 1px)`,
   },
   ...commonStyles(theme),
 });
@@ -108,7 +109,7 @@ const DrawerHeader = muiStyled("div")(({ theme }) => ({
 
 const AppBar = muiStyled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})<{ open: boolean }>(({ theme }) => ({
+})<{ theme?: Theme; open: boolean }>(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
   display: "flex",
   justifyContent: "center",
@@ -123,7 +124,7 @@ const AppBar = muiStyled(MuiAppBar, {
 
 const Drawer = muiStyled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
-})<{ open: boolean }>(({ theme, open }) => ({
+})<{ theme?: Theme; open: boolean }>(({ theme, open }) => ({
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: "nowrap",
@@ -155,7 +156,7 @@ const Title = muiStyled("div")(() => ({
 
 const StyledIconButton = muiStyled(IconButton, {
   shouldForwardProp: (prop) => prop !== "open",
-})<{ open: boolean }>(({ theme, open }) => ({
+})<{ theme?: Theme; open: boolean }>(({ theme, open }) => ({
   marginLeft: "-20px",
   ...(open && {
     backgroundColor:
@@ -163,7 +164,7 @@ const StyledIconButton = muiStyled(IconButton, {
         ? theme.palette.primary.light
         : theme.palette.primary.contrast,
     ...(theme?.palette?.neoAdmin?.component?.["&&:hover"]
-      ? { "&&:hover": theme.palette.neoAdmin.component["&&:hover"] }
+      ? { "&&:hover": theme.palette.neoAdmin.component["&&:hover"] as string }
       : {}),
   }),
 }));
