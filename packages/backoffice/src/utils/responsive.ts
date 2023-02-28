@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const breakpoints: { [key: string]: number } = {
+const breakpoints: { [key: string]: number } = {
   MOBILE: 576,
   TABLET: 768,
   DESKTOP: 992,
@@ -9,7 +9,10 @@ export const breakpoints: { [key: string]: number } = {
   RETINAL: 1600,
 };
 
-type MediaQueryFn = (str: string[], ...values: string[]) => string;
+type MediaQueryFn = (
+  str: TemplateStringsArray,
+  ...values: string[]
+) => string;
 
 export const mediaQuery: { [key: string]: MediaQueryFn } = {
   MOBILE: (str, ...values) =>
@@ -26,7 +29,10 @@ export const mediaQuery: { [key: string]: MediaQueryFn } = {
     getMediaQuery(breakpoints.RETINAL, joinInterpolations(str, values)),
 };
 
-const joinInterpolations = (strings: string[], values: string[]): string =>
+const joinInterpolations = (
+  strings: TemplateStringsArray,
+  values: string[]
+): string =>
   strings
     .map((str, index) =>
       typeof values[index] !== "undefined" ? `${str}${values[index]}` : str
