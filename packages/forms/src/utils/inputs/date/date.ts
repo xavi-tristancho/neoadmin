@@ -34,7 +34,7 @@ const date = ({
 }: DateInput): DateOutput => {
   const formatValue: string = format({ state, field });
   const parsedDate = DateTime.fromISO(formatValue);
-  const value = parsedDate.isValid
+  const value: string = parsedDate.isValid
     ? parsedDate.toFormat(toFormat)
     : formatValue;
 
