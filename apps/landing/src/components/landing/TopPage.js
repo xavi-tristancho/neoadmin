@@ -23,7 +23,7 @@ const TopPage = ({ title, description, general, openModal }) => {
                 onClick={() => openModal(modalVariant.join)}
               />
               <CTA
-                content={general?.cta}
+                content={general?.livePreview}
                 variant="big"
                 styleType="livePreview"
                 titleColor={colors.cta.background}
@@ -44,7 +44,7 @@ const TopPage = ({ title, description, general, openModal }) => {
                 style={{ marginRight: "auto" }}
               />
               <CTA
-                content={general?.cta}
+                content={general?.livePreview}
                 variant="big"
                 styleType="livePreview"
                 titleColor={colors.cta.background}

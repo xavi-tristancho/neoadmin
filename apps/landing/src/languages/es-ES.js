@@ -297,6 +297,7 @@ export default {
   general: {
     productName: 'neoAdmin',
     cta: 'Únete ahora a la lista de espera',
+    livePreview: 'Ver Demo',
     comingSoon: 'próximamente',
     back: 'atrás',
     next: 'siguiente',
