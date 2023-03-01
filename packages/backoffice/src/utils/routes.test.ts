@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { getRoutePath } from "./routes";
 
-describe("regarding the getRoutePath function", () => {
+describe("regarding the getRoutePath function", () => { 
   describe("given an object", () => {
     describe("given a 'path'", () => {
       describe("given a value as string", () => {
