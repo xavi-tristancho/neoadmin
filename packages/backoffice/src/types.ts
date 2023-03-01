@@ -29,7 +29,7 @@ export type Section = {
 };
 
 export type Route = {
-  path?: string;
+  path: string;
   home?: boolean;
   unAuth?: boolean;
   auth?: boolean;
