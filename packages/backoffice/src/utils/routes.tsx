@@ -1,51 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { ModelTable, ModelUpsert } from "../components";
 import { Header, Route } from "../types";
-
-type User = {
-  [key: string]: string;
-};
-
-type GetRoutesProps = {
-  headers: Header[];
-  isLoggedIn: boolean;
-  user: User;
-};
-
-type GetRoutesFn = (props: GetRoutesProps) => Promise<{
-  authRoutes: Route[];
-  unAuthRoutes: Route[];
-}>;
-
-type GetRoutesFromHeadersFn = (props: GetRoutesProps) => Promise<Route[]>;
-
-type GetRoutesByTypeFn = (header: Header) => Route[];
-
-interface MyRoute extends Route {
-  showOnSidebar?: boolean;
-}
-
-type MustShowOnSidebarFn = (props: { route: MyRoute }) => {
-  to?: string;
-};
-
-type GetRoutePropsFn = (props: { route: Route | string; suffix?: string }) => {
-  path: string;
-};
-type GetRoutePathFn = (route: Route | string) => string;
-
-type ComposeComponentFn = <T extends Header>({
-  DefaultComponent,
-  component,
-  header,
-}: {
-  DefaultComponent: React.ComponentType<T>;
-  component?: (
-    props: T & { headers: Header },
-    DefaultComponent: React.ComponentType<T>
-  ) => JSX.Element;
-  header: Header;
-}) => React.ComponentType<T>;
+import { ComposeComponentFn, GetRoutePathFn, GetRoutePropsFn, GetRoutesByTypeFn, GetRoutesFn, GetRoutesFromHeadersFn, GetRoutesProps, MustShowOnSidebarFn } from "./types";
 
 export const getRoutes: GetRoutesFn = ({ headers, isLoggedIn = false, user }) =>
   getRoutesFromHeaders({ headers, isLoggedIn, user }).then((routes) => {
