@@ -29,12 +29,13 @@ export type Section = {
 };
 
 export type Route = {
-  path: string;
+  path?: string;
   home?: boolean;
   unAuth?: boolean;
   auth?: boolean;
   exact?: boolean;
-  component?: (props?: any) => JSX.Element;
+  component?: (props?: RouteChildrenProps) => JSX.Element;
+  showOnSidebar?: boolean;
 };
 
 type CountRequestParams = {
@@ -67,14 +68,7 @@ export type Header = {
       uploadFileRequest?: (file: File) => Promise<string>;
       mapFindResponse?: (response: unknown[]) => unknown[];
     };
-    route: {
-      path: string;
-      home?: boolean;
-      unAuth?: boolean;
-      auth?: boolean;
-      exact?: boolean;
-      component?: (props?: RouteChildrenProps) => JSX.Element;
-    };
+    route: Route;
     tableOptions?: {
       children?: (state: unknownObject) => JSX.Element;
       component?: (
