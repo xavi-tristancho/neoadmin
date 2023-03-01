@@ -28,7 +28,12 @@ const TopPage = ({ title, description, general, openModal }) => {
                 styleType="livePreview"
                 titleColor={colors.cta.background}
                 id="joinlist"
-                onClick={() => openModal(modalVariant.join)}
+                onClick={() =>
+                  window.open(
+                    "https://neoadmin.neoco.dev/neoadmin-demo",
+                    "_blank"
+                  )
+                }
               />
             </Stack>
           )}
@@ -41,7 +46,7 @@ const TopPage = ({ title, description, general, openModal }) => {
                 variant="big"
                 id="joinlist"
                 onClick={() => openModal(modalVariant.join)}
-                style={{ marginRight: "auto" }}
+                style={{ marginLeft: "auto" }}
               />
               <CTA
                 content={general?.livePreview}
@@ -49,8 +54,13 @@ const TopPage = ({ title, description, general, openModal }) => {
                 styleType="livePreview"
                 titleColor={colors.cta.background}
                 id="joinlist"
-                onClick={() => openModal(modalVariant.join)}
-                style={{ marginRight: "auto" }}
+                onClick={() =>
+                  window.open(
+                    "https://neoadmin.neoco.dev/neoadmin-demo",
+                    "_blank"
+                  )
+                }
+                style={{ marginLeft: "auto" }}
               />
             </Stack>
           )}

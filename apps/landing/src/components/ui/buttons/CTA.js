@@ -45,6 +45,7 @@ const styleTypes = {
   livePreview: `
   background: transparent;
   border: 1px solid ${colors.cta.background};
+  border-radius: 0.1875rem;
   `,
 };
 
