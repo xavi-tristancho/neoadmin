@@ -1,19 +1,20 @@
-import styled from 'styled-components';
-import Arrow from 'public/icons/arrow.svg';
-import { colors } from 'styles';
-import { responsive } from 'utils';
+import styled from "styled-components";
+import Arrow from "public/icons/arrow.svg";
+import { colors } from "styles";
+import { responsive } from "utils";
 const { mediaQuery, getMediaQueryHeader, breakpoints } = responsive;
 
 const CTA = ({
-  content = '',
-  variant = 'small',
-  styleType = 'default',
+  content = "",
+  variant = "small",
+  styleType = "default",
+  titleColor,
   ...props
 }) => {
   return (
     <Container styleType={styleType} variant={variant} {...props}>
       <ContentWrapper>
-        <Text>{content}</Text>
+        <Text titleColor={titleColor}>{content}</Text>
         <Arrow style={{ fill: colors.cta.title }} />
       </ContentWrapper>
     </Container>
@@ -41,6 +42,10 @@ const styleTypes = {
     background: #fcff51;
   }
   `,
+  livePreview: `
+  background: transparent;
+  border: 1px solid ${colors.cta.background};
+  `,
 };
 
 const Container = styled.div`
@@ -49,8 +54,8 @@ const Container = styled.div`
   ${({ variant, styleType }) => {
     const styles = styleTypes[styleType];
     const padding = variants[variant];
-    const isSmallOrNav = variant === 'small' || variant === 'nav';
-    const paddingLeft = isSmallOrNav ? 'padding-left: 0.6rem; ' : '';
+    const isSmallOrNav = variant === "small" || variant === "nav";
+    const paddingLeft = isSmallOrNav ? "padding-left: 0.6rem; " : "";
 
     return `
       ${tabletQuery} {
@@ -82,7 +87,7 @@ const Text = styled.div`
   text-align: left;
   vertical-align: top;
   font-weight: 700;
-  color: ${colors.cta.title};
+  color: ${({ titleColor }) => titleColor || colors.cta.title};
   font-size: 13px;
 
   ${mediaQuery.DESKTOP`font-size: 16px;`}
