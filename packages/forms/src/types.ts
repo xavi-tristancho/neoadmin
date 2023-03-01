@@ -16,6 +16,9 @@ export type DefaultField = {
   upsertOptions?: {
     value?: unknownObject;
   };
+  renderBefore?: () => JSX.Element;
+  renderAfter?: () => JSX.Element;
+  isValid?: (value: unknown) => unknown;
 };
 
 export type Field =

@@ -1,8 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/display-name */
 import { useState, useEffect } from "react";
 import { FormGenerator } from "@neoco/neoco-form";
 import styled from "styled-components";
+import { Card } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useDebounce from "../../utils/useDebounce";
+import { Theme } from "../../styles/theme";
 import {
   getColumnOptions,
   getInitialState,
@@ -10,9 +12,6 @@ import {
   getNormalizedFilters,
   getNewFilters,
 } from "./utils";
-import useDebounce from "../../utils/useDebounce";
-import { Card } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import { Column, Filter } from "./types";
 
 type CustomFiltersProps = {
@@ -24,8 +23,8 @@ type CustomFiltersProps = {
 
 const CustomFilters = ({
   columns,
-  onFiltersChange = () => {},
-  hideFilters = () => {},
+  onFiltersChange,
+  hideFilters,
   visible = false,
 }: CustomFiltersProps) => {
   const columnOptions = getColumnOptions(columns);
@@ -42,8 +41,10 @@ const CustomFilters = ({
   );
 
   const [mustUpdateData, setMustUpdateData] = useState<boolean>(false);
-  const debouncedFilters = useDebounce<{ filters: Filter[] }>(state);
-  const theme = useTheme();
+  const debouncedFilters: { filters: Filter[] } = useDebounce<{
+    filters: Filter[];
+  }>(state);
+  const theme: Theme = useTheme();
 
   const updateState = (nextState: { filters: Filter[] }) =>
     setState((currentState) => ({ ...currentState, ...nextState }));
@@ -95,7 +96,7 @@ const FormContainer = styled(Card)`
     position: absolute;
     top: 130px;
     left: 5px;
-    background: ${({ theme }) =>
+    background: ${({ theme }: { theme?: Theme }) =>
       theme?.palette?.neoAdmin?.page?.backgroundColor};
     z-index: 1;
   }

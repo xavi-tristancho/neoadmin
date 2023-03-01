@@ -1,15 +1,16 @@
 import { useState } from "react";
 import DefaultButton from "@mui/material/Button";
-import styled from "styled-components";
-import { inputMapper } from "../utils/inputs";
-import { removeIfNotVisible } from "../utils/common";
-import { getIndexInArray } from "../utils/arrays";
 import { ButtonProps } from "@mui/material";
+import styled from "styled-components";
 import {
   Section,
   Config,
   unknownObject,
 } from "@neoco/neoco-backoffice/src/types";
+import { inputMapper } from "../utils/inputs";
+import { removeIfNotVisible } from "../utils/common";
+import { getIndexInArray } from "../utils/arrays";
+import { Field } from "../types";
 
 type FormGeneratorProps = {
   sections: Section[];
@@ -114,7 +115,23 @@ const Section = ({
   );
 };
 
-export const fieldsMapper = ({ fields, state, handleChange, config }) => {
+type FieldsMapperProps = {
+  fields: Field[] & {
+    FieldContainer?: React.ComponentType;
+  };
+  state: unknownObject;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  config?: Partial<Config>;
+};
+
+export const fieldsMapper = ({
+  fields,
+  state,
+  handleChange,
+  config,
+}: FieldsMapperProps) => {
   return fields.map(({ FieldContainer = BaseFieldContainer, ...field }) => (
     <FieldContainer key={field.property} style={field.style}>
       {typeof field.renderBefore === "function" ? field.renderBefore() : <></>}
