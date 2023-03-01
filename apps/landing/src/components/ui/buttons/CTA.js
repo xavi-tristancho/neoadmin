@@ -15,7 +15,7 @@ const CTA = ({
     <Container styleType={styleType} variant={variant} {...props}>
       <ContentWrapper>
         <Text titleColor={titleColor}>{content}</Text>
-        <Arrow style={{ fill: colors.cta.title }} />
+        <Arrow style={{ fill: titleColor || colors.cta.title }} />
       </ContentWrapper>
     </Container>
   );
