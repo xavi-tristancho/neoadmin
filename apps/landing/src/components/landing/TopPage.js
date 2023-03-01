@@ -15,7 +15,7 @@ const TopPage = ({ title, description, general, openModal }) => {
           <LandingTitle content={title} />
           <LandingDescription content={description} />
           {isTablet && (
-            <Stack direction="column" spacing={2}>
+            <Stack direction="column" spacing={2.5}>
               <CTA
                 content={general?.cta}
                 variant="big"
@@ -40,7 +40,7 @@ const TopPage = ({ title, description, general, openModal }) => {
         </TopLeft>
         <TopRight>
           {!isTablet && (
-            <Stack direction="column" spacing={2}>
+            <Stack direction="column" spacing={2.5}>
               <CTA
                 content={general?.cta}
                 variant="big"
