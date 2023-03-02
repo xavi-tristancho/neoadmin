@@ -21,4 +21,15 @@ const getTranslations = ({ translationIndex, language } = {}) => {
     : translations[currentLanguage];
 };
 
-export default { getTranslations, availableLanguages };
+const getMetaImage = () => {
+  const { locale } = useRouter();
+  const urlBase = "https://neoadmin.neoco.dev/";
+  const url = locale === "es-US" ? urlBase : `${urlBase}${locale}/`;
+
+  return {
+    url,
+    image: `/meta-image-${locale}.jpg`,
+  };
+};
+
+export default { getTranslations, availableLanguages, getMetaImage };
