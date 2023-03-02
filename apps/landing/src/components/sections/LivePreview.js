@@ -34,13 +34,29 @@ const LivePreview = ({
           style={{ marginTop: "3.5rem" }}
         />
       </TextContainer>
+      <img
+        src="/screenshots/small/dark/login.jpg"
+        alt=""
+        style={{ width: "100%", height: "100%" }}
+      />
     </Container>
   </Section>
 );
 
 export default LivePreview;
 
-const Container = styled.div``;
+const Container = styled.div`
+  max-width: 920px;
+  display: grid;
+    grid-template-columns: 0.75fr 1fr;
+  gap: 2rem;
+  grid-gap: 2rem;
+  margin: auto;
+
+  ${mediaQuery.DESKTOP`
+    grid-auto-flow: column; 
+  `}
+`;
 
 const TextContainer = styled.div`
   display: flex;
