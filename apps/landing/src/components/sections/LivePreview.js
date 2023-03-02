@@ -4,57 +4,64 @@ import styled from "styled-components";
 import { responsive } from "utils";
 import { colors } from "styles";
 
-const { mediaQuery } = responsive;
+const { mediaQuery, useMediaQuery, breakpoints } = responsive;
 
 const LivePreview = ({
   sectionContent: { title = "", description = "", content = [] },
   general,
-}) => (
-  <Section
-    id={"livePreview"}
-    showTitleContainer={false}
-    smallContent={true}
-    descriptionStyle={{ maxWidth: "55%" }}
-  >
-    <Container>
-      <TextContainer>
-        <Stack direction="column" spacing={2}>
-          <Title>{title}</Title>
-          <Description>{description}</Description>
-        </Stack>
-        <CTA
-          content={general?.livePreview}
-          variant="big"
-          styleType="livePreview"
-          titleColor={colors.cta.background}
-          id="joinlist"
-          onClick={() =>
-            window.open("https://neoadmin.neoco.dev/neoadmin-demo", "_blank")
-          }
-        />
-      </TextContainer>
-      <img
-        src="/screenshots/large/dark/login.jpg"
-        alt=""
-        style={{ width: "100%", height: "100%" }}
-      />
-    </Container>
-  </Section>
-);
+}) => {
+  const isTablet = useMediaQuery(breakpoints.TABLET);
+
+  console.log("isTablet", breakpoints.TABLET, isTablet);
+
+  return (
+    <Section
+      showTitleContainer={false}
+      background={true}
+      fitContent={true}
+    >
+      <Container>
+        <TextContainer>
+          <Stack direction="column" spacing={2}>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
+          </Stack>
+          <CTA
+            content={general?.livePreview}
+            variant="big"
+            styleType="livePreview"
+            titleColor={colors.cta.background}
+            id="joinlist"
+            onClick={() =>
+              window.open("https://neoadmin.neoco.dev/neoadmin-demo", "_blank")
+            }
+            style={{ marginTop: "3rem" }}
+          />
+        </TextContainer>
+        {isTablet && (
+          <img
+            src="/screenshots/large/dark/login.jpg"
+            alt=""
+            style={{ width: "100%", height: "100%" }}
+          />
+        )}
+      </Container>
+    </Section>
+  );
+};
 
 export default LivePreview;
 
 const Container = styled.div`
-  max-width: 920px;
+  grid-auto-flow: column;
+
+  ${mediaQuery.TABLET`
+ max-width: 920px;
   display: grid;
   grid-template-columns: 0.75fr 1fr;
-  gap: 2rem;
-  grid-gap: 2rem;
+  grid-gap: 5rem;
   margin: auto;
-
-  ${mediaQuery.DESKTOP`
-    grid-auto-flow: column; 
-  `}
+`}
 `;
 
 const TextContainer = styled.div`
