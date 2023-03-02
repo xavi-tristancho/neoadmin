@@ -2,7 +2,7 @@ import { DateTime } from "luxon";
 import { DefaultField } from "@neoco/neoco-form/src/types";
 import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 
-interface DateInput {
+type DateInput = {
   field: DefaultField;
   state: unknownObject;
   handleChange: (
@@ -16,14 +16,14 @@ interface DateInput {
     field: DefaultField;
   }) => string;
   toFormat?: string;
-}
+};
 
-interface DateOutput extends DefaultField {
+type DateOutput = DefaultField & {
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   value: string;
-}
+};
 
 const date = ({
   field,
