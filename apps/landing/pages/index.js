@@ -11,6 +11,7 @@ import {
   Modal,
   TopPage,
   CustomWork,
+  LivePreview,
 } from "components";
 import { translations, modalVariant } from "utils";
 import { ToastContainer } from "react-toastify";
@@ -26,18 +27,18 @@ const Home = () => {
   const pageContent = getTranslations();
   const {
     landing,
-    sections: { code, features, questionnaire, faqs, customWork },
+    sections: { code, features, questionnaire, livePreview, faqs, customWork },
     general,
     contact,
   } = pageContent;
 
-  const openModal = ({ info, apiRequest = false, props }) => {  
+  const openModal = ({ info, apiRequest = false, props }) => {
     setModal({
       isOpenModal: true,
       apiRequest,
       template: info,
       info: contact[info],
-      ...props
+      ...props,
     });
     document.body.style.overflowY = "hidden";
   };
@@ -61,6 +62,7 @@ const Home = () => {
           <Code sectionContent={code} />
           <Features sectionContent={features} />
           <Slider sectionContent={code} />
+          <LivePreview sectionContent={livePreview} />
           <Questionnaire sectionContent={questionnaire} general={general} />
           <Faqs sectionContent={faqs} />
           <CustomWork
