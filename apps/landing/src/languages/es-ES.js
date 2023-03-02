@@ -110,7 +110,7 @@ export default {
       ],
     },
     livePreview: {
-      title: "Ver demo gratuita",
+      title: "Prueba la demostración gratuita",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie consequat venenatis et morbi quam amet nunc viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie consequat venenatis et morbi quam amet nunc viverra. ",
       imageSrc: "login.jpg",

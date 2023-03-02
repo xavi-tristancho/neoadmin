@@ -31,11 +31,10 @@ const LivePreview = ({
           onClick={() =>
             window.open("https://neoadmin.neoco.dev/neoadmin-demo", "_blank")
           }
-          style={{ marginTop: "3.5rem" }}
         />
       </TextContainer>
       <img
-        src="/screenshots/small/dark/login.jpg"
+        src="/screenshots/large/dark/login.jpg"
         alt=""
         style={{ width: "100%", height: "100%" }}
       />
@@ -48,7 +47,7 @@ export default LivePreview;
 const Container = styled.div`
   max-width: 920px;
   display: grid;
-    grid-template-columns: 0.75fr 1fr;
+  grid-template-columns: 0.75fr 1fr;
   gap: 2rem;
   grid-gap: 2rem;
   margin: auto;
@@ -61,7 +60,7 @@ const Container = styled.div`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
 `;
 
 const Title = styled.div`
