@@ -1,24 +1,72 @@
-import { Section } from "components";
+import { Stack } from "@mui/material";
+import { Section, CTA } from "components";
 import styled from "styled-components";
+import { responsive } from "utils";
+import { colors } from "styles";
+
+const { mediaQuery } = responsive;
+
 const LivePreview = ({
-  sectionContent: { title = "klk", description = "", content = [] },
+  sectionContent: { title = "", description = "", content = [] },
+  general,
 }) => (
   <Section
     id={"livePreview"}
-    title={title}
-    description={description}
+    showTitleContainer={false}
+    smallContent={true}
     descriptionStyle={{ maxWidth: "55%" }}
   >
-    <LivePreviewContainer></LivePreviewContainer>
+    <Container>
+      <TextContainer>
+        <Stack direction="column" spacing={2}>
+          <Title>{title}</Title>
+          <Description>{description}</Description>
+        </Stack>
+        <CTA
+          content={general?.livePreview}
+          variant="big"
+          styleType="livePreview"
+          titleColor={colors.cta.background}
+          id="joinlist"
+          onClick={() =>
+            window.open("https://neoadmin.neoco.dev/neoadmin-demo", "_blank")
+          }
+          style={{ marginTop: "3.5rem" }}
+        />
+      </TextContainer>
+    </Container>
   </Section>
 );
 
 export default LivePreview;
 
-const LivePreviewContainer = styled.div`
+const Container = styled.div``;
+
+const TextContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 64px;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const Title = styled.div`
+  text-align: left;
+  vertical-align: top;
+  font-size: 24px;
+  line-height: 95%;
+  color: #646464;
+  font-weight: 500;
+  margin-bottom: 1rem;
+
+  ${mediaQuery.DESKTOP`
+  font-size: 36px;
+  font-weight: 400;
+  color: #ffffff; 
+  `}
+`;
+
+const Description = styled.div`
+  text-align: left;
+  vertical-align: top;
+  color: #aeaeae;
+  line-height: 125%;
 `;

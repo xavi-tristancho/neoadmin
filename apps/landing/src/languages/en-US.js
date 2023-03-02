@@ -113,6 +113,7 @@ export default {
       title: "Try the free demo",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie consequat venenatis et morbi quam amet nunc viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie consequat venenatis et morbi quam amet nunc viverra. ",
+      imageSrc: "login.jpg",
     },
     questionnaire: {
       title: "Help us shape neoAdmin.",

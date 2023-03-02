@@ -62,7 +62,7 @@ const Home = () => {
           <Code sectionContent={code} />
           <Features sectionContent={features} />
           <Slider sectionContent={code} />
-          <LivePreview sectionContent={livePreview} />
+          <LivePreview sectionContent={livePreview} general={general} />
           <Questionnaire sectionContent={questionnaire} general={general} />
           <Faqs sectionContent={faqs} />
           <CustomWork
