@@ -12,8 +12,6 @@ const LivePreview = ({
 }) => {
   const isTablet = useMediaQuery(breakpoints.TABLET);
 
-  console.log("isTablet", breakpoints.TABLET, isTablet);
-
   return (
     <Section
       showTitleContainer={false}
