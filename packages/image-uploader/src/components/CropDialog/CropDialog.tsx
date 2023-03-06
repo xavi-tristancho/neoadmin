@@ -12,44 +12,17 @@ import Input from "../Input";
 import ImageCrop from "../ImageCrop";
 import Slider from "../Slider";
 import { getBase64FromUrl, fileToBase64, blobToFile } from "../../utils/file";
-
-type InitialState = {
-  data: null | {
-    base64: string;
-    file?: {
-      name: string;
-    };
-  };
-  inputRef: undefined | HTMLInputElement;
-  sliderValue: number;
-};
+import {
+  CropDialogProps,
+  CropperRef,
+  HandleChangeProps,
+  InitialState,
+} from "./types";
 
 const initialState: InitialState = {
   data: null,
   inputRef: undefined,
   sliderValue: 0,
-};
-
-type CropDialogProps = {
-  source: { uri: string; name: string; file: File };
-  onCroppedImage: (file?: Partial<File>) => void;
-  onClose: () => void;
-  title?: string;
-};
-
-type HandleChangeProps = {
-  target: {
-    value: number;
-  };
-};
-
-type CropperRef = {
-  removePhoto(): void;
-  crop(): Promise<Blob>;
-  props: {
-    file: File;
-  };
-  zoomTo(value: number): void;
 };
 
 const CropDialog = ({
