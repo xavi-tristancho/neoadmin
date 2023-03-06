@@ -12,17 +12,12 @@ import Input from "../Input";
 import ImageCrop from "../ImageCrop";
 import Slider from "../Slider";
 import { getBase64FromUrl, fileToBase64, blobToFile } from "../../utils/file";
-
-type InitialState = {
-  data: null | {
-    base64: string;
-    file?: {
-      name: string;
-    };
-  };
-  inputRef: undefined | HTMLInputElement;
-  sliderValue: number;
-};
+import {
+  CropDialogProps,
+  CropperRef,
+  HandleChangeProps,
+  InitialState,
+} from "./types";
 
 type CropDialogProps = {
   source: { uri?: string; name?: string; file?: File };
