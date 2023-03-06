@@ -6,7 +6,6 @@ type CommonRelationProps = { isMulti: boolean };
 export type MultiSelectField<T = UnknownOption> =
   | (DefaultField & {
       type: "multiselect";
-      required?: boolean;
       relation: CommonRelationProps & {
         name?: never;
         options?: string[];
@@ -15,7 +14,6 @@ export type MultiSelectField<T = UnknownOption> =
     })
   | (DefaultField & {
       type: "multiselect";
-      required?: boolean;
       relation: CommonRelationProps & {
         name: string;
         options?: never;
@@ -24,7 +22,6 @@ export type MultiSelectField<T = UnknownOption> =
     })
   | (DefaultField & {
       type: "multiselect";
-      required?: boolean;
       relation: CommonRelationProps & {
         name?: never;
         options?: T[];

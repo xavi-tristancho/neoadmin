@@ -1,13 +1,10 @@
+import { AuthContextUser } from "../contexts/AuthContext";
 import { Header, Route } from "../types";
-
-export type User = {
-  [key: string]: string;
-};
 
 export type GetRoutesProps = {
   headers: Header[];
   isLoggedIn: boolean;
-  user: User;
+  user: AuthContextUser;
 };
 
 export type GetRoutesFn = (props: GetRoutesProps) => Promise<{
@@ -21,9 +18,9 @@ export type GetRoutesFromHeadersFn = (
 
 export type GetRoutesByTypeFn = (header: Header) => Route[];
 
-interface MyRoute extends Route {
+type MyRoute = Route & {
   showOnSidebar?: boolean;
-}
+};
 
 export type MustShowOnSidebarFn = (props: { route: MyRoute }) => {
   to?: string;

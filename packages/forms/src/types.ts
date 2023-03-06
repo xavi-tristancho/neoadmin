@@ -3,6 +3,7 @@ import { MultiSelectField } from "./utils/inputs/multi-select/types";
 
 export type DefaultField = {
   id?: string | number;
+  required?: boolean;
   label?: string;
   property?: string;
   name?: string;
@@ -36,6 +37,5 @@ export type Field =
         | "relation-list";
 
       relation?: never;
-      required?: boolean;
     })
   | MultiSelectField;
