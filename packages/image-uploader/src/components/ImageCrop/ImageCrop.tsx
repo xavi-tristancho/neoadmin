@@ -8,7 +8,57 @@ import {
 import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.min.css";
 import styled from "styled-components";
-import { AvatarMode, DefaultMode, ImageCropProps, InitialState, Props } from "./types";
+
+type DefaultMode = {
+  modal: boolean;
+  background: boolean;
+  rotatable: boolean;
+  cropBoxResizable: boolean;
+  dragMode: "crop" | "move";
+  cropBoxMovable: boolean;
+  autoCrop: boolean;
+  viewMode: number;
+  zoom: number;
+  autoCropArea: number;
+};
+
+type AvatarMode = {
+  aspectRatio: number;
+  modal: boolean;
+  background: boolean;
+  rotatable: boolean;
+  cropBoxResizable: boolean;
+  dragMode: "move";
+  cropBoxMovable: boolean;
+  autoCrop: boolean;
+  viewMode: number;
+  zoom: number;
+  minCropBoxWidth: number;
+  minCropBoxHeight: number;
+};
+
+type InitialState = {
+  imgNaturalWidth: undefined | number;
+  imgWidth: undefined | number;
+  cropper?: undefined | Cropper;
+};
+
+type Props = {
+  alt?: string;
+  file?: {
+    base64: string;
+  };
+  crossOrigin?: string;
+  cropMode?: string;
+};
+
+type ImageCropProps = {
+  type: string;
+  props: Props;
+  file?: {
+    base64: string;
+  };
+};
 
 const DEFAULT_MODE: DefaultMode = {
   modal: true,
