@@ -1,11 +1,11 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 type InputProps = {
   onChange: (file: File) => void;
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ onChange }, ref) => {
     const onLocalChange = (e: React.ChangeEvent<HTMLInputElement>) =>
       onChange(e.target.files[0]);
