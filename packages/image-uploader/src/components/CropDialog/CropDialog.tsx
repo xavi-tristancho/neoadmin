@@ -91,7 +91,6 @@ const CropDialog = ({
     setState((currentState) => ({ ...currentState, ...nextState }));
 
   const handleInputRef = useCallback((ref: HTMLInputElement) => {
-    console.log("ref", ref);
     updateState({ inputRef: ref });
   }, []);
 
