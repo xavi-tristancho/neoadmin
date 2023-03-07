@@ -53,8 +53,8 @@ type Props = {
 };
 
 type ImageCropProps = {
-  type: string;
-  props: Props;
+  type?: string;
+  props?: Props;
   file?: {
     base64: string;
   };
