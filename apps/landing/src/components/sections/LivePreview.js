@@ -3,6 +3,7 @@ import { Section, CTA } from "components";
 import styled from "styled-components";
 import { responsive } from "utils";
 import { colors } from "styles";
+import { openDemoLink } from "utils/openDemoLink";
 
 const { mediaQuery, useMediaQuery, breakpoints } = responsive;
 
@@ -13,11 +14,7 @@ const LivePreview = ({
   const isTablet = useMediaQuery(breakpoints.TABLET);
 
   return (
-    <Section
-      showTitleContainer={false}
-      background={true}
-      fitContent={true}
-    >
+    <Section showTitleContainer={false} background={true} fitContent={true}>
       <Container>
         <TextContainer>
           <Stack direction="column" spacing={2}>
@@ -30,9 +27,7 @@ const LivePreview = ({
             styleType="livePreview"
             titleColor={colors.cta.background}
             id="joinlist"
-            onClick={() =>
-              window.open("https://neoadmin.neoco.dev/neoadmin-demo", "_blank")
-            }
+            onClick={openDemoLink}
             style={{ marginTop: "3rem" }}
           />
         </TextContainer>

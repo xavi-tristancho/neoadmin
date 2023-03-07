@@ -3,6 +3,7 @@ import { Stack } from "@mui/material";
 import { CTA, LandingTitle, LandingDescription } from "components";
 import { responsive, modalVariant } from "utils";
 import { colors } from "styles";
+import { openDemoLink } from "utils/openDemoLink";
 const { mediaQuery, useMediaQuery, breakpoints } = responsive;
 
 const TopPage = ({ title, description, general, openModal }) => {
@@ -28,12 +29,7 @@ const TopPage = ({ title, description, general, openModal }) => {
                 styleType="livePreview"
                 titleColor={colors.cta.background}
                 id="joinlist"
-                onClick={() =>
-                  window.open(
-                    "https://neoadmin.neoco.dev/neoadmin-demo",
-                    "_blank"
-                  )
-                }
+                onClick={openDemoLink}
               />
             </Stack>
           )}
@@ -54,12 +50,7 @@ const TopPage = ({ title, description, general, openModal }) => {
                 styleType="livePreview"
                 titleColor={colors.cta.background}
                 id="joinlist"
-                onClick={() =>
-                  window.open(
-                    "https://neoadmin.neoco.dev/neoadmin-demo",
-                    "_blank"
-                  )
-                }
+                onClick={openDemoLink}
                 style={{ marginLeft: "auto" }}
               />
             </Stack>
