@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { Stack } from "@mui/material";
 import { CTA, LandingTitle, LandingDescription } from "components";
 import { responsive, modalVariant } from "utils";
+import { colors } from "styles";
+import { openDemoLink } from "utils/openDemoLink";
 const { mediaQuery, useMediaQuery, breakpoints } = responsive;
 
 const TopPage = ({ title, description, general, openModal }) => {
@@ -13,23 +16,44 @@ const TopPage = ({ title, description, general, openModal }) => {
           <LandingTitle content={title} />
           <LandingDescription content={description} />
           {isTablet && (
-            <CTA
-              content={general?.cta}
-              variant="big"
-              id="joinlist"
-              onClick={() => openModal(modalVariant.join)}
-            />
+            <Stack direction="column" spacing={2.5}>
+              <CTA
+                content={general?.cta}
+                variant="big"
+                id="joinlist"
+                onClick={() => openModal(modalVariant.join)}
+              />
+              <CTA
+                content={general?.livePreview}
+                variant="big"
+                styleType="livePreview"
+                titleColor={colors.cta.background}
+                id="joinlist"
+                onClick={openDemoLink}
+              />
+            </Stack>
           )}
         </TopLeft>
         <TopRight>
           {!isTablet && (
-            <CTA
-              content={general?.cta}
-              variant="big"
-              id="joinlist"
-              onClick={() => openModal(modalVariant.join)}
-              style={{ marginRight: "auto" }}
-            />
+            <Stack direction="column" spacing={2.5}>
+              <CTA
+                content={general?.cta}
+                variant="big"
+                id="joinlist"
+                onClick={() => openModal(modalVariant.join)}
+                style={{ marginLeft: "auto" }}
+              />
+              <CTA
+                content={general?.livePreview}
+                variant="big"
+                styleType="livePreview"
+                titleColor={colors.cta.background}
+                id="joinlist"
+                onClick={openDemoLink}
+                style={{ marginLeft: "auto" }}
+              />
+            </Stack>
           )}
           <Screenshots
             src="/screenshots/landing-mosaic.png"

@@ -24,7 +24,7 @@ export default {
   },
   section: {
     background: colors["gradient dark black"],
-    title: colors["second gray"],
+    title: colors.white,
     stroke: colors["neoco gray"],
     description: { small: colors["third gray"], big: colors.gray },
   },
