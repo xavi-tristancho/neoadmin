@@ -44,14 +44,14 @@ const radiogroup = ({
     ? getOptions({ state, ...relation })
     : field.options || [];
 
-  const item: string | Option = isSelectedOptionAStringOrNumber
+  const item: unknown | Option = isSelectedOptionAStringOrNumber
     ? options.find((option) => option.value === selectedOption) || ""
     : selectedOption;
 
   const value: string =
-    typeof item !== "string"
-      ? ""
-      : ((item?.value || item[relation?.primaryKey]) as string);
+    typeof item !== "undefined"
+      ? ((item?.value || item[relation?.primaryKey]) as string)
+      : "";
 
   const defaultItem = options.find((option) => option.default);
 
