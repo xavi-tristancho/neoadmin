@@ -12,13 +12,7 @@ import CropDialog from "../CropDialog";
 type Source = {
   uri: string;
   name: string;
-};
-
-const getSrc = (source: Source) => {
-  if (source && source.uri) {
-    return source.uri;
-  }
-  return null;
+  file?: File;
 };
 
 type ImageFit = "cover" | "contain";
@@ -36,9 +30,16 @@ type ImageUploaderProps = {
 
 type State = {
   isEditing: boolean;
-  localSource: Source;
+  localSource: Partial<Source>;
   nextImage: { src: string } | null;
   isDroping: boolean;
+};
+
+const getSrc = (source: Source) => {
+  if (source && source.uri) {
+    return source.uri;
+  }
+  return null;
 };
 
 const ImageUploader = ({

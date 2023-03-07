@@ -25,7 +25,7 @@ type InitialState = {
 };
 
 type CropDialogProps = {
-  source: { uri: string; name: string; file: File };
+  source: { uri?: string; name?: string; file?: File };
   onCroppedImage: (file?: Partial<File>) => void;
   onClose: () => void;
   title?: string;
