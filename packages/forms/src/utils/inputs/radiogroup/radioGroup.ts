@@ -95,11 +95,11 @@ const getOptions = ({
   primaryKey: string;
 }): Option[] | [] => {
   return (
-    state?.aux[name]?.map((item = {}) => ({
-      value: item[primaryKey],
+    ((state?.aux[name] as Option[])?.map((item: Option) => ({
+      value: item[primaryKey] as string,
       label: getName({ item, nameProps }),
       ...item,
-    })) || []
+    })) as Option[] | []) || []
   );
 };
 
@@ -107,7 +107,7 @@ const getName = ({
   item,
   nameProps = [],
 }: {
-  item: string | Option;
+  item: Option;
   nameProps?: string[];
 }): string =>
   Object.keys(item)
