@@ -82,9 +82,12 @@ export type Header = {
       isCreatable?: boolean;
       isEditable?: boolean;
       isDeletable?: boolean;
+      isSearchable?: boolean;
+      isFilterable?: boolean;
       openOnClickRow?: boolean;
       pageSize?: number;
       renderBefore?: () => React.ReactNode;
+      onMount?: () => Promise<unknownObject>;
     };
     upsertOptions?: {
       children?: (state: unknownObject) => JSX.Element;
