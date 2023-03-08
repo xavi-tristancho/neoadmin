@@ -1,9 +1,5 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
-import Input from "../Input";
-import ImageCrop from "../ImageCrop";
-import Slider from "../Slider";
-import { getBase64FromUrl, fileToBase64, blobToFile } from "../../utils/file";
 import {
   Button,
   Dialog,
@@ -12,8 +8,39 @@ import {
   DialogActions,
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import Input from "../Input";
+import ImageCrop from "../ImageCrop";
+import Slider from "../Slider";
+import { getBase64FromUrl, fileToBase64, blobToFile } from "../../utils/file";
 
-const initialState = {
+type InitialState = {
+  data: null | {
+    base64: string;
+    file?: {
+      name: string;
+    };
+  };
+  inputRef: undefined | HTMLInputElement;
+  sliderValue: number;
+};
+
+type CropDialogProps = {
+  source: { uri: string; name: string; file: File };
+  onCroppedImage: (file?: Partial<File>) => void;
+  onClose: () => void;
+  title?: string;
+};
+
+type CropperRef = {
+  removePhoto(): void;
+  crop(): Promise<Blob>;
+  props: {
+    file: File;
+  };
+  zoomTo(value: number): void;
+};
+
+const initialState: InitialState = {
   data: null,
   inputRef: undefined,
   sliderValue: 0,
@@ -21,22 +48,30 @@ const initialState = {
 
 const CropDialog = ({
   source,
-  onCroppedImage = () => {},
-  onClose = () => {},
+  onCroppedImage,
+  onClose,
   title = "Editar foto",
-}) => {
-  const [state, setState] = useState(initialState);
-  const cropperRef = useRef();
+}: CropDialogProps) => {
+  const [state, setState] = useState<InitialState>(initialState);
+  const cropperRef = useRef<CropperRef>(null);
 
   useEffect(() => {
     if (source?.uri) {
-      getBase64FromUrl(source.uri).then(({ base64 }) => {
-        updateState({ data: { base64, file: { name: source.name } } });
-      });
+      getBase64FromUrl(source.uri)
+        .then(({ base64 }) => {
+          updateState({ data: { base64, file: { name: source.name } } });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     } else if (source?.file) {
-      fileToBase64(source.file).then(({ base64 }) => {
-        updateState({ data: { file: source.file, base64 } });
-      });
+      fileToBase64(source.file)
+        .then(({ base64 }) => {
+          updateState({ data: { file: source.file, base64 } });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, [source]);
 
@@ -46,15 +81,15 @@ const CropDialog = ({
     }
   }, [state.inputRef, source]);
 
-  const updateState = (nextState) =>
+  const updateState = (nextState: Partial<InitialState>) =>
     setState((currentState) => ({ ...currentState, ...nextState }));
 
-  const handleInputRef = useCallback((ref) => {
+  const handleInputRef = useCallback((ref: HTMLInputElement) => {
     updateState({ inputRef: ref });
   }, []);
 
   const onRemoveImageClick = () => {
-    cropperRef.current.removePhoto();
+    cropperRef.current?.removePhoto();
     updateState({ data: null, sliderValue: initialState.sliderValue });
   };
 
@@ -64,22 +99,32 @@ const CropDialog = ({
     if (cropperRef.current.props?.file) {
       cropperRef.current
         .crop()
-        .then((blob) => blobToFile({ blob, name: state.data.file?.name }))
-        .then((blob) => {
+        .then((blob: Blob) => blobToFile({ blob, name: state.data.file?.name }))
+        .then((blob: Blob) => {
           onCroppedImage(blob);
+        })
+        .catch((error) => {
+          console.error(error);
         });
     } else {
       onCroppedImage();
     }
   };
 
-  const onFileSelected = (file) =>
+  const onFileSelected = (file: File) =>
     fileToBase64(file).then(({ base64 }) => {
       updateState({
         data: { file, base64 },
         sliderValue: initialState.sliderValue,
       });
     });
+
+  const handleChange = (_event: Event, value: number | number[]) => {
+    if (typeof value === "number") {
+      cropperRef.current?.zoomTo(value / 100);
+      updateState({ sliderValue: value });
+    }
+  };
 
   return (
     <Dialog
@@ -111,10 +156,7 @@ const CropDialog = ({
         <Slider
           value={state.sliderValue}
           disabled={typeof state.data?.base64 === "undefined"}
-          onChange={({ target: { value } }) => {
-            cropperRef.current.zoomTo(value / 100);
-            updateState({ sliderValue: value });
-          }}
+          onChange={handleChange}
         />
         <ButtonsContainer>
           <CustomButton variant="contained" onClick={onUploadImageClick}>
