@@ -178,7 +178,9 @@ describe("regarding the showRender function", () => {
       it("should return only the object", () => {
         const objectToRender = { key: "object-to-render" };
         const state = { a: "b" };
-        expect(showRender(objectToRender, state)).toEqual(objectToRender.key);
+        expect(showRender(objectToRender, state).key).toEqual(
+          objectToRender.key
+        );
       });
     });
   });
