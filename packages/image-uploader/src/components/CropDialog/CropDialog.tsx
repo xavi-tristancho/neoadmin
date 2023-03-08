@@ -31,12 +31,6 @@ type CropDialogProps = {
   title?: string;
 };
 
-type HandleChangeProps = {
-  target: {
-    value: number;
-  };
-};
-
 type CropperRef = {
   removePhoto(): void;
   crop(): Promise<Blob>;
@@ -125,9 +119,11 @@ const CropDialog = ({
       });
     });
 
-  const handleChange = ({ target: { value } }: HandleChangeProps) => {
-    cropperRef.current?.zoomTo(value / 100);
-    updateState({ sliderValue: value });
+  const handleChange = (_event: Event, value: number | number[]) => {
+    if (typeof value === "number") {
+      cropperRef.current?.zoomTo(value / 100);
+      updateState({ sliderValue: value });
+    }
   };
 
   return (
