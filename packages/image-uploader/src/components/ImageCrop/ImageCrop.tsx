@@ -1,4 +1,4 @@
-import React, {
+import {
   forwardRef,
   useRef,
   useState,
@@ -9,7 +9,58 @@ import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.min.css";
 import styled from "styled-components";
 
-const DEFAULT_MODE = {
+type DefaultMode = {
+  modal: boolean;
+  background: boolean;
+  rotatable: boolean;
+  cropBoxResizable: boolean;
+  dragMode: "crop" | "move";
+  cropBoxMovable: boolean;
+  autoCrop: boolean;
+  viewMode: number;
+  zoom: number;
+  autoCropArea: number;
+};
+
+type AvatarMode = {
+  aspectRatio: number;
+  modal: boolean;
+  background: boolean;
+  rotatable: boolean;
+  cropBoxResizable: boolean;
+  dragMode: "move";
+  cropBoxMovable: boolean;
+  autoCrop: boolean;
+  viewMode: number;
+  zoom: number;
+  minCropBoxWidth: number;
+  minCropBoxHeight: number;
+};
+
+type InitialState = {
+  imgNaturalWidth: undefined | number;
+  imgWidth: undefined | number;
+  cropper?: undefined | Cropper;
+};
+
+type Props = {
+  alt?: string;
+  file?: {
+    base64: string;
+  };
+  crossOrigin?: string;
+  cropMode?: string;
+};
+
+type ImageCropProps = {
+  type?: string;
+  props?: Props;
+  file?: {
+    base64: string;
+  };
+};
+
+const DEFAULT_MODE: DefaultMode = {
   modal: true,
   background: false,
   rotatable: false,
@@ -22,7 +73,7 @@ const DEFAULT_MODE = {
   autoCropArea: 1,
 };
 
-const AVATAR_MODE = {
+const AVATAR_MODE: AvatarMode = {
   aspectRatio: 1,
   modal: true,
   background: false,
@@ -37,24 +88,23 @@ const AVATAR_MODE = {
   minCropBoxHeight: 300,
 };
 
-const initialState = {
+const initialState: InitialState = {
   imgNaturalWidth: undefined,
   imgWidth: undefined,
 };
-
-const getCropperOptions = (cropMode) =>
+const getCropperOptions = (cropMode: string) =>
   cropMode === "avatar" ? AVATAR_MODE : DEFAULT_MODE;
 
-const ImageCrop = forwardRef((props, ref) => {
-  const [state, setState] = useState(initialState);
-  const imgRef = useRef(null);
+const ImageCrop = forwardRef<unknown, ImageCropProps>((props, ref) => {
+  const [state, setState] = useState<InitialState>(initialState);
+  const imgRef = useRef<HTMLImageElement>(null);
 
-  const updateState = (nextState) =>
+  const updateState = (nextState: Partial<InitialState>) =>
     setState((currentState) => ({ ...currentState, ...nextState }));
 
   useEffect(() => {
     if (imgRef.current && !state.cropper) {
-      const { cropMode = "default" } = props;
+      const { cropMode = "default" } = props as Props;
       updateState({
         cropper: new Cropper(imgRef.current, getCropperOptions(cropMode)),
       });
@@ -76,10 +126,10 @@ const ImageCrop = forwardRef((props, ref) => {
   }, [state.cropper, props.file]);
 
   const { imgNaturalWidth, imgWidth } = state;
-  const { alt, file, crossOrigin } = props;
+  const { alt, file, crossOrigin } = props as Props;
 
   useImperativeHandle(ref, () => ({
-    zoomTo: (zoom) => {
+    zoomTo: (zoom: number) => {
       if (state.cropper) {
         const offset = imgWidth / imgNaturalWidth;
         updateState({
