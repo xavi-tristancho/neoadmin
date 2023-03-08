@@ -9,16 +9,24 @@ type AuthContextType = {
   sidebarProps?: { appBarTitle: string; children: React.ReactNode };
 };
 
-type AuthContextUser = { [key: string]: string };
+export type AuthContextUser = { [key: string]: string };
 
 export type LoginInputProps = {
   token: string;
   user: AuthContextUser;
 };
 
+type LoginFn = ({
+  token,
+  user,
+}: {
+  token: string;
+  user: AuthContextUser;
+}) => void;
+
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const initState = (key: string, defaultValue: unknown) => {
+const initState = (key: string, defaultValue: unknown): unknown => {
   try {
     return JSON.parse(localStorage.getItem(key));
   } catch (e) {
@@ -30,7 +38,13 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(initState("isLoggedIn", false));
   const [user, setUser] = useState(initState("user", {}));
 
-  const login = ({ token, user: nextUser }) => {
+  const login: LoginFn = ({
+    token,
+    user: nextUser,
+  }: {
+    token: string;
+    user: AuthContextUser;
+  }) => {
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(nextUser));
@@ -48,7 +62,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(false);
   };
 
-  const updateUser = (nextUser) => {
+  const updateUser = (nextUser: AuthContextUser) => {
     localStorage.setItem("user", JSON.stringify({ ...user, ...nextUser }));
     setUser({ ...user, ...nextUser });
   };

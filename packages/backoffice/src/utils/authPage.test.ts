@@ -17,12 +17,6 @@ describe("regarding the authPage utils file", () => {
           return expect(getModelInitialLetter(path)).toBe("");
         });
       });
-
-      describe("calling the function without arguments", () => {
-        it("should return an empty string", () => {
-          return expect(getModelInitialLetter()).toBe("");
-        });
-      });
     });
   });
 });

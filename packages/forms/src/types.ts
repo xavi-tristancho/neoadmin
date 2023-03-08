@@ -3,14 +3,15 @@ import { MultiSelectField } from "./utils/inputs/multi-select/types";
 
 export type DefaultField = {
   id?: string | number;
+  required?: boolean;
   label?: string;
   property?: string;
   name?: string;
   placeholder?: string;
-  style?: object;
+  style?: React.CSSProperties;
   sx?: unknownObject;
   tableOptions?: {
-    show?: false;
+    show?: ShowFn;
     format?: (item: unknown) => string;
   };
   upsertOptions?: {
@@ -20,6 +21,8 @@ export type DefaultField = {
   renderAfter?: () => JSX.Element;
   isValid?: (value: unknown) => unknown;
 };
+
+export type ShowFn = boolean | ((item: unknownObject[]) => boolean);
 
 export type Field =
   | (DefaultField & {
