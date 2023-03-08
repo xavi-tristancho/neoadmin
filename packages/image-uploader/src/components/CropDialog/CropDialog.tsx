@@ -111,13 +111,18 @@ const CropDialog = ({
     }
   };
 
-  const onFileSelected = (file: File) =>
-    fileToBase64(file).then(({ base64 }) => {
-      updateState({
-        data: { file, base64 },
-        sliderValue: initialState.sliderValue,
+  const onFileSelected = (file: File) => {
+    fileToBase64(file)
+      .then(({ base64 }) => {
+        updateState({
+          data: { file, base64 },
+          sliderValue: initialState.sliderValue,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    });
+  };
 
   const handleChange = (_event: Event, value: number | number[]) => {
     if (typeof value === "number") {
