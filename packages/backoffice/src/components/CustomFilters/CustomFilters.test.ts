@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { Filter } from "./types";
 import { operatorOptions, getNewFilters } from "./utils";
 
 const columnOptions = [{ value: "col1", label: "col1" }];
@@ -7,8 +8,12 @@ describe("regarding the getNewFilters function", () => {
   describe("when creating the first filter", () => {
     it("should return the new filter with default values and mustUpdateDataWithFilters === false", () => {
       const currentStateFilters = [];
-      const incomingFilters = [
-        { columnField: "", operatorValue: "", value: "" },
+      const incomingFilters: Filter[] = [
+        {
+          columnField: { value: "", label: "" },
+          operatorValue: { value: "", label: "" },
+          value: "",
+        },
       ];
 
       const { mustUpdateDataWithFilters, newFilters } = getNewFilters({
@@ -121,8 +126,8 @@ describe("regarding the getNewFilters function", () => {
             value: "abc",
           },
           {
-            columnField: "",
-            operatorValue: "",
+            columnField: { value: "", label: "" },
+            operatorValue: { value: "", label: "" },
             value: "",
           },
         ];

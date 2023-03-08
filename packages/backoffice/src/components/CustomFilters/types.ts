@@ -15,7 +15,7 @@ export type OperatorOptions = {
 
 export type Filter = {
   columnField: OperatorOptions;
-  operatorValue: OperatorOptions;
+  operatorValue: OperatorOptions | OperatorOptions[];
   value: string;
 };
 
