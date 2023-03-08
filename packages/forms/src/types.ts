@@ -7,7 +7,7 @@ export type DefaultField = {
   property?: string;
   name?: string;
   placeholder?: string;
-  style?: {};
+  style?: object;
   sx?: unknownObject;
   tableOptions?: {
     show?: false;
@@ -16,6 +16,9 @@ export type DefaultField = {
   upsertOptions?: {
     value?: unknownObject;
   };
+  renderBefore?: () => JSX.Element;
+  renderAfter?: () => JSX.Element;
+  isValid?: (value: unknown) => unknown;
 };
 
 export type Field =
@@ -27,7 +30,9 @@ export type Field =
         | "html"
         | "checkbox"
         | "email"
-        | "password";
+        | "password"
+        | "relation-list";
+
       relation?: never;
     })
   | MultiSelectField;

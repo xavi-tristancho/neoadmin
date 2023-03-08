@@ -1,8 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/display-name */
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FormGenerator } from "@neoco/neoco-form";
 import styled from "styled-components";
+import { Card } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { Theme } from "../../styles/theme";
+import useDebounce from "../../utils/useDebounce";
 import {
   getColumnOptions,
   getInitialState,
@@ -10,16 +12,21 @@ import {
   getNormalizedFilters,
   getNewFilters,
 } from "./utils";
-import useDebounce from "../../utils/useDebounce";
-import { Card } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Column, Filter } from "./types";
+
+type CustomFiltersProps = {
+  columns: Column[];
+  onFiltersChange?: (filters: Filter[]) => void;
+  hideFilters?: () => void;
+  visible?: boolean;
+};
 
 const CustomFilters = ({
   columns,
-  onFiltersChange = () => {},
-  hideFilters = () => {},
+  onFiltersChange,
+  hideFilters,
   visible = false,
-}) => {
+}: CustomFiltersProps) => {
   const columnOptions = getColumnOptions(columns);
   const headerSections = getFiltersSection({
     columnOptions,
@@ -29,21 +36,25 @@ const CustomFilters = ({
     label: columns[0]?.label || columns[0]?.name || columns[0]?.property,
   };
 
-  const [state, setState] = useState(getInitialState({ firstColumn }));
+  const [state, setState] = useState<{ filters: Filter[] }>(
+    getInitialState({ firstColumn })
+  );
 
-  const [mustUpdateData, setMustUpdateData] = useState(false);
-  const debouncedFilters = useDebounce(state);
-  const theme = useTheme();
+  const [mustUpdateData, setMustUpdateData] = useState<boolean>(false);
+  const debouncedFilters: { filters: Filter[] } = useDebounce<{
+    filters: Filter[];
+  }>(state);
+  const theme: Theme = useTheme();
 
-  const updateState = (nextState) =>
+  const updateState = (nextState: { filters: Filter[] }) =>
     setState((currentState) => ({ ...currentState, ...nextState }));
 
-  const sendFilters = () => {
+  const sendFilters = (): void => {
     onFiltersChange(getNormalizedFilters(debouncedFilters.filters));
     setMustUpdateData(false);
   };
 
-  const handleChange = ({ filters: incomingFilters }) => {
+  const handleChange = (incomingFilters: Filter[]): void => {
     const { mustUpdateDataWithFilters, newFilters } = getNewFilters({
       currentStateFilters: state.filters,
       incomingFilters,
@@ -85,7 +96,7 @@ const FormContainer = styled(Card)`
     position: absolute;
     top: 130px;
     left: 5px;
-    background: ${({ theme }) =>
+    background: ${({ theme }: { theme?: Theme }) =>
       theme?.palette?.neoAdmin?.page?.backgroundColor};
     z-index: 1;
   }

@@ -1,9 +1,10 @@
 /* eslint-disable react/display-name */
-import React from "react";
 import { Close } from "@mui/icons-material";
+import { UnknownOption } from "@neoco/neoco-form/src/utils/inputs/multi-select/types";
 import { sameElement } from "../../utils/common";
+import { Column, Filter, FilterSection, OperatorOptions } from "./types";
 
-export const getColumnOptions = (columns) =>
+export const getColumnOptions = (columns: Column[]): OperatorOptions[] =>
   columns
     .filter(({ property }) => property)
     .map((column) => ({
@@ -11,7 +12,7 @@ export const getColumnOptions = (columns) =>
       label: column.label || column.name || column.property,
     }));
 
-export const operatorOptions = [
+export const operatorOptions: OperatorOptions[] = [
   { value: "=", label: "=" },
   { value: "<", label: "<" },
   { value: ">", label: ">" },
@@ -20,8 +21,12 @@ export const operatorOptions = [
   { value: ">=", label: ">=" },
 ];
 
-export const getFiltersSection = ({ columnOptions }) => {
-  const commonFieldsProps = {
+export const getFiltersSection = ({
+  columnOptions,
+}: {
+  columnOptions: OperatorOptions[];
+}): FilterSection[] => {
+  const commonFieldsProps: { style: UnknownOption } = {
     style: {
       display: "flex",
       alignItems: "center",
@@ -31,7 +36,11 @@ export const getFiltersSection = ({ columnOptions }) => {
       maxWidth: "2000px",
     },
   };
-  const commonMultiselectProps = {
+  const commonMultiselectProps: {
+    disableClearable: boolean;
+    allowEmptyValue: boolean;
+    renderInputProps: UnknownOption;
+  } = {
     disableClearable: true,
     allowEmptyValue: false,
     renderInputProps: { variant: "standard" },
@@ -83,18 +92,12 @@ export const getFiltersSection = ({ columnOptions }) => {
   ];
 };
 
-export const getOnlyCompleteFilters = (filters = []) =>
-  filters.filter(
-    ({ columnField, operatorValue, value }) =>
-      columnField &&
-      columnField !== "" &&
-      operatorValue &&
-      operatorValue !== "" &&
-      value &&
-      value !== ""
+export const getOnlyCompleteFilters = (filters: Filter[]) =>
+  filters.filter(({ columnField, operatorValue, value }) =>
+    [columnField, operatorValue, value].every((field) => field && field !== "")
   );
 
-export const getNormalizedFilters = (filters = []) => {
+export const getNormalizedFilters = (filters?: Filter[]) => {
   try {
     return getOnlyCompleteFilters(filters).map((filter, index) => {
       if (typeof filter === "object") {
@@ -126,21 +129,28 @@ export const getNormalizedFilters = (filters = []) => {
 const getIncomingFiltersWithInitialValues = ({
   incomingFilters,
   columnOptions,
+}: {
+  incomingFilters: Filter[];
+  columnOptions: OperatorOptions[];
 }) =>
   incomingFilters.map((inFilter) => ({
     ...inFilter,
-    ...((!inFilter.columnField || inFilter.columnField === "") && {
+    ...((!inFilter.columnField || inFilter.columnField.value === "") && {
       columnField: columnOptions[0],
     }),
-    ...((!inFilter.operatorValue || inFilter.operatorValue === "") && {
+    ...((!inFilter.operatorValue || inFilter.operatorValue.value === "") && {
       operatorValue: operatorOptions[0],
     }),
   }));
 
 export const getNewFilters = ({
-  currentStateFilters = [],
+  currentStateFilters,
   incomingFilters,
   columnOptions,
+}: {
+  currentStateFilters: Filter[];
+  incomingFilters: Filter[];
+  columnOptions: OperatorOptions[];
 }) => {
   const isAddingFilter = currentStateFilters.length < incomingFilters?.length;
   const mustUpdateDataWithFilters =
@@ -158,7 +168,9 @@ export const getNewFilters = ({
   return { mustUpdateDataWithFilters, newFilters };
 };
 
-export const getInitialState = ({ firstColumn = {} }) => ({
+export const getInitialState = ({
+  firstColumn = { value: "", label: "" },
+}): { filters: Filter[] } => ({
   filters: [
     {
       columnField: {

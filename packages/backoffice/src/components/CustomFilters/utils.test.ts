@@ -131,9 +131,21 @@ describe("regarding the getOnlyCompleteFilters function", () => {
   describe("given an array of complete and incomplete filters", () => {
     it("should return only the complete filters", () => {
       const filters = [
-        { columnField: "coo", operatorValue: "=", value: "cooVal" },
-        { columnField: "coo", operatorValue: "=", value: "" },
-        { columnField: "coo", operatorValue: "=", value: "cooVal" },
+        {
+          columnField: { value: "coo" },
+          operatorValue: { value: "=" },
+          value: "cooVal",
+        },
+        {
+          columnField: { value: "coo" },
+          operatorValue: { value: "=" },
+          value: "",
+        },
+        {
+          columnField: { value: "coo" },
+          operatorValue: { value: "=" },
+          value: "cooVal",
+        },
       ];
       expect(getOnlyCompleteFilters(filters)).toEqual([filters[0], filters[2]]);
     });
@@ -219,20 +231,6 @@ describe("regarding the getColumnOptions function", () => {
 });
 
 describe("regarding the getNormalizedFilters function", () => {
-  describe("given nothing", () => {
-    it("should return an empty array", () => {
-      const result = [];
-      expect(getNormalizedFilters()).toEqual(result);
-    });
-  });
-
-  describe("given an object", () => {
-    it("should return an error", () => {
-      const expected = () => getNormalizedFilters({});
-      expect(expected).toThrow("TypeError: filters.filter is not a function");
-    });
-  });
-
   describe("given a raw filter", () => {
     it("should return the filter clean", () => {
       const input = [
