@@ -1,14 +1,41 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { fileToBase64 } from "../../utils/file";
-import CropDialog from "../CropDialog";
+import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   Upload as UploadIcon,
   AddPhotoAlternate as AddPhotoIcon,
 } from "@mui/icons-material";
+import styled from "styled-components";
+import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
+import { fileToBase64 } from "../../utils/file";
+import CropDialog from "../CropDialog";
 
-const getSrc = (source) => {
+type Source = {
+  uri: string;
+  name: string;
+  file?: File;
+};
+
+type ImageFit = "cover" | "contain";
+
+type ImageUploaderProps = {
+  onChange?: (file?: File) => void;
+  canEdit?: boolean;
+  editTitle?: string;
+  dropPlaceholder?: string;
+  uploadMessage?: string;
+  source?: Source;
+  containerStyle?: React.CSSProperties;
+  imageFit?: ImageFit;
+};
+
+type State = {
+  isEditing: boolean;
+  localSource: Partial<Source>;
+  nextImage: { src: string } | null;
+  isDroping: boolean;
+};
+
+const getSrc = (source: Source) => {
   if (source && source.uri) {
     return source.uri;
   }
@@ -16,16 +43,16 @@ const getSrc = (source) => {
 };
 
 const ImageUploader = ({
-  onChange = () => {},
+  onChange,
   canEdit = true,
   editTitle = "CAMBIAR IMAGEN",
   dropPlaceholder = "SOLTAR IMAGEN",
   uploadMessage = "upload cover image",
-  source = {},
+  source,
   containerStyle = {},
   imageFit = "cover",
-}) => {
-  const [state, setState] = useState({
+}: ImageUploaderProps) => {
+  const [state, setState] = useState<State>({
     isEditing: false,
     localSource: source,
     nextImage: null,
@@ -40,17 +67,21 @@ const ImageUploader = ({
 
   const hasImage = !!image.src;
 
-  const updateState = (nextState) =>
+  const updateState = (nextState: Partial<State>) =>
     setState((currentState) => ({ ...currentState, ...nextState }));
 
-  const onCroppedImage = (file) => {
+  const onCroppedImage = (file: File) => {
     updateState({ isEditing: false });
 
     if (file) {
-      fileToBase64(file).then(({ base64 }) => {
-        updateState({ nextImage: { src: base64 } });
-        onChange(file);
-      });
+      fileToBase64(file)
+        .then(({ base64 }) => {
+          updateState({ nextImage: { src: base64 } });
+          onChange(file);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     } else {
       updateState({ nextImage: { src: null } });
       onChange();
@@ -103,7 +134,7 @@ const ImageUploader = ({
           {canEdit && (
             <HoverContainer
               hasImage={hasImage}
-              onClick={(e) => updateState({ isEditing: true })}
+              onClick={() => updateState({ isEditing: true })}
             >
               <ImagePlaceholder className="placeholder">
                 {hasImage ? editTitle : ""}
@@ -126,7 +157,7 @@ const Container = styled.div`
   width: 100%;
   padding: 10px;
   border: 1px dashed
-    ${({ theme }) =>
+    ${({ theme }: { theme?: Theme }) =>
       theme.palette.mode === "light" ? "rgba(175, 175, 175, 0.8)" : "#ffffff"};
 `;
 
@@ -143,7 +174,7 @@ const Image = styled.img`
   height: 100%;
   min-height: 180px;
   max-height: 300px;
-  object-fit: ${({ imageFit = "cover" }) => imageFit};
+  object-fit: ${({ imageFit = "cover" }: { imageFit?: ImageFit }) => imageFit};
 `;
 
 const HoverContainer = styled.div`
@@ -182,7 +213,7 @@ const UploadMessage = styled.div`
   font-size: 13px;
   line-height: 22px;
   letter-spacing: 0.46px;
-  color: ${({ theme }) => theme.palette.primary.main};
+  color: ${({ theme }: { theme?: Theme }) => theme?.palette?.primary?.main};
 `;
 
 export default ImageUploader;
