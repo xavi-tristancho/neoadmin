@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 import styled from "styled-components";
 import {
   NavBar,
@@ -53,7 +54,7 @@ const Home = () => {
 
   return (
     <>
-      <head>
+      <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
 
@@ -69,7 +70,7 @@ const Home = () => {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content="metaImage" />
-      </head>
+      </Head>
 
       <div style={{ overflow: "hidden" }}>
         <ToastContainer theme="dark" />
