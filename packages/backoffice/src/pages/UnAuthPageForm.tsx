@@ -5,7 +5,6 @@ import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { Theme } from "../styles/theme";
 import UnAuthForm from "../components/UnAuthForm";
 import useNotiAlert from "../utils/NotiAlert/useNotiAlert";
-// @ts-ignore
 import { ReactComponent as BackgroundImg } from "../images/login_bg.svg";
 import responsive from "../utils/responsive";
 import { someRequiredValuesAreEmpty } from "../utils/common";

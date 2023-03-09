@@ -1,3 +1,4 @@
+import { CSSObject } from "@emotion/react";
 import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { MultiSelectField } from "./utils/inputs/multi-select/types";
 
@@ -20,6 +21,8 @@ export type DefaultField = {
   renderBefore?: () => JSX.Element;
   renderAfter?: () => JSX.Element;
   isValid?: (value: unknown) => unknown;
+  relation?: Relation;
+  options?: Option[];
 };
 
 export type ShowFn = boolean | ((item: unknownObject[]) => boolean);
@@ -39,3 +42,16 @@ export type Field =
       relation?: never;
     })
   | MultiSelectField;
+
+export type Option = {
+  label?: string;
+  value: string;
+  default?: boolean;
+  [key: string]: unknown;
+};
+
+export type Relation = {
+  name: string;
+  nameProps: string[];
+  primaryKey: string;
+};

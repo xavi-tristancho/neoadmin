@@ -1,9 +1,8 @@
-import React from "react";
-import { fieldsMapper } from "../../../FormGenerator/FormGenerator";
 import { Button } from "@mui/material";
 import styled from "styled-components";
-import AddIcon from "../../../assets/icons/add.svg";
-import DeleteIcon from "../../../assets/icons/trash.svg";
+import { fieldsMapper } from "../../../FormGenerator/FormGenerator";
+import { ReactComponent as AddIcon } from "../../../assets/icons/add.svg";
+import { ReactComponent as DeleteIcon } from "../../../assets/icons/trash.svg";
 
 export const RelationListInput = ({ field, state, onChange, config }) => {
   const { isCreatable = true } = field?.options || {};
