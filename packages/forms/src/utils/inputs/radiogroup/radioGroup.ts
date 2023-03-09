@@ -78,10 +78,8 @@ const getSelectedOptions = ({
   state: unknownObject;
   relation: Relation;
   property: string;
-}): string =>
-  state.data[relation?.name]
-    ? (state.data[relation.name] as string)
-    : (state.data[property] as string);
+}): unknown =>
+  state.data[relation?.name] ? state.data[relation.name] : state.data[property];
 
 const getOptions = ({
   state,
