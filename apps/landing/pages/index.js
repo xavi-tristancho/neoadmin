@@ -53,7 +53,7 @@ const Home = () => {
 
   return (
     <>
-      <Head>
+      <head>
         <title>{title}</title>
         <meta name="description" content={description} />
 
@@ -65,14 +65,11 @@ const Home = () => {
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="neoadmin.neoco.dev" />
-        <meta
-          property="twitter:url"
-          content="https://neoadmin.neoco.dev/es-ES/"
-        />
+        <meta property="twitter:url" content="https://neoadmin.neoco.dev/" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content="metaImage" />
-      </Head>
+      </head>
 
       <div style={{ overflow: "hidden" }}>
         <ToastContainer theme="dark" />
