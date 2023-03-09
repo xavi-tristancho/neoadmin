@@ -1,16 +1,26 @@
-import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
 import { useTranslation } from "react-i18next";
 import { Typography, CardActions, Button } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
 import {
   getPageNewLiteral,
   getPageTitleLiteral,
 } from "../../../languages/utils";
-import { useTheme } from "@mui/material/styles";
 
-const ModelTableTopPage = ({ pageName, isCreatable, path }) => {
+type ModelTableTopPageProps = {
+  pageName: string;
+  isCreatable: boolean;
+  path: string;
+};
+
+const ModelTableTopPage = ({
+  pageName,
+  isCreatable,
+  path,
+}: ModelTableTopPageProps) => {
   const { t } = useTranslation();
   const theme = useTheme();
   return (
@@ -74,7 +84,7 @@ const CustomButton = styled(styled(Button)`
     box-shadow: none;
     padding-left: 12px;
   }
-`)(({ theme }) => ({
+`)(({ theme }: { theme: Theme }) => ({
   ...(theme?.palette?.neoAdmin?.button
     ? { "&&": theme?.palette?.neoAdmin?.button }
     : {}),
