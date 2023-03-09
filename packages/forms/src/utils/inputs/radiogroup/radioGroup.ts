@@ -30,7 +30,7 @@ const radiogroup = ({
     );
   }
 
-  const selectedOption: string = getSelectedOptions({
+  const selectedOption: unknown = getSelectedOptions({
     state,
     relation,
     property,
