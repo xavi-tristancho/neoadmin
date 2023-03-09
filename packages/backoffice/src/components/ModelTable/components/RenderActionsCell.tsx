@@ -1,20 +1,38 @@
-import React from "react";
 import styled from "styled-components";
 import { useTheme } from "@mui/material/styles";
 import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
+
+type GetItemActionsFn = (props: unknownObject) => {
+  isEditable: boolean;
+  isDeletable: boolean;
+};
+
+type RenderActionsCellProps = {
+  item: unknownObject & { id: number };
+  getItemActions: GetItemActionsFn;
+  onDeleteClick: (item: unknownObject) => void;
+  updateState: (props: unknownObject) => void;
+  renderActions: (props: unknownObject) => unknownObject;
+  remoteData?: unknownObject;
+  isEditable: boolean;
+  isDeletable: boolean;
+  path: string;
+};
 
 const RenderActionsCell = ({
   item,
-  getItemActions = () => {},
-  onDeleteClick = () => {},
-  updateState = () => {},
+  getItemActions,
+  onDeleteClick,
+  updateState,
   renderActions,
   remoteData,
   isEditable,
   isDeletable,
   path,
-}) => {
+}: RenderActionsCellProps) => {
   const theme = useTheme();
   const itemActions = getItemActions({
     item,
@@ -64,12 +82,12 @@ const ActionsContainer = styled.div`
 `;
 
 const Edit = styled(EditIcon)`
-  ${({ theme }) =>
+  ${({ theme }: { theme: Theme }) =>
     theme?.palette?.mode === "dark" ? "&& {color: #ffffff}" : ""}
 `;
 
 const Delete = styled(DeleteIcon)`
-  ${({ theme }) =>
+  ${({ theme }: { theme: Theme }) =>
     theme?.palette?.mode === "dark" ? "&& {color: #ffffff}" : ""}
 `;
 
