@@ -66,10 +66,10 @@ const Home = () => {
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="neoadmin.neoco.dev" />
-        <meta property="twitter:url" content="https://neoadmin.neoco.dev/" />
+        <meta property="twitter:url" content={url} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content="metaImage" />
+        <meta name="twitter:image" content={`${url}${image}`} />
       </Head>
 
       <div style={{ overflow: "hidden" }}>
