@@ -1,4 +1,3 @@
-import React from "react";
 import {
   GridToolbarContainer,
   GridToolbarColumnsButton,
@@ -10,11 +9,17 @@ import { FilterList } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+type CustomToolbarProps = {
+  isFilterable?: boolean;
+  onFiltersButtonClick?: () => void;
+  filters?: string[];
+};
+
 const CustomToolbar = ({
   isFilterable = true,
-  onFiltersButtonClick = () => {},
+  onFiltersButtonClick,
   filters = [],
-}) => {
+}: CustomToolbarProps) => {
   const { t } = useTranslation();
   const filtersAmount = filters.length;
   return (

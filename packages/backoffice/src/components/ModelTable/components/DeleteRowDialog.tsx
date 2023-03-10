@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Typography,
   Button,
@@ -10,11 +9,17 @@ import {
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
+type DeleteRowDialogProps = {
+  open: boolean;
+  onConfirmDeleteClick: () => void;
+  onCancelDeleteClick: () => void;
+};
+
 const DeleteRowDialog = ({
   open,
-  onConfirmDeleteClick = () => {},
-  onCancelDeleteClick = () => {},
-}) => {
+  onConfirmDeleteClick,
+  onCancelDeleteClick,
+}: DeleteRowDialogProps) => {
   const { t } = useTranslation();
 
   return (
