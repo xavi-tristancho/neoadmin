@@ -161,6 +161,93 @@ export default headers;
   }}
 />
 
+## Table Options
+
+The `tableOptions` object allows you to specify and customize how each field will be shown at the table.
+
+```js
+const headers = {
+  type: "CRUD",
+  options: {...},
+  sections: [
+    {
+      fields: [
+        {
+          label: "Title",
+          property: "title",
+          type: "text",
+          // highlight-start
+          tableOptions: {
+            show: true,
+            format: ({ state }) => <div>{state.title}</div>,
+          }
+          // highlight-end
+        },
+        {
+          label: "Author",
+          property: "author",
+          type: "text",
+          // highlight-start
+          tableOptions: {
+            show: (state) => !state.title && state.title === "",
+          }
+          // highlight-end
+        },
+      ],
+    }
+  ],
+};
+
+export default headers;
+```
+
+### Props
+
+<MarkdownTable
+  headers={["Name", "Type", "Default", "Description"]}
+  rows={[
+    [
+      "show",
+      "`boolean` <br>`| func`",
+      "`true`",
+      "If set to `false`, or returning a falsy value when set as a function, the input in the form will be no longer visible.<br/>When set as a function:<rc cn=signature o=show />",
+    ],
+    [
+      "format",
+      "`func`",
+      "",
+      "Function that allows you to apply a format to the value of the input. It receives an object with the whole `field`, the `state` and the `row` of each item in the table. <rc cn=signature o=format />",
+    ],
+    [
+      "filter",
+      "`object`",
+      "",
+      "It specifies base filter for the `findRequest`. With this prop you can control data when requesting it, for example, in the first load. The implementation depends on what your API expects.",
+    ],
+    [
+      "isSearchable",
+      "`boolean`",
+      "`true`",
+      "It specifies to the `findRequest` if a search through this field is going to be allowd. Like with the `filter` prop, the proper implementation of the search logic relies on your implementation and/or API",
+    ],
+  ]}
+  reactComponents={{
+    signature: {
+      component: Signature,
+      options: {
+        show: {
+          definitions: "state",
+          functionReturn: "ReactNode",
+        },
+        format: {
+          definitions: "{ field: object, state: object, row: object }",
+          functionReturn: "any",
+        },
+      },
+    },
+  }}
+/>
+
 ## Upsert Options
 
 The `upsertOptions` object allows you to specify and customize how each field will be shown and also alter/handle its value in the form.
