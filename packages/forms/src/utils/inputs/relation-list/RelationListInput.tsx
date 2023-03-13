@@ -1,15 +1,55 @@
-import { Button } from "@mui/material";
 import styled from "styled-components";
+import { Button } from "@mui/material";
+import {
+  Config,
+  ModelUpsertState,
+  unknownObject,
+} from "@neoco/neoco-backoffice/src/types";
 import { fieldsMapper } from "../../../FormGenerator/FormGenerator";
 import { ReactComponent as AddIcon } from "../../../assets/icons/add.svg";
 import { ReactComponent as DeleteIcon } from "../../../assets/icons/trash.svg";
+import { Field } from "../../../types";
+import { RelationListField } from "./types";
 
-export const RelationListInput = ({ field, state, onChange, config }) => {
+type RelationListInputProps = {
+  field: RelationListField;
+  state: ModelUpsertState;
+  onChange: (items: unknownObject[]) => void;
+  label: string;
+  config: Partial<Config>;
+};
+
+type RelationListLineProps = {
+  data: unknownObject[];
+  aux: unknownObject;
+  fields: Field[];
+  onChange: () => void;
+  onDelete: () => void;
+  isDeletable: boolean;
+  config: Partial<Config>;
+  CustomDeleteIcon: () => JSX.Element;
+  style?: React.CSSProperties;
+};
+
+type RelationListHeaderProps = {
+  title: string;
+  button: {
+    isDisabled: boolean;
+    action: (event: React.FormEvent<HTMLFormElement>) => void;
+  };
+};
+
+const RelationListInput = ({
+  field,
+  state,
+  onChange,
+  config,
+}: RelationListInputProps) => {
   const { isCreatable = true } = field?.options || {};
   const { isDeletable = true } = field?.options || {};
-  const items = state.data[field?.property];
+  const items = state.data[field.property] as unknownObject[];
 
-  const newItem =
+  const newItem: unknownObject =
     field.options?.fields.reduce(
       (reducer, key) => ({
         ...reducer,
@@ -17,6 +57,7 @@ export const RelationListInput = ({ field, state, onChange, config }) => {
       }),
       {}
     ) || {};
+
   return (
     <>
       <RelationListHeader
@@ -36,7 +77,7 @@ export const RelationListInput = ({ field, state, onChange, config }) => {
           aux={state?.aux}
           fields={field?.options?.fields || []}
           isDeletable={isDeletable}
-          onChange={(data) => {
+          onChange={(data: unknownObject) => {
             onChange(
               items.map((item, onChangeIndex) =>
                 onChangeIndex !== index ? item : { ...item, ...data }
@@ -59,8 +100,13 @@ export const RelationListInput = ({ field, state, onChange, config }) => {
   );
 };
 
-const RelationListHeader = ({ title, button }) => {
-  const { isDisabled = false, action = () => {} } = button;
+const RelationListHeader = ({ title, button }: RelationListHeaderProps) => {
+  const {
+    isDisabled = false,
+    action = () => {
+      return;
+    },
+  } = button;
   return (
     <HeaderContainer>
       <Label>{title}</Label>
@@ -76,7 +122,7 @@ const RelationListHeader = ({ title, button }) => {
 };
 
 const RelationListLine = ({
-  data = [],
+  data,
   aux,
   fields,
   onChange,
@@ -85,7 +131,7 @@ const RelationListLine = ({
   config,
   CustomDeleteIcon,
   ...props
-}) => {
+}: RelationListLineProps) => {
   const inputs = fieldsMapper({
     fields,
     state: { data, aux },
@@ -131,7 +177,8 @@ const AddButton = styled(Button)`
   border: 1px solid white;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }: { theme: { primary: string } }): string =>
+    theme.primary};
 `;
 
 const DeleteButton = styled(Button)`

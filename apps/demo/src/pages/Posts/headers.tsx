@@ -82,6 +82,33 @@ const headers: Header = {
           },
           type: "checkbox",
         },
+        {
+          label: "Minutage",
+          property: "minutes",
+          name: "minutes",
+          type: "relation-list",
+          tableOptions: {
+            show: false,
+          },
+          options: {
+            isCreatable: true,
+            fields: [
+              {
+                property: "name",
+                label: "Nombre",
+              },
+              {
+                property: "time",
+                label: "Minuto",
+                type: "time",
+                step: 1,
+              },
+            ],
+          },
+          style: {
+            flexBasis: "100%",
+          },
+        },
       ],
     },
   ],
