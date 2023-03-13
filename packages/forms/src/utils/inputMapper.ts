@@ -1,9 +1,16 @@
+import { ModelUpsertState } from "@neoco/neoco-backoffice/src/types";
+import { Field } from "../types";
 import { isFunction } from "./common";
 
-const defaultFormat = ({ state, field }) =>
-  state.data[field.name || field.property];
+const defaultFormat = ({
+  state,
+  field,
+}: {
+  state: ModelUpsertState;
+  field: Field;
+}): unknown => state.data[field.name || field.property];
 
-export const getFromat = ({ field }) =>
+export const getFromat = ({ field }: { field: Field }): unknown =>
   field.upsertOptions?.format || defaultFormat;
 
 const defaultHandleChange =
