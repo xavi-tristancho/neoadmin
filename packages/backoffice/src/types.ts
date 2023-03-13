@@ -1,6 +1,11 @@
 import { Field } from "@neoco/neoco-form/src/types";
 import { BrowserRouterProps, RouteChildrenProps } from "react-router-dom";
 
+export type ModelUpsertState = {
+  data: unknownObject;
+  aux: unknownObject;
+};
+
 export type Config = {
   customTheme: unknownObject;
   renderThemeProvider: boolean;
@@ -10,7 +15,7 @@ export type Config = {
 };
 
 export type unknownObject = {
-  [key: string]: unknown;
+  [key: string]: unknown | unknownObject;
 };
 
 export type Section = {

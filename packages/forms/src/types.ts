@@ -1,6 +1,6 @@
-import { CSSObject } from "@emotion/react";
 import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { MultiSelectField } from "./utils/inputs/multi-select/types";
+import { RelationListField } from "./utils/inputs/relation-list/types";
 
 export type DefaultField = {
   id?: string | number;
@@ -36,12 +36,12 @@ export type Field =
         | "html"
         | "checkbox"
         | "email"
-        | "password"
-        | "relation-list";
+        | "password";
 
       relation?: never;
     })
-  | MultiSelectField;
+  | MultiSelectField
+  | RelationListField;
 
 export type Option = {
   label?: string;

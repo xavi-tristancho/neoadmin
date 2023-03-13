@@ -9,4 +9,6 @@ export type RelationListField =
         isDeletable: boolean;
         fields: Field[];
       };
+      CustomDeleteIcon: () => JSX.Element;
+      lineContainerStyles: React.CSSProperties;
     };
