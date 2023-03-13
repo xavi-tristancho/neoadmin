@@ -1,6 +1,8 @@
 import { ModelUpsertState } from "@neoco/neoco-backoffice/src/types";
 import { Field } from "../types";
-import { isFunction } from "./common";
+
+type HandleChange = (nextState: { [key: string]: unknown }) => void;
+type CustomEvent = { target: { name: string; value: unknown } };
 
 const defaultFormat = ({
   state,
@@ -14,22 +16,36 @@ export const getFromat = ({ field }: { field: Field }): unknown =>
   field.upsertOptions?.format || defaultFormat;
 
 const defaultHandleChange =
-  (handleChange) =>
-  ({ target: { name, value } }) => {
-    handleChange({ [name?.length ? name : field.property]: value });
+  (handleChange: HandleChange) =>
+  ({ target: { name, value } }: CustomEvent) => {
+    handleChange({ [name]: value });
   };
 
-export const getHandleChange = ({ field, handleChange }) =>
-  field.upsertOptions?.onChange
-    ? ({ target: { name, value } }) => {
-        Promise.resolve(field.upsertOptions?.onChange({ name, value })).then(
-          handleChange
-        );
-      }
-    : defaultHandleChange(handleChange);
+export const getHandleChange = ({
+  field,
+  handleChange,
+}: {
+  field: Field;
+  handleChange: HandleChange;
+}): (({ target: { name, value } }: CustomEvent) => Promise<void> | void) => {
+  if (field.upsertOptions?.onChange) {
+    return async ({ target: { name, value } }: CustomEvent): Promise<void> => {
+      const nextState = await field.upsertOptions?.onChange({ name, value });
+      handleChange(nextState);
+    };
+  } else {
+    return defaultHandleChange(handleChange);
+  }
+};
 
-export const getDisabled = ({ field, state }) => {
+export const getDisabled = ({
+  field,
+  state,
+}: {
+  state: ModelUpsertState;
+  field: Field;
+}): boolean => {
   const { disabled = false } = field;
 
-  return isFunction(disabled) ? disabled({ field, state }) : disabled;
+  return typeof disabled === "function" ? disabled({ field, state }) : disabled;
 };

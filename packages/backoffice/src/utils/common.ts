@@ -7,7 +7,7 @@ type SomeRequiredValuesAreEmptyFn = (props: {
 }) => boolean;
 
 type RemoveIfNotVisibleFn = (props: {
-  item: unknownObject[];
+  item: unknownObject;
   pageType: string;
 }) => (field: {
   [key: string]: {
