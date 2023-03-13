@@ -2,12 +2,16 @@ import { describe, it, expect } from "vitest";
 import { getIndexInArray } from "./arrays";
 import { removeIfNotVisible } from "./common";
 
+type Section = { fields: { property: string }[] };
+
 describe("reagarding the utils", () => {
   describe("regarding the getIndexInArray function", () => {
     it("should return the correct index", () => {
-      const currentSection = { fields: [{ property: "c" }, { property: "d" }] };
+      const currentSection: Section = {
+        fields: [{ property: "c" }, { property: "d" }],
+      };
 
-      const sections = [
+      const sections: Section[] = [
         { fields: [{ property: "a" }, { property: "b" }] },
         { fields: [{ property: "aa" }, { property: "bb" }] },
         { fields: [{ property: "aaa" }, { property: "bbb" }] },

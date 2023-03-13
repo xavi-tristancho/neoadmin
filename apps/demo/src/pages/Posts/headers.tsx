@@ -51,12 +51,6 @@ const headers: Header = {
           label: "Title",
           property: "title",
           type: "text",
-          upsertOptions: {
-            onChange: ({ name, value }) => ({
-              slug: value.replace(" ", "_"),
-              [name]: value,
-            }),
-          },
         },
         {
           label: "Date",
