@@ -1,13 +1,12 @@
-import Head from 'next/head';
-import 'styles/global.css';
+import Head from "next/head";
+import "styles/global.css";
 
-const TAG_MANAGER_ID = 'GTM-5CC6BGX';
+const TAG_MANAGER_ID = "GTM-5CC6BGX";
 
 const App = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>neoAdmin</title>
         <link rel="icon" href="/favicon.png" />
         <meta
           name="viewport"

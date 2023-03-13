@@ -3,6 +3,11 @@ import categories from "snippets/categories";
 import customPage from "snippets/customPage";
 
 export default {
+  meta: {
+    title: "neoAdmin - Build admin panels in hours",
+    description:
+      "A premium library that helps developers build internal tools. Like a template but better",
+  },
   landing: {
     title: "A ReactJS library for building Admin Panels and CMS.",
     description: [
