@@ -1,7 +1,11 @@
+type RemoveIfNotVisibleProps2 = (
+  item?: unknown
+) => (field?: { upsertOptions?: { show?: unknown } }) => unknown;
+
 export const isFunction = (prop: unknown): boolean =>
   typeof prop === "function";
 
-export const removeIfNotVisible: RemoveIfNotVisibleProps =
+export const removeIfNotVisible: RemoveIfNotVisibleProps2 =
   (item) =>
   (field = {}) => {
     const { upsertOptions: { show } = {} } = field;
@@ -10,9 +14,3 @@ export const removeIfNotVisible: RemoveIfNotVisibleProps =
 
     return isUndefined ? true : value;
   };
-
-type RemoveIfNotVisibleProps = (
-  item: unknown
-) => (
-  field: { upsertOptions: { show: unknown } | unknown } | unknown
-) => unknown;
