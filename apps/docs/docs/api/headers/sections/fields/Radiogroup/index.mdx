@@ -1,0 +1,119 @@
+---
+id: "radiogroup"
+title: Radiogroup
+sidebar_position: 1
+---
+
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+import { Signature } from "@site/src/components/ui/Signature";
+import { WrapperLink } from "@site/src/components/ui/Link";
+
+The Radiogroup is a type of `field`. Is the representation of a group of radio buttons in which only one option can be selected at a time.
+When defining a `field` of type `radiogroup` extra properties need to be defined. Such as `options`.
+You can control its representation with some extra properties either:
+
+### Example
+
+```js
+import { CustomFieldsContainer } from "components";
+
+const header = {
+  type: "CRUD",
+  options: {...},
+  sections: [
+    {
+      fields: [
+        // highlight-start
+        {
+          property: "state",
+          type: "radiogroup",
+          options: [
+            { label: "Published", value: "published" },
+            { label: "Unpublished", value: "unpublished" },
+            { label: "In Review", value: "in_review" },
+          ]
+        },
+      // highlight-end
+      ],
+    }
+  ],
+};
+
+export default headers;
+```
+
+### Props
+
+Props of [`field`](/docs/api/headers/sections/fields#props) are also available.
+
+<MarkdownTable
+  headers={["Name", "Type", "Default", "Description"]}
+  rows={[
+    [
+      "options*",
+      "`Array<object>`",
+      "",
+      "These are the radio-buttons (options) that will be shown. <br/>By specifying this prop the options are static. If you want the options to be requested (dynamic) leave this prop `undefined` and specify `relation`. It's an array of objects of type <rc cn=externalLink o=formControlLabel />.",
+    ],
+    [
+      "relation*",
+      "`object`",
+      "",
+      "[`Relation`](#relation) object that allows the options to be dynamic as they are requested to your API. Required if no options are defined.",
+    ],
+    [
+      "control",
+      "`element`",
+      "",
+      "A control element for the `FormControlLabel` to render. If it is not set, it renders the `Radio` component.",
+    ],
+    [
+      "color",
+      "<div style='min-width: 180px'>`'default'` <br>`| 'primary'` <br>`| 'secondary'` <br>`| 'error'` <br>`| 'info'` <br>`| 'success'` <br>`| 'warning'` <br>`| string`</div>",
+      "`'primary'`",
+      "The color of the `Radio` component if `control` is `undefined`. It supports both default and custom theme colors.",
+    ],
+  ]}
+  reactComponents={{
+    externalLink: {
+      component: WrapperLink,
+      options: {
+        formControlLabel: {
+          url: "https://mui.com/material-ui/api/form-control-label/",
+          children: "FormControlLabel",
+        },
+      },
+      radio: {
+        formControlLabel: {
+          url: "https://mui.com/material-ui/api/radio/",
+          children: "Radio",
+        },
+      },
+    },
+  }}
+/>
+
+## Relation
+
+### Props
+
+<MarkdownTable
+  headers={["Name", "Type", "Default", "Description"]}
+  rows={[
+    [
+      "name*",
+      "`string`",
+      "",
+      "The name of the model requested in order to get the corresponding set of options.",
+    ],
+    ["nameProps*", "`Array<string>`", "", ""],
+    [
+      "primaryKey*",
+      "`string`",
+      "`id`",
+      "The matching key name of the object received in the response of the request in order to get the matching option.",
+    ],
+  ]}
+/>
+
+---
