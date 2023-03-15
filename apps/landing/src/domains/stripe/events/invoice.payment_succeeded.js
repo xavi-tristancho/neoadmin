@@ -31,28 +31,13 @@ export async function handler(event) {
     try {
       await client.send(createUserCommand);
       await client.send(addUserToGroupCommand);
-      const data = await client.send(createAccessKeyCommand);
+      const { AccessKey } = await client.send(createAccessKeyCommand);
+      const { AccessKeyId, SecretAccessKey } = AccessKey;
 
-      console.log({ data });
-
-      // process data.
+      // Send email
     } catch (error) {
       console.error({ error });
     }
-
-    // iam.createUser(params, function (err, data) {
-    //   if (err) {
-    //     console.log("Error", err);
-    //   } else {
-    //     iam.addUserToGroup(
-    //       { ...params, GroupName: NEOADMIN_IAM_GROUP },
-    //       function (err, data) {
-    //         if (err) console.log(err, err.stack); // an error occurred
-    //         else console.log(data); // successful response
-    //       }
-    //     );
-    //   }
-    // });
 
     return { message: "Event handled" };
   }
