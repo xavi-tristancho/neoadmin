@@ -38,15 +38,15 @@ describe("this", () => {
         {
           field: "concept",
           flex: 1,
-          headerName: "pages.undefined.model.concept",
-          name: "pages.undefined.model.concept",
+          headerName: "pages.test.model.concept",
+          name: "pages.test.model.concept",
           property: "concept",
         },
         {
           field: "hours",
           flex: 1,
-          headerName: "pages.undefined.model.hours",
-          name: "pages.undefined.model.hours",
+          headerName: "pages.test.model.hours",
+          name: "pages.test.model.hours",
           property: "hours",
         },
       ]);
