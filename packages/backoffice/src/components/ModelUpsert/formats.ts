@@ -1,7 +1,28 @@
-export const image = ({ headers, beforeSave, field, key, data }) => {
-  const image = data[key];
-  const isNewFile = image?.name;
-  const { uploadFileRequest } = headers?.options?.requests;
+import { Field } from "@neoco/neoco-form/src/types";
+import { Header, ModelUpsertState, unknownObject } from "../../types";
+
+const image = ({
+  headers,
+  beforeSave,
+  field,
+  key,
+  data,
+}: {
+  headers: Header;
+  beforeSave: ({
+    state,
+    field,
+  }: {
+    state: ModelUpsertState;
+    field: Field;
+  }) => unknownObject;
+  field: Field;
+  key: string;
+  data: unknownObject;
+}) => {
+  const image: unknown = data[key];
+  const isNewFile: unknown = image?.name;
+  const { uploadFileRequest } = headers.options.requests;
   const shouldUpload = typeof image !== "undefined" && isNewFile;
 
   if (shouldUpload && typeof uploadFileRequest !== "function") {
@@ -18,7 +39,23 @@ export const image = ({ headers, beforeSave, field, key, data }) => {
     : Promise.resolve({ [key]: image });
 };
 
-export const defaultBeforeSave = ({ beforeSave, field, key, data }) => {
+const defaultBeforeSave = ({
+  beforeSave,
+  field,
+  key,
+  data,
+}: {
+  beforeSave: ({
+    state,
+    field,
+  }: {
+    state: ModelUpsertState;
+    field: Field;
+  }) => unknownObject;
+  field: Field;
+  key: string;
+  data: unknownObject;
+}) => {
   return Promise.resolve({ [key]: beforeSave({ state: data, field }) });
 };
 
