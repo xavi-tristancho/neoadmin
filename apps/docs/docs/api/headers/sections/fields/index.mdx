@@ -6,6 +6,7 @@ sidebar_position: 2
 
 import { MarkdownTable } from "@site/src/components/MarkdownTable";
 import { Signature } from "@site/src/components/ui/Signature";
+import { WrapperLink } from "@site/src/components/ui/Link";
 
 `fields` is an array of objects. Each object is meant to be a `field` that you specify what is needed to show in the Table and/or the Form with its intrinsic properties. This property is located in the root of every Section and has different variants.
 
@@ -88,7 +89,7 @@ export default headers;
       "type*",
       "<div style='min-width: 180px'>`'checkbox'` <br>`| 'date'` <br>`| 'datetime-local'` <br>`| 'email'` <br>`| 'file'` <br>`| 'file-pdf'` <br>`| 'html'` <br>`| 'image'` <br>`| 'multiselect'` <br>`| 'radiogroup'` <br>`| 'relation-list'` <br>`| 'text'` <br>`| 'textarea'` <br>`| 'time'` <br>`|  string`</div>",
       "`'text'`",
-      "Used to specify the type of input that is going to be rendered and its behavior.",
+      "Used to specify the type of input that is going to be rendered and its behavior. The listed options are controlled by neoAdmin but you can pass a valid <rc cn=externalLink o=types /> instead.",
     ],
     [
       "label",
@@ -140,6 +141,15 @@ export default headers;
     ],
   ]}
   reactComponents={{
+    externalLink: {
+      component: WrapperLink,
+      options: {
+        types: {
+          url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types",
+          children: "HTML5 input type",
+        },
+      },
+    },
     signature: {
       component: Signature,
       options: {
