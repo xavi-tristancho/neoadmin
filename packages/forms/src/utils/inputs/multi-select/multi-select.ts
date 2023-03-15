@@ -3,8 +3,8 @@ import { MultiSelectField, UnknownOption } from "./types";
 type MultiSelectProps = {
   field: MultiSelectField;
   state: {
-    data: {};
-    aux: {};
+    data: unknown;
+    aux: unknown;
   };
   handleChange: ({
     target: { name, value },
@@ -26,11 +26,11 @@ export const multiselect = ({
   state,
   handleChange,
 }: MultiSelectProps): MultiSelectOutput => {
-  const { relation } = field;
+  const { relation, property } = field;
 
   if (typeof relation === "undefined") {
     throw new Error(
-      `You must define the relation prop in ${field.property} when using multiselect controls`
+      `You must define the relation prop in ${property} when using multiselect controls`
     );
   }
 
@@ -40,10 +40,12 @@ export const multiselect = ({
 
   return {
     isMulti: relation.isMulti,
-    getOptionLabel: field.relation.format ? field.relation.format : undefined,
-    value: state.data[field.property] || "",
-    options: hasRemoteData ? state?.aux[relation.name] : relation.options,
-    onChange: (_event, value) =>
-      handleChange({ target: { name: field.property, value } }),
+    getOptionLabel: relation.format ? relation.format : undefined,
+    value: (state.data[property] || "") as string,
+    options: (hasRemoteData ? state?.aux[relation.name] : relation.options) as
+      | string[]
+      | UnknownOption[],
+    onChange: (_event, value: unknown) =>
+      handleChange({ target: { name: property, value } }),
   };
 };

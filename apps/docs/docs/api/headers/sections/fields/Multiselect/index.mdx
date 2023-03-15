@@ -1,0 +1,139 @@
+---
+id: "multiselect"
+title: Multiselect
+sidebar_position: 1
+---
+
+import { MarkdownTable } from "@site/src/components/MarkdownTable";
+import { Signature } from "@site/src/components/ui/Signature";
+import { WrapperLink } from "@site/src/components/ui/Link";
+
+The Multiselect is a type of `field`. Is the representation of a `select` type of input that can have multiple options selected if needed.
+
+### Example
+
+```js
+import { CustomFieldsContainer } from "components";
+
+const header = {
+  type: "CRUD",
+  options: {...},
+  sections: [
+    {
+      fields: [
+        // only 1 possible value selected
+        // highlight-start
+        {
+          label: "Category",
+          property: "category",
+          type: "multiselect",
+          relation: {
+            isMulti: false,
+            options: [
+              { id: 0, name: "Desserts" },
+              { id: 1, name: "Well-being" },
+              { id: 2, name: "Travels" },
+              { id: 3, name: "Gardening" },
+              { id: 4, name: "Sports" },
+              { id: 5, name: "Gadgets" },
+            ],
+            format: (category: Category) => category.name,
+          },
+          tableOptions: {
+            format: (category: Category) => category.name,
+          },
+        },
+        // highlight-end
+        // more than 1 possible values selected
+        // highlight-start
+        {
+          label: "Category",
+          property: "category",
+          type: "multiselect",
+          relation: {
+            isMulti: true,
+            options: [
+              { id: 0, name: "Desserts" },
+              { id: 1, name: "Well-being" },
+              { id: 2, name: "Travels" },
+              { id: 3, name: "Gardening" },
+              { id: 4, name: "Sports" },
+              { id: 5, name: "Gadgets" },
+            ],
+            format: (category: Category) => category.name,
+          },
+          tableOptions: {
+            format: (category: Category) => category.name,
+          },
+        },
+      // highlight-end
+      ],
+    }
+  ],
+};
+
+export default headers;
+```
+
+### Props
+
+Props of [`field`](/docs/api/headers/sections/fields#props) and [MUI - `Autocomplete`](https://mui.com/material-ui/api/autocomplete/) are also available.
+
+<MarkdownTable
+  headers={["Name", "Type", "Default", "Description"]}
+  rows={[
+    [
+      "relation*",
+      "`object`",
+      "",
+      "This prop defines the base configuration of this input. See [`Relation`](#relation) for extra information.",
+    ],
+  ]}
+/>
+
+## Relation
+
+### Props
+
+<MarkdownTable
+  headers={["Name", "Type", "Default", "Description"]}
+  rows={[
+    [
+      "options*",
+      "`Array<string | object>`",
+      "",
+      "An array of strings or objects. Those are going to be the available options of the `select`. If it is an array of `strings`, each `string` works as the `label` and `value` at the same time.<br/>When passing an object, a `label` prop needs to be specified. Next to the `label` you can add your own props. However, you can use different structures by providing a MUI `getOptionLabel` prop or the neoAdmin `format` prop. If the options are going to be static, this prop is required. If they are going to be requested, `name` is required.",
+    ],
+    [
+      "name*",
+      "string",
+      "",
+      "This prop is only required if the `options` are not set statically and will be requested. It is the name of the model to find its options between all the models requested. It works as an identifier.",
+    ],
+    [
+      "format",
+      "func",
+      "",
+      "This function allows you to have a different structure for the `options` array. It receives the current `option` and it expects to return a `string` to render as the `label`. <rc cn=signature o=format />",
+    ],
+    [
+      "fullWidth",
+      "boolean",
+      "`true`",
+      "This prop is passed to the MUI - [`FormControl`](https://mui.com/material-ui/api/form-control/). If `true`, the component will take up the full width of its container.",
+    ],
+  ]}
+  reactComponents={{
+    signature: {
+      component: Signature,
+      options: {
+        format: {
+          definitions: "option: T",
+          functionReturn: "string",
+        },
+      },
+    },
+  }}
+/>
+
+---
