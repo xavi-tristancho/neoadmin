@@ -81,19 +81,24 @@ describe("regarding the getFilterFields function", () => {
             title: "Principal",
             fields: [
               {
+                type: "text",
                 property: "customerId",
               },
               {
+                type: "text",
                 property: "name",
               },
               {
+                type: "multiselect",
                 property: "city",
                 tableOptions: {},
               },
               {
+                type: "text",
                 property: "postalCode",
               },
               {
+                type: "multiselect",
                 property: "phone",
                 tableOptions: {},
               },

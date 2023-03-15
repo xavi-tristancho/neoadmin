@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Header, unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { Field } from "@neoco/neoco-form/src/types";
 import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
@@ -72,7 +73,6 @@ export const getFields: GetFieldsFn = ({ header, t, item }) => {
       [] as Field[]
     )
     .map((element: Field) => {
-      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
       const { type, ...elementProps } = element;
       const { tableOptions } = element;
 
@@ -124,7 +124,6 @@ const getModelPK: GetModelPKFn = (header) => {
 };
 
 export const getItemIdentifier: GetItemIdentifierFn = (item, header) => {
-  console.log("hola");
   if (item?.id) {
     return item.id;
   } else {
