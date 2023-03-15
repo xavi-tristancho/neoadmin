@@ -6,5 +6,5 @@
       "public/*": ["./public/*"]
     }
   }, 
-  "include": ["src", "node_modules/cypress", "./cypress/**/*.js", "./src/styles/*", "./public/*"]
+  "include": ["src", "node_modules/cypress", "./cypress/**/*.js", "./src/styles/*", "./public/*", "vite.config.ts"]
 }
