@@ -56,12 +56,6 @@ Props of [`field`](/docs/api/headers/sections/fields#props) are also available.
       "These are the radio-buttons (options) that will be shown. <br/>By specifying this prop the options are static. If you want the options to be requested (dynamic) leave this prop `undefined` and specify `relation`. It's an array of objects of type <rc cn=externalLink o=formControlLabel />.",
     ],
     [
-      "relation*",
-      "`object`",
-      "",
-      "[`Relation`](#relation) object that allows the options to be dynamic as they are requested to your API. Required if no options are defined.",
-    ],
-    [
       "control",
       "`element`",
       "",
@@ -92,28 +86,5 @@ Props of [`field`](/docs/api/headers/sections/fields#props) are also available.
     },
   }}
 />
-
-## Relation
-
-### Props
-
-<MarkdownTable
-  headers={["Name", "Type", "Default", "Description"]}
-  rows={[
-    [
-      "name*",
-      "`string`",
-      "",
-      "The name of the model requested in order to get the corresponding set of options.",
-    ],
-    [
-      "primaryKey*",
-      "`string`",
-      "`id`",
-      "The matching key name of the object received in the response of the request in order to get the matching option.",
-    ],
-  ]}
-/>
-{/* ["nameProps*", "`Array<string>`", "", ""], */}
 
 ---
