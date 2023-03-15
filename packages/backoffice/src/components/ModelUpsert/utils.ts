@@ -1,8 +1,16 @@
+import { Field } from "@neoco/neoco-form/src/types";
+import { ModelUpsertState, unknownObject, Header } from "../../types";
 import formats from "./formats";
 
-export const beforeSave = ({ header, state }) => {
+export const beforeSave = ({
+  header,
+  state,
+}: {
+  header: Header;
+  state: ModelUpsertState;
+}) => {
   const { data } = state;
-  const fields = header.sections.reduce(
+  const fields: Field[] = header.sections.reduce(
     (reducer, { fields }) => [...reducer, ...fields],
     []
   );
@@ -42,5 +50,10 @@ export const beforeSave = ({ header, state }) => {
   }, Promise.resolve(data));
 };
 
-const defaultBeforeSave = ({ state, field }) =>
-  state[field.name || field.property];
+const defaultBeforeSave = ({
+  state,
+  field,
+}: {
+  state: ModelUpsertState;
+  field: Field;
+}): unknownObject => state[field.name || field.property];
