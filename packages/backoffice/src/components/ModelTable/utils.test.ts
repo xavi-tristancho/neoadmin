@@ -1,16 +1,32 @@
+import { Header } from "@neoco/neoco-backoffice/src/types";
 import { describe, it, expect } from "vitest";
 import { getFields, getItemIdentifier, getFilterFields } from "./utils";
 
-const header = {
+const header: Header = {
   options: {
+    name: "Test",
     primaryKey: "concept",
+    route: { path: "/test", home: true },
   },
+  type: "CRUD",
   sections: [
     {
-      fields: [{ name: "Concepto", property: "concept" }],
+      fields: [
+        {
+          type: "text",
+          name: "Concepto",
+          property: "concept",
+        },
+      ],
     },
     {
-      fields: [{ name: "Horas", property: "hours" }],
+      fields: [
+        {
+          type: "text",
+          name: "Horas",
+          property: "hours",
+        },
+      ],
     },
   ],
 };
@@ -53,7 +69,13 @@ describe("regarding the getItemIdentifier function", () => {
 describe("regarding the getFilterFields function", () => {
   describe("given a header with the fields' sections without filters", () => {
     it("should return an empty array", () => {
-      const emptyHeader = {
+      const emptyHeader: Header = {
+        options: {
+          name: "Test",
+          primaryKey: "concept",
+          route: { path: "/test", home: true },
+        },
+        type: "CRUD",
         sections: [
           {
             title: "Principal",
