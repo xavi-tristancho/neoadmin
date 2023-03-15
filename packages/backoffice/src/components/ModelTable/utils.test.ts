@@ -89,7 +89,7 @@ describe("regarding the getFilterFields function", () => {
                 property: "name",
               },
               {
-                type: "multiselect",
+                type: "text",
                 property: "city",
                 tableOptions: {},
               },
@@ -98,7 +98,7 @@ describe("regarding the getFilterFields function", () => {
                 property: "postalCode",
               },
               {
-                type: "multiselect",
+                type: "text",
                 property: "phone",
                 tableOptions: {},
               },
@@ -112,29 +112,44 @@ describe("regarding the getFilterFields function", () => {
 
   describe("given a header with the fields sections with filters", () => {
     it("should return an array with the fields that contain filters", () => {
-      const filtersHeader = {
+      const filtersHeader: Header = {
+        options: {
+          name: "Test",
+          primaryKey: "concept",
+          route: { path: "/test", home: true },
+        },
+        type: "CRUD",
         sections: [
           {
             title: "Principal",
             fields: [
               {
+                type: "multiselect",
                 property: "customerId",
-                relation: true,
-              },
-              {
-                property: "name",
-                relation: true,
-              },
-              {
-                property: "city",
-                tableOptions: {
-                  filter: true,
+                relation: {
+                  isMulti: true,
                 },
               },
               {
+                type: "multiselect",
+                property: "name",
+                relation: {
+                  isMulti: true,
+                },
+              },
+              {
+                type: "text",
+                property: "city",
+                tableOptions: {
+                  filter: (item: unknown) => String(item),
+                },
+              },
+              {
+                type: "text",
                 property: "postalCode",
               },
               {
+                type: "text",
                 property: "phone",
                 tableOptions: {
                   isSearchable: true,
