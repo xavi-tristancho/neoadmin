@@ -15,9 +15,9 @@ type GetFieldsFn = (props: {
   item?: Field[];
 }) => unknownObject[];
 
-type GetFilterFieldsFn = (header: Header) => Field[];
-
 type RemoveIfNotFilterFn = (field: Field) => unknown;
+
+type GetFilterFieldsFn = (header: Header) => Field[];
 
 type getClientSidePaginatedDataFn = (props: {
   pagination: {
@@ -105,11 +105,10 @@ export const getFilterFields: GetFilterFieldsFn = (header) => {
   );
 };
 
-const removeIfNotFilter: RemoveIfNotFilterFn = (field) => {
+const removeIfNotFilter: RemoveIfNotFilterFn = (field) =>
   field.tableOptions?.filter ||
-    field.tableOptions?.isSearchable ||
-    field.relation;
-};
+  field.tableOptions?.isSearchable ||
+  field.relation;
 
 export const getClientSidePaginatedData: getClientSidePaginatedDataFn = ({
   pagination,

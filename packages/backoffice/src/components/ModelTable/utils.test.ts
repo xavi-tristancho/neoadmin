@@ -159,11 +159,35 @@ describe("regarding the getFilterFields function", () => {
           },
         ],
       };
-      expect(getFilterFields(filtersHeader)).toStrictEqual([
-        { property: "customerId", relation: true },
-        { property: "name", relation: true },
-        { property: "city", tableOptions: { filter: true } },
-        { property: "phone", tableOptions: { isSearchable: true } },
+      expect(getFilterFields(filtersHeader)).toEqual([
+        {
+          type: "multiselect",
+          property: "customerId",
+          relation: {
+            isMulti: true,
+          },
+        },
+        {
+          type: "multiselect",
+          property: "name",
+          relation: {
+            isMulti: true,
+          },
+        },
+        {
+          type: "text",
+          property: "city",
+          tableOptions: {
+            filter: (item: unknown) => String(item),
+          },
+        },
+        {
+          type: "text",
+          property: "phone",
+          tableOptions: {
+            isSearchable: true,
+          },
+        },
       ]);
     });
   });
