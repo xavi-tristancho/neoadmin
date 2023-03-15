@@ -162,7 +162,7 @@ describe("this", () => {
             },
           ],
         };
-        expect(getFilterFields(filtersHeader)).toEqual([
+        expect(getFilterFields(filtersHeader)).toStrictEqual([
           {
             type: "multiselect",
             property: "customerId",
