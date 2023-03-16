@@ -36,7 +36,7 @@ const radiogroup = ({
     property,
   });
 
-  const hasRemoteData = !!field.options;
+  const hasRemoteData = !field.options;
   const isSelectedOptionAStringOrNumber: boolean =
     typeof selectedOption === "string" || typeof selectedOption === "number";
 
