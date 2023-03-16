@@ -6,10 +6,7 @@ import { Link } from "react-router-dom";
 import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
 
-type GetItemActionsFn = (
-  item: unknownObject,
-  state: unknownObject
-) => {
+type GetItemActionsFn = (unknownObject) => {
   isEditable: boolean;
   isDeletable: boolean;
 };
