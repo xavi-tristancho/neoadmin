@@ -1,4 +1,3 @@
-import { Dispatch } from "react";
 import styled from "styled-components";
 import { useTheme } from "@mui/material/styles";
 import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material";
@@ -6,7 +5,7 @@ import { Link } from "react-router-dom";
 import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
 
-type GetItemActionsFn = (unknownObject) => {
+type GetItemActionsFn = (props: unknownObject) => {
   isEditable: boolean;
   isDeletable: boolean;
 };
@@ -14,9 +13,9 @@ type GetItemActionsFn = (unknownObject) => {
 type RenderActionsCellProps = {
   item: unknownObject & { id: number };
   getItemActions: GetItemActionsFn;
-  onDeleteClick: Dispatch<(prevState: undefined) => undefined>;
+  onDeleteClick: (item: unknownObject) => void;
   updateState: (props: unknownObject) => void;
-  renderActions: (item: unknown) => JSX.Element;
+  renderActions: (props: unknownObject) => unknownObject;
   remoteData?: unknownObject;
   isEditable: boolean;
   isDeletable: boolean;

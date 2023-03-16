@@ -193,7 +193,7 @@ const ModelTable = ({
       .catch((error) => {
         console.error(error);
       });
-  };
+  }; 
 
   const onDataGridChange = (state: unknownObject) => {
     const { pagination, sorting } = state || {};
