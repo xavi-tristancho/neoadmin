@@ -94,7 +94,7 @@ const ModelTable = ({
   const updateAuxData = (incomingState: unknownObject) => {
     setAuxData((currentState) => ({ ...currentState, ...incomingState }));
   };
-  const updateState = (fn: SetStateAction<unknownObject[]>) => {
+  const updateState = (fn: SetStateAction<unknownObject>) => {
     setRemoteData(fn);
   };
 
