@@ -90,6 +90,10 @@ export type Header = {
       openOnClickRow?: boolean;
       pageSize?: number;
       renderBefore?: () => React.ReactNode;
+      renderAfter?: (state: unknownObject) => React.ReactNode;
+      onMount?: () => Promise<unknown>;
+      isSearchable?: boolean;
+      isFilterable?: boolean;
     };
     upsertOptions?: {
       children?: (state: unknownObject) => JSX.Element;
@@ -97,7 +101,7 @@ export type Header = {
         props: unknown,
         ModelUpsert: React.ComponentType<unknown>
       ) => React.ReactElement;
-      onMount?: () => Promise<unknownObject>;
+      onMount?: () => Promise<void>;
       renderAfter?: (state: unknownObject) => React.ReactNode;
     };
   };

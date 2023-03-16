@@ -1,29 +1,48 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/display-name */
-import React, { useState, useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState, useEffect, SetStateAction } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Card, CardContent } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import { Header, unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { sameElement, showRender } from "../../utils/common";
+import { getRoutePath } from "../../utils/routes";
+import useNotiAlert from "../../utils/NotiAlert/useNotiAlert";
+import CustomFilters from "../CustomFilters/CustomFilters";
 import {
   getFields,
   getClientSidePaginatedData,
   getFilterFields,
   getDataGridProps,
 } from "./utils";
-import { sameElement, showRender } from "../../utils/common";
-import { getRoutePath } from "../../utils/routes";
-import useNotiAlert from "../../utils/NotiAlert/useNotiAlert";
-import { useTheme } from "@mui/material/styles";
 import {
   RenderActionsCell,
   DeleteRowDialog,
   ModelTableTopPage,
 } from "./components";
-import CustomFilters from "../CustomFilters/CustomFilters";
-import styled from "styled-components";
 
-const getTableInitialState = (pageSize = 5) => ({
+type ModelTableProps = {
+  header: Header;
+  data?: unknown[];
+  styles?: unknownObject & {
+    container?: unknownObject;
+  };
+  renderActions?: (item: unknown) => JSX.Element;
+  dataGridProps?: (item: unknown) => unknown;
+  children?: (item: unknown) => JSX.Element;
+};
+
+type TableInitialState = {
+  filter: [];
+  sort: [];
+  pagination: { page?: number; pageSize?: number };
+};
+
+type GetTableInitialStateFn = (pageSize?: number) => TableInitialState;
+
+const getTableInitialState: GetTableInitialStateFn = (pageSize = 5) => ({
   filter: [],
   sort: [],
   pagination: { page: 0, pageSize },
@@ -36,44 +55,52 @@ const ModelTable = ({
   renderActions,
   dataGridProps = () => ({}),
   children,
-}) => {
+}: ModelTableProps) => {
   const { showSuccessAlert, showErrorAlert } = useNotiAlert();
   const history = useHistory();
   const {
     t,
     i18n: { language = "enUS" },
   } = useTranslation();
-  const [remoteData, setRemoteData] = useState([]);
+  const [remoteData, setRemoteData] = useState<unknownObject[]>([]);
   const [itemToDelete, setItemToDelete] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-  const [tableState, setTableState] = useState(
+  const [tableState, setTableState] = useState<TableInitialState>(
     getTableInitialState(header?.options?.tableOptions?.pageSize)
   );
   // eslint-disable-next-line no-unused-vars
-  const [auxData, setAuxData] = useState({});
+  const [auxData, setAuxData] = useState<unknownObject>({});
 
   useEffect(() => {
-    onMount().then((onMountAux) => {
-      updateAuxData(onMountAux);
-    });
+    onMount()
+      .then((onMountAux: unknownObject) => {
+        updateAuxData(onMountAux);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   useEffect(() => {
-    getData();
+    getData().catch((error) => {
+      console.error(error);
+    });
   }, [tableState.filter, tableState.pagination]);
 
-  const updateTableState = (incomingState) => {
+  const updateTableState = (incomingState: unknownObject) => {
     setTableState((currentState) => ({ ...currentState, ...incomingState }));
   };
-  const updateAuxData = (incomingState) => {
+  const updateAuxData = (incomingState: unknownObject) => {
     setAuxData((currentState) => ({ ...currentState, ...incomingState }));
   };
-  const updateState = (fn) => setRemoteData(fn);
+  const updateState = (fn: SetStateAction<unknownObject[]>) => {
+    setRemoteData(fn);
+  };
 
   const {
     findRequest = () => Promise.resolve(),
-    mapFindResponse = (response) => response,
+    mapFindResponse = (response: unknownObject[]) => response,
     deleteRequest = () => Promise.resolve(),
     countRequest = () => Promise.resolve(),
   } = header?.options?.requests || {};
@@ -108,7 +135,7 @@ const ModelTable = ({
             filterable: false,
             editable: false,
             flex: 0.5,
-            renderCell: (params) =>
+            renderCell: (params: unknown) =>
               RenderActionsCell({
                 item: params,
                 getItemActions,
@@ -151,17 +178,24 @@ const ModelTable = ({
             ...(tableState || {}),
             fields: isSearchable || isFilterable ? getFilterFields(header) : [],
             data: requestResponse,
-          }).then(({ count } = { count: 0 }) => {
-            updateTableState({
-              count,
+          })
+            .then(({ count } = { count: 0 }) => {
+              updateTableState({
+                count,
+              });
+            })
+            .catch((error) => {
+              console.error(error);
             });
-          });
         }
         return Promise.resolve(requestResponse);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
-  const onDataGridChange = (state) => {
+  const onDataGridChange = (state: unknownObject) => {
     const { pagination, sorting } = state || {};
     const hasPaginationChanged =
       pagination.page !== tableState?.pagination?.page ||
@@ -174,7 +208,7 @@ const ModelTable = ({
         pagination,
         sort: sorting?.sortModel,
         count: undefined,
-      });
+      } as unknownObject);
   };
 
   const onConfirmDeleteClick = () => {
@@ -182,7 +216,9 @@ const ModelTable = ({
       .then(() => {
         showSuccessAlert({ message: t("actions.deleteCorrect") });
         setItemToDelete(null);
-        getData();
+        getData().catch((error) => {
+          console.error(error);
+        });
       })
       .catch(() => {
         setItemToDelete(null);
