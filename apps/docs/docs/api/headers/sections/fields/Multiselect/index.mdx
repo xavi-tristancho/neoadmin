@@ -15,12 +15,40 @@ The Multiselect is a type of `field`. Is the representation of a `select` type o
 ```js
 import { CustomFieldsContainer } from "components";
 
+const defaultOptionsStructure = [
+  { id: 0, label: "Desserts" },
+  { id: 1, label: "Well-being" },
+  { id: 2, label: "Travels" },
+]
+
+const customOptionsStructure = [
+  { id: 0, name: "Desserts" },
+  { id: 1, name: "Well-being" },
+  { id: 2, name: "Travels" },
+]
+
 const header = {
   type: "CRUD",
   options: {...},
   sections: [
     {
       fields: [
+        // DEFAULT options structure
+        // highlight-start
+        {
+          label: "Category",
+          property: "category",
+          type: "multiselect",
+          relation: {
+            options: defaultOptionsStructure,
+          },
+          tableOptions: {
+            format: ({ field: { value } }) =>
+              value.label,
+          },
+        },
+        // highlight-end
+        // CUSTOM options structure
         // only 1 possible value selected
         // highlight-start
         {
@@ -28,42 +56,29 @@ const header = {
           property: "category",
           type: "multiselect",
           relation: {
-            isMulti: false,
-            options: [
-              { id: 0, name: "Desserts" },
-              { id: 1, name: "Well-being" },
-              { id: 2, name: "Travels" },
-              { id: 3, name: "Gardening" },
-              { id: 4, name: "Sports" },
-              { id: 5, name: "Gadgets" },
-            ],
-            format: (category: Category) => category.name,
+            options: customOptionsStructure,
+            format: (category) => category.name,
           },
           tableOptions: {
-            format: (category: Category) => category.name,
+            format: ({ field: { value } }) =>
+              value.name,
           },
         },
         // highlight-end
+        // DEFAULT options structure
         // more than 1 possible values selected
         // highlight-start
         {
           label: "Category",
           property: "category",
           type: "multiselect",
+          multiple: true,
           relation: {
-            isMulti: true,
-            options: [
-              { id: 0, name: "Desserts" },
-              { id: 1, name: "Well-being" },
-              { id: 2, name: "Travels" },
-              { id: 3, name: "Gardening" },
-              { id: 4, name: "Sports" },
-              { id: 5, name: "Gadgets" },
-            ],
-            format: (category: Category) => category.name,
+            options: defaultOptionsStructure,
           },
           tableOptions: {
-            format: (category: Category) => category.name,
+            format: ({ field: { value } }) =>
+              value.label,
           },
         },
       // highlight-end
@@ -87,6 +102,18 @@ Props of [`field`](/docs/api/headers/sections/fields#props) and [MUI - `Autocomp
       "`object`",
       "",
       "This prop defines the base configuration of this input. See [`Relation`](#relation) for extra information.",
+    ],
+    [
+      "fullWidth",
+      "boolean",
+      "`true`",
+      "This prop is passed to the MUI - [`FormControl`](https://mui.com/material-ui/api/form-control/). If `true`, the component will take up the full width of its container.",
+    ],
+    [
+      "renderInputProps",
+      "object",
+      "`{}`",
+      "A set of props passed to the `renderInput` element. By default, the rendered input is going to be a `TextField`.",
     ],
   ]}
 />
@@ -114,13 +141,7 @@ Props of [`field`](/docs/api/headers/sections/fields#props) and [MUI - `Autocomp
       "format",
       "func",
       "",
-      "This function allows you to have a different structure for the `options` array. It receives the current `option` and it expects to return a `string` to render as the `label`. <rc cn=signature o=format />",
-    ],
-    [
-      "fullWidth",
-      "boolean",
-      "`true`",
-      "This prop is passed to the MUI - [`FormControl`](https://mui.com/material-ui/api/form-control/). If `true`, the component will take up the full width of its container.",
+      "This function allows you to have a different structure for the `options` array. It receives the current `option` and it expects to return a `string` to be rendered as the `label`. <rc cn=signature o=format />",
     ],
   ]}
   reactComponents={{

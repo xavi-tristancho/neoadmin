@@ -14,7 +14,6 @@ type MultiSelectProps = {
 };
 
 type MultiSelectOutput = {
-  isMulti: boolean;
   getOptionLabel?: (option: UnknownOption) => string;
   value: string;
   options: string[] | UnknownOption[];
@@ -39,7 +38,6 @@ export const multiselect = ({
     typeof relation.name !== "undefined";
 
   return {
-    isMulti: relation.isMulti,
     getOptionLabel: relation.format ? relation.format : undefined,
     value: (state.data[property] || "") as string,
     options: (hasRemoteData ? state?.aux[relation.name] : relation.options) as

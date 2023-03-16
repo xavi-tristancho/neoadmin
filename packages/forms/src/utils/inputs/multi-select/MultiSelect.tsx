@@ -4,8 +4,8 @@ import {
   Autocomplete,
   TextFieldProps,
   AutocompleteProps,
+  styled,
 } from "@mui/material";
-import styled from "styled-components";
 
 type MultiSelectProps = {
   property: string;
@@ -15,7 +15,6 @@ type MultiSelectProps = {
     show: boolean;
   };
   fullWidth: boolean;
-  isMulti: boolean;
   placeholder: string;
   value: unknown;
   renderInputProps: TextFieldProps;
@@ -32,8 +31,6 @@ const MultiSelect = <
   label = name,
   upsertOptions = { show: true },
   fullWidth = true,
-  isMulti = false,
-  placeholder = "-",
   renderInputProps = {},
   ...field
 }: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> &
@@ -44,10 +41,9 @@ const MultiSelect = <
     <StyledFormControl fullWidth={fullWidth}>
       <Autocomplete
         id={property}
-        multiple={isMulti}
         limitTags={2}
         autoHighlight={true}
-        disableCloseOnSelect={isMulti}
+        disableCloseOnSelect={!!field.multiple}
         renderInput={(params) => (
           <TextField label={label} {...params} {...renderInputProps} />
         )}
