@@ -62,9 +62,9 @@ export type Header = {
         item: unknownObject
       ) => Promise<unknownObject | unknownObject[]>;
       countRequest?: (params: CountRequestParams) => Promise<number>;
-      upsertRequest(
+      upsertRequest?: (
         data: unknownObject
-      ): Promise<unknownObject | unknownObject[]>;
+      ) => Promise<unknownObject | unknownObject[]>;
       deleteRequest?: ({
         id,
       }: {
@@ -102,6 +102,7 @@ export type Header = {
         ModelUpsert: React.ComponentType<unknown>
       ) => React.ReactElement;
       onMount?: () => Promise<void>;
+      renderBefore?: (state: unknownObject) => React.ReactNode;
       renderAfter?: (state: unknownObject) => React.ReactNode;
     };
   };

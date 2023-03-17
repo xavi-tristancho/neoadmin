@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useHistory, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { FormGenerator } from "@neoco/neoco-form";
+import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardContent } from "@mui/material";
-import { beforeSave } from "./utils";
+import { FormGenerator } from "@neoco/neoco-form";
+import { useTranslation } from "react-i18next";
+import { useHistory, useParams } from "react-router-dom";
+import { Header, Section, unknownObject } from "../../types";
 import { getRoutePath } from "../../utils/routes";
 import { isEmptyObject } from "../../utils/object";
 import { getPageActionLiteral, getPageOneLiteral } from "../../languages/utils";
 import useNotiAlert from "../../utils/NotiAlert/useNotiAlert";
 import { useConfig } from "../../contexts";
-import { useTheme } from "@mui/material/styles";
+import { beforeSave } from "./utils";
 
-const getInitialState = (sections) =>
+const getInitialState = (sections: Section[]): unknownObject =>
   sections.reduce(
     (reducer, { fields }) => ({
       ...reducer,
@@ -27,7 +28,13 @@ const getInitialState = (sections) =>
     {}
   );
 
-const ModelUpsert = ({ header, children }) => {
+const ModelUpsert = ({
+  header,
+  children,
+}: {
+  header: Header;
+  children: JSX.Element;
+}): JSX.Element => {
   const { config, setConfig } = useConfig();
   const theme = useTheme();
   const [state, setState] = useState({
