@@ -4,7 +4,7 @@ import { Field } from "../types";
 type HandleChange = (nextState: { [key: string]: unknown }) => void;
 type CustomEvent = { target: { name: string; value: unknown } };
 
-const defaultFormat = ({
+export const defaultFormat = ({
   state,
   field,
 }: {

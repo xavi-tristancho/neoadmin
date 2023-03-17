@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
+import { Field } from "../types";
 import { getIndexInArray } from "./arrays";
 import { removeIfNotVisible } from "./common";
+import { defaultFormat } from "./inputMapper";
 
 type Section = { fields: { property: string }[] };
 
@@ -61,6 +63,25 @@ describe("reagarding the utils", () => {
           })
         ).toEqual(false);
       });
+    });
+  });
+
+  describe("regarding the defaultFormat function", () => {
+    it("should return the correct value", () => {
+      const state = {
+        data: {
+          a: 1,
+        },
+        aux: {
+          b: 2,
+        },
+      };
+      const field: Field = {
+        type: "text",
+        property: "a",
+        name: "b",
+      };
+      expect(defaultFormat({ state, field })).toBeUndefined();
     });
   });
 });
