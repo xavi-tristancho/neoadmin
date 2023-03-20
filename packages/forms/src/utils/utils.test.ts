@@ -6,6 +6,7 @@ import {
   CustomEvent,
   defaultFormat,
   defaultHandleChange,
+  getDisabled,
   getFromat,
   getHandleChange,
 } from "./inputMapper";
@@ -188,5 +189,46 @@ describe("regarding the getHandleChange function", () => {
       name: "name",
       value: "John",
     });
+  });
+});
+
+describe("regarding the getDisabled function", () => {
+  const state = {
+    data: { id: 1, name: "John", age: 25 },
+    aux: {
+      b: 2,
+    },
+  };
+  it("should return false by default", () => {
+    const field: Field = {
+      type: "text",
+      name: "name",
+      property: "age",
+    };
+    const result = getDisabled({ field, state });
+    expect(result).toEqual(false);
+  });
+  it("should return the value of the disabled property if it is not a function", () => {
+    const field: Field = {
+      type: "text",
+      name: "name",
+      property: "age",
+      disabled: true,
+    };
+    const result = getDisabled({ field, state });
+    expect(result).toEqual(true);
+  });
+  it("should return the result of the disabled function if it is a function", () => {
+    const field: Field = {
+      type: "text",
+      name: "name",
+      property: "age",
+      disabled: (params) => {
+        expect(params).toEqual({ field, state });
+        return true;
+      },
+    };
+    const result = getDisabled({ field, state });
+    expect(result).toEqual(true);
   });
 });
