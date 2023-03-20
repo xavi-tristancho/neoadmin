@@ -10,10 +10,10 @@ export const defaultFormat = ({
 }: {
   state: ModelUpsertState;
   field: Field;
-}): unknown => state.data[field.name || field.property];
+}): unknown => state.data[field.name] || state.data[field.property];
 
 export const getFromat = ({ field }: { field: Field }): unknown =>
-  field.upsertOptions?.format || defaultFormat;
+  field.upsertOptions?.format ?? defaultFormat;
 
 const defaultHandleChange =
   (handleChange: HandleChange) =>

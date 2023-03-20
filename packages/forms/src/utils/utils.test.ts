@@ -67,21 +67,49 @@ describe("reagarding the utils", () => {
   });
 
   describe("regarding the defaultFormat function", () => {
-    it("should return the correct value", () => {
+    it("should return state.data[field.name] if field.name is defined", () => {
       const state = {
-        data: {
-          a: 1,
-        },
+        data: { id: 1, name: "John", age: 25 },
         aux: {
           b: 2,
         },
       };
-      const field: Field = {
-        type: "text",
-        property: "a",
-        name: "b",
+      const field: Field = { type: "text", name: "name", property: "age" };
+      const result = defaultFormat({ state, field });
+      expect(result).toEqual("John");
+    });
+    it("should return state.data[field.property] if field.name is not defined", () => {
+      const state = {
+        data: { id: 1, name: "John", age: 25 },
+        aux: {
+          b: 2,
+        },
       };
-      expect(defaultFormat({ state, field })).toBeUndefined();
+      const field: Field = { type: "text", property: "age" };
+      const result = defaultFormat({ state, field });
+      expect(result).toEqual(25);
+    });
+    it("should return state.data[field.property] if field.name is defined but it doesn't exist in state.data", () => {
+      const state = {
+        data: { id: 1, name: "John", age: 25 },
+        aux: {
+          b: 2,
+        },
+      };
+      const field: Field = { type: "text", name: "test", property: "age" };
+      const result = defaultFormat({ state, field });
+      expect(result).toEqual(25);
+    });
+    it("should return undefined if field.name and field.property are not defined", () => {
+      const state = {
+        data: { id: 1, name: "John", age: 25 },
+        aux: {
+          b: 2,
+        },
+      };
+      const field: Field = { type: "text" };
+      const result = defaultFormat({ state, field });
+      expect(result).toEqual(undefined);
     });
   });
 });
