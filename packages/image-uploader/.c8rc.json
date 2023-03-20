@@ -1,6 +1,6 @@
 {
   "all": true,
   "checkCoverage": true,
-  "lines": 20,
+  "lines": 44,
   "include": ["src"]
 }
