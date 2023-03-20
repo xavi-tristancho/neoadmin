@@ -8,9 +8,9 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
       - name: check eslint
         run: npx eslint $(git diff --name-only --diff-filter=d HEAD | grep -E '\.(js|jsx|ts|tsx)$' | xargs)
