@@ -35,7 +35,7 @@ type State = {
   isDroping: boolean;
 };
 
-const getSrc = (source: Source) => {
+export const getSrc = (source: Source) => {
   if (source && source.uri) {
     return source.uri;
   }

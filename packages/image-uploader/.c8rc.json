@@ -1,7 +1,6 @@
 {
   "all": true,
   "checkCoverage": true,
-  "lines": 0,
-  "include": ["src"],
-  "reporter": "cobertura"
+  "lines": 44,
+  "include": ["src"]
 }

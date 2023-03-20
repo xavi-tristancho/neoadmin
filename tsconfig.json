@@ -15,6 +15,9 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "jsx": "react-jsx",
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "paths": {
+      "@neoco/neoco-backoffice": ["./packages/backoffice/src/index.ts"]
+    }
   }
 }
