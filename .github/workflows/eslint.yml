@@ -1,7 +1,8 @@
-name: eslint
+name: eslint check
 on: [push]
 jobs:
   Eslint_check:
     runs-on: ubuntu-latest
     steps:
-      run: npx eslint $(git diff --name-only --diff-filter=d HEAD | grep -E '\.(js|jsx|ts|tsx)$' | xargs)
+      - name: check eslint
+        run: npx eslint $(git diff --name-only --diff-filter=d HEAD | grep -E '\.(js|jsx|ts|tsx)$' | xargs)
