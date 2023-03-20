@@ -1,7 +1,38 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { handler } from "./invoice.payment_succeeded";
 import { getEvent } from "../fixtures/invoice.payment_succeeded";
 import { INCORRECT_PRODUCT } from "../errors";
+
+function FakeCommand() {
+  return () => {};
+}
+
+vi.mock("@aws-sdk/client-iam", () => ({
+  IAMClient: function () {
+    return {
+      send: (Command) => {
+        debugger;
+        return Promise.resolve(Command());
+      },
+    };
+  },
+  CreateUserCommand: FakeCommand,
+  AddUserToGroupCommand: FakeCommand,
+  CreateAccessKeyCommand: function () {
+    return () => ({
+      AccessKey: {
+        AccessKeyId: "fakeAccessKeyId",
+        SecretAccessKey: "fakeSecretAccessKey",
+      },
+    });
+  },
+}));
+
+vi.mock("mailgun.js", () => ({
+  default: function () {
+    return { client: () => ({ messages: { create: () => {} } }) };
+  },
+}));
 
 describe("given the invoice.payment_succeeded event handler function", () => {
   describe("given the invoice.payment_succeeded event type", () => {

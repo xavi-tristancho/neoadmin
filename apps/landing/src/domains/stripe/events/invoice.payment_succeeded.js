@@ -57,7 +57,6 @@ export async function handler(event) {
 
       await mg.messages.create(process.env.MAILGUN_DOMAIN, data);
     } catch (error) {
-      console.error({ error });
       return { message: "Event not handled", error };
     }
 
