@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { Field } from "../types";
 import { getIndexInArray } from "./arrays";
 import { removeIfNotVisible } from "./common";
-import { defaultFormat } from "./inputMapper";
+import { defaultFormat, getFromat } from "./inputMapper";
 
 type Section = { fields: { property: string }[] };
 
@@ -111,5 +111,29 @@ describe("reagarding the utils", () => {
       const result = defaultFormat({ state, field });
       expect(result).toEqual(undefined);
     });
+  });
+});
+
+describe("regarding the getFromat function", () => {
+  it("should return the format function if it is defined", () => {
+    const field: Field = {
+      type: "text",
+      name: "name",
+      property: "age",
+      upsertOptions: {
+        format: (value) => value as string,
+      },
+    };
+    const result = getFromat({ field });
+    expect(result).toEqual(field.upsertOptions?.format);
+  });
+  it("should return the defaultFormat function if it is not defined", () => {
+    const field: Field = {
+      type: "text",
+      name: "name",
+      property: "age",
+    };
+    const result = getFromat({ field });
+    expect(result).toEqual(defaultFormat);
   });
 });
