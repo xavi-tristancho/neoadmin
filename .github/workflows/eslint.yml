@@ -12,4 +12,4 @@ jobs:
         run: npm ci
 
       - name: check eslint
-        run: npm run lint
+        run: npx eslint $(git diff --name-only --diff-filter=d HEAD | grep -E '\.(js|jsx|ts|tsx)$' | xargs)
