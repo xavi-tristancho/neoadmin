@@ -1,8 +1,13 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { Field } from "../types";
 import { getIndexInArray } from "./arrays";
 import { removeIfNotVisible } from "./common";
-import { defaultFormat, getFromat } from "./inputMapper";
+import {
+  CustomEvent,
+  defaultFormat,
+  defaultHandleChange,
+  getFromat,
+} from "./inputMapper";
 
 type Section = { fields: { property: string }[] };
 
@@ -135,5 +140,19 @@ describe("regarding the getFromat function", () => {
     };
     const result = getFromat({ field });
     expect(result).toEqual(defaultFormat);
+  });
+});
+
+describe("regarding the defaultHandleChange function", () => {
+  it("should call the handleChange function with the correct value", () => {
+    const event: CustomEvent = {
+      target: {
+        name: "name",
+        value: "John",
+      },
+    };
+    const handleChange = vi.fn();
+    defaultHandleChange(handleChange)(event);
+    expect(handleChange).toHaveBeenCalledWith({ name: "John" });
   });
 });

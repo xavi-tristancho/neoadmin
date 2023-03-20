@@ -1,8 +1,8 @@
 import { ModelUpsertState } from "@neoco/neoco-backoffice/src/types";
 import { Field } from "../types";
 
-type HandleChange = (nextState: { [key: string]: unknown }) => void;
-type CustomEvent = { target: { name: string; value: unknown } };
+export type HandleChange = (nextState: { [key: string]: unknown }) => void;
+export type CustomEvent = { target: { name: string; value: unknown } };
 
 export const defaultFormat = ({
   state,
@@ -15,7 +15,7 @@ export const defaultFormat = ({
 export const getFromat = ({ field }: { field: Field }): unknown =>
   field.upsertOptions?.format || defaultFormat;
 
-const defaultHandleChange =
+export const defaultHandleChange =
   (handleChange: HandleChange) =>
   ({ target: { name, value } }: CustomEvent) => {
     handleChange({ [name]: value });
