@@ -9,7 +9,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: check eslint
         run: npm run lint
