@@ -40,6 +40,7 @@ describe("reagarding the utils", () => {
       it("should return false", () => {
         expect(
           removeIfNotVisible()({
+            type: "text",
             upsertOptions: { show: false },
           })
         ).toEqual(false);
@@ -50,6 +51,7 @@ describe("reagarding the utils", () => {
       it("should return true", () => {
         expect(
           removeIfNotVisible()({
+            type: "text",
             upsertOptions: {},
           })
         ).toEqual(true);
@@ -61,6 +63,7 @@ describe("reagarding the utils", () => {
         const item = { id: 1 };
         expect(
           removeIfNotVisible(item)({
+            type: "text",
             upsertOptions: {
               show: (receivedItem) => {
                 expect(receivedItem).toEqual(item);
