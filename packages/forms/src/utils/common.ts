@@ -3,6 +3,8 @@ import { Field } from "../types";
 
 type RemoveIfNotVisible = (item?: unknownObject) => (field?: Field) => boolean;
 
+export const isFunction = (prop: unknown) => typeof prop === "function";
+
 export const removeIfNotVisible: RemoveIfNotVisible = (item) => (field) => {
   if (field) {
     const { upsertOptions: { show } = {} } = field;

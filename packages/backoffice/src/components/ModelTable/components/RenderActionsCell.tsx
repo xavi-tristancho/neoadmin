@@ -1,3 +1,4 @@
+import { SetStateAction } from "react";
 import styled from "styled-components";
 import { useTheme } from "@mui/material/styles";
 import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material";
@@ -5,17 +6,15 @@ import { Link } from "react-router-dom";
 import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
 
-type GetItemActionsFn = (props: unknownObject) => {
-  isEditable: boolean;
-  isDeletable: boolean;
-};
-
 type RenderActionsCellProps = {
-  item: unknownObject & { id: number };
-  getItemActions: GetItemActionsFn;
-  onDeleteClick: (item: unknownObject) => void;
-  updateState: (props: unknownObject) => void;
-  renderActions: (props: unknownObject) => unknownObject;
+  item: unknown & { id?: string | number };
+  getItemActions: (
+    item: unknown,
+    state?: unknown
+  ) => { isEditable: boolean; isDeletable: boolean };
+  onDeleteClick: (item: unknown) => void;
+  renderActions?: (item: unknown) => JSX.Element;
+  updateState: (fn: SetStateAction<unknown[]>) => void;
   remoteData?: unknownObject;
   isEditable: boolean;
   isDeletable: boolean;
