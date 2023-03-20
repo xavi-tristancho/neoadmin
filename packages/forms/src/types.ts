@@ -22,6 +22,8 @@ export type DefaultField = {
   tableOptions?: {
     show?: ShowFn;
     format?: (item: unknown) => string;
+    filter?: (item: unknown) => string;
+    isSearchable?: boolean;
   };
   upsertOptions?: {
     show?: ShowFn;
