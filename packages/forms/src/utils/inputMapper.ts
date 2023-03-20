@@ -13,7 +13,7 @@ export const defaultFormat = ({
 }): unknown => state.data[field.name] || state.data[field.property];
 
 export const getFromat = ({ field }: { field: Field }): unknown =>
-  field.upsertOptions?.format ?? defaultFormat;
+  field.upsertOptions?.format || defaultFormat;
 
 const defaultHandleChange =
   (handleChange: HandleChange) =>
