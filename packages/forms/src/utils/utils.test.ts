@@ -7,6 +7,7 @@ import {
   defaultFormat,
   defaultHandleChange,
   getFromat,
+  getHandleChange,
 } from "./inputMapper";
 
 type Section = { fields: { property: string }[] };
@@ -154,5 +155,38 @@ describe("regarding the defaultHandleChange function", () => {
     const handleChange = vi.fn();
     defaultHandleChange(handleChange)(event);
     expect(handleChange).toHaveBeenCalledWith({ name: "John" });
+  });
+});
+
+describe("regarding the getHandleChange function", () => {
+  it("should return the defaultHandleChange function if field.upsertOptions?.onChange is not defined", () => {
+    const field: Field = {
+      type: "text",
+      name: "name",
+      property: "age",
+    };
+    const handleChange = vi.fn();
+    const defaultResult = defaultHandleChange(handleChange);
+    const result = getHandleChange({ field, handleChange });
+    expect(result.toString()).toEqual(defaultResult.toString());
+  });
+  it("should return a function that calls the onChange function if it is defined", async () => {
+    const field: Field = {
+      type: "text",
+      name: "name",
+      property: "age",
+      upsertOptions: {
+        onChange: vi.fn(),
+      },
+    };
+    const handleChange = vi.fn();
+    const result = getHandleChange({ field, handleChange });
+    expect(result).not.toEqual(defaultHandleChange(handleChange));
+    expect(field.upsertOptions?.onChange).not.toHaveBeenCalled();
+    await result({ target: { name: "name", value: "John" } });
+    expect(field.upsertOptions?.onChange).toHaveBeenCalledWith({
+      name: "name",
+      value: "John",
+    });
   });
 });

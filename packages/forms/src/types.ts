@@ -5,7 +5,7 @@ import {
 import { MultiSelectField } from "./utils/inputs/multi-select/types";
 import { RelationListField } from "./utils/inputs/relation-list/types";
 
-type OnChange = (target: {
+export type OnChange = (target: {
   name: string;
   value: unknown;
 }) => Promise<unknownObject>;
