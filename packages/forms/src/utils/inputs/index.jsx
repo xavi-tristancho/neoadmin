@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "./Input";
 import FileUploader from "./FileUploader";
-import DatePicker from "./DatePicker";
+import DatePicker from "./date-picker/DatePicker";
 import Checkbox from "./Checkbox";
 import MultiSelect from "./multi-select/MultiSelect";
 import { Editor } from "@tinymce/tinymce-react";
@@ -23,6 +23,7 @@ import { isFunction } from "../common";
 
 export const inputMapper = (props) => {
   const { field, state, handleChange = () => {}, config = {} } = props;
+  const { type = "text" } = field;
   const format = getFromat({ field });
   const fieldHandleChange = getHandleChange({ field, handleChange });
   const disabled = getDisabled({ field, state });
@@ -31,7 +32,7 @@ export const inputMapper = (props) => {
   if (isFunction(field?.upsertOptions?.component))
     return field.upsertOptions.component(props);
 
-  switch (field.type) {
+  switch (type) {
     case "textarea":
       return (
         <Input

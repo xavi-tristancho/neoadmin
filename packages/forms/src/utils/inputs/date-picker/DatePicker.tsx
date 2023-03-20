@@ -1,4 +1,3 @@
-import React from "react";
 import TextField from "@mui/material/TextField";
 import {
   DatePicker,
@@ -10,25 +9,43 @@ import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import styled from "styled-components";
 import { DateTime } from "luxon";
 
+type DatePickerInputProps = {
+  property: string;
+  name: string;
+  label: string;
+  required: boolean;
+  upsertOptions: { show: boolean } | undefined;
+  onChange: (props: {
+    target: {
+      name: string;
+      value: any;
+    };
+  }) => void;
+  fullWidth: boolean;
+  pickerType: string;
+  value: string | null;
+  renderInputProps: { [key: string]: unknown };
+};
+
 const DatePickerInput = ({
   property = "",
   name = property,
   label = name,
   required = false,
-  tableOptions = undefined,
-  upsertOptions = {},
-  onChange = () => {},
+  upsertOptions,
+  onChange = () => null,
   fullWidth = true,
   pickerType = "date",
   value = null,
   renderInputProps = {},
   ...props
-}) => {
-  const { show = true } = upsertOptions;
-  const pickerValue =
+}: DatePickerInputProps) => {
+  const { show = true } = upsertOptions || {};
+  const pickerValue: string =
     typeof value === "string" && pickerType === "time"
-      ? DateTime.fromFormat(value, "hh:mm")
-      : value;
+      ? // @ts-ignore: @typescript-eslint/no-unsafe-member-access
+        (DateTime.fromFormat(value as string, "hh:mm") as string)
+      : (value as string);
 
   let Picker;
   switch (pickerType) {
@@ -106,8 +123,8 @@ const Container = styled.div`
   margin-bottom: 20px;
 `;
 
-const zeroNeededFormat = (value = 0) => {
-  const parsedValue = parseInt(value);
+const zeroNeededFormat = (value: string | number = 0) => {
+  const parsedValue = parseInt(value as string);
   return (value || value === 0) && !Number.isNaN(parsedValue)
     ? parsedValue < 10
       ? `0${parsedValue}`

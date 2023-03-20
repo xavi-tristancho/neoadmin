@@ -4,6 +4,7 @@ import {
 } from "@neoco/neoco-backoffice/src/types";
 import { MultiSelectField } from "./utils/inputs/multi-select/types";
 import { RelationListField } from "./utils/inputs/relation-list/types";
+import { DatePickerField } from "./utils/inputs/date-picker/types";
 
 type OnChange = (target: {
   name: string;
@@ -41,41 +42,28 @@ export type DefaultField = {
   renderBefore?: () => JSX.Element;
   renderAfter?: () => JSX.Element;
   isValid?: (value: unknown) => unknown;
-  relation?: Relation;
-  options?: Option[];
-  disabled?: DisabledFn;
 };
 
-export type ShowFn = boolean | ((item: unknownObject) => boolean);
 export type DisabledFn =
   | boolean
   | (({ state, field }: { state: ModelUpsertState; field: Field }) => boolean);
 
-export type Field =
-  | (DefaultField & {
-      type:
-        | "text"
-        | "image"
-        | "date"
-        | "html"
-        | "checkbox"
-        | "email"
-        | "password";
+/** The types excluded are controlled in DatePickerField type */
+type HTMLInputTypes = Exclude<
+  React.HTMLInputTypeAttribute,
+  "time" | "date" | "datetime-local"
+>;
 
-      relation?: never;
-    })
-  | MultiSelectField
-  | RelationListField;
+export type ShowFn = boolean | ((item: unknownObject[]) => boolean);
 
-type Option = {
-  label?: string;
-  value: string;
-  default?: boolean;
-  [key: string]: unknown;
-};
-
-type Relation = {
-  name: string;
-  nameProps: string[];
-  primaryKey: string;
-};
+export type Field = DefaultField &
+  (
+    | {
+        type?: HTMLInputTypes | "html" | "file-pdf" | "radiogroup";
+        relation?: never;
+        options?: never;
+      }
+    | MultiSelectField
+    | RelationListField
+    | DatePickerField
+  );

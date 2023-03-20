@@ -101,7 +101,6 @@ const headers: Header = {
                 property: "time",
                 label: "Minuto",
                 type: "time",
-                step: 1,
               },
             ],
           },

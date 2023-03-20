@@ -87,13 +87,13 @@ const RelationListInput = ({
           onDelete={() => {
             onChange(
               items.filter(
-                (unUsedItem, onDeleteIndex) => onDeleteIndex !== index
+                (_unUsedItem, onDeleteIndex) => onDeleteIndex !== index
               )
             );
           }}
           config={config}
           CustomDeleteIcon={field.CustomDeleteIcon}
-          style={field.lineContainerStyles}
+          style={field.lineContainerStyles || {}}
         />
       ))}
     </>

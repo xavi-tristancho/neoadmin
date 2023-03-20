@@ -1,30 +1,38 @@
-import { DefaultField } from "../../../types";
+import { AutocompleteProps } from "@mui/material";
 
 export type UnknownOption = { [key: string]: unknown };
-type CommonRelationProps = { isMulti: boolean };
 
-export type MultiSelectField<T = UnknownOption> =
-  | (DefaultField & {
+type PartialAutocompleteProps = Partial<
+  AutocompleteProps<
+    UnknownOption,
+    boolean | undefined,
+    boolean | undefined,
+    boolean | undefined
+  >
+>;
+
+export type MultiSelectField =
+  | (PartialAutocompleteProps & {
       type: "multiselect";
-      relation: CommonRelationProps & {
+      relation: {
         name?: never;
         options?: string[];
         format?: never;
       };
     })
-  | (DefaultField & {
+  | (PartialAutocompleteProps & {
       type: "multiselect";
-      relation: CommonRelationProps & {
+      relation: {
         name: string;
         options?: never;
-        format: (option: T) => string;
+        format: (option: UnknownOption) => string;
       };
     })
-  | (DefaultField & {
+  | (PartialAutocompleteProps & {
       type: "multiselect";
-      relation: CommonRelationProps & {
+      relation: {
         name?: never;
-        options?: T[];
-        format: (option: T) => string;
+        options?: UnknownOption[];
+        format: (option: UnknownOption) => string;
       };
     });

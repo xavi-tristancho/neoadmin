@@ -1,14 +1,13 @@
-import { DefaultField, Field } from "../../../types";
+import { Field } from "../../../types";
 
-export type RelationListField =
-  | DefaultField & {
-      property: string;
-      type: "relation-list";
-      options: {
-        isCreatable: boolean;
-        isDeletable: boolean;
-        fields: Field[];
-      };
-      CustomDeleteIcon: () => JSX.Element;
-      lineContainerStyles: React.CSSProperties;
-    };
+export type RelationListField = {
+  property: string;
+  type: "relation-list";
+  options: {
+    isCreatable?: boolean;
+    isDeletable?: boolean;
+    fields: Field[];
+  };
+  CustomDeleteIcon?: () => JSX.Element;
+  lineContainerStyles?: React.CSSProperties;
+};

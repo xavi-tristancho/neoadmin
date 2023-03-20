@@ -11,7 +11,6 @@ const defaultField: MultiSelectField<Category> = {
   type: "multiselect",
   property: "categories",
   relation: {
-    isMulti: true,
     name: "categories",
     format: (category) => category.name,
   },
@@ -32,42 +31,18 @@ describe("regarding the multiselect utility functions", () => {
     };
 
     describe("and there is a selected option in the state", () => {
-      describe("and the isMulti is true", () => {
-        it("should return the expected props structure", () => {
-          expect(
-            multiselect({
-              field: defaultField,
-              state: defaultState,
-              handleChange,
-            })
-          ).toEqual({
-            isMulti: true,
-            value: [firstOption],
-            options,
-            onChange: expect.any(Function),
-            getOptionLabel: expect.any(Function),
-          });
-        });
-      });
-
-      describe("and the isMulti is false", () => {
-        const field = {
-          ...defaultField,
-          relation: { ...defaultField.relation, isMulti: false },
-        };
-        const state = {
-          ...defaultState,
-          data: { ...defaultState.data, categories: firstOption },
-        };
-
-        it("should return the expected props structure", () => {
-          expect(multiselect({ field, state, handleChange })).toEqual({
-            isMulti: false,
-            value: firstOption,
-            options,
-            onChange: expect.any(Function),
-            getOptionLabel: expect.any(Function),
-          });
+      it("should return the expected props structure", () => {
+        expect(
+          multiselect({
+            field: defaultField,
+            state: defaultState,
+            handleChange,
+          })
+        ).toEqual({
+          value: [firstOption],
+          options,
+          onChange: expect.any(Function),
+          getOptionLabel: expect.any(Function),
         });
       });
     });
@@ -87,26 +62,6 @@ describe("regarding the multiselect utility functions", () => {
               handleChange,
             })
           ).toEqual({
-            isMulti: true,
-            value: "",
-            options,
-            onChange: expect.any(Function),
-            getOptionLabel: expect.any(Function),
-          });
-        });
-      });
-
-      describe("and the isMulti is false", () => {
-        const field = {
-          ...defaultField,
-          relation: { ...defaultField.relation, isMulti: false },
-        };
-
-        it("should return the expected props structure", () => {
-          expect(
-            multiselect({ field, state: emptyState, handleChange })
-          ).toEqual({
-            isMulti: false,
             value: "",
             options,
             onChange: expect.any(Function),
@@ -127,49 +82,24 @@ describe("regarding the multiselect utility functions", () => {
       type: "multiselect",
       property: "categories",
       relation: {
-        isMulti: true,
         options,
         format: (option) => option.name,
       },
     };
 
     describe("and there is a selected option in the state", () => {
-      describe("and the isMulti is true", () => {
-        it("should return the expected props structure", () => {
-          expect(
-            multiselect({
-              field: fieldWithOptions,
-              state: defaultState,
-              handleChange,
-            })
-          ).toEqual({
-            isMulti: true,
-            value: [firstOption],
-            options,
-            onChange: expect.any(Function),
-            getOptionLabel: expect.any(Function),
-          });
-        });
-      });
-
-      describe("and the isMulti is false", () => {
-        const field = {
-          ...fieldWithOptions,
-          relation: { ...fieldWithOptions.relation, isMulti: false },
-        };
-        const state = {
-          ...defaultState,
-          data: { ...defaultState.data, categories: firstOption },
-        };
-
-        it("should return the expected props structure", () => {
-          expect(multiselect({ field, state, handleChange })).toEqual({
-            isMulti: false,
-            value: firstOption,
-            options,
-            onChange: expect.any(Function),
-            getOptionLabel: expect.any(Function),
-          });
+      it("should return the expected props structure", () => {
+        expect(
+          multiselect({
+            field: fieldWithOptions,
+            state: defaultState,
+            handleChange,
+          })
+        ).toEqual({
+          value: [firstOption],
+          options,
+          onChange: expect.any(Function),
+          getOptionLabel: expect.any(Function),
         });
       });
     });
@@ -189,26 +119,6 @@ describe("regarding the multiselect utility functions", () => {
               handleChange,
             })
           ).toEqual({
-            isMulti: true,
-            value: "",
-            options,
-            onChange: expect.any(Function),
-            getOptionLabel: expect.any(Function),
-          });
-        });
-      });
-
-      describe("and the isMulti is false", () => {
-        const field = {
-          ...fieldWithOptions,
-          relation: { ...fieldWithOptions.relation, isMulti: false },
-        };
-
-        it("should return the expected props structure", () => {
-          expect(
-            multiselect({ field, state: emptyState, handleChange })
-          ).toEqual({
-            isMulti: false,
             value: "",
             options,
             onChange: expect.any(Function),
