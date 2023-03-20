@@ -13,4 +13,4 @@ jobs:
 
       - name: check eslint
         uses: actions/checkout@v2
-        cmd: lint
+        run: lint
