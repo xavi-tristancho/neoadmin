@@ -12,4 +12,5 @@ jobs:
         run: npm install
 
       - name: check eslint
+        uses: actions/checkout@v2
         cmd: lint
