@@ -10,5 +10,6 @@ jobs:
           fetch-depth: 0
       - name: Install dependencies
         run: npm install
+
       - name: check eslint
-        run: npx eslint $(git diff --name-only --diff-filter=d HEAD | grep -E '\.(js|jsx|ts|tsx)$' | xargs)
+        cmd: lint
