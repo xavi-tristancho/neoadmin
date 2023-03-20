@@ -30,6 +30,13 @@ export type DefaultField = {
     value?: unknownObject;
     format?: (item: unknown) => string;
     onChange?: OnChange;
+    beforeSave?: ({
+      state,
+      field,
+    }: {
+      state: ModelUpsertState;
+      field: Field;
+    }) => unknownObject;
   };
   renderBefore?: () => JSX.Element;
   renderAfter?: () => JSX.Element;
@@ -60,14 +67,14 @@ export type Field =
   | MultiSelectField
   | RelationListField;
 
-export type Option = {
+type Option = {
   label?: string;
   value: string;
   default?: boolean;
   [key: string]: unknown;
 };
 
-export type Relation = {
+type Relation = {
   name: string;
   nameProps: string[];
   primaryKey: string;
