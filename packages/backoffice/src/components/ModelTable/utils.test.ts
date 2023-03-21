@@ -4,6 +4,7 @@ import { Field } from "@neoco/neoco-form/src/types";
 import { describe, it, expect, vi } from "vitest";
 import { darkTheme as theme } from "../../styles/theme";
 import {
+  getRow,
   getFields,
   getItemIdentifier,
   getFilterFields,
@@ -43,6 +44,31 @@ const header: Header = {
 };
 
 describe("this", () => {
+  describe("regarding the getRow function", () => {
+    it("should be able to get a row from an item", () => {
+      const item = header.sections[0].fields;
+      const props = header.sections[0].fields[0];
+      expect(getRow(item, props)).toEqual({
+        type: "text",
+        name: "Concepto",
+        property: "concept",
+      });
+    });
+    it("should return an empty object if the row does not exist", () => {
+      const item = header.sections[0].fields;
+      const props = {
+        ...header.sections[0].fields[0],
+        id: "not-exists",
+      };
+      expect(getRow(item, props)).toEqual({});
+    });
+    it("should return an empty object if the item array is empty", () => {
+      const item: Field[] = [];
+      const props = header.sections[0].fields[0];
+      expect(getRow(item, props)).toEqual({});
+    });
+  });
+
   describe("regarding the getFields function", () => {
     it("should be able to get all the fields of all the sections of the header", () => {
       expect(getFields({ header, t: (text) => text })).toEqual([

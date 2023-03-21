@@ -45,7 +45,7 @@ type GetDataGridPropsFn = (props: {
   history: ReturnType<typeof useHistory>;
 }) => unknownObject;
 
-const getRow: GetRowFn = (item, props) => {
+export const getRow: GetRowFn = (item, props) => {
   const row = item.filter((row: Field) => row?.id === props?.id)?.[0];
   return row ? row : {};
 };
