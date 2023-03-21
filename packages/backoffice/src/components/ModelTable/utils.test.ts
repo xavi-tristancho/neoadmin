@@ -1,12 +1,15 @@
+import { createMemoryHistory } from "history";
 import { Header } from "@neoco/neoco-backoffice/src/types";
 import { Field } from "@neoco/neoco-form/src/types";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
+import { darkTheme as theme } from "../../styles/theme";
 import {
   getFields,
   getItemIdentifier,
   getFilterFields,
   removeIfNotFilter,
   getClientSidePaginatedData,
+  getDataGridProps,
 } from "./utils";
 
 const header: Header = {
@@ -255,6 +258,99 @@ describe("this", () => {
       expect(getClientSidePaginatedData({ pagination, data })).toEqual(
         data.slice(0, 10)
       );
+    });
+  });
+
+  describe("regarding the getDataGridProps function", () => {
+    const history = createMemoryHistory();
+    const props = {
+      isLoading: false,
+      isFilterable: true,
+      tableState: {
+        pagination: { page: 1, pageSize: 10 },
+      },
+      updateTableState: vi.fn(),
+      onDataGridChange: vi.fn(),
+      onFiltersButtonClick: vi.fn(),
+      openOnClickRow: true,
+      path: "/test",
+      header: header,
+      theme: theme,
+      history: history,
+    };
+    it("should return the props for the DataGrid component", () => {
+      expect(getDataGridProps(props)).toStrictEqual({
+        loading: false,
+        disableColumnFilter: true,
+        components: {
+          Toolbar: expect.any(Function) as () => JSX.Element,
+        },
+        filterMode: "server",
+        paginationMode: "server",
+        sortingMode: "server",
+        rowsPerPageOptions: [5, 10, 15],
+        onStateChange: expect.any(Function) as () => void,
+        onPageSizeChange: expect.any(Function) as () => void,
+        onRowClick: expect.any(Function) as () => void,
+        pageSize: 10,
+        rowCount: undefined,
+        autoHeight: true,
+        sx: {
+          "&& .MuiDataGrid-toolbarContainer": {
+            "& .MuiButton-root": {
+              marginRight: "20px",
+            },
+          },
+        },
+      });
+    });
+    it("should return the props for the DataGrid component with the filterModel if the tableState has a filter", () => {
+      const propsWithFilter = {
+        ...props,
+        tableState: {
+          ...props.tableState,
+          filter: [
+            {
+              columnField: "name",
+              operatorValue: "contains",
+              value: "test",
+            },
+          ],
+        },
+      };
+      expect(getDataGridProps(propsWithFilter)).toStrictEqual({
+        loading: false,
+        disableColumnFilter: true,
+        components: {
+          Toolbar: expect.any(Function) as () => JSX.Element,
+        },
+        filterMode: "server",
+        paginationMode: "server",
+        sortingMode: "server",
+        rowsPerPageOptions: [5, 10, 15],
+        onStateChange: expect.any(Function) as () => void,
+        onPageSizeChange: expect.any(Function) as () => void,
+        onRowClick: expect.any(Function) as () => void,
+        pageSize: 10,
+        rowCount: undefined,
+        autoHeight: true,
+        sx: {
+          "&& .MuiDataGrid-toolbarContainer": {
+            "& .MuiButton-root": {
+              marginRight: "20px",
+            },
+          },
+        },
+        filterModel: {
+          items: [
+            {
+              columnField: "name",
+              operatorValue: "contains",
+              value: "test",
+            },
+          ],
+        },
+      });
     });
   });
 });
