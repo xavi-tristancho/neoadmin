@@ -67,12 +67,12 @@ const headers: Header = {
           property: "category",
           type: "multiselect",
           relation: {
-            isMulti: false,
             options: categories,
             format: (category: Category) => category.name,
           },
           tableOptions: {
-            format: (category: Category) => category.name,
+            format: ({ field: { value } }: { field: { value: Category } }) =>
+              value.name,
           },
         },
         {
@@ -101,7 +101,6 @@ const headers: Header = {
                 property: "time",
                 label: "Minuto",
                 type: "time",
-                step: 1,
               },
             ],
           },
