@@ -27,9 +27,24 @@ describe("regarding UserAndSettings", () => {
 
   describe("regarding stringToColor function", () => {
     describe("given a string", () => {
-      it("should return a color", () => {
+      it("should return a valid HEX color", () => {
         const name = "test";
         return expect(stringToColor(name)).toBe("#924436");
+      });
+    });
+    describe("given same string input", () => {
+      it("should return same HEX color ", () => {
+        const input = "Hello, World!";
+        const firstColor = stringToColor(input);
+        const secondColor = stringToColor(input);
+        expect(firstColor).toEqual(secondColor);
+      });
+    });
+    describe("given an empty string input", () => {
+      it("should return a default color", () => {
+        const defaultColor = "#000000";
+        const color = stringToColor();
+        expect(color).toEqual(defaultColor);
       });
     });
   });
