@@ -6,6 +6,7 @@ import {
   getItemIdentifier,
   getFilterFields,
   removeIfNotFilter,
+  getClientSidePaginatedData,
 } from "./utils";
 
 const header: Header = {
@@ -241,6 +242,19 @@ describe("this", () => {
         property: "city",
       };
       expect(removeIfNotFilter(field)).toBeFalsy();
+    });
+  });
+
+  describe("regarding the getClientSidePaginatedData function", () => {
+    it("should return the data paginated following the pageSize value", () => {
+      const pagination = {
+        page: 1,
+        pageSize: 10,
+      };
+      const data = Array.from({ length: 100 }, (_, i) => ({ [`key${i}`]: i }));
+      expect(getClientSidePaginatedData({ pagination, data })).toEqual(
+        data.slice(0, 10)
+      );
     });
   });
 });
