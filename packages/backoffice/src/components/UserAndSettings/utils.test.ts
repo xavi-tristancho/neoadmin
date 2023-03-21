@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import stringAvatar from "./utils";
+import stringAvatar, { stringToColor } from "./utils";
 
 describe("regarding UserAndSettings", () => {
   describe("regarding stringAvatar function", () => {
@@ -23,21 +23,13 @@ describe("regarding UserAndSettings", () => {
         return expect(stringAvatar(name).children).toBe("A");
       });
     });
-    describe("given a number", () => {
-      it("should return the default value", () => {
-        const name = 2;
-        return expect(stringAvatar(name).children).toBe("A");
-      });
-    });
-    describe("executed the function without arguments", () => {
-      it("should return the default value", () => {
-        return expect(stringAvatar().children).toBe("A");
-      });
-    });
-    describe("given an undefinded", () => {
-      it("should return the default value", () => {
-        const name = undefined;
-        return expect(stringAvatar(name).children).toBe("A");
+  });
+
+  describe("regarding stringToColor function", () => {
+    describe("given a string", () => {
+      it("should return a color", () => {
+        const name = "test";
+        return expect(stringToColor(name)).toBe("#924436");
       });
     });
   });

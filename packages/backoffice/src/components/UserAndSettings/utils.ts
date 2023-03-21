@@ -10,8 +10,8 @@ type StringAvatar = (name: string) => {
   children: string;
 };
 
-const stringToColor = (string: string = ""): string => {
-  let hash: number = 0;
+export const stringToColor = (string = ""): string => {
+  let hash = 0;
   let i: number;
 
   /* eslint-disable no-bitwise */
@@ -19,7 +19,7 @@ const stringToColor = (string: string = ""): string => {
     hash = string.charCodeAt(i) + ((hash << 5) - hash);
   }
 
-  let color: string = "#";
+  let color = "#";
 
   for (i = 0; i < 3; i += 1) {
     const value = (hash >> (i * 8)) & 0xff;
@@ -30,7 +30,7 @@ const stringToColor = (string: string = ""): string => {
   return color;
 };
 
-const stringAvatar: StringAvatar = (name: string = "ADMIN") => {
+const stringAvatar: StringAvatar = (name = "ADMIN") => {
   const defaultName = "ADMIN";
   const isString = typeof name === "string";
   const styles = {
