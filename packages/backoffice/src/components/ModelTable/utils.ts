@@ -105,7 +105,7 @@ export const getFilterFields: GetFilterFieldsFn = (header) => {
   );
 };
 
-const removeIfNotFilter: RemoveIfNotFilterFn = (field) =>
+export const removeIfNotFilter: RemoveIfNotFilterFn = (field) =>
   field.tableOptions?.filter ||
   field.tableOptions?.isSearchable ||
   field.relation;

@@ -1,6 +1,12 @@
 import { Header } from "@neoco/neoco-backoffice/src/types";
+import { Field } from "@neoco/neoco-form/src/types";
 import { describe, it, expect } from "vitest";
-import { getFields, getItemIdentifier, getFilterFields } from "./utils";
+import {
+  getFields,
+  getItemIdentifier,
+  getFilterFields,
+  removeIfNotFilter,
+} from "./utils";
 
 const header: Header = {
   options: {
@@ -193,6 +199,48 @@ describe("this", () => {
           },
         ]);
       });
+    });
+  });
+
+  describe("regarding the removeIfNotFilter function", () => {
+    it("should return true if the field has a filter", () => {
+      const field: Field = {
+        type: "text",
+        property: "city",
+        tableOptions: {
+          filter: (item: unknown) => String(item),
+        },
+      };
+      expect(removeIfNotFilter(field)).toBeTruthy();
+    });
+    it("should return true if the field has a isSearchable", () => {
+      const field: Field = {
+        type: "text",
+        property: "city",
+        tableOptions: {
+          isSearchable: true,
+        },
+      };
+      expect(removeIfNotFilter(field)).toBeTruthy();
+    });
+    it("should return true if the field has a relation", () => {
+      const field: Field = {
+        type: "relation-list",
+        property: "city",
+        relation: {
+          name: "name",
+          nameProps: [],
+          primaryKey: "id",
+        },
+      };
+      expect(removeIfNotFilter(field)).toBeTruthy();
+    });
+    it("should return false if the field has not a filter", () => {
+      const field: Field = {
+        type: "text",
+        property: "city",
+      };
+      expect(removeIfNotFilter(field)).toBeFalsy();
     });
   });
 });
