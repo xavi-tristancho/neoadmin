@@ -118,7 +118,7 @@ export const getClientSidePaginatedData: getClientSidePaginatedDataFn = ({
   return data.slice(start, start + pagination.pageSize);
 };
 
-const getModelPK: GetModelPKFn = (header) => {
+export const getModelPK: GetModelPKFn = (header) => {
   return header?.options?.primaryKey;
 };
 

@@ -9,6 +9,7 @@ import {
   getFilterFields,
   removeIfNotFilter,
   getClientSidePaginatedData,
+  getModelPK,
   getDataGridProps,
 } from "./utils";
 
@@ -258,6 +259,12 @@ describe("this", () => {
       expect(getClientSidePaginatedData({ pagination, data })).toEqual(
         data.slice(0, 10)
       );
+    });
+  });
+
+  describe("regarding the getModelPK function", () => {
+    it("should return the primaryKey value from the header", () => {
+      expect(getModelPK(header)).toBe("concept");
     });
   });
 
