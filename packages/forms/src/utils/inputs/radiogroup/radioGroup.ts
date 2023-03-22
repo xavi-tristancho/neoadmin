@@ -3,7 +3,10 @@ import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 
 type RadioGroupInput = {
   field: DefaultField;
-  state: unknownObject;
+  state: {
+    data: unknownObject;
+    aux: unknownObject;
+  };
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
