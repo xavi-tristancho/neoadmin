@@ -1,11 +1,14 @@
+import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { MultiSelectField, UnknownOption } from "./types";
+
+type State = {
+  data: { [key: string]: string };
+  aux: { [key: string]: unknownObject[] };
+};
 
 type MultiSelectProps = {
   field: MultiSelectField;
-  state: {
-    data: {};
-    aux: {};
-  };
+  state: State;
   handleChange: ({
     target: { name, value },
   }: {
@@ -18,7 +21,7 @@ type MultiSelectOutput = {
   getOptionLabel?: (option: UnknownOption) => string;
   value: string;
   options: string[] | UnknownOption[];
-  onChange: (event, value) => void;
+  onChange: (event: unknown, value: string) => void;
 };
 
 export const multiselect = ({
@@ -27,12 +30,6 @@ export const multiselect = ({
   handleChange,
 }: MultiSelectProps): MultiSelectOutput => {
   const { relation } = field;
-
-  if (typeof relation === "undefined") {
-    throw new Error(
-      `You must define the relation prop in ${field.property} when using multiselect controls`
-    );
-  }
 
   const hasRemoteData =
     typeof relation.options === "undefined" &&
