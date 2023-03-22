@@ -337,52 +337,54 @@ describe("this", () => {
         },
       });
     });
-    it("should return the props for the DataGrid component with the filterModel if the tableState has a filter", () => {
-      const propsWithFilter = {
-        ...props,
-        tableState: {
-          ...props.tableState,
-          filter: [
-            {
-              columnField: "name",
-              operatorValue: "contains",
-              value: "test",
-            },
-          ],
-        },
-      };
-      expect(getDataGridProps(propsWithFilter)).toStrictEqual({
-        loading: false,
-        disableColumnFilter: true,
-        components: {
-          Toolbar: expect.any(Function) as () => JSX.Element,
-        },
-        filterMode: "server",
-        paginationMode: "server",
-        sortingMode: "server",
-        rowsPerPageOptions: [5, 10, 15],
-        onStateChange: expect.any(Function) as () => void,
-        onPageSizeChange: expect.any(Function) as () => void,
-        onRowClick: expect.any(Function) as () => void,
-        pageSize: 10,
-        rowCount: undefined,
-        autoHeight: true,
-        sx: {
-          "&& .MuiDataGrid-toolbarContainer": {
-            "& .MuiButton-root": {
-              marginRight: "20px",
+    describe("when the tableState has a filter", () => {
+      it("should return the props for the DataGrid component with the filterModel", () => {
+        const propsWithFilter = {
+          ...props,
+          tableState: {
+            ...props.tableState,
+            filter: [
+              {
+                columnField: "name",
+                operatorValue: "contains",
+                value: "test",
+              },
+            ],
+          },
+        };
+        expect(getDataGridProps(propsWithFilter)).toStrictEqual({
+          loading: false,
+          disableColumnFilter: true,
+          components: {
+            Toolbar: expect.any(Function) as () => JSX.Element,
+          },
+          filterMode: "server",
+          paginationMode: "server",
+          sortingMode: "server",
+          rowsPerPageOptions: [5, 10, 15],
+          onStateChange: expect.any(Function) as () => void,
+          onPageSizeChange: expect.any(Function) as () => void,
+          onRowClick: expect.any(Function) as () => void,
+          pageSize: 10,
+          rowCount: undefined,
+          autoHeight: true,
+          sx: {
+            "&& .MuiDataGrid-toolbarContainer": {
+              "& .MuiButton-root": {
+                marginRight: "20px",
+              },
             },
           },
-        },
-        filterModel: {
-          items: [
-            {
-              columnField: "name",
-              operatorValue: "contains",
-              value: "test",
-            },
-          ],
-        },
+          filterModel: {
+            items: [
+              {
+                columnField: "name",
+                operatorValue: "contains",
+                value: "test",
+              },
+            ],
+          },
+        });
       });
     });
   });
