@@ -68,14 +68,14 @@ export type Field =
   | MultiSelectField
   | RelationListField;
 
-type Option = {
+export type Option = {
   label?: string;
   value: string;
   default?: boolean;
   [key: string]: unknown;
 };
 
-type Relation = {
+export type Relation = {
   name: string;
   nameProps: string[];
   primaryKey: string;
