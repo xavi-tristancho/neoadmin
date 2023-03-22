@@ -70,7 +70,7 @@ const radiogroup = ({
   };
 };
 
-const getSelectedOptions = ({
+export const getSelectedOptions = ({
   state,
   relation,
   property,
@@ -81,7 +81,7 @@ const getSelectedOptions = ({
 }): unknown =>
   state.data[relation?.name] ? state.data[relation.name] : state.data[property];
 
-const getOptions = ({
+export const getOptions = ({
   state,
   name,
   nameProps,
@@ -101,7 +101,7 @@ const getOptions = ({
   );
 };
 
-const getName = ({
+export const getName = ({
   item,
   nameProps = [],
 }: {
