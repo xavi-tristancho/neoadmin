@@ -96,7 +96,7 @@ export const getOptions = ({
   primaryKey: string;
 }): Option[] | [] => {
   return (
-    ((state?.aux[name] as Option[])?.map((item: Option) => ({
+    ((state?.aux?.[name] as Option[])?.map((item: Option) => ({
       value: item[primaryKey] as string,
       label: getName({ item, nameProps }),
       ...item,

@@ -62,7 +62,7 @@ describe("regarding getOptions function", () => {
       const primaryKey = "id";
       const state = {
         aux: {
-          name: [
+          [name]: [
             { id: "1", name: "Option 1" },
             { id: "2", name: "Option 2" },
           ],
@@ -74,86 +74,13 @@ describe("regarding getOptions function", () => {
       ]);
     });
   });
-
-  //   it("should return an empty array when no aux data exists", () => {
-  //     const name = "test";
-  //     const nameProps = ["name"];
-  //     const primaryKey = "id";
-  //     const state = {};
-  //     expect(getOptions({ state, name, nameProps, primaryKey })).toEqual([]);
-  //   });
-
-  //   it("should return options from field object when present", () => {
-  //     const field = { options: [{ value: "1", label: "Option 1" }] };
-  //     const state = {};
-  //     expect(getOptions({ state, ...field })).toEqual([
-  //       { value: "1", label: "Option 1" },
-  //     ]);
-  //   });
+  describe("when aux data does not exist", () => {
+    it("should return an empty array", () => {
+      const name = "test";
+      const nameProps = ["name"];
+      const primaryKey = "id";
+      const state = {};
+      expect(getOptions({ state, name, nameProps, primaryKey })).toEqual([]);
+    });
+  });
 });
-
-// describe("getName", () => {
-//   it("should return a string with names joined by a space", () => {
-//     const item = { firstName: "John", lastName: "Doe" };
-//     const nameProps = ["firstName", "lastName"];
-//     expect(getName({ item, nameProps })).toEqual("John Doe");
-//   });
-
-//   it("should return an empty string when no nameProps are provided", () => {
-//     const item = { firstName: "John", lastName: "Doe" };
-//     expect(getName({ item })).toEqual("");
-//   });
-// });
-
-// describe("radiogroup", () => {
-//   it("should throw an error when no relation or options prop is defined", () => {
-//     const field = { property: "test" };
-//     const state = {};
-//     const handleChange = () => {};
-//     expect(() => radiogroup({ field, state, handleChange })).toThrow();
-//   });
-
-//   it("should return an object with value, defaultValue, options, and onChange fields", () => {
-//     const field = { relation: { name: "test", primaryKey: "id" } };
-//     const state = { data: { [field.relation?.name]: "1" } };
-//     const handleChange = () => {};
-//     const radiogroupOutput = radiogroup({ field, state, handleChange });
-//     expect(Object.keys(radiogroupOutput)).toEqual([
-//       "value",
-//       "defaultValue",
-//       "options",
-//       "onChange",
-//     ]);
-//   });
-
-//   it("should set the selected option as the value", () => {
-//     const field = { relation: { name: "test", primaryKey: "id" } };
-//     const state = { data: { [field.relation?.name]: "1" } };
-//     const handleChange = () => {};
-//     const radiogroupOutput = radiogroup({ field, state, handleChange });
-//     expect(radiogroupOutput.value).toEqual("1");
-//   });
-
-//   it("should set the default option as the defaultValue", () => {
-//     const field = {
-//       relation: { name: "test", primaryKey: "id" },
-//       options: [{ value: "1", default: true }],
-//     };
-//     const state = { data: {} };
-//     const handleChange = () => {};
-//     const radiogroupOutput = radiogroup({ field, state, handleChange });
-//     expect(radiogroupOutput.defaultValue).toEqual("1");
-//   });
-
-//   it("should call handleChange with the correct field name and value", () => {
-//     const field = { name: "test" };
-//     const state = {};
-//     const handleChange = jest.fn();
-//     const event = { target: { value: "test value" } };
-//     const radiogroupOutput = radiogroup({ field, state, handleChange });
-//     radiogroupOutput.onChange(event);
-//     expect(handleChange).toHaveBeenCalledWith({
-//       target: { name: field.name || field.property, value: event.target.value },
-//     });
-//   });
-// });
