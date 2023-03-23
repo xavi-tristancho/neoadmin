@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { getOptions, getSelectedOptions } from "./radioGroup";
+import { Option } from "@neoco/neoco-form/src/types";
+import { getName, getOptions, getSelectedOptions } from "./radioGroup";
 
 describe("regarding getSelectedOptions function", () => {
   describe("given a state with a name defined", () => {
@@ -81,6 +82,22 @@ describe("regarding getOptions function", () => {
       const primaryKey = "id";
       const state = {};
       expect(getOptions({ state, name, nameProps, primaryKey })).toEqual([]);
+    });
+  });
+});
+
+describe("getName", () => {
+  const item: Option = {
+    value: "John",
+  };
+  it("should return a string with names joined by a space", () => {
+    const nameProps = ["value"];
+    expect(getName({ item, nameProps })).toEqual("John");
+  });
+
+  describe("when nameProps is not provided", () => {
+    it("should return an empty string", () => {
+      expect(getName({ item })).toEqual("");
     });
   });
 });
