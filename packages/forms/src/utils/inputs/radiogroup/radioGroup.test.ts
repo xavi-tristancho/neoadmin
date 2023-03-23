@@ -128,15 +128,17 @@ describe("radiogroup", () => {
   };
   const handleChange = vi.fn();
 
-  it("should throw an error when no relation or options prop is defined", () => {
-    const field: Field = { type: "text", name: "name", property: "age" };
-    const state = {
-      data: { id: 1, name: "John", age: 25 },
-      aux: {
-        b: 2,
-      },
-    };
-    expect(() => radiogroup({ field, state, handleChange })).toThrow();
+  describe(" when no relation or options prop is defined", () => {
+    it("should throw an error", () => {
+      const field: Field = { type: "text", name: "name", property: "age" };
+      const state = {
+        data: { id: 1, name: "John", age: 25 },
+        aux: {
+          b: 2,
+        },
+      };
+      expect(() => radiogroup({ field, state, handleChange })).toThrow();
+    });
   });
 
   it("should return an object with value, defaultValue, options, and onChange fields", () => {
@@ -154,8 +156,10 @@ describe("radiogroup", () => {
     expect(radiogroupOutput.value).toEqual(27);
   });
 
-  it("should set the default option as the defaultValue", () => {
-    const radiogroupOutput = radiogroup({ field, state, handleChange });
-    expect(radiogroupOutput.defaultValue).toEqual(23);
+  describe("when there is a default option", () => {
+    it("should set the default option as the defaultValue", () => {
+      const radiogroupOutput = radiogroup({ field, state, handleChange });
+      expect(radiogroupOutput.defaultValue).toEqual(23);
+    });
   });
 });
