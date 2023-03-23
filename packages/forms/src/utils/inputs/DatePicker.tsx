@@ -1,4 +1,3 @@
-import React from "react";
 import TextField from "@mui/material/TextField";
 import {
   DatePicker,
@@ -9,23 +8,41 @@ import {
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import styled from "styled-components";
 import { DateTime } from "luxon";
+import {
+  unknownObject,
+  UpsertOptions,
+} from "@neoco/neoco-backoffice/src/types";
 
 const DatePickerInput = ({
   property = "",
   name = property,
   label = name,
   required = false,
-  tableOptions = undefined,
   upsertOptions = {},
-  onChange = () => {},
+  onChange = () => {
+    return;
+  },
   fullWidth = true,
   pickerType = "date",
   value = null,
   renderInputProps = {},
   ...props
+}: {
+  [x: string]: unknownObject;
+  property?: string;
+  name?: string;
+  label?: string;
+  required?: boolean;
+  upsertOptions?: UpsertOptions;
+  onChange?: ({ target: { name: string, value: unknownObject } }) => void;
+  fullWidth?: boolean;
+  pickerType?: string;
+  value?: string | null;
+  renderInputProps?: unknownObject;
 }) => {
   const { show = true } = upsertOptions;
-  const pickerValue =
+
+  const pickerValue: string | null | DateTime =
     typeof value === "string" && pickerType === "time"
       ? DateTime.fromFormat(value, "hh:mm")
       : value;
@@ -55,17 +72,22 @@ const DatePickerInput = ({
           name={name}
           label={label}
           required={required}
-          onChange={(data) => {
+          onChange={(data: {
+            year?: string;
+            month?: string;
+            day?: string;
+            hour?: string;
+            minute?: string;
+          }) => {
             const { year, month, day, hour, minute } = data || {};
             const formattedMonth = zeroNeededFormat(month);
             const formattedDay = zeroNeededFormat(day);
             const formattedHour = zeroNeededFormat(hour);
             const formattedMinute = zeroNeededFormat(minute);
-            const formattedDate =
-              year + "-" + formattedMonth + "-" + formattedDay;
-            const formattedTime = formattedHour + ":" + formattedMinute;
+            const formattedDate = `${year}-${formattedMonth}-${formattedDay}`;
+            const formattedTime = `${formattedHour}:${formattedMinute}`;
 
-            let formattedValue;
+            let formattedValue: string;
             switch (pickerType) {
               case "time":
                 formattedValue = formattedTime;
@@ -106,7 +128,7 @@ const Container = styled.div`
   margin-bottom: 20px;
 `;
 
-const zeroNeededFormat = (value = 0) => {
+const zeroNeededFormat = (value = "0") => {
   const parsedValue = parseInt(value);
   return (value || value === 0) && !Number.isNaN(parsedValue)
     ? parsedValue < 10

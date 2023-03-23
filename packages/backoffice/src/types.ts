@@ -51,6 +51,35 @@ type CountRequestParams = {
   sort: unknownObject[];
 };
 
+export type TableOptions = {
+  children?: (state: unknownObject) => JSX.Element;
+  component?: (
+    props: unknown,
+    ModelTable: React.ComponentType<unknown>
+  ) => React.ReactElement;
+  getItemActions?: (
+    item: unknownObject,
+    state: unknownObject
+  ) => { isEditable: boolean; isDeletable: boolean };
+  isCreatable?: boolean;
+  isEditable?: boolean;
+  isDeletable?: boolean;
+  openOnClickRow?: boolean;
+  pageSize?: number;
+  renderBefore?: () => React.ReactNode;
+};
+
+export type UpsertOptions = {
+  children?: (state: unknownObject) => JSX.Element;
+  component?: (
+    props: unknown,
+    ModelUpsert: React.ComponentType<unknown>
+  ) => React.ReactElement;
+  onMount?: () => Promise<unknownObject>;
+  renderAfter?: (state: unknownObject) => React.ReactNode;
+  show?: boolean;
+};
+
 export type Header = {
   type: "CRUD" | "Page";
   options: {
@@ -74,37 +103,8 @@ export type Header = {
       mapFindResponse?: (response: unknown[]) => unknown[];
     };
     route: Route;
-    tableOptions?: {
-      children?: (state: unknownObject) => JSX.Element;
-      component?: (
-        props: unknown,
-        ModelTable: React.ComponentType<unknown>
-      ) => React.ReactElement;
-      getItemActions?: (
-        item: unknownObject,
-        state: unknownObject
-      ) => { isEditable: boolean; isDeletable: boolean };
-      isCreatable?: boolean;
-      isEditable?: boolean;
-      isDeletable?: boolean;
-      openOnClickRow?: boolean;
-      pageSize?: number;
-      renderBefore?: () => React.ReactNode;
-      renderAfter?: (state: unknownObject) => React.ReactNode;
-      onMount?: () => Promise<unknown>;
-      isSearchable?: boolean;
-      isFilterable?: boolean;
-    };
-    upsertOptions?: {
-      children?: (state: unknownObject) => JSX.Element;
-      component?: (
-        props: unknown,
-        ModelUpsert: React.ComponentType<unknown>
-      ) => React.ReactElement;
-      onMount?: () => Promise<void>;
-      renderBefore?: (state: unknownObject) => React.ReactNode;
-      renderAfter?: (state: unknownObject) => React.ReactNode;
-    };
+    tableOptions?: TableOptions;
+    upsertOptions?: UpsertOptions;
   };
   sections?: Section[];
 };
