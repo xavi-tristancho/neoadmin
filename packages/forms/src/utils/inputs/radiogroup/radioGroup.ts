@@ -97,12 +97,11 @@ export const getOptions = ({
 }): Option[] | [] => {
   return (
     ((state?.aux?.[name] as Option[])?.map((item: Option) => {
-      console.log(item)
-      return ({
+      return {
         value: item[primaryKey] as string,
         label: getName({ item, nameProps }),
         ...item,
-      });
+      };
     }) as Option[] | []) || []
   );
 };

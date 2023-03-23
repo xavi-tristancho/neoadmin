@@ -1,6 +1,10 @@
-import { describe, it, expect } from "vitest";
-import { Option } from "@neoco/neoco-form/src/types";
-import { getName, getOptions, getSelectedOptions } from "./radioGroup";
+import { describe, it, expect, vi } from "vitest";
+import { Field, Option } from "@neoco/neoco-form/src/types";
+import radiogroup, {
+  getName,
+  getOptions,
+  getSelectedOptions,
+} from "./radioGroup";
 
 describe("regarding getSelectedOptions function", () => {
   describe("given a state with a name defined", () => {
@@ -99,5 +103,71 @@ describe("getName", () => {
     it("should return an empty string", () => {
       expect(getName({ item })).toEqual("");
     });
+  });
+});
+
+describe("radiogroup", () => {
+  it("should throw an error when no relation or options prop is defined", () => {
+    const field: Field = { type: "text", name: "name", property: "age" };
+    const state = {
+      data: { id: 1, name: "John", age: 25 },
+      aux: {
+        b: 2,
+      },
+    };
+    const handleChange = vi.fn();
+    expect(() => radiogroup({ field, state, handleChange })).toThrow();
+  });
+
+  it("should return an object with value, defaultValue, options, and onChange fields", () => {
+    const field: Field = {
+      type: "relation-list",
+      name: "name",
+      property: "age",
+      relation: {
+        name: "test",
+        nameProps: ["name"],
+        primaryKey: "id",
+      },
+    };
+    const state = {
+      data: { id: 1, name: "John", age: 25 },
+      aux: {
+        b: 2,
+      },
+    };
+    const handleChange = vi.fn();
+    const radiogroupOutput = radiogroup({ field, state, handleChange });
+    expect(Object.keys(radiogroupOutput)).toEqual([
+      "value",
+      "defaultValue",
+      "options",
+      "onChange",
+    ]);
+  });
+
+  it("should set the selected option as the value", () => {
+    const field: Field = {
+      type: "relation-list",
+      name: "age",
+      property: "age",
+      relation: {
+        name: "test",
+        nameProps: ["name"],
+        primaryKey: "id",
+      },
+    };
+    const state = {
+      data: { id: 1, name: "John", age: 27 },
+      aux: {
+        test: [
+          { id: "1", name: "Option 1", value: 27 },
+          { id: "2", name: "Option 2", value: 23 },
+        ],
+      },
+    };
+    const handleChange = vi.fn();
+    const radiogroupOutput = radiogroup({ field, state, handleChange });
+    expect(radiogroupOutput.value).toEqual(27);
   });
 });
