@@ -107,6 +107,27 @@ describe("getName", () => {
 });
 
 describe("radiogroup", () => {
+  const field: Field = {
+    type: "relation-list",
+    name: "age",
+    property: "age",
+    relation: {
+      name: "test",
+      nameProps: ["name"],
+      primaryKey: "id",
+    },
+  };
+  const state = {
+    data: { id: 1, name: "John", age: 27 },
+    aux: {
+      test: [
+        { id: "1", name: "Option 1", value: 27 },
+        { id: "2", name: "Option 2", value: 23, default: true },
+      ],
+    },
+  };
+  const handleChange = vi.fn();
+
   it("should throw an error when no relation or options prop is defined", () => {
     const field: Field = { type: "text", name: "name", property: "age" };
     const state = {
@@ -115,28 +136,10 @@ describe("radiogroup", () => {
         b: 2,
       },
     };
-    const handleChange = vi.fn();
     expect(() => radiogroup({ field, state, handleChange })).toThrow();
   });
 
   it("should return an object with value, defaultValue, options, and onChange fields", () => {
-    const field: Field = {
-      type: "relation-list",
-      name: "name",
-      property: "age",
-      relation: {
-        name: "test",
-        nameProps: ["name"],
-        primaryKey: "id",
-      },
-    };
-    const state = {
-      data: { id: 1, name: "John", age: 25 },
-      aux: {
-        b: 2,
-      },
-    };
-    const handleChange = vi.fn();
     const radiogroupOutput = radiogroup({ field, state, handleChange });
     expect(Object.keys(radiogroupOutput)).toEqual([
       "value",
@@ -147,27 +150,12 @@ describe("radiogroup", () => {
   });
 
   it("should set the selected option as the value", () => {
-    const field: Field = {
-      type: "relation-list",
-      name: "age",
-      property: "age",
-      relation: {
-        name: "test",
-        nameProps: ["name"],
-        primaryKey: "id",
-      },
-    };
-    const state = {
-      data: { id: 1, name: "John", age: 27 },
-      aux: {
-        test: [
-          { id: "1", name: "Option 1", value: 27 },
-          { id: "2", name: "Option 2", value: 23 },
-        ],
-      },
-    };
-    const handleChange = vi.fn();
     const radiogroupOutput = radiogroup({ field, state, handleChange });
     expect(radiogroupOutput.value).toEqual(27);
+  });
+
+  it("should set the default option as the defaultValue", () => {
+    const radiogroupOutput = radiogroup({ field, state, handleChange });
+    expect(radiogroupOutput.defaultValue).toEqual(23);
   });
 });
