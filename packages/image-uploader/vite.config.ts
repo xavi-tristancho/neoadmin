@@ -32,4 +32,9 @@ export default defineConfig({
     },
   },
   plugins: [svgr(), dts()],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./tests/setup.js",
+  },
 });

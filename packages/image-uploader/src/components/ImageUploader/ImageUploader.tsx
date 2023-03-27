@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { useTheme } from "@mui/material/styles";
+import React from "react";
 import {
   Upload as UploadIcon,
   AddPhotoAlternate as AddPhotoIcon,
 } from "@mui/icons-material";
 import styled from "styled-components";
 import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
-import { fileToBase64 } from "../../utils/file";
-import CropDialog from "../CropDialog";
 
-type Source = {
+import CropDialog from "../CropDialog";
+import useImageUploader from "./useImageUploader";
+
+export type Source = {
   uri: string;
   name: string;
   file?: File;
@@ -26,13 +26,6 @@ type ImageUploaderProps = {
   source?: Source;
   containerStyle?: React.CSSProperties;
   imageFit?: ImageFit;
-};
-
-type State = {
-  isEditing: boolean;
-  localSource: Partial<Source>;
-  nextImage: { src: string } | null;
-  isDroping: boolean;
 };
 
 export const getSrc = (source: Source) => {
@@ -52,41 +45,21 @@ const ImageUploader = ({
   containerStyle = {},
   imageFit = "cover",
 }: ImageUploaderProps) => {
-  const [state, setState] = useState<State>({
-    isEditing: false,
-    localSource: source,
-    nextImage: null,
-    isDroping: false,
+  const {
+    state,
+    theme,
+    image,
+    hasImage,
+    onCroppedImage,
+    handleOnDragOver,
+    handleOnDragLeave,
+    handleOnDrop,
+    handleOnClose,
+    handleOnClickEdit,
+  } = useImageUploader({
+    source,
+    onChange,
   });
-
-  const theme = useTheme();
-
-  const image = state.nextImage || {
-    src: getSrc(source),
-  };
-
-  const hasImage = !!image.src;
-
-  const updateState = (nextState: Partial<State>) =>
-    setState((currentState) => ({ ...currentState, ...nextState }));
-
-  const onCroppedImage = (file: File) => {
-    updateState({ isEditing: false });
-
-    if (file) {
-      fileToBase64(file)
-        .then(({ base64 }) => {
-          updateState({ nextImage: { src: base64 } });
-          onChange(file);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      updateState({ nextImage: { src: null } });
-      onChange();
-    }
-  };
 
   const uploadMessageContent = state.isDroping ? (
     <>
@@ -102,39 +75,26 @@ const ImageUploader = ({
 
   return (
     <>
-      {state.isEditing ? (
-        <CropDialog
-          source={state.localSource}
-          onCroppedImage={onCroppedImage}
-          onClose={() => updateState({ isEditing: false })}
-        />
-      ) : (
-        <></>
-      )}
+      <CropDialog
+        source={state.localSource}
+        onCroppedImage={onCroppedImage}
+        onClose={handleOnClose}
+        open={state.isEditing}
+      />
       <Container
+        data-testid={"image-uploader-test"}
         theme={theme}
         style={containerStyle}
-        onDragOver={(e) => {
-          e.preventDefault();
-          updateState({ isDroping: true });
-        }}
-        onDragLeave={() => {
-          updateState({ isDroping: false });
-        }}
-        onDrop={(e) => {
-          e.preventDefault();
-          updateState({
-            isEditing: true,
-            localSource: { file: e.dataTransfer?.files?.[0] },
-            isDroping: false,
-          });
-        }}
+        onDragOver={handleOnDragOver}
+        onDragLeave={handleOnDragLeave}
+        onDrop={handleOnDrop}
       >
         <ImageContainer style={containerStyle}>
           {canEdit && (
             <HoverContainer
+              data-testid={"can-edit-test"}
               hasImage={hasImage}
-              onClick={() => updateState({ isEditing: true })}
+              onClick={handleOnClickEdit}
             >
               <ImagePlaceholder className="placeholder">
                 {hasImage ? editTitle : ""}
