@@ -24,8 +24,12 @@
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
+=======
+    "jsdom": "^21.1.1",
+>>>>>>> c75f949 (Get the 90%)
     "@types/cropperjs": "^1.3.0",
     "jsdom": "^21.1.1",
     "typescript": "^4.9.3",
