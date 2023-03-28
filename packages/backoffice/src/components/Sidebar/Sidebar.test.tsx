@@ -23,7 +23,7 @@ describe("Regarding Sidebar component", () => {
 
   describe("when hamburger menu is clicked", () => {
     it("should open and close drawer", () => {
-      const { getByLabelText } = render(
+      render(
         <AuthProvider>
           <ConfigProvider>
             <ThemeModeProvider>
@@ -32,7 +32,8 @@ describe("Regarding Sidebar component", () => {
           </ConfigProvider>
         </AuthProvider>
       );
-      const hamburgerMenu = getByLabelText(/open drawer/i);
+
+      const hamburgerMenu = screen.getByLabelText("open drawer");
       const drawer = screen.getByTestId("sidebar-drawer");
 
       expect(hamburgerMenu).toBeInTheDocument();
