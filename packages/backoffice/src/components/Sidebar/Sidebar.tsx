@@ -37,7 +37,7 @@ const Sidebar = ({ appBarTitle = "", children }: SidebarProps) => {
   const theme = useTheme();
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" }} data-testid="sidebar">
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <StyledToolbar>
@@ -59,7 +59,7 @@ const Sidebar = ({ appBarTitle = "", children }: SidebarProps) => {
           <UserAndSettings />
         </StyledToolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open} data-testid="sidebar-drawer">
         <DrawerHeader />
         {children}
       </Drawer>
