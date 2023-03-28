@@ -1,4 +1,7 @@
 import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import CustomFilters from "./CustomFilters";
 import { Filter } from "./types";
 import { operatorOptions, getNewFilters } from "./utils";
 
@@ -416,6 +419,34 @@ describe("regarding the getNewFilters function", () => {
           ],
         });
         expect(mustUpdateDataWithFilters).toEqual(false);
+      });
+    });
+  });
+});
+
+describe("Regarding the CustomFilters component", () => {
+  const columnOptions = [
+    {
+      value: "name",
+      label: "Name",
+    },
+    {
+      value: "age",
+      label: "Age",
+    },
+  ];
+  describe("when visible prop is true", () => {
+    it("should render the component", () => {
+      render(<CustomFilters columns={columnOptions} visible={true} />);
+      const element = screen.getByTestId("custom-filters");
+      expect(element).toBeInTheDocument();
+    });
+
+    describe("when visible prop is false", () => {
+      it("should not render the component", () => {
+        render(<CustomFilters columns={columnOptions} visible={false} />);
+        const element = screen.queryByTestId("custom-filters");
+        expect(element).not.toBeInTheDocument();
       });
     });
   });

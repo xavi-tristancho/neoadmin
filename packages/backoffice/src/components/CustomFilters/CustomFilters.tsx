@@ -76,12 +76,13 @@ const CustomFilters = ({
   }, [debouncedFilters]);
 
   return visible ? (
-    <FormContainer theme={theme}>
+    <FormContainer theme={theme} data-testid="custom-filters">
       <FormGenerator
         state={{ data: state, aux: {} }}
         sections={headerSections}
         handleChange={handleChange}
         Button={() => <></>}
+        select={{ input: { ["data-testid"]: "column-select" } }}
       />
     </FormContainer>
   ) : (
