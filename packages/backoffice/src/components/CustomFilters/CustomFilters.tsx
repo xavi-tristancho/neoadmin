@@ -82,7 +82,6 @@ const CustomFilters = ({
         sections={headerSections}
         handleChange={handleChange}
         Button={() => <></>}
-        select={{ input: { ["data-testid"]: "column-select" } }}
       />
     </FormContainer>
   ) : (
