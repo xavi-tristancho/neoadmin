@@ -3,5 +3,5 @@
   "checkCoverage": true,
   "lines": 20,
   "include": ["src"],
-  "reporter": "html"
+  "exclude": ["**/index.ts", "**/*d.ts"]
 }
