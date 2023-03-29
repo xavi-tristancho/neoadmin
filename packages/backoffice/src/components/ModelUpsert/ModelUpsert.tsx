@@ -1,18 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useHistory, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { FormGenerator } from "@neoco/neoco-form";
+import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardContent } from "@mui/material";
-import { beforeSave } from "./utils";
+import { FormGenerator } from "@neoco/neoco-form";
+import { useTranslation } from "react-i18next";
+import { useHistory, useParams } from "react-router-dom";
+import { Header, Section, unknownObject } from "../../types";
 import { getRoutePath } from "../../utils/routes";
 import { isEmptyObject } from "../../utils/object";
 import { getPageActionLiteral, getPageOneLiteral } from "../../languages/utils";
 import useNotiAlert from "../../utils/NotiAlert/useNotiAlert";
 import { useConfig } from "../../contexts";
-import { useTheme } from "@mui/material/styles";
+import { beforeSave } from "./utils";
 
-const getInitialState = (sections) =>
+type Params = { id?: string };
+
+type State = { data: unknownObject; aux: unknownObject };
+
+const getInitialState = (sections: Section[]): unknownObject =>
   sections.reduce(
     (reducer, { fields }) => ({
       ...reducer,
@@ -27,15 +32,21 @@ const getInitialState = (sections) =>
     {}
   );
 
-const ModelUpsert = ({ header, children }) => {
-  const { config, setConfig } = useConfig();
+const ModelUpsert = ({
+  header,
+  children,
+}: {
+  header: Header;
+  children: JSX.Element;
+}): JSX.Element => {
+  const { config, updateConfig } = useConfig();
   const theme = useTheme();
-  const [state, setState] = useState({
+  const [state, setState] = useState<State>({
     data: getInitialState(header.sections),
     aux: {},
   });
   const history = useHistory();
-  const params = useParams();
+  const params = useParams<Params>();
   const { t } = useTranslation();
 
   const {
@@ -57,22 +68,25 @@ const ModelUpsert = ({ header, children }) => {
   const renderChildren = children || header.options?.upsertOptions?.children;
   const { showSuccessAlert, showErrorAlert } = useNotiAlert();
 
-  const updateState = (nextState) =>
+  const updateState = (nextState: State) =>
     setState((currentState) => ({ ...currentState, ...nextState }));
 
   useEffect(() => {
     if (!isCreating) {
-      findOneRequest({ id }).then((data) => updateState({ data }));
+      findOneRequest({ id })
+        .then((data: unknownObject) => updateState({ data }))
+        .catch((error) => console.log(error));
     }
 
-    onMount().then((aux) => updateState({ aux }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    onMount()
+      .then((aux: unknownObject) => updateState({ aux }))
+      .catch((error) => console.log(error));
   }, [params.id]);
 
   const onSubmit = () => {
     return beforeSave({ header, state })
       .then(upsertRequest)
-      .then((res) => {
+      .then((res: { id: string } & unknownObject) => {
         showSuccessAlert({ message: t("actions.savedCorrect") });
         history.push(`${path}/${id ? "" : res.id}`);
         return res;
@@ -83,7 +97,7 @@ const ModelUpsert = ({ header, children }) => {
       });
   };
 
-  const handleChange = (data) => {
+  const handleChange = (data: unknownObject) => {
     updateState({ data: { ...state.data, ...data } });
   };
 
@@ -114,7 +128,7 @@ const ModelUpsert = ({ header, children }) => {
               state={state}
               handleChange={handleChange}
               config={config}
-              setConfig={setConfig}
+              setConfig={updateConfig}
               submitButtonProps={submitButtonProps}
             >
               {renderChildren}
