@@ -44,4 +44,21 @@ describe("Regarding Sidebar component", () => {
       expect(drawer).toHaveStyle("width: 240px");
     });
   });
+
+  describe("when AppBarTitle is passed", () => {
+    it("should render correctly", () => {
+      render(
+        <AuthProvider>
+          <ConfigProvider>
+            <ThemeModeProvider>
+              <Sidebar appBarTitle="Test Title">Test Content</Sidebar>
+            </ThemeModeProvider>
+          </ConfigProvider>
+        </AuthProvider>
+      );
+
+      const title = screen.getByText("Test Title");
+      expect(title).toBeInTheDocument();
+    });
+  });
 });
