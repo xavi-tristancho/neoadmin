@@ -44,6 +44,7 @@ export type DefaultField = {
   relation?: Relation;
   options?: Option[];
   disabled?: DisabledFn;
+  icon?: JSX.Element;
 };
 
 export type ShowFn = boolean | ((item: unknownObject) => boolean);

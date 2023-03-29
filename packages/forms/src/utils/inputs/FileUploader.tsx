@@ -1,17 +1,40 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
-import { Button } from "@mui/material";
+import { Button, Theme } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Delete } from "@mui/icons-material";
+import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { Field } from "../../types";
 
-const FileUploader = ({ field, state, format, fieldHandleChange }) => {
-  const inputRef = useRef(null);
+type State = { data: unknownObject; aux: unknownObject };
+
+type FileUploaderProps = {
+  field: Field;
+  state: State;
+  format: ({ state, field }: { state: State; field: Field }) => unknown;
+  fieldHandleChange: ({
+    target,
+  }: {
+    target: {
+      name: string;
+      value: unknownObject;
+    };
+  }) => void;
+};
+
+const FileUploader = ({
+  field,
+  state,
+  format,
+  fieldHandleChange,
+}: FileUploaderProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const theme = useTheme();
-  const currentFileName = format({ state, field });
-  const areThereFiles =
+  const currentFileName: unknownObject = format({ state, field });
+  const areThereFiles: number =
     currentFileName?.length || inputRef?.current?.files.length;
-  const icon = field?.icon;
-  const fileName =
+  const icon: JSX.Element = field?.icon;
+  const fileName: unknown =
     inputRef?.current?.files && inputRef?.current?.files.length
       ? inputRef?.current?.files[0].name
       : currentFileName
@@ -59,18 +82,20 @@ const FileUploader = ({ field, state, format, fieldHandleChange }) => {
         type="file"
         accept={field.type === "file-pdf" ? "application/pdf" : "*"}
         onChange={({ target }) => {
-          const files = target.files;
-          const filesArr = Array.prototype.slice.call(files);
+          const files: FileList = target.files;
+          const filesArr: File[] = Array.prototype.slice.call(files) as File[];
 
           if (filesArr.length) {
-            fileToBase64(filesArr[0]).then((file) => {
-              fieldHandleChange({
-                target: {
-                  name: field.name || field.property,
-                  value: file,
-                },
-              });
-            });
+            fileToBase64(filesArr[0])
+              .then((file) => {
+                fieldHandleChange({
+                  target: {
+                    name: field.name || field.property,
+                    value: file,
+                  },
+                });
+              })
+              .catch((error) => console.log(error));
           } else {
             fieldHandleChange({
               target: {
@@ -116,7 +141,8 @@ const FilesContainer = styled.div`
 const DeleteButton = styled(Delete)`
   margin: 0px 5px;
   cursor: pointer;
-  color: ${({ theme }) => theme?.palette?.error?.main || "red"};
+  color: ${({ theme }: { theme: Theme }) =>
+    theme?.palette?.error?.main || "red"};
 `;
 
 const FileName = styled.span`
@@ -130,20 +156,20 @@ const FileInput = styled.input`
   width: 0;
 `;
 
-const fileToBase64 = (file) =>
+const fileToBase64 = (file: Blob) =>
   new Promise((resolve, reject) => {
     try {
       if (!file) {
         reject();
       }
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
         const { name, type } = file;
         resolve({
           name,
           type,
-          size: Math.round(file.size / 1000 + "kB"),
+          size: `${Math.round(file.size / 1000)} kB`,
           base64: reader.result,
           file,
         });

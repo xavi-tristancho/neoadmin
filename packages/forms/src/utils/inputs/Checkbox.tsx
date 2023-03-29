@@ -1,16 +1,26 @@
-import React from "react";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import {
+  Checkbox,
+  FormControlLabel,
+  FormControlLabelProps,
+} from "@mui/material";
+import { UpsertOptions } from "@neoco/neoco-backoffice/src/types";
 
-const CheckboxForm = (args) => {
+type CheckboxFormProps = FormControlLabelProps & {
+  property?: string;
+  required?: boolean;
+  upsertOptions?: UpsertOptions;
+};
+
+const CheckboxForm = (args: CheckboxFormProps) => {
   const {
     property = "",
-    type = "",
     name = property,
     label = name,
     required = false,
-    tableOptions = undefined,
     upsertOptions = {},
-    onChange = () => {},
+    onChange = () => {
+      return;
+    },
     checked = false,
     ...props
   } = args;

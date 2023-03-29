@@ -18,11 +18,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ onChange }, ref) => {
       multiple={false}
       onClick={resetInputValue}
       ref={ref}
+      data-testid={"InputTest"}
     />
   );
 });
-export default Input;
 
 const StyledInput = styled.input`
   display: none;
 `;
+
+export default Input;

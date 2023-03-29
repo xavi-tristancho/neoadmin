@@ -18,10 +18,6 @@ export const blobToBase64 = (
 ): Promise<{ size: string; base64: string }> =>
   new Promise((resolve, reject) => {
     try {
-      if (!blob) {
-        reject();
-      }
-
       const reader = new FileReader();
       reader.readAsDataURL(blob);
       reader.onload = () => {
