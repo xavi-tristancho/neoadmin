@@ -63,7 +63,7 @@ const DatePickerInput = ({
   }
 
   return show ? (
-    <Container>
+    <Container data-testid={"date-picker-test"}>
       <LocalizationProvider dateAdapter={AdapterLuxon}>
         <Picker
           value={pickerValue}

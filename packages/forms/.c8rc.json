@@ -3,5 +3,5 @@
   "checkCoverage": true,
   "lines": 20,
   "include": ["src"],
-  "exclude": ["**/index.ts", "**/*d.ts"]
+  "exclude": ["**/index.ts", "**/*d.ts", "**/types.ts"]
 }

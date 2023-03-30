@@ -29,6 +29,7 @@ const CheckboxForm = (args: CheckboxFormProps) => {
 
   return show ? (
     <FormControlLabel
+      data-testid={"checkbox-test"}
       control={<Checkbox checked={checked} required={required} {...props} />}
       label={label}
       onChange={onChange}

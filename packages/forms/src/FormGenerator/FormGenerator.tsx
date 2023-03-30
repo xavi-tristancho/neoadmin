@@ -58,7 +58,7 @@ const FormGenerator = ({
   };
 
   return (
-    <form onSubmit={onLocalSubmit}>
+    <form onSubmit={onLocalSubmit} data-testid={"form-generator-test"}>
       {sections.map((section) => (
         <Section
           section={section}
@@ -96,7 +96,7 @@ const Section = ({
 }: SectionProps) => {
   const { FieldsContainer = BaseFieldsContainer } = section;
   return (
-    <SectionContainer>
+    <SectionContainer data-testid={"form-generator-section-test"}>
       {section.title ? <Title>{section.title}</Title> : ""}
       {section.subtitle ? <Subtitle>{section.subtitle}</Subtitle> : ""}
       <FieldsContainer
@@ -105,7 +105,7 @@ const Section = ({
         {typeof section.component === "function"
           ? section.component()
           : fieldsMapper({
-              fields: section.fields.filter(removeIfNotVisible(state.data)),
+              fields: section?.fields?.filter(removeIfNotVisible(state.data)),
               state,
               handleChange,
               config,
@@ -132,7 +132,7 @@ export const fieldsMapper = ({
   handleChange,
   config,
 }: FieldsMapperProps) => {
-  return fields.map(({ FieldContainer = BaseFieldContainer, ...field }) => (
+  return fields?.map(({ FieldContainer = BaseFieldContainer, ...field }) => (
     <FieldContainer key={field.property} style={field.style}>
       {typeof field.renderBefore === "function" ? field.renderBefore() : <></>}
       {inputMapper({
