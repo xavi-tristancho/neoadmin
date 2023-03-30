@@ -5,23 +5,21 @@ import { Field } from "../../types";
 import FileUploader, { State } from "./FileUploader";
 
 describe("regarding the FileUploader component", () => {
-  describe("given upsertOptions.show equal true", () => {
-    it("should render the component FileUploader", () => {
-      const props = {
-        field: {},
-        state: {},
-        format: () => {
-          return;
-        },
-        fieldHandleChange: () => {
-          return;
-        },
-      };
-      render(getElement(props));
+  it("should render the FileUploader component", () => {
+    const props = {
+      field: {},
+      state: {},
+      format: () => {
+        return;
+      },
+      fieldHandleChange: () => {
+        return;
+      },
+    };
+    render(getElement(props));
 
-      const element = screen.queryByTestId("file-uploader-test");
-      expect(element).toBeInTheDocument();
-    });
+    const element = screen.queryByTestId("file-uploader-test");
+    expect(element).toBeInTheDocument();
   });
 });
 

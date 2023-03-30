@@ -42,7 +42,7 @@ const FileUploader = ({
       : "";
 
   return (
-    <React.Fragment data-testid={"file-uploader-test"}>
+    <>
       <FieldLabel>{field.label}</FieldLabel>
       <Container>
         <Button
@@ -106,7 +106,7 @@ const FileUploader = ({
           }
         }}
       />
-    </React.Fragment>
+    </>
   );
 };
 
