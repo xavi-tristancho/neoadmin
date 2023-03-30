@@ -3,5 +3,6 @@
   "checkCoverage": true,
   "lines": 50,
   "include": ["src"],
+  "exclude": ["**/types.ts", "src/test/**"],
   "reporter": "html"
 }
