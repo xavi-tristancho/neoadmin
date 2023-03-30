@@ -12,6 +12,7 @@ import {
   unknownObject,
   UpsertOptions,
 } from "@neoco/neoco-backoffice/src/types";
+import { zeroNeededFormat } from "../inputMapper";
 
 const DatePickerInput = ({
   property = "",
@@ -127,14 +128,5 @@ const DatePickerInput = ({
 const Container = styled.div`
   margin-bottom: 20px;
 `;
-
-const zeroNeededFormat = (value = "0") => {
-  const parsedValue = parseInt(value);
-  return (value || value === 0) && !Number.isNaN(parsedValue)
-    ? parsedValue < 10
-      ? `0${parsedValue}`
-      : parsedValue
-    : "--";
-};
 
 export default DatePickerInput;

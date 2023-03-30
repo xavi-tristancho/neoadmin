@@ -9,6 +9,7 @@ import {
   getDisabled,
   getFromat,
   getHandleChange,
+  zeroNeededFormat,
 } from "./inputMapper";
 
 type Section = { fields: { property: string }[] };
@@ -252,6 +253,29 @@ describe("reagarding the utils", () => {
         };
         const result = getDisabled({ field, state });
         expect(result).toEqual(true);
+      });
+    });
+  });
+
+  describe("regarding the zeroNeededFormat function", () => {
+    describe("with empty parameters", () => {
+      it("should return '00'", () => {
+        const result = zeroNeededFormat();
+        expect(result).toEqual("00");
+      });
+    });
+
+    describe("given a number under 10", () => {
+      it("should return the number as string", () => {
+        const result = zeroNeededFormat(5);
+        expect(result).toEqual("05");
+      });
+    });
+
+    describe("given a string", () => {
+      it("should return '--'", () => {
+        const result = zeroNeededFormat("abc");
+        expect(result).toEqual("--");
       });
     });
   });

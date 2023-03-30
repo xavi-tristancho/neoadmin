@@ -49,3 +49,12 @@ export const getDisabled = ({
 
   return typeof disabled === "function" ? disabled({ field, state }) : disabled;
 };
+
+export const zeroNeededFormat = (value = "0") => {
+  const parsedValue = parseInt(value);
+  return (value || value === 0) && !Number.isNaN(parsedValue)
+    ? parsedValue < 10
+      ? `0${parsedValue}`
+      : parsedValue
+    : "--";
+};
