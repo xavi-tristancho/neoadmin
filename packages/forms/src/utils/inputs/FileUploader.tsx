@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { Button, Theme } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -6,7 +6,7 @@ import { Delete } from "@mui/icons-material";
 import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 import { Field } from "../../types";
 
-type State = { data: unknownObject; aux: unknownObject };
+export type State = { data: unknownObject; aux: unknownObject };
 
 type FileUploaderProps = {
   field: Field;
@@ -42,7 +42,7 @@ const FileUploader = ({
       : "";
 
   return (
-    <>
+    <React.Fragment data-testid={"file-uploader-test"}>
       <FieldLabel>{field.label}</FieldLabel>
       <Container>
         <Button
@@ -106,7 +106,7 @@ const FileUploader = ({
           }
         }}
       />
-    </>
+    </React.Fragment>
   );
 };
 
