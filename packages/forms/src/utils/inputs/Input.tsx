@@ -29,6 +29,7 @@ const Input = ({
 
   return show ? (
     <StyledInput
+      data-testid={"input-test"}
       id={property}
       property={property}
       type={inputType}

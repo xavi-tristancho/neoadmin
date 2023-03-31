@@ -44,7 +44,7 @@ const FileUploader = ({
   return (
     <>
       <FieldLabel>{field.label}</FieldLabel>
-      <Container>
+      <Container data-testid={"file-uploader-second-element-test"}>
         <Button
           onClick={(e) => {
             e.preventDefault();
@@ -78,6 +78,7 @@ const FileUploader = ({
         )}
       </Container>
       <FileInput
+        data-testid={"file-input-test"}
         ref={inputRef}
         type="file"
         accept={field.type === "file-pdf" ? "application/pdf" : "*"}

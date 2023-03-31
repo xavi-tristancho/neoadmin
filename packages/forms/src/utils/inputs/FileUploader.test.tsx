@@ -5,7 +5,7 @@ import { Field } from "../../types";
 import FileUploader, { State } from "./FileUploader";
 
 describe("regarding the FileUploader component", () => {
-  it("should render the FileUploader component", () => {
+  it("should render the FileInput component", () => {
     const props = {
       field: {},
       state: {},
@@ -18,7 +18,24 @@ describe("regarding the FileUploader component", () => {
     };
     render(getElement(props));
 
-    const element = screen.queryByTestId("file-uploader-test");
+    const element = screen.queryByTestId("file-input-test");
+    expect(element).toBeInTheDocument();
+  });
+
+  it("should render the FileUploaderContainer component", () => {
+    const props = {
+      field: {},
+      state: {},
+      format: () => {
+        return;
+      },
+      fieldHandleChange: () => {
+        return;
+      },
+    };
+    render(getElement(props));
+
+    const element = screen.queryByTestId("file-uploader-second-element-test");
     expect(element).toBeInTheDocument();
   });
 });
