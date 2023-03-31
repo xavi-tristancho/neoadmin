@@ -1,7 +1,7 @@
 {
   "all": true,
   "checkCoverage": true,
-  "lines": 4,
+  "lines": 20,
   "include": ["src"],
-  "reporter": "cobertura"
+  "exclude": ["**/index.ts", "**/*d.ts", "**/types.ts"]
 }

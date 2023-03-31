@@ -4,11 +4,11 @@ export type RelationListField =
   | DefaultField & {
       property: string;
       type: "relation-list";
-      options: {
+      options?: {
         isCreatable: boolean;
         isDeletable: boolean;
         fields: Field[];
       };
-      CustomDeleteIcon: () => JSX.Element;
-      lineContainerStyles: React.CSSProperties;
+      CustomDeleteIcon?: () => JSX.Element;
+      lineContainerStyles?: React.CSSProperties;
     };

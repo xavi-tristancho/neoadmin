@@ -1,21 +1,21 @@
 import { ModelUpsertState } from "@neoco/neoco-backoffice/src/types";
 import { Field } from "../types";
 
-type HandleChange = (nextState: { [key: string]: unknown }) => void;
-type CustomEvent = { target: { name: string; value: unknown } };
+export type HandleChange = (nextState: { [key: string]: unknown }) => void;
+export type CustomEvent = { target: { name: string; value: unknown } };
 
-const defaultFormat = ({
+export const defaultFormat = ({
   state,
   field,
 }: {
   state: ModelUpsertState;
   field: Field;
-}): unknown => state.data[field.name || field.property];
+}): unknown => state.data[field.name] || state.data[field.property];
 
 export const getFromat = ({ field }: { field: Field }): unknown =>
   field.upsertOptions?.format || defaultFormat;
 
-const defaultHandleChange =
+export const defaultHandleChange =
   (handleChange: HandleChange) =>
   ({ target: { name, value } }: CustomEvent) => {
     handleChange({ [name]: value });
@@ -48,4 +48,13 @@ export const getDisabled = ({
   const { disabled = false } = field;
 
   return typeof disabled === "function" ? disabled({ field, state }) : disabled;
+};
+
+export const zeroNeededFormat = (value = "0") => {
+  const parsedValue = parseInt(value);
+  return (value || value === 0) && !Number.isNaN(parsedValue)
+    ? parsedValue < 10
+      ? `0${parsedValue}`
+      : parsedValue
+    : "--";
 };

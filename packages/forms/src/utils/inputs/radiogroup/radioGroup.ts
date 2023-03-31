@@ -1,9 +1,12 @@
-import { DefaultField, Option, Relation } from "@neoco/neoco-form/src/types";
+import { Field, Option, Relation } from "@neoco/neoco-form/src/types";
 import { unknownObject } from "@neoco/neoco-backoffice/src/types";
 
 type RadioGroupInput = {
-  field: DefaultField;
-  state: unknownObject;
+  field: Field;
+  state: {
+    data: unknownObject;
+    aux: unknownObject;
+  };
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -70,7 +73,7 @@ const radiogroup = ({
   };
 };
 
-const getSelectedOptions = ({
+export const getSelectedOptions = ({
   state,
   relation,
   property,
@@ -81,7 +84,7 @@ const getSelectedOptions = ({
 }): unknown =>
   state.data[relation?.name] ? state.data[relation.name] : state.data[property];
 
-const getOptions = ({
+export const getOptions = ({
   state,
   name,
   nameProps,
@@ -93,15 +96,17 @@ const getOptions = ({
   primaryKey: string;
 }): Option[] | [] => {
   return (
-    ((state?.aux[name] as Option[])?.map((item: Option) => ({
-      value: item[primaryKey] as string,
-      label: getName({ item, nameProps }),
-      ...item,
-    })) as Option[] | []) || []
+    ((state?.aux?.[name] as Option[])?.map((item: Option) => {
+      return {
+        value: item[primaryKey] as string,
+        label: getName({ item, nameProps }),
+        ...item,
+      };
+    }) as Option[] | []) || []
   );
 };
 
-const getName = ({
+export const getName = ({
   item,
   nameProps = [],
 }: {

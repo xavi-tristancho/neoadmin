@@ -18,7 +18,7 @@ type MultiSelectProps = {
   isMulti: boolean;
   placeholder: string;
   value: unknown;
-  renderInputProps: TextFieldProps;
+  renderInputProps?: TextFieldProps;
 };
 
 const MultiSelect = <
@@ -33,10 +33,12 @@ const MultiSelect = <
   upsertOptions = { show: true },
   fullWidth = true,
   isMulti = false,
-  placeholder = "-",
   renderInputProps = {},
   ...field
-}: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> &
+}: Omit<
+  AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
+  "renderInput"
+> &
   MultiSelectProps): JSX.Element => {
   const { show = true } = upsertOptions;
 
@@ -49,7 +51,12 @@ const MultiSelect = <
         autoHighlight={true}
         disableCloseOnSelect={isMulti}
         renderInput={(params) => (
-          <TextField label={label} {...params} {...renderInputProps} />
+          <TextField
+            label={label}
+            {...params}
+            {...renderInputProps}
+            data-testid={property}
+          />
         )}
         {...field}
       />

@@ -11,7 +11,7 @@ import { ReactComponent as DeleteIcon } from "../../../assets/icons/trash.svg";
 import { Field } from "../../../types";
 import { RelationListField } from "./types";
 
-type RelationListInputProps = {
+export type RelationListInputProps = {
   field: RelationListField;
   state: ModelUpsertState;
   onChange: (items: unknownObject[]) => void;
@@ -48,7 +48,6 @@ const RelationListInput = ({
   const { isCreatable = true } = field?.options || {};
   const { isDeletable = true } = field?.options || {};
   const items = state.data[field.property] as unknownObject[];
-
   const newItem: unknownObject =
     field.options?.fields.reduce(
       (reducer, key) => ({
@@ -73,6 +72,7 @@ const RelationListInput = ({
       {items?.map((item, index) => (
         <RelationListLine
           key={index}
+          data-testid={`relation-list-line-${index}`}
           data={item}
           aux={state?.aux}
           fields={field?.options?.fields || []}
@@ -111,7 +111,11 @@ const RelationListHeader = ({ title, button }: RelationListHeaderProps) => {
     <HeaderContainer>
       <Label>{title}</Label>
       {!isDisabled ? (
-        <AddButton variant="contained" onClick={action}>
+        <AddButton
+          variant="contained"
+          onClick={action}
+          data-testid="add-button"
+        >
           <AddIcon fill="white" height={20} width={20} />
         </AddButton>
       ) : (
@@ -143,7 +147,7 @@ const RelationListLine = ({
     <LineContainer {...props}>
       {inputs}
       {isDeletable && (
-        <DeleteButton onClick={onDelete}>
+        <DeleteButton onClick={onDelete} data-testid="delete-button">
           {CustomDeleteIcon && typeof CustomDeleteIcon === "function" ? (
             <CustomDeleteIcon />
           ) : (
