@@ -51,7 +51,10 @@ const RenderActionsCell = ({
       : isDeletable) && item.id;
 
   return (
-    <ActionsContainer onClick={(e) => e.stopPropagation()}>
+    <ActionsContainer
+      data-testid="render-actions-cell"
+      onClick={(e) => e.stopPropagation()}
+    >
       {canEdit && (
         <Link to={`${path}/${item.id}`}>
           <Edit color={"action"} theme={theme} />
