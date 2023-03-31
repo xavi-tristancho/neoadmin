@@ -45,7 +45,7 @@ type GetDataGridPropsFn = (props: {
   history: ReturnType<typeof useHistory>;
 }) => unknownObject;
 
-const getRow: GetRowFn = (item, props) => {
+export const getRow: GetRowFn = (item, props) => {
   const row = item.filter((row: Field) => row?.id === props?.id)?.[0];
   return row ? row : {};
 };
@@ -105,7 +105,7 @@ export const getFilterFields: GetFilterFieldsFn = (header) => {
   );
 };
 
-const removeIfNotFilter: RemoveIfNotFilterFn = (field) =>
+export const removeIfNotFilter: RemoveIfNotFilterFn = (field) =>
   field.tableOptions?.filter ||
   field.tableOptions?.isSearchable ||
   field.relation;
@@ -118,7 +118,7 @@ export const getClientSidePaginatedData: getClientSidePaginatedDataFn = ({
   return data.slice(start, start + pagination.pageSize);
 };
 
-const getModelPK: GetModelPKFn = (header) => {
+export const getModelPK: GetModelPKFn = (header) => {
   return header?.options?.primaryKey;
 };
 

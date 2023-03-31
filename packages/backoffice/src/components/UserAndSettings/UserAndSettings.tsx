@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React, { useState } from "react";
 import styled from "styled-components";
 import { IconButton, Avatar, Menu, MenuItem } from "@mui/material";
@@ -10,9 +9,10 @@ import {
   Translate,
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
-import stringAvatar from "./utils";
-import { useAuth, useThemeMode } from "../../contexts";
 import { useTranslation } from "react-i18next";
+import { useAuth, useThemeMode } from "../../contexts";
+import { Theme } from "../../styles/theme";
+import stringAvatar from "./utils";
 
 type Language = {
   label: string;
@@ -36,7 +36,7 @@ const UserAndSettings = (): JSX.Element => {
   const colorMode = useThemeMode();
   const { user, logout } = useAuth();
   const { i18n } = useTranslation();
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
 
@@ -57,6 +57,7 @@ const UserAndSettings = (): JSX.Element => {
           {languages.map(({ identifier, label }, index) => (
             <React.Fragment key={label}>
               <Language
+                //eslint-disable-next-line
                 onClick={() => i18n.changeLanguage(identifier)}
                 selected={i18n.language === identifier}
               >
@@ -88,7 +89,7 @@ const UserAndSettings = (): JSX.Element => {
   ];
 
   return (
-    <ContainerWrapper>
+    <ContainerWrapper data-testid="user-and-settings">
       <Container theme={theme}>
         <Avatar {...stringAvatar(user?.name)} />
         <IconButton
@@ -113,7 +114,7 @@ const UserAndSettings = (): JSX.Element => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          {menuItems.map(({ id, Icon, content = "", onClick = () => {} }) => (
+          {menuItems.map(({ id, Icon, content = "", onClick }) => (
             <MenuItem onClick={onClick} key={id}>
               <IconContainer>
                 <IconButton
@@ -153,7 +154,7 @@ const Container = styled.div`
   position: relative;
   width: 71px;
   height: 36px;
-  ${({ theme }) =>
+  ${({ theme }: { theme: Theme }) =>
     theme?.palette?.neoAdmin?.component?.background
       ? `background: ${theme?.palette?.neoAdmin?.component?.background};`
       : ""}
@@ -171,7 +172,7 @@ const Languages = styled.div`
 `;
 
 const Language = styled.div`
-  ${({ selected }) => selected && "font-weight: bold;"}
+  ${({ selected }: { selected: boolean }) => selected && "font-weight: bold;"}
 `;
 
 const Separator = styled.span`

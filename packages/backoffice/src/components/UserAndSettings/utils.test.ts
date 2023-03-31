@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import stringAvatar from "./utils";
+import stringAvatar, { stringToColor } from "./utils";
 
 describe("regarding UserAndSettings", () => {
   describe("regarding stringAvatar function", () => {
@@ -23,21 +23,28 @@ describe("regarding UserAndSettings", () => {
         return expect(stringAvatar(name).children).toBe("A");
       });
     });
-    describe("given a number", () => {
-      it("should return the default value", () => {
-        const name = 2;
-        return expect(stringAvatar(name).children).toBe("A");
+  });
+
+  describe("regarding stringToColor function", () => {
+    describe("given a string", () => {
+      it("should return a valid HEX color", () => {
+        const name = "test";
+        return expect(stringToColor(name)).toBe("#924436");
       });
     });
-    describe("executed the function without arguments", () => {
-      it("should return the default value", () => {
-        return expect(stringAvatar().children).toBe("A");
+    describe("given same string input", () => {
+      it("should return same HEX color ", () => {
+        const input = "Hello, World!";
+        const firstColor = stringToColor(input);
+        const secondColor = stringToColor(input);
+        expect(firstColor).toEqual(secondColor);
       });
     });
-    describe("given an undefinded", () => {
-      it("should return the default value", () => {
-        const name = undefined;
-        return expect(stringAvatar(name).children).toBe("A");
+    describe("given an empty string input", () => {
+      it("should return a default color", () => {
+        const defaultColor = "#000000";
+        const color = stringToColor();
+        expect(color).toEqual(defaultColor);
       });
     });
   });

@@ -1,6 +1,18 @@
+import { createMemoryHistory } from "history";
 import { Header } from "@neoco/neoco-backoffice/src/types";
-import { describe, it, expect } from "vitest";
-import { getFields, getItemIdentifier, getFilterFields } from "./utils";
+import { Field } from "@neoco/neoco-form/src/types";
+import { describe, it, expect, vi } from "vitest";
+import { darkTheme as theme } from "../../styles/theme";
+import {
+  getRow,
+  getFields,
+  getItemIdentifier,
+  getFilterFields,
+  removeIfNotFilter,
+  getClientSidePaginatedData,
+  getModelPK,
+  getDataGridProps,
+} from "./utils";
 
 const header: Header = {
   options: {
@@ -32,6 +44,31 @@ const header: Header = {
 };
 
 describe("this", () => {
+  describe("regarding the getRow function", () => {
+    it("should be able to get a row from an item", () => {
+      const item = header.sections[0].fields;
+      const props = header.sections[0].fields[0];
+      expect(getRow(item, props)).toEqual({
+        type: "text",
+        name: "Concepto",
+        property: "concept",
+      });
+    });
+    it("should return an empty object if the row does not exist", () => {
+      const item = header.sections[0].fields;
+      const props = {
+        ...header.sections[0].fields[0],
+        id: "not-exists",
+      };
+      expect(getRow(item, props)).toEqual({});
+    });
+    it("should return an empty object if the item array is empty", () => {
+      const item: Field[] = [];
+      const props = header.sections[0].fields[0];
+      expect(getRow(item, props)).toEqual({});
+    });
+  });
+
   describe("regarding the getFields function", () => {
     it("should be able to get all the fields of all the sections of the header", () => {
       expect(getFields({ header, t: (text) => text })).toEqual([
@@ -192,6 +229,162 @@ describe("this", () => {
             },
           },
         ]);
+      });
+    });
+  });
+
+  describe("regarding the removeIfNotFilter function", () => {
+    it("should return true if the field has a filter", () => {
+      const field: Field = {
+        type: "text",
+        property: "city",
+        tableOptions: {
+          filter: (item: unknown) => String(item),
+        },
+      };
+      expect(removeIfNotFilter(field)).toBeTruthy();
+    });
+    it("should return true if the field has a isSearchable", () => {
+      const field: Field = {
+        type: "text",
+        property: "city",
+        tableOptions: {
+          isSearchable: true,
+        },
+      };
+      expect(removeIfNotFilter(field)).toBeTruthy();
+    });
+    it("should return true if the field has a relation", () => {
+      const field: Field = {
+        type: "relation-list",
+        property: "city",
+        relation: {
+          name: "name",
+          nameProps: [],
+          primaryKey: "id",
+        },
+      };
+      expect(removeIfNotFilter(field)).toBeTruthy();
+    });
+    it("should return false if the field has not a filter", () => {
+      const field: Field = {
+        type: "text",
+        property: "city",
+      };
+      expect(removeIfNotFilter(field)).toBeFalsy();
+    });
+  });
+
+  describe("regarding the getClientSidePaginatedData function", () => {
+    it("should return the data paginated following the pageSize value", () => {
+      const pagination = {
+        page: 1,
+        pageSize: 10,
+      };
+      const data = Array.from({ length: 100 }, (_, i) => ({ [`key${i}`]: i }));
+      expect(getClientSidePaginatedData({ pagination, data })).toEqual(
+        data.slice(0, 10)
+      );
+    });
+  });
+
+  describe("regarding the getModelPK function", () => {
+    it("should return the primaryKey value from the header", () => {
+      expect(getModelPK(header)).toBe("concept");
+    });
+  });
+
+  describe("regarding the getDataGridProps function", () => {
+    const history = createMemoryHistory();
+    const props = {
+      isLoading: false,
+      isFilterable: true,
+      tableState: {
+        pagination: { page: 1, pageSize: 10 },
+      },
+      updateTableState: vi.fn(),
+      onDataGridChange: vi.fn(),
+      onFiltersButtonClick: vi.fn(),
+      openOnClickRow: true,
+      path: "/test",
+      header: header,
+      theme: theme,
+      history: history,
+    };
+    it("should return the props for the DataGrid component", () => {
+      expect(getDataGridProps(props)).toStrictEqual({
+        loading: false,
+        disableColumnFilter: true,
+        components: {
+          Toolbar: expect.any(Function) as () => JSX.Element,
+        },
+        filterMode: "server",
+        paginationMode: "server",
+        sortingMode: "server",
+        rowsPerPageOptions: [5, 10, 15],
+        onStateChange: expect.any(Function) as () => void,
+        onPageSizeChange: expect.any(Function) as () => void,
+        onRowClick: expect.any(Function) as () => void,
+        pageSize: 10,
+        rowCount: undefined,
+        autoHeight: true,
+        sx: {
+          "&& .MuiDataGrid-toolbarContainer": {
+            "& .MuiButton-root": {
+              marginRight: "20px",
+            },
+          },
+        },
+      });
+    });
+    describe("when the tableState has a filter", () => {
+      it("should return the props for the DataGrid component with the filterModel", () => {
+        const propsWithFilter = {
+          ...props,
+          tableState: {
+            ...props.tableState,
+            filter: [
+              {
+                columnField: "name",
+                operatorValue: "contains",
+                value: "test",
+              },
+            ],
+          },
+        };
+        expect(getDataGridProps(propsWithFilter)).toStrictEqual({
+          loading: false,
+          disableColumnFilter: true,
+          components: {
+            Toolbar: expect.any(Function) as () => JSX.Element,
+          },
+          filterMode: "server",
+          paginationMode: "server",
+          sortingMode: "server",
+          rowsPerPageOptions: [5, 10, 15],
+          onStateChange: expect.any(Function) as () => void,
+          onPageSizeChange: expect.any(Function) as () => void,
+          onRowClick: expect.any(Function) as () => void,
+          pageSize: 10,
+          rowCount: undefined,
+          autoHeight: true,
+          sx: {
+            "&& .MuiDataGrid-toolbarContainer": {
+              "& .MuiButton-root": {
+                marginRight: "20px",
+              },
+            },
+          },
+          filterModel: {
+            items: [
+              {
+                columnField: "name",
+                operatorValue: "contains",
+                value: "test",
+              },
+            ],
+          },
+        });
       });
     });
   });

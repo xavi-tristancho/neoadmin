@@ -64,6 +64,10 @@ export type TableOptions = {
   isCreatable?: boolean;
   isEditable?: boolean;
   isDeletable?: boolean;
+  isFilterable?: boolean;
+  isSearchable?: boolean;
+  onMount?: () => Promise<unknownObject>;
+  renderAfter?: (state: unknownObject) => React.ReactNode;
   openOnClickRow?: boolean;
   pageSize?: number;
   renderBefore?: () => React.ReactNode;

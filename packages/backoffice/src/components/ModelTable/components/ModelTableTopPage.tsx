@@ -24,7 +24,7 @@ const ModelTableTopPage = ({
   const { t } = useTranslation();
   const theme = useTheme();
   return (
-    <TitleAndActionsContainer>
+    <TitleAndActionsContainer data-testid="model-table-top-page">
       <Typography variant="h3" component="h1">
         {getPageTitleLiteral({ t, page: pageName })}
       </Typography>
@@ -34,7 +34,7 @@ const ModelTableTopPage = ({
             <ButtonContainer>
               <CustomLink to={`${path}/new`}>
                 <CustomButton color="primary" variant="contained" theme={theme}>
-                  <AddIcon />
+                  <AddIcon data-testid="add-button" />
                   {getPageNewLiteral({ t, page: pageName })}
                 </CustomButton>
               </CustomLink>

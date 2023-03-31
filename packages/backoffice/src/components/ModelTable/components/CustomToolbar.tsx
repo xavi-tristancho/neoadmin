@@ -23,7 +23,7 @@ const CustomToolbar = ({
   const { t } = useTranslation();
   const filtersAmount = filters.length;
   return (
-    <GridToolbarContainer>
+    <GridToolbarContainer data-testid="custom-toolbar">
       <GridToolbarColumnsButton />
       {isFilterable && (
         <Button onClick={onFiltersButtonClick}>
