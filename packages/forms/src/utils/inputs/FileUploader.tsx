@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Button, Theme } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Delete } from "@mui/icons-material";
-import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { unknownObject } from "@app-artisans/backoffice/src/types";
 import { Field } from "../../types";
 
 type State = { data: unknownObject; aux: unknownObject };

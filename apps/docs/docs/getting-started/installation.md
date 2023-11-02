@@ -33,7 +33,7 @@ It will ask you for the AWS Access Key ID and the AWS Secret Access Key. Here yo
 Finally run this command:
 
 ```bash
-$ aws codeartifact login --tool npm --domain neoadmin-neoco --domain-owner 906935845275 --repository neoadmin-registry --namespace @neoco
+$ aws codeartifact login --tool npm --domain neoadmin-neoco --domain-owner 906935845275 --repository neoadmin-registry --namespace @app-artisans
 ```
 
 Now you are able to download neoAdmin packages!
@@ -42,7 +42,7 @@ Now you are able to download neoAdmin packages!
 
 To install and save in your `package.json` dependencies, run:
 
-<PackageTabs code="@emotion/react @emotion/styled @mui/icons-material @mui/lab @mui/material @mui/x-data-grid @neoco/neoco-backoffice @neoco/neoco-form @neoco/neoco-image-uploader @tinymce/tinymce-react i18next luxon notistack react-i18next react-router-dom@5.3.0 styled-components" />
+<PackageTabs code="@emotion/react @emotion/styled @mui/icons-material @mui/lab @mui/material @mui/x-data-grid @app-artisans/backoffice @app-artisans/form @app-artisans/image-uploader @tinymce/tinymce-react i18next luxon notistack react-i18next react-router-dom@5.3.0 styled-components" />
 
 :::note
 
@@ -57,10 +57,10 @@ LOREM IPSUM
 
 ```js
 // with npm
-npm install @neoco/neoadmin
+npm install @app-artisans/neoadmin
 
 // with yarn
-yarn add @neoco/neoadmin
+yarn add @app-artisans/neoadmin
 ```
 
 

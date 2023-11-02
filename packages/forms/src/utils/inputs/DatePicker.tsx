@@ -11,7 +11,7 @@ import { DateTime } from "luxon";
 import {
   unknownObject,
   UpsertOptions,
-} from "@neoco/neoco-backoffice/src/types";
+} from "@app-artisans/backoffice/src/types";
 
 const DatePickerInput = ({
   property = "",

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useTheme } from "@mui/material/styles";
 import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { unknownObject } from "@neoco/neoco-backoffice/src/types";
-import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
+import { unknownObject } from "@app-artisans/backoffice/src/types";
+import { Theme } from "@app-artisans/backoffice/src/styles/theme";
 
 type RenderActionsCellProps = {
   item: unknown & { id?: string | number };

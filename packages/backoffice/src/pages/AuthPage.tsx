@@ -7,7 +7,7 @@ import AuthContext from "../contexts/AuthContext";
 import Sidebar from "../components/Sidebar";
 import responsive from "../utils/responsive";
 import getModelInitialLetter from "../utils/authPage";
-import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { unknownObject } from "@app-artisans/backoffice/src/types";
 
 type AuthPageProps = {
   children: React.ReactNode;

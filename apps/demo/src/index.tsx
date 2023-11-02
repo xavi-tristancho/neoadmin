@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { App, AuthProvider, ConfigProvider } from "@neoco/neoco-backoffice";
+import { App, AuthProvider, ConfigProvider } from "@app-artisans/backoffice";
 import reportWebVitals from "./reportWebVitals";
 import { headers } from "./pages";
 

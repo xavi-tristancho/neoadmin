@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "types": ["vite/client"],
     "paths": {
-      "@neoco/neoco-backoffice": ["./packages/backoffice/src/index.ts"]
+      "@app-artisans/backoffice": ["./packages/backoffice/src/index.ts"]
     }
   }
 }

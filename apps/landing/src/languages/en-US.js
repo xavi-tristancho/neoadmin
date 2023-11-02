@@ -257,7 +257,7 @@ export default {
         {
           title: "Can I get support?",
           description:
-            "Of course, you can contact us using our contact form on sending us an email to info@neoco.dev",
+            "Of course, you can contact us using our contact form on sending us an email to info@app-artisans.dev",
         },
         // {
         //   title: "Can I get a refund?",

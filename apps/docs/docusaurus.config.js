@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "neoAdmin",
   tagline: "",
-  url: "https://neoco-libraries-docs.vercel.app",
+  url: "https://libraries-docs.vercel.app",
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",

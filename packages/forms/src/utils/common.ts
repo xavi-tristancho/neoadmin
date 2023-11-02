@@ -1,4 +1,4 @@
-import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { unknownObject } from "@app-artisans/backoffice/src/types";
 import { Field } from "../types";
 
 type RemoveIfNotVisible = (item?: unknownObject) => (field?: Field) => boolean;

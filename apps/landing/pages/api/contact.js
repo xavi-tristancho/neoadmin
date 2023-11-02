@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer';
-import { mailTemplate } from 'utils';
+import nodemailer from "nodemailer";
+import { mailTemplate } from "utils";
 
 export default function (req, res) {
   const template = req.body.template;
@@ -10,9 +10,9 @@ export default function (req, res) {
 
   const transporter = nodemailer.createTransport({
     port: 587,
-    host: 'smtp.neoco.dev',
+    host: "smtp.neoco.dev",
     auth: {
-      user: 'info@neoco.dev',
+      user: "info@app-artisans.dev",
       pass: process.env.EMAIL_PASSWORD,
     },
     secure: false,
@@ -25,6 +25,6 @@ export default function (req, res) {
       if (err) console.log(err);
       else console.log(info);
       res.json({ info, err });
-    },
+    }
   );
 }

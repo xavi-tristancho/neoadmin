@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import { Close } from "@mui/icons-material";
-import { UnknownOption } from "@neoco/neoco-form/src/utils/inputs/multi-select/types";
+import { UnknownOption } from "@app-artisans/form/src/utils/inputs/multi-select/types";
 import { sameElement } from "../../utils/common";
 import { Column, Filter, FilterSection, OperatorOptions } from "./types";
 

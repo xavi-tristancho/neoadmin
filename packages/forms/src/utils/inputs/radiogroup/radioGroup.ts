@@ -1,5 +1,5 @@
-import { DefaultField, Option, Relation } from "@neoco/neoco-form/src/types";
-import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { DefaultField, Option, Relation } from "@app-artisans/form/src/types";
+import { unknownObject } from "@app-artisans/backoffice/src/types";
 
 type RadioGroupInput = {
   field: DefaultField;

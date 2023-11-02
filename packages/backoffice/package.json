@@ -1,5 +1,5 @@
 {
-  "name": "@neoco/neoco-backoffice",
+  "name": "@app-artisans/backoffice",
   "version": "0.19.2",
   "type": "module",
   "main": "./src/index.ts",
@@ -31,8 +31,8 @@
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.8",
     "@mui/x-data-grid": "^5.17.23",
-    "@neoco/neoco-form": "*",
-    "@neoco/neoco-image-uploader": "*",
+    "@app-artisans/form": "*",
+    "@app-artisans/image-uploader": "*",
     "notistack": "^2.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -4,7 +4,7 @@ import {
   Config,
   ModelUpsertState,
   unknownObject,
-} from "@neoco/neoco-backoffice/src/types";
+} from "@app-artisans/backoffice/src/types";
 import { fieldsMapper } from "../../../FormGenerator/FormGenerator";
 import { ReactComponent as AddIcon } from "../../../assets/icons/add.svg";
 import { ReactComponent as DeleteIcon } from "../../../assets/icons/trash.svg";

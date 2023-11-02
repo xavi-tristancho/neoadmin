@@ -3,7 +3,7 @@ import { Bar } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import CountUp from "react-countup";
-import { Header } from "@neoco/neoco-backoffice";
+import { Header } from "@app-artisans/backoffice";
 
 import { postsData } from "./fixtures/postsData";
 

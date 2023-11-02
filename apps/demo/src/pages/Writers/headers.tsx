@@ -1,4 +1,4 @@
-import { Header } from "@neoco/neoco-backoffice";
+import { Header } from "@app-artisans/backoffice";
 import { clone } from "../utils";
 import { writers } from "./fixtures/writers";
 import { Writer } from "./types";

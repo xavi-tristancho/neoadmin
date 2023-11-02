@@ -1,4 +1,4 @@
-import { Field } from "@neoco/neoco-form/src/types";
+import { Field } from "@app-artisans/form/src/types";
 import { Header, ModelUpsertState, unknownObject } from "../../types";
 
 const image = ({

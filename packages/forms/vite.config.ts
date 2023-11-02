@@ -19,7 +19,7 @@ export default defineConfig({
         "@mui/lab",
         "@mui/material",
         "@mui/x-date-pickers",
-        "@neoco/neoco-image-uploader",
+        "@app-artisans/image-uploader",
         "@tinymce/tinymce-react",
         "react",
         "react-dom",

@@ -5,7 +5,7 @@ import DatePicker from "./DatePicker";
 import Checkbox from "./Checkbox";
 import MultiSelect from "./multi-select/MultiSelect";
 import { Editor } from "@tinymce/tinymce-react";
-import ImageUploader from "@neoco/neoco-image-uploader";
+import ImageUploader from "@app-artisans/image-uploader";
 import { multiselect } from "./multi-select/multi-select";
 import date from "./date/date";
 import RelationListInput from "./relation-list/RelationListInput";

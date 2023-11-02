@@ -3,7 +3,7 @@ import {
   FormControlLabel,
   FormControlLabelProps,
 } from "@mui/material";
-import { UpsertOptions } from "@neoco/neoco-backoffice/src/types";
+import { UpsertOptions } from "@app-artisans/backoffice/src/types";
 
 type CheckboxFormProps = FormControlLabelProps & {
   property?: string;

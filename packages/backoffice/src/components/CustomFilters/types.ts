@@ -1,6 +1,6 @@
-import { DefaultField, Field } from "@neoco/neoco-form/src/types";
-import { MultiSelectField } from "@neoco/neoco-form/src/utils/inputs/multi-select/types";
-import { Section } from "@neoco/neoco-backoffice/src/types";
+import { DefaultField, Field } from "@app-artisans/form/src/types";
+import { MultiSelectField } from "@app-artisans/form/src/utils/inputs/multi-select/types";
+import { Section } from "@app-artisans/backoffice/src/types";
 
 export type Column = {
   property?: string;

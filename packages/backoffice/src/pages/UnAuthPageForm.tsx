@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 import styled from "styled-components";
-import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { unknownObject } from "@app-artisans/backoffice/src/types";
 import { Theme } from "../styles/theme";
 import UnAuthForm from "../components/UnAuthForm";
 import useNotiAlert from "../utils/NotiAlert/useNotiAlert";

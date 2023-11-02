@@ -1,5 +1,5 @@
 {
-  "name": "@neoco/neoco-image-uploader",
+  "name": "@app-artisans/image-uploader",
   "version": "0.3.2",
   "type": "module",
   "main": "./src/index.ts",

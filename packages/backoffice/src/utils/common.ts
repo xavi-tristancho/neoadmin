@@ -1,5 +1,5 @@
-import { Field, ShowFn } from "@neoco/neoco-form/src/types";
-import { unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { Field, ShowFn } from "@app-artisans/form/src/types";
+import { unknownObject } from "@app-artisans/backoffice/src/types";
 
 type SomeRequiredValuesAreEmptyFn = (props: {
   fields: Field[];

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
-import { FormGenerator } from "@neoco/neoco-form";
+import { FormGenerator } from "@app-artisans/form";
 import responsive from "../utils/responsive";
 import { useTheme } from "@mui/material/styles";
-import { Section, unknownObject } from "@neoco/neoco-backoffice/src/types";
-import { Field } from "@neoco/neoco-form/src/types";
+import { Section, unknownObject } from "@app-artisans/backoffice/src/types";
+import { Field } from "@app-artisans/form/src/types";
 
 export type UnAuthFormProps = {
   onSubmit: (data: unknownObject) => Promise<void>;

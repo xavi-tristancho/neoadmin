@@ -1,4 +1,4 @@
-import { Header } from "@neoco/neoco-backoffice/src/types";
+import { Header } from "@app-artisans/backoffice/src/types";
 import { describe, it, expect } from "vitest";
 import { getFields, getItemIdentifier, getFilterFields } from "./utils";
 

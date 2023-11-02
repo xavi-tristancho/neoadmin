@@ -9,10 +9,10 @@ const mailTemplate = (req, translations, template) => {
 
   const headers = {
     from: req.body.answers.email,
-    to: 'info@neoco.dev',
+    to: "info@app-artisans.dev",
     envelope: {
-      from: 'info@neoco.dev',
-      to: 'info@neoco.dev',
+      from: "info@app-artisans.dev",
+      to: "info@app-artisans.dev",
     },
     subject: `${subject} ${req.body.answers.email}`,
     text: `${mail}: ${req.body.answers.email}, ${message}: ${req.body.answers.message}`,
@@ -29,8 +29,8 @@ const mailTemplate = (req, translations, template) => {
   };
 
   switch (template) {
-    case 'questions':
-    case 'custom-work':
+    case "questions":
+    case "custom-work":
       return {
         ...headers,
         subject: `${tempSubject} - ${subject} ${req.body.answers.email}`,

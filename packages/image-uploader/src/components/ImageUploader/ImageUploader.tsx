@@ -4,7 +4,7 @@ import {
   AddPhotoAlternate as AddPhotoIcon,
 } from "@mui/icons-material";
 import styled from "styled-components";
-import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
+import { Theme } from "@app-artisans/backoffice/src/styles/theme";
 
 import CropDialog from "../CropDialog";
 import useImageUploader from "./useImageUploader";

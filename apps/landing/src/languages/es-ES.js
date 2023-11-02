@@ -258,7 +258,7 @@ export default {
         {
           title: "Tengo un problema concreto, ¿propocionáis soporte?",
           description:
-            "Por supuesto. Puedes contactarnos a través de nuestro formulario de contacto o enviando un email a info@neoco.dev",
+            "Por supuesto. Puedes contactarnos a través de nuestro formulario de contacto o enviando un email a info@app-artisans.dev",
         },
         // {
         //   title: "Can I get a refund?",

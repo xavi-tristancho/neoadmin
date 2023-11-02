@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Header, unknownObject } from "@neoco/neoco-backoffice/src/types";
-import { Field } from "@neoco/neoco-form/src/types";
-import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
+import { Header, unknownObject } from "@app-artisans/backoffice/src/types";
+import { Field } from "@app-artisans/form/src/types";
+import { Theme } from "@app-artisans/backoffice/src/styles/theme";
 import { removeIfNotVisible } from "../../utils/common";
 import { getPageHeaderFieldLiteral } from "../../languages/utils";
 import { CustomToolbar } from "./components";

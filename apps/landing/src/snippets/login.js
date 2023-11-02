@@ -1,4 +1,4 @@
-export default `import { pages } from "@neoco/neoAdmin";
+export default `import { pages } from "@app-artisans/neoAdmin";
 import { loginRequest } from "utils/requests";
 
 // We expose a Login component for you that

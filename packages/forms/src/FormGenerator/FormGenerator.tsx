@@ -6,7 +6,7 @@ import {
   Section,
   Config,
   unknownObject,
-} from "@neoco/neoco-backoffice/src/types";
+} from "@app-artisans/backoffice/src/types";
 import { inputMapper } from "../utils/inputs";
 import { removeIfNotVisible } from "../utils/common";
 import { getIndexInArray } from "../utils/arrays";

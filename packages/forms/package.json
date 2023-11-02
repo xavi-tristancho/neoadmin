@@ -1,5 +1,5 @@
 {
-  "name": "@neoco/neoco-form",
+  "name": "@app-artisans/form",
   "version": "0.11.1",
   "type": "module",
   "main": "./src/index.ts",
@@ -37,7 +37,7 @@
     "@mui/lab": "^5.0.0-alpha.93",
     "@mui/material": "^5.2.7",
     "@mui/x-date-pickers": "^5.0.0-beta.4",
-    "@neoco/neoco-image-uploader": "*",
+    "@app-artisans/image-uploader": "*",
     "@tinymce/tinymce-react": "^3.8.4",
     "luxon": "^2.3.1",
     "react": "^18.2.0",

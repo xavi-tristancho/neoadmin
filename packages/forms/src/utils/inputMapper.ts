@@ -1,4 +1,4 @@
-import { ModelUpsertState } from "@neoco/neoco-backoffice/src/types";
+import { ModelUpsertState } from "@app-artisans/backoffice/src/types";
 import { Field } from "../types";
 
 type HandleChange = (nextState: { [key: string]: unknown }) => void;

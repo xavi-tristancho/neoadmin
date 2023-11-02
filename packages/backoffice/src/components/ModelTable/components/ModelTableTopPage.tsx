@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Theme } from "@neoco/neoco-backoffice/src/styles/theme";
+import { Theme } from "@app-artisans/backoffice/src/styles/theme";
 import { useTranslation } from "react-i18next";
 import { Typography, CardActions, Button } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";

@@ -1,4 +1,4 @@
-import { Header, pages } from "@neoco/neoco-backoffice";
+import { Header, pages } from "@app-artisans/backoffice";
 
 const { Login } = pages;
 

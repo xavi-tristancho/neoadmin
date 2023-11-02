@@ -1,6 +1,6 @@
 import { FormControlLabelProps } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { UpsertOptions } from "@neoco/neoco-backoffice/src/types";
+import { UpsertOptions } from "@app-artisans/backoffice/src/types";
 import styled from "styled-components";
 
 type InputProps = FormControlLabelProps & {

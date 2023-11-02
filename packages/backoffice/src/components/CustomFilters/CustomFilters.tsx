@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FormGenerator } from "@neoco/neoco-form";
+import { FormGenerator } from "@app-artisans/form";
 import styled from "styled-components";
 import { Card } from "@mui/material";
 import { useTheme } from "@mui/material/styles";

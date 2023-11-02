@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardContent } from "@mui/material";
-import { FormGenerator } from "@neoco/neoco-form";
+import { FormGenerator } from "@app-artisans/form";
 import { useTranslation } from "react-i18next";
 import { useHistory, useParams } from "react-router-dom";
 import { Header, Section, unknownObject } from "../../types";

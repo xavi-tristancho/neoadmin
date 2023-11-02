@@ -1,4 +1,4 @@
-import { Header } from "@neoco/neoco-backoffice";
+import { Header } from "@app-artisans/backoffice";
 import { clone } from "../utils";
 import { posts, categories } from "./fixtures/posts";
 import { Category, Post } from "./types";

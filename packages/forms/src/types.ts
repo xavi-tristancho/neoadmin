@@ -1,7 +1,7 @@
 import {
   ModelUpsertState,
   unknownObject,
-} from "@neoco/neoco-backoffice/src/types";
+} from "@app-artisans/backoffice/src/types";
 import { MultiSelectField } from "./utils/inputs/multi-select/types";
 import { RelationListField } from "./utils/inputs/relation-list/types";
 

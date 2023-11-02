@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material/styles";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import { Header, unknownObject } from "@neoco/neoco-backoffice/src/types";
+import { Header, unknownObject } from "@app-artisans/backoffice/src/types";
 import { sameElement, showRender } from "../../utils/common";
 import { getRoutePath } from "../../utils/routes";
 import useNotiAlert from "../../utils/NotiAlert/useNotiAlert";
@@ -193,7 +193,7 @@ const ModelTable = ({
       .catch((error) => {
         console.error(error);
       });
-  }; 
+  };
 
   const onDataGridChange = (state: unknownObject) => {
     const { pagination, sorting } = state || {};

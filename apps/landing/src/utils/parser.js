@@ -27,7 +27,7 @@ function makeid(length) {
   return result;
 }
 
-const generateAnonEmail = () => `${makeid(5)}@neoco.dev`;
+const generateAnonEmail = () => `${makeid(5)}@app-artisans.dev`;
 
 export const getAnswers = (formObject, template) => {
   const { questions, email = generateAnonEmail() } = formObject;
