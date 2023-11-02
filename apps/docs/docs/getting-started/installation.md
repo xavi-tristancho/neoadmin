@@ -10,8 +10,6 @@ import { NeoLink, GenericLink } from '@site/src/components/ui/Link';
 
 Follow this guide to correctly install <NeoLink /> and its dependencies to make sure everything works properly.
 
-As neoAdmin is a licensed library, you need to authenticate in order to have access to it. We store the library in an AWS Codeartifact repository. Once you have bought a license you will be granted an access key and a secret key that will allow you to authenticate against our servers in order to download the library.
-
 ### neoAdmin
 
 To install and save in your `package.json` dependencies, run:
