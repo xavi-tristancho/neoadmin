@@ -217,7 +217,7 @@ export default {
         {
           title: "How do I get access to neoAdmin?",
           description:
-            "Currently it's not for sale, but we are working to release the first version. You can join the priority list so we can notify you when it's released.",
+            "neoAdmin is open source! You can find the source code at https://github.com/xavi-tristancho/neoadmin",
         },
         {
           title: "Why would I need to use neoAdmin?",
@@ -227,7 +227,7 @@ export default {
         {
           title: "How do I install my neoAdmin project?",
           description:
-            "Once you have access to the repository, you can create a project with Create React App for example and then install the neoAdmin library using npm or yarn as a dependency of that project.",
+            "Once you have cloned the repository, you can create a project with Create React App for example and then install the neoAdmin library using npm or yarn as a dependency of that project.",
         },
         {
           title: "How do I deploy my neoAdmin project?",
@@ -245,11 +245,6 @@ export default {
             "You can tell us which feature it is through our contact form and we will consider it for implementation.",
         },
         {
-          title: "Can I try neoAdmin?",
-          description:
-            "Currently not, but soon we will be releasing a demo version of neoAdmin hosted on our servers.",
-        },
-        {
           title: "Which libraries does neoAdmin rely on?",
           description:
             "The most important libraries that we are using are MaterialUI, React Router and TinyMCE. We are also using libraries that we made ourselves in order to manage forms and upload images.",
@@ -259,11 +254,6 @@ export default {
           description:
             "Of course, you can contact us using our contact form on sending us an email to info@app-artisans.dev",
         },
-        // {
-        //   title: "Can I get a refund?",
-        //   description:
-        //     "We offer a 14 day money-back guarantee. If you're not satisfied with neoAdmin after using it for two weeks We'll refund you your money!",
-        // },
       ],
     },
     customWork: {
@@ -305,9 +295,8 @@ export default {
   },
   general: {
     productName: "neoAdmin",
-    cta: "Join now the priority list",
+    cta: "View Repo",
     livePreview: "Live preview",
-    comingSoon: "coming soon",
     back: "back",
     next: "next",
     contactUs: "contact us",

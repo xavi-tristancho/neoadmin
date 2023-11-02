@@ -217,7 +217,7 @@ export default {
         {
           title: "¿Cómo consigo acceso a neoAdmin?",
           description:
-            "Ahora mismo no está a la venta pero estamos trabajando para lanzar la primera versión. Puedes unirte a la lista de espera para que te avisemos cuando esté disponible.",
+            "¡neoAdmin es open source! Puedes encontrar el código fuente en https://github.com/xavi-tristancho/neoadmin",
         },
         {
           title: "¿Por qué podría necesitar neoAdmin?",
@@ -227,7 +227,7 @@ export default {
         {
           title: "¿Cómo instalo neoAdmin en mi proyecto?",
           description:
-            "Una vez tengas acceso al repositorio, podrás crear un proyecto, por ejemplo con Create React App, y luego instalar la librería neoAdmin como dependencia del proyecto usando npm o yarn.",
+            "Una vez tengas clonado el repositorio, podrás crear un proyecto, por ejemplo con Create React App, y luego instalar la librería neoAdmin como dependencia del proyecto usando npm o yarn.",
         },
         {
           title: "¿Cómo despliego mi proyecto hecho con neoAdmin?",
@@ -246,11 +246,6 @@ export default {
             "Puedes decirnos de qué funcionalidad se trata a través de nuestro formulario de contacto y consideraremos implementarla.",
         },
         {
-          title: "¿Puedo probar neoAdmin?",
-          description:
-            "Ahora mismo no, pero pronto lanzaremos una versión de prueba de neoAdmin alojada en nuestros servidores.",
-        },
-        {
           title: "¿Cuáles son las librerías sobre las que depende neoAdmin?",
           description:
             "Las librerías más importantes que estamos usando son MaterialUI, React Router y TinyMCE. También usamos librerías que hemos hecho nosotros para administrar formularios y subir imágenes.",
@@ -258,13 +253,8 @@ export default {
         {
           title: "Tengo un problema concreto, ¿propocionáis soporte?",
           description:
-            "Por supuesto. Puedes contactarnos a través de nuestro formulario de contacto o enviando un email a info@app-artisans.dev",
+            "Por supuesto. Puedes contactarnos a través de nuestro formulario de contacto o enviando un email a soporte@xavitristancho.pro",
         },
-        // {
-        //   title: "Can I get a refund?",
-        //   description:
-        //     "We offer a 14 day money-back guarantee. If you're not satisfied with neoAdmin after using it for two weeks We'll refund you your money!",
-        // },
       ],
     },
     customWork: {
@@ -307,9 +297,8 @@ export default {
   },
   general: {
     productName: "neoAdmin",
-    cta: "Únete ahora a la lista de espera",
+    cta: "Ver Repositorio",
     livePreview: "Ver Demo",
-    comingSoon: "próximamente",
     back: "atrás",
     next: "siguiente",
     contactUs: "contáctanos",

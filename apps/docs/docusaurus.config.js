@@ -13,7 +13,7 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.png",
-  organizationName: "neoco",
+  organizationName: "app-artisans",
   projectName: "neoAdmin",
   presets: [
     [
@@ -87,7 +87,7 @@ const config = {
             ],
           },
         ],
-        copyright: `neoco © ${new Date().getFullYear()}`,
+        copyright: `Xavi Tristancho Bordoy © ${new Date().getFullYear()}`,
       },
       prism: {
         theme: lightCodeTheme,

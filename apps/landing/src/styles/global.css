@@ -1,10 +1,10 @@
 :root {
   --yellow_light: #fdffa1;
-  --neoco_yellow: #fcff51;
+  --brand_yellow: #fcff51;
   --custom_yellow: #fbff33;
   --custom_white: #ffffff;
   --light_gray: #f0efef;
-  --neoco_gray: #bfbebe;
+  --brand_gray: #bfbebe;
   --third_gray: #aeaeae;
   --second_gray: #ababab;
   --custom_gray: #9e9e9e;
@@ -12,7 +12,7 @@
   --second_dark_gray: #4b4b4b;
   --dark_gray: #383838;
   --light_black: #191919;
-  --neoco_black: #1c1c1c;
+  --brand_black: #1c1c1c;
   --gradient_dark_black: #0c0c0c;
   --gradient_light_black: #1e1e1e;
 }

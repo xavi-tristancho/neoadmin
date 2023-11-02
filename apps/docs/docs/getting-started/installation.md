@@ -8,35 +8,9 @@ sidebar_position: 2
 import PackageTabs from '@site/src/components/PackageTabs';
 import { NeoLink, GenericLink } from '@site/src/components/ui/Link';
 
-:::danger
-
-You have to buy a license [here](https://neoadmin.neoco.dev/) before installing the library
-
-:::
-
 Follow this guide to correctly install <NeoLink /> and its dependencies to make sure everything works properly.
 
 As neoAdmin is a licensed library, you need to authenticate in order to have access to it. We store the library in an AWS Codeartifact repository. Once you have bought a license you will be granted an access key and a secret key that will allow you to authenticate against our servers in order to download the library.
-
-### AWS CLI
-
-Follow [this guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) in order to install the AWS CLI in your computer. This tool will allow you to authenticate against our servers
-
-Run:
-
-```bash
-$ aws configure
-```
-
-It will ask you for the AWS Access Key ID and the AWS Secret Access Key. Here you have to paste the values that we shared with you in the email after buying the license. Set `eu-west-1` as the default region name and a `JSON` output format
-
-Finally run this command:
-
-```bash
-$ aws codeartifact login --tool npm --domain neoadmin-neoco --domain-owner 906935845275 --repository neoadmin-registry --namespace @app-artisans
-```
-
-Now you are able to download neoAdmin packages!
 
 ### neoAdmin
 

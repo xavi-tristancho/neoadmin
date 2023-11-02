@@ -10,7 +10,7 @@ export default function (req, res) {
 
   const transporter = nodemailer.createTransport({
     port: 587,
-    host: "smtp.neoco.dev",
+    host: "smtp.xavitristancho.pro",
     auth: {
       user: "info@app-artisans.dev",
       pass: process.env.EMAIL_PASSWORD,

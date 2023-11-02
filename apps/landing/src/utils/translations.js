@@ -24,7 +24,7 @@ const getTranslations = ({ translationIndex, language } = {}) => {
 const getMetaImage = () => {
   const { locale } = useRouter();
   const defaultLocale = "es-US";
-  const urlBase = "https://neoadmin.neoco.dev/";
+  const urlBase = "https://neoadmin.xavitristancho.pro/";
   const url = locale === defaultLocale ? urlBase : `${urlBase}${locale}/`;
 
   return {

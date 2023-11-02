@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Stack } from "@mui/material";
 import { CTA, LandingTitle, LandingDescription } from "components";
-import { responsive, modalVariant } from "utils";
+import { responsive } from "utils";
 import { colors } from "styles";
-import { openDemoLink } from "utils/openDemoLink";
+import { openDemoLink, openRepoLink } from "utils/openDemoLink";
 const { mediaQuery, useMediaQuery, breakpoints } = responsive;
 
-const TopPage = ({ title, description, general, openModal }) => {
+const TopPage = ({ title, description, general }) => {
   const isTablet = useMediaQuery(breakpoints.TABLET);
 
   return (
@@ -21,7 +21,7 @@ const TopPage = ({ title, description, general, openModal }) => {
                 content={general?.cta}
                 variant="big"
                 id="joinlist"
-                onClick={() => openModal(modalVariant.join)}
+                onClick={openRepoLink}
               />
               <CTA
                 content={general?.livePreview}
@@ -41,7 +41,7 @@ const TopPage = ({ title, description, general, openModal }) => {
                 content={general?.cta}
                 variant="big"
                 id="joinlist"
-                onClick={() => openModal(modalVariant.join)}
+                onClick={openRepoLink}
                 style={{ marginLeft: "auto" }}
               />
               <CTA

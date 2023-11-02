@@ -12,7 +12,6 @@ import {
   Modal,
   TopPage,
   CustomWork,
-  LivePreview,
 } from "components";
 import { translations, modalVariant } from "utils";
 import { ToastContainer } from "react-toastify";
@@ -31,7 +30,7 @@ const Home = () => {
   const {
     meta: { title, description },
     landing,
-    sections: { code, features, questionnaire, livePreview, faqs, customWork },
+    sections: { code, features, questionnaire, faqs, customWork },
     general,
     contact,
   } = pageContent;
@@ -65,7 +64,7 @@ const Home = () => {
         <meta property="og:image" content={image} />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="neoadmin.neoco.dev" />
+        <meta property="twitter:domain" content="neoadmin.xavitristancho.pro" />
         <meta property="twitter:url" content={url} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
@@ -78,7 +77,6 @@ const Home = () => {
         <NavBar
           sectionContent={{
             cta: general?.cta,
-            comingSoon: general?.comingSoon,
           }}
           onClickModal={() => openModal(modalVariant.join)}
         />

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { TextInput, TextareaInput } from "styles";
 import Close from "public/icons/cross.svg";
 import { motion } from "framer-motion";
-import { responsive, form, inputs, translations, getNeocoUrl } from "utils";
+import { responsive, form, inputs, translations, getLegalUrl } from "utils";
 const { mediaQuery } = responsive;
 const { useFormState, initialFormStructure } = form;
 const { getTranslations } = translations;
@@ -34,8 +34,8 @@ const Modal = ({
     gdpr: { main, tos, and, privacy },
   } = getTranslations();
 
-  const legalUrl = getNeocoUrl({ page: "legal" });
-  const privacyUrl = getNeocoUrl({});
+  const legalUrl = getLegalUrl({ page: "legal" });
+  const privacyUrl = getLegalUrl({});
 
   useEffect(() => {
     setFormObject(initialFormStructure(template));

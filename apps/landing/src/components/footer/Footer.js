@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { responsive } from 'utils';
-import { NeocoLogo } from 'components';
+import styled from "styled-components";
+import { responsive } from "utils";
+import { Logo } from "components";
 
 const { mediaQuery } = responsive;
 
@@ -8,8 +8,8 @@ const Footer = ({ onClickModal, questions, ...props }) => {
   return (
     <Container id="footer">
       <Content>
-        <a href={'https://neoco.dev/'} target="_blank">
-          <NeocoLogo {...props} />
+        <a href={"https://xavitristancho.pro/"} target="_blank">
+          <Logo {...props} />
         </a>
         <Text onClick={onClickModal}>{questions}</Text>
       </Content>

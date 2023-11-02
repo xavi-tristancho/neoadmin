@@ -2,7 +2,7 @@ import React from "react";
 import Link from "@docusaurus/Link";
 
 export const NeoLink = () => (
-  <Link to="https://neoadmin.neoco.dev/" target="blank">
+  <Link to="https://neoadmin.xavitristancho.pro/" target="blank">
     neoAdmin
   </Link>
 );

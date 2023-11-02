@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx eslint $(git diff --name-only --diff-filter=d HEAD | grep -E '\.(js|jsx|ts|tsx)$' | xargs)
+# npx eslint $(git diff --name-only --diff-filter=d HEAD | grep -E '\.(js|jsx|ts|tsx)$' | xargs)

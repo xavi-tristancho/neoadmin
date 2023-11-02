@@ -1,4 +1,9 @@
-export const demoUrl = "https://neoadmin.neoco.dev/neoadmin-demo";
+export const repoUrl = "https://github.com/xavi-tristancho/neoadmin";
+export const demoUrl = "https://neoadmin.xavitristancho.pro/neoadmin-demo";
+
+export const openRepoLink = () => {
+  window.open(repoUrl, "_blank");
+};
 
 export const openDemoLink = () => {
   window.open(demoUrl, "_blank");

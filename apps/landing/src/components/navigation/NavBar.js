@@ -1,15 +1,12 @@
-import { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
-import { Languages, CoomingSoon, CTA } from 'components';
-import { motion } from 'framer-motion';
-import { responsive } from 'utils';
+import { useEffect, useState, useRef } from "react";
+import styled from "styled-components";
+import { Languages, CoomingSoon, CTA } from "components";
+import { motion } from "framer-motion";
+import { responsive } from "utils";
 const { mediaQuery, useMediaQuery, breakpoints } = responsive;
 const { TABLET } = breakpoints;
 
-const NavBar = ({
-  sectionContent: { cta = '', comingSoon = '' },
-  onClickModal,
-}) => {
+const NavBar = ({ sectionContent: { cta = "" }, onClickModal }) => {
   const [showCta, setShowCta] = useState(false);
   const isTablet = useMediaQuery(TABLET);
   const showCtaRef = useRef(showCta);
@@ -21,7 +18,7 @@ const NavBar = ({
   const showAndHideCTA = () => {
     const top = 0;
     const scrollIsDownLandingCta =
-      document.getElementById('sentinel').getBoundingClientRect().top < top;
+      document.getElementById("sentinel").getBoundingClientRect().top < top;
 
     if (scrollIsDownLandingCta && !showCtaRef.current) {
       setShowState(true);
@@ -31,14 +28,14 @@ const NavBar = ({
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', showAndHideCTA, false);
+    window.addEventListener("scroll", showAndHideCTA, false);
   }, []);
 
   return (
     <Container id="navbar">
       <Content showGap={showCta}>
         <LeftContainer>
-          <CoomingSoon comingSoon={comingSoon} />
+          <CoomingSoon />
           {!isTablet && <Languages />}
         </LeftContainer>
         <RightContainer>
@@ -47,9 +44,10 @@ const NavBar = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              style={{ margin: 'auto', width: '100%' }}>
+              style={{ margin: "auto", width: "100%" }}
+            >
               <CTA
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 content={cta}
                 variant="nav"
                 onClick={onClickModal}
@@ -69,7 +67,7 @@ const Container = styled.div`
   position: fixed;
   background: #1c1c1cde;
   backdrop-filter: blur(50px);
-  top: ${({ home }) => (home ? '-100px' : '0')};
+  top: ${({ home }) => (home ? "-100px" : "0")};
   width: 100%;
   max-width: 100%;
   padding: 10px 0;
@@ -84,7 +82,7 @@ const Content = styled.div`
   width: 100%;
   margin: 1rem auto;
   padding: 0 1rem;
-  ${({ showGap }) => (showGap ? 'grid-gap: 2rem;' : 'grid-gap: 0;')}
+  ${({ showGap }) => (showGap ? "grid-gap: 2rem;" : "grid-gap: 0;")}
 
   ${mediaQuery.TABLET` 
   justify-content: space-between;

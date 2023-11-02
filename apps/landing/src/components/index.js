@@ -13,7 +13,7 @@ export { default as Card } from "./ui/Card";
 export { default as Cards } from "./ui/CardsSection";
 export { default as Modal } from "./ui/Modal";
 export { default as ImageModal } from "./ui/ImageModal";
-export { default as NeocoLogo } from "./ui/NeocoLogo";
+export { default as Logo } from "./ui/Logo";
 export { default as CodeAndPreview } from "./ui/CodeAndPreview";
 export { default as CoomingSoon } from "./ui/CoomingSoon";
 export { default as Feature } from "./ui/Feature";

@@ -2,7 +2,7 @@
   "name": "neoadmin-demo",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://neocodevs.github.io/neoadmin-demo",
+  "homepage": "https://xavi-tristancho.github.io/neoadmin-demo",
   "type": "module",
   "scripts": {
     "dev": "vite",

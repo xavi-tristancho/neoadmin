@@ -6,10 +6,10 @@ import {
   Components,
 } from "@mui/material/styles";
 
-interface NeocoPaletteOptions
+interface BrandPaletteOptions
   extends Omit<PaletteOptions, "action" | "primary"> {
-  primary: NeocoSimplePaletteColorOptions;
-  secondary: NeocoSimplePaletteColorOptions;
+  primary: BrandSimplePaletteColorOptions;
+  secondary: BrandSimplePaletteColorOptions;
   action: PaletteColorOptions;
   neoAdmin: {
     login: { background: string; formBackground: string };
@@ -31,7 +31,7 @@ interface NeocoPaletteOptions
   };
 }
 
-interface NeocoComponentTheme extends Components<Omit<Theme, "components">> {
+interface BrandComponentTheme extends Components<Omit<Theme, "components">> {
   MuiDataGrid: {
     styleOverrides: {
       root: { border: string };
@@ -62,19 +62,19 @@ interface NeocoComponentTheme extends Components<Omit<Theme, "components">> {
   };
 }
 export interface Theme extends Omit<ThemeOptions, "components" | "palette"> {
-  components: NeocoComponentTheme;
-  palette: NeocoPaletteOptions;
+  components: BrandComponentTheme;
+  palette: BrandPaletteOptions;
 }
 
-interface NeocoSimplePaletteColorOptions extends SimplePaletteColorOptions {
+interface BrandSimplePaletteColorOptions extends SimplePaletteColorOptions {
   text?: string;
   contrast?: string;
 }
 
 interface Common {
-  primary: NeocoSimplePaletteColorOptions;
-  secondary: NeocoSimplePaletteColorOptions;
-  action: NeocoSimplePaletteColorOptions;
+  primary: BrandSimplePaletteColorOptions;
+  secondary: BrandSimplePaletteColorOptions;
+  action: BrandSimplePaletteColorOptions;
 }
 
 const common: Common = {

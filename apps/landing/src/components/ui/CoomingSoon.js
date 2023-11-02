@@ -2,13 +2,10 @@ import styled from "styled-components";
 import { responsive } from "utils";
 const { mediaQuery } = responsive;
 
-const CoomingSoon = ({ comingSoon = "" }) => {
+const CoomingSoon = () => {
   return (
     <Container>
       <ProductName>neoAdmin</ProductName>
-      <CoomingSoonContainer>
-        <Text>{comingSoon}</Text>
-      </CoomingSoonContainer>
     </Container>
   );
 };
