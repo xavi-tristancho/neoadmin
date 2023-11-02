@@ -52,12 +52,6 @@ const config = {
     ({
       navbar: {
         title: "neoAdmin",
-        logo: {
-          alt: "neoAdmin Logo",
-          src: "img/logo_black.svg",
-          srcDark: "img/logo_white.svg",
-          href: "/",
-        },
         hideOnScroll: true,
         /*items: [
           {
@@ -73,16 +67,20 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                label: "Linkedin",
+                href: "https://www.linkedin.com/in/xavier-tristancho-bordoy/",
               },
               {
                 label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
+                href: "https://discord.gg/knHcajSnGg",
+              },
+              {
+                label: "Youtube",
+                href: "https://www.youtube.com/@xavi_tristancho",
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                href: "https://twitter.com/xavitristancho",
               },
             ],
           },
