@@ -11,7 +11,7 @@ module.exports = {
     },
     {
       source: "/neoadmin-demo/:match*",
-      destination: "https://xavi-tristancho.github.io/neoadmin-demo/:match*",
+      destination: "https://neoadmin-demo.vercel.app/:match*",
     },
   ],
   webpack: (config, { isServer }) => {
