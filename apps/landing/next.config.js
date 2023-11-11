@@ -10,7 +10,7 @@ module.exports = {
       destination: "https://neoadmin-docs.vercel.app/:match*",
     },
     {
-      source: "/neoadmin-demo/:match*",
+      source: "/demo/:match*",
       destination: "https://neoadmin-demo.vercel.app/:match*",
     },
   ],
