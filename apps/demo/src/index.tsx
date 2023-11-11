@@ -10,10 +10,7 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <ConfigProvider>
-        <App
-          headers={headers}
-          config={{ router: { basename: "/neoadmin-demo" } }}
-        />
+        <App headers={headers} config={{ router: { basename: "/demo" } }} />
       </ConfigProvider>
     </AuthProvider>
   </React.StrictMode>
