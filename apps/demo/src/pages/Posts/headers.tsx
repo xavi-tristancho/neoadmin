@@ -46,6 +46,18 @@ const headers: Header = {
           label: "Image",
           property: "image",
           type: "image",
+          tableOptions: {
+            format: ({ row }: { row: Post }) => (
+              <img
+                src={row.image}
+                alt={row.title}
+                style={{
+                  aspectRatio: "16/9",
+                  height: "90%",
+                }}
+              />
+            ),
+          },
         },
         {
           label: "Title",
