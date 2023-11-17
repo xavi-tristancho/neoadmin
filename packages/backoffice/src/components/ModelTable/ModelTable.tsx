@@ -124,29 +124,9 @@ const ModelTable = ({
   const renderChildren = children || header?.options?.tableOptions?.children;
   const pageName = header?.options?.name;
   const tableHeaders = getFields({ header, t, item: data || remoteData });
-  const imageField = tableHeaders.find((item) => item.field === "image");
-
+  
   const columns = [
-    {
-      field: "image",
-      headerName: "Image",
-      sortable: false,
-      filterable: false,
-      editable: false,
-      flex: 0.5,
-      renderCell: (params: unknown) => {
-        if (
-          imageField &&
-          imageField.tableOptions &&
-          imageField.tableOptions.format
-        ) {
-          return imageField.tableOptions.format({ row: params.row });
-        } else {
-          return <div>No format function provided</div>;
-        }
-      },
-    },
-    ...tableHeaders.filter((item) => item.field !== "image"),
+    ...tableHeaders,
     ...(isEditable || isDeletable || typeof renderActions === "function"
       ? [
           {

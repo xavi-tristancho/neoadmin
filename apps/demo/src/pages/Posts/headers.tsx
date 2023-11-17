@@ -2,6 +2,7 @@ import { Header } from "@app-artisans/backoffice";
 import { clone } from "../utils";
 import { posts, categories } from "./fixtures/posts";
 import { Category, Post } from "./types";
+// import renderCellExpand from '@app-artisans/backoffice/src/components/ModelTable/components/RenderCellExpand';
 
 const headers: Header = {
   type: "CRUD", // Specify the header as a `CRUD` type
@@ -63,29 +64,39 @@ const headers: Header = {
           label: "Title",
           property: "title",
           type: "text",
+          tableOptions: {
+            format: ({ row }: { row: Post }) => <p>{row.title}</p>,
+          },
         },
         {
           label: "Date",
           property: "date",
           type: "date",
+          tableOptions: {
+            format: ({ row }: { row: Post }) => <p>{row.date}</p>,
+          },
         },
         {
           label: "Content",
           property: "content",
           type: "html",
+          // tableOptions: {
+          //   format: ({ row, props }: { row: Post, props: unknown }) => renderCellExpand(row, props),
+          // },
         },
         {
           label: "Category",
           property: "category",
-          type: "multiselect",
-          relation: {
-            isMulti: false,
-            options: categories,
-            format: (category: Category) => category.name,
-          },
+          type: "singleSelect",
           tableOptions: {
-            format: (category: Category) => category.name,
+            format: ({ category }: { category: Category }) => (
+              <p>{category.name}</p>
+            ),
           },
+          // getOptionValue: (value: any) => value.id,
+          // getOptionLabel: (value: any) => value.name,
+          valueOptions: categories,
+          editable: true,
         },
         {
           property: "visible",
