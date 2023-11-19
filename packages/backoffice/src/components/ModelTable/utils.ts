@@ -6,7 +6,6 @@ import { removeIfNotVisible } from "../../utils/common";
 import { getPageHeaderFieldLiteral } from "../../languages/utils";
 import { CustomToolbar } from "./components";
 import type { useHistory } from "react-router-dom";
-import { RenderCellExpand } from "./components";
 
 type GetRowFn = (item: Field[], props: Field) => unknown;
 
@@ -83,32 +82,12 @@ export const getFields: GetFieldsFn = ({ header, t, item }) => {
               renderCell: (props: Field) =>
                 tableOptions.format({
                   row: getRow(item, props),
-                  category: getRow(item, props).category,
                 }),
             }
-          : {}),
-          ...(element.property === "content"
-          ? {
-              renderCell: (props) =>
-                RenderCellExpand(getRow(item, props), props),
-
-              // renderCell: (props) =>
-              //   tableOptions.format({
-              //     row: getRow(item, props: Field),
-              //     props,
-              //   }),
-            }
-          : {}),
-        ...(element.property === "category"
-          ? {
-              valueOptions: () =>
-                element.valueOptions.map((option: string) => option.name),
-
-              // valueGetter: (params) => {
-              //   return params.row.category.name;
-              // },
-            }
-          : {}),
+          : {
+              renderCell: (params: any) =>
+                params.value.name ? params.value.name : params.value,
+            }),
         flex: 1,
         field: element.property,
         headerName: element.label || element.name || element.property,
