@@ -77,13 +77,14 @@ const headers: Header = {
         {
           label: "Category",
           property: "category",
-          type: "singleSelect",
-          editable: true,
-          valueOptions: categories,
-          getOptionValue: (value: any) => value.id,
-          getOptionLabel: (value: any) => value.name,
-          valueGetter: (params) => {
-            return params.row.category.name;
+          type: "multiselect",
+          relation: {
+            isMulti: false,
+            options: categories,
+            format: (category: Category) => category.name,
+          },
+          tableOptions: {
+            format: (category: Category) => category.name,
           },
         },
         {

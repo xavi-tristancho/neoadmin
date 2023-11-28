@@ -278,9 +278,6 @@ const ModelTable = ({
             //   XDataGrid[language].components.MuiDataGrid.defaultProps.localeText
             // }
             {...dataGridProps(neoProps)}
-            columnVisibilityModel={{
-              content: false,
-            }}
           />
           {typeof renderChildren === "function"
             ? renderChildren({ state: remoteData })
