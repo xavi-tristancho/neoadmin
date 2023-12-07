@@ -1,9 +1,9 @@
 import { Header } from "@app-artisans/backoffice";
 import { clone } from "../utils";
 import { posts, categories } from "./fixtures/posts";
-import { Post } from "./types";
+import { Category, Post } from "./types";
 
-const headers: Header = {
+const headers: Header<Post> = {
   type: "CRUD", // Specify the header as a `CRUD` type
   options: {
     name: "Post", // Name the sidebar option and the page title
@@ -47,16 +47,18 @@ const headers: Header = {
           property: "image",
           type: "image",
           tableOptions: {
-            format: ({ row }: { row: Post }) => (
-              <img
-                src={row.image}
-                alt={row.title}
-                style={{
-                  aspectRatio: "16/9",
-                  height: "90%",
-                }}
-              />
-            ),
+            format: ({ row }) => {
+              return (
+                <img
+                  src={row.image}
+                  alt={row.title}
+                  style={{
+                    aspectRatio: "16/9",
+                    height: "90%",
+                  }}
+                />
+              );
+            },
           },
         },
         {
@@ -73,6 +75,9 @@ const headers: Header = {
           label: "Content",
           property: "content",
           type: "html",
+          tableOptions: {
+            show: false,
+          },
         },
         {
           label: "Category",
@@ -84,7 +89,9 @@ const headers: Header = {
             format: (category: Category) => category.name,
           },
           tableOptions: {
-            format: (category: Category) => category.name,
+            format: (category: Category) => {
+              return category.name;
+            },
           },
         },
         {

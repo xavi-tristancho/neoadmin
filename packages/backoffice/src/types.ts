@@ -18,9 +18,9 @@ export type unknownObject = {
   [key: string]: unknown | unknownObject;
 };
 
-export type Section = {
+export type Section<Entity> = {
   component?: () => JSX.Element;
-  fields?: Field[];
+  fields?: Field<Entity>[];
   FieldsContainer?: ({
     children,
     style,
@@ -80,7 +80,7 @@ export type UpsertOptions = {
   show?: boolean;
 };
 
-export type Header = {
+export type Header<Entity = null> = {
   type: "CRUD" | "Page";
   options: {
     name: string;
@@ -106,5 +106,5 @@ export type Header = {
     tableOptions?: TableOptions;
     upsertOptions?: UpsertOptions;
   };
-  sections?: Section[];
+  sections?: Section<Entity>[];
 };
