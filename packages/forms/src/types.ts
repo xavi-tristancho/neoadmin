@@ -15,7 +15,6 @@ export type DefaultField<Entity = null> = {
   required?: boolean;
   label?: string;
   property?: string;
-  name?: string;
   placeholder?: string;
   style?: React.CSSProperties;
   sx?: unknownObject;

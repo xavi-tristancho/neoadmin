@@ -90,7 +90,7 @@ export const getFields: GetFieldsFn = ({ header, t, data }) => {
           : {}),
         flex: 1,
         field: element.property,
-        headerName: element.label || element.name || element.property,
+        headerName: element.label || element.property,
       };
     });
 };

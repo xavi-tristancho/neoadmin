@@ -104,7 +104,6 @@ const headers: Header<Post> = {
         {
           label: "Minutage",
           property: "minutes",
-          name: "minutes",
           type: "relation-list",
           tableOptions: {
             show: false,
