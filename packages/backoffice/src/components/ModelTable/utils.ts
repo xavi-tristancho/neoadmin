@@ -12,7 +12,7 @@ type GetRowFn = (item: Field[], props: Field) => unknown;
 type GetFieldsFn = (props: {
   header: Header;
   t: (text: string) => string;
-  item?: Field[];
+  data?: unknownObject[];
 }) => unknownObject[];
 
 type RemoveIfNotFilterFn = (field: Field) => unknown;
@@ -50,7 +50,7 @@ const getRow: GetRowFn = (item, props) => {
   return row ? row : {};
 };
 
-export const getFields: GetFieldsFn = ({ header, t, item }) => {
+export const getFields: GetFieldsFn = ({ header, t, data }) => {
   return header.sections
     .reduce(
       (reducer, section) => [
@@ -59,7 +59,7 @@ export const getFields: GetFieldsFn = ({ header, t, item }) => {
           ? section.fields
               .filter(
                 removeIfNotVisible({
-                  item,
+                  data,
                   pageType: "tableOptions",
                 }) as unknown as (field: Field) => boolean
               )
@@ -79,15 +79,15 @@ export const getFields: GetFieldsFn = ({ header, t, item }) => {
         ...element,
         ...(tableOptions?.format && typeof tableOptions.format === "function"
           ? {
-              renderCell: (props: Field) =>
-                tableOptions.format({
-                  row: getRow(item, props),
-                }),
+              renderCell: ({ row }: { row: unknownObject }) => {
+                return tableOptions.format({
+                  data,
+                  row,
+                  field: element,
+                });
+              },
             }
-          : {
-              renderCell: (params: any) =>
-                params.value.name ? params.value.name : params.value,
-            }),
+          : {}),
         flex: 1,
         field: element.property,
         headerName: element.label || element.name || element.property,
