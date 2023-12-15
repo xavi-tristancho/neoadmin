@@ -123,7 +123,8 @@ const ModelTable = ({
   const isSmart = typeof data === "undefined";
   const renderChildren = children || header?.options?.tableOptions?.children;
   const pageName = header?.options?.name;
-  const tableHeaders = getFields({ header, t, item: data || remoteData });
+  const tableHeaders = getFields({ header, t, data: data || remoteData });
+  
   const columns = [
     ...tableHeaders,
     ...(isEditable || isDeletable || typeof renderActions === "function"

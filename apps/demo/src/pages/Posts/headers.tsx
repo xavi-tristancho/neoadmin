@@ -3,7 +3,7 @@ import { clone } from "../utils";
 import { posts, categories } from "./fixtures/posts";
 import { Category, Post } from "./types";
 
-const headers: Header = {
+const headers: Header<Post> = {
   type: "CRUD", // Specify the header as a `CRUD` type
   options: {
     name: "Post", // Name the sidebar option and the page title
@@ -46,6 +46,20 @@ const headers: Header = {
           label: "Image",
           property: "image",
           type: "image",
+          tableOptions: {
+            format: ({ row }) => {
+              return (
+                <img
+                  src={row.image}
+                  alt={row.title}
+                  style={{
+                    aspectRatio: "16/9",
+                    height: "90%",
+                  }}
+                />
+              );
+            },
+          },
         },
         {
           label: "Title",
@@ -61,6 +75,9 @@ const headers: Header = {
           label: "Content",
           property: "content",
           type: "html",
+          tableOptions: {
+            show: false,
+          },
         },
         {
           label: "Category",
@@ -72,7 +89,9 @@ const headers: Header = {
             format: (category: Category) => category.name,
           },
           tableOptions: {
-            format: (category: Category) => category.name,
+            format: (category: Category) => {
+              return category.name;
+            },
           },
         },
         {
@@ -85,7 +104,6 @@ const headers: Header = {
         {
           label: "Minutage",
           property: "minutes",
-          name: "minutes",
           type: "relation-list",
           tableOptions: {
             show: false,

@@ -7,7 +7,7 @@ type SomeRequiredValuesAreEmptyFn = (props: {
 }) => boolean;
 
 type RemoveIfNotVisibleFn = (props: {
-  item: unknownObject;
+  data: unknownObject[];
   pageType: string;
 }) => (field: {
   [key: string]: {
@@ -24,13 +24,13 @@ type ShowRenderFn = (
 ) => JSX.Element | string | object | unknown;
 
 export const removeIfNotVisible: RemoveIfNotVisibleFn =
-  ({ item, pageType }) =>
+  ({ data, pageType }) =>
   (field = {}) => {
     const { [pageType]: { show = true } = {} } = field;
     const isUndefined: boolean = typeof show === "undefined";
     const value: boolean =
       typeof show === "function"
-        ? show(item)
+        ? show(data)
         : typeof show === "string"
         ? false
         : show;

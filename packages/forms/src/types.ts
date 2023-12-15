@@ -10,18 +10,21 @@ type OnChange = (target: {
   value: unknown;
 }) => Promise<unknownObject>;
 
-export type DefaultField = {
+export type DefaultField<Entity = null> = {
   id?: string | number;
   required?: boolean;
   label?: string;
   property?: string;
-  name?: string;
   placeholder?: string;
   style?: React.CSSProperties;
   sx?: unknownObject;
   tableOptions?: {
     show?: ShowFn;
-    format?: (item: unknown) => string;
+    format?: (args: {
+      row: Entity;
+      data: unknownObject[];
+      field: Field<Entity>;
+    }) => JSX.Element | Element;
     filter?: (item: unknown) => string;
     isSearchable?: boolean;
   };
@@ -35,7 +38,7 @@ export type DefaultField = {
       field,
     }: {
       state: ModelUpsertState;
-      field: Field;
+      field: Field<Entity>;
     }) => unknownObject;
   };
   renderBefore?: () => JSX.Element;
@@ -47,13 +50,13 @@ export type DefaultField = {
   icon?: JSX.Element;
 };
 
-export type ShowFn = boolean | ((item: unknownObject) => boolean);
+export type ShowFn = boolean | ((item: unknownObject[]) => boolean);
 export type DisabledFn =
   | boolean
   | (({ state, field }: { state: ModelUpsertState; field: Field }) => boolean);
 
-export type Field =
-  | (DefaultField & {
+export type Field<Entity = null> =
+  | (DefaultField<Entity> & {
       type:
         | "text"
         | "image"
