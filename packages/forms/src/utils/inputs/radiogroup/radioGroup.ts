@@ -62,7 +62,7 @@ const radiogroup = ({
     onChange: (event) => {
       handleChange({
         target: {
-          name: field.name || field.property,
+          name: field.property,
           value: event.target.value,
         },
       });

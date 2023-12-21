@@ -64,7 +64,7 @@ const FileUploader = ({
 
                 fieldHandleChange({
                   target: {
-                    name: field.name || field.property,
+                    name: field.property,
                     value: null,
                   },
                 });
@@ -90,7 +90,7 @@ const FileUploader = ({
               .then((file) => {
                 fieldHandleChange({
                   target: {
-                    name: field.name || field.property,
+                    name: field.property,
                     value: file,
                   },
                 });
@@ -99,7 +99,7 @@ const FileUploader = ({
           } else {
             fieldHandleChange({
               target: {
-                name: field.name || field.property,
+                name: field.property,
                 value: null,
               },
             });

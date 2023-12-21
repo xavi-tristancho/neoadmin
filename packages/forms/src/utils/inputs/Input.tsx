@@ -14,8 +14,7 @@ type InputProps = FormControlLabelProps & {
 const Input = ({
   property = "",
   type = "",
-  name = property,
-  label = name,
+  label = property,
   required = false,
   upsertOptions = {},
   onChange = () => {
@@ -32,7 +31,6 @@ const Input = ({
       id={property}
       property={property}
       type={inputType}
-      name={name}
       label={label}
       required={required}
       onChange={onChange}
