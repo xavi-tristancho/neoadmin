@@ -7,7 +7,6 @@ export type MultiSelectField<T = UnknownOption> =
   | (DefaultField & {
       type: "multiselect";
       relation: CommonRelationProps & {
-        name?: never;
         options?: string[];
         format?: never;
       };
@@ -15,7 +14,6 @@ export type MultiSelectField<T = UnknownOption> =
   | (DefaultField & {
       type: "multiselect";
       relation: CommonRelationProps & {
-        name: string;
         options?: never;
         format: (option: T) => string;
       };
@@ -23,7 +21,6 @@ export type MultiSelectField<T = UnknownOption> =
   | (DefaultField & {
       type: "multiselect";
       relation: CommonRelationProps & {
-        name?: never;
         options?: T[];
         format: (option: T) => string;
       };
